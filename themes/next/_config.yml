@@ -10,14 +10,14 @@
 override: false
 
 # Console reminder if new version released.
-reminder: false
+reminder: true
 
 # Allow to cache content generation. Introduced in NexT v6.0.0.
 cache:
   enable: true
 
 # Remove unnecessary files after hexo generate.
-minify: false
+minify: true
 
 # Define custom file paths.
 # Create your custom files in site directory `source/_data` and uncomment needed files below.
@@ -49,7 +49,7 @@ favicon:
 
 footer:
   # Specify the date when the site was setup. If not defined, current year will be used.
-  #since: 2015
+  since: 2020
 
   # Icon between year and copyright info.
   icon:
@@ -57,7 +57,7 @@ footer:
     # `heart` is recommended with animation in red (#ff0000).
     name: user
     # If you want to animate the icon, set it to true.
-    animated: false
+    animated: true
     # Change the color of icon, using Hex Code.
     color: "#808080"
 
@@ -66,15 +66,15 @@ footer:
 
   powered:
     # Hexo link (Powered by Hexo).
-    enable: true
+    enable: false
     # Version info of Hexo after Hexo link (vX.X.X).
-    version: true
+    version: false
 
   theme:
     # Theme & scheme info link (Theme - NexT.scheme).
-    enable: true
+    enable: false
     # Version info of NexT after scheme info (vX.X.X).
-    version: true
+    version: false
 
   # Beian ICP and gongan information for Chinese users. See: http://www.beian.miit.gov.cn, http://www.beian.gov.cn
   beian:
@@ -121,18 +121,18 @@ scheme: Gemini
 # External url should start with http:// or https://
 menu:
   home: / || home
-  #about: /about/ || user
-  #tags: /tags/ || tags
-  #categories: /categories/ || th
+  about: /about/ || user
+  tags: /tags/ || tags
+  categories: /categories/ || th
   archives: /archives/ || archive
-  #schedule: /schedule/ || calendar
+  schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
   #commonweal: /404/ || heartbeat
 
 # Enable / Disable menu icons / item badges.
 menu_settings:
   icons: true
-  badges: false
+  badges: true
 
 
 # ---------------------------------------------------------------
@@ -181,8 +181,8 @@ site_state: true
 # Key is the link label showing to end users.
 # Value before `||` delimiter is the target permalink, value after `||` delimiter is the name of Font Awesome icon.
 social:
-  #GitHub: https://github.com/yourname || github
-  #E-Mail: mailto:yourname@gmail.com || envelope
+  GitHub: https://github.com/l-qiang || github
+  E-Mail: mailto:liuqiang.ryan@gmail.com || envelope
   #Weibo: https://weibo.com/yourname || weibo
   #Google: https://plus.google.com/yourname || google
   #Twitter: https://twitter.com/yourname || twitter
@@ -195,8 +195,8 @@ social:
 
 social_icons:
   enable: true
-  icons_only: false
-  transition: false
+  icons_only: true
+  transition: true
 
 # Blog rolls
 links_settings:
@@ -206,7 +206,7 @@ links_settings:
   layout: block
 
 links:
-  #Title: http://yoursite.com
+  #Title: http://l-qiang.github.io
 
 # Table of Contents in the Sidebar
 # Front-matter variable (unsupport wrap expand_all).
@@ -257,9 +257,9 @@ post_meta:
 symbols_count_time:
   separated_meta: true
   item_text_post: true
-  item_text_total: false
+  item_text_total: true
   awl: 4
-  wpm: 275
+  wpm: 300
 
 # Use icon instead of the symbol # to indicate the tag at the bottom of the post
 tag_icon: false
@@ -268,13 +268,13 @@ tag_icon: false
 # Front-matter variable (unsupport animation).
 reward_settings:
   # If true, reward will be displayed in every article by default.
-  enable: false
-  animation: false
+  enable: true
+  animation: true
   #comment: Donate comment here.
 
 reward:
-  #wechatpay: /images/wechatpay.png
-  #alipay: /images/alipay.png
+  wechatpay: /images/wechatpay.png
+  alipay: /images/alipay.png
   #bitcoin: /images/bitcoin.png
 
 # Related popular posts
@@ -360,28 +360,28 @@ codeblock:
   copy_button:
     enable: false
     # Show text copy result.
-    show_result: false
+    show_result: true
     # Available values: default | flat | mac
-    style:
+    style: mac
 
 back2top:
   enable: true
   # Back to top in sidebar.
-  sidebar: false
+  sidebar: true
   # Scroll percent label in b2t button.
-  scrollpercent: false
+  scrollpercent: true
 
 # Reading progress bar
 reading_progress:
   enable: false
   # Available values: top | bottom
-  position: top
+  position: bottom
   color: "#37c6c0"
   height: 3px
 
 # Bookmark Support
 bookmark:
-  enable: false
+  enable: true
   # Customize the color of the bookmark.
   color: "#222"
   # If auto, save the reading progress when closing the page or clicking the bookmark-icon.
@@ -390,8 +390,8 @@ bookmark:
 
 # `Follow me on GitHub` banner in the top-right corner.
 github_banner:
-  enable: false
-  permalink: https://github.com/yourname
+  enable: true
+  permalink: https://github.com/l-qiang
   title: Follow me on GitHub
 
 
