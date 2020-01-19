@@ -2,7 +2,7 @@
 title: 'Java + Appium + 夜神模拟器实现学习强国积分任务自动化'
 date: 2020-01-15 19:34:00
 categories:
- - 其他
+ - Java
 tags:
  - Java
  - Appium
