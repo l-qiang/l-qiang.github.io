@@ -312,12 +312,30 @@
 
 ]]></content>
       <categories>
-        <category>其他</category>
+        <category>Java</category>
       </categories>
       <tags>
         <tag>Java</tag>
         <tag>Appium</tag>
         <tag>自动化测试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>iText合并PDF和添加书签</title>
+    <url>/2020/01/10/iText%E5%90%88%E5%B9%B6PDF%E5%92%8C%E6%B7%BB%E5%8A%A0%E4%B9%A6%E7%AD%BE/</url>
+    <content><![CDATA[<p>关于这个问题，其实在iText官网和Stack Overflow上面都有答案。之所以还要记录是想有更多人看到简单易懂的解决办法。因为我不想再有人直接CSDN搜一个，不管是否要新引入Jar包也不管代码是否复杂，然后告诉我参考那个写。</p>
+<p><a href="https://itextpdf.com/en/resources/examples/itext-5-legacy/merging-documents-bookmarks#39-mergewithoutlines.java" target="_blank" rel="noopener">官网例子</a></p>
+<a id="more"></a>
+
+<p>下面是一个示例</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">merge</span><span class="params">(List&lt;String&gt; srcFiles, String desFile)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        Document document = <span class="keyword">new</span> Document();</span><br><span class="line">        PdfCopy copy = <span class="keyword">new</span> PdfCopy(document, <span class="keyword">new</span> FileOutputStream(desFile));</span><br><span class="line">        document.open();</span><br><span class="line">        <span class="keyword">int</span> page = <span class="number">1</span>;</span><br><span class="line">        List&lt;HashMap&lt;String, Object&gt;&gt; outlines = <span class="keyword">new</span> ArrayList&lt;HashMap&lt;String, Object&gt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (String scrFile : srcFiles) &#123;</span><br><span class="line">            PdfReader reader = <span class="keyword">new</span> PdfReader(scrFile);</span><br><span class="line">            copy.addDocument(reader);</span><br><span class="line">            <span class="comment">// add outline element</span></span><br><span class="line">            HashMap&lt;String, Object&gt; outline = <span class="keyword">new</span> HashMap&lt;String, Object&gt;();</span><br><span class="line">            outline.put(<span class="string">"Title"</span>, FilenameUtils.getBaseName(scrFile)); <span class="comment">// 书签的名字</span></span><br><span class="line">            outline.put(<span class="string">"Action"</span>, <span class="string">"GoTo"</span>);</span><br><span class="line">            outline.put(<span class="string">"Page"</span>, String.format(<span class="string">"%d Fit"</span>, page));</span><br><span class="line">            outlines.add(outline);</span><br><span class="line">            <span class="comment">// update page count</span></span><br><span class="line">            page += reader.getNumberOfPages();</span><br><span class="line">            reader.close();</span><br><span class="line">        &#125;</span><br><span class="line">        copy.setOutlines(outlines);</span><br><span class="line">        document.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>PDF</tag>
+        <tag>iText</tag>
       </tags>
   </entry>
 </search>
