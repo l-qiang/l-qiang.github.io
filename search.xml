@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hexo添加RSS和站点地图</title>
+    <url>/2020/01/20/Hexo%E6%B7%BB%E5%8A%A0RSS%E5%92%8C%E7%AB%99%E7%82%B9%E5%9C%B0%E5%9B%BE/</url>
+    <content><![CDATA[<p>​    </p>
+<a id="more"></a>
+
+<h2 id="RSS"><a href="#RSS" class="headerlink" title="RSS"></a>RSS</h2><p>给自己的博客添加RSS的话，其他人就可以订阅你的博客了。</p>
+<div class="tabs" id="rss"><ul class="nav-tabs"><li class="tab active"><a href="#rss-1">安装</a></li><li class="tab"><a href="#rss-2">配置</a></li></ul><div class="tab-content"><div class="tab-pane active" id="rss-1"><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-generator-feed --save</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="rss-2"><figure class="highlight plain"><figcaption><span>hexo/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">feed:</span><br><span class="line">  type: atom</span><br><span class="line">  path: atom.xml</span><br><span class="line">  limit: 20</span><br><span class="line">  hub:</span><br><span class="line">  content:</span><br><span class="line">  content_limit: </span><br><span class="line">  content_limit_delim: &#39; &#39;</span><br><span class="line">  order_by: -date</span><br><span class="line">  icon: </span><br><span class="line">  autodiscovery: true</span><br><span class="line">  template:</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>详细见<a href="https://github.com/hexojs/hexo-generator-feed" target="_blank" rel="noopener">hexo-generator-feed</a></p></div></div></div>
+
+
+
+<h2 id="站点地图"><a href="#站点地图" class="headerlink" title="站点地图"></a>站点地图</h2><blockquote><p>站点地图是一个网站所有链接的容器。很多网站的连接层次比较深，爬虫很难抓取到，站点地图可以方便爬虫抓取网站页面，通过抓取网站页面，清晰了解网站的架构，网站地图一般存放在根目录下并命名sitemap，为爬虫指路，增加网站重要内容页面的收录。站点地图就是根据网站的结构、框架、内容，生成的导航网页文件。站点地图对于提高用户体验有好处，它们为网站访问者指明方向，并帮助迷失的访问者找到他们想看的页面。</p>
+<footer><strong>百度百科</strong><cite><a href="https://baike.baidu.com/item/站点地图/9991876" target="_blank" rel="noopener">站点地图</a></cite></footer></blockquote>
+
+<div class="tabs" id="站点地图"><ul class="nav-tabs"><li class="tab active"><a href="#站点地图-1">安装</a></li><li class="tab"><a href="#站点地图-2">配置</a></li></ul><div class="tab-content"><div class="tab-pane active" id="站点地图-1"><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-generator-sitemap --save</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="站点地图-2"><figure class="highlight plain"><figcaption><span>hexo/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line">sitemap:</span><br><span class="line">    path: sitemap.xml</span><br><span class="line">    template:</span><br><span class="line">    rel: false</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>path</strong> - Sitemap path. (Default: sitemap.xml)</li>
+<li><strong>template</strong> - Custom template path. This file will be used to generate sitemap.xml (See <a href="https://github.com/hexojs/hexo-generator-sitemap/blob/master/sitemap.xml" target="_blank" rel="noopener">default template</a>)</li>
+<li><strong>rel</strong> - Add <a href="http://microformats.org/wiki/rel-sitemap" target="_blank" rel="noopener"><code>rel-sitemap</code></a> to the site’s header. (Default: <code>false</code>)</li>
+</ul></div></div></div>]]></content>
+      <categories>
+        <category>Blog</category>
+      </categories>
+      <tags>
+        <tag>Blog</tag>
+        <tag>Hexo</tag>
+        <tag>RSS</tag>
+        <tag>sitemap</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo搭建个人博客</title>
     <url>/2020/01/17/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<p>这不完全是一篇搭建个人博客的教程，因为<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo</a>的文档其实写得非常清楚了。但是，我们按照教程来不一定很顺利。所以，这主要还是一个小白的经验之谈。</p>
@@ -152,6 +185,14 @@
 
 <p>这里填的是 Repository的名字，不是SSH URL。这个填错了页面上会显示<code>Error</code>。</p>
 <p>另外，评论系统你得发布到GitHub才能正常使用。</p>
+<h4 id="CC-license"><a href="#CC-license" class="headerlink" title="CC license"></a>CC license</h4><p>协议详情见<a href="https://creativecommons.org" target="_blank" rel="noopener">Creative Commons</a></p>
+<p>将这个配置开启可以在文章最后加一个版权声明</p>
+<div class="note danger">
+            <p><strong>本文作者：</strong> xxx</p><p><strong>本文链接：</strong> xxx</p><p><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议。转载请注明出处！</p>
+          </div>
+
+<figure class="highlight plain"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">creative_commons:</span><br><span class="line">  license: by-nc-sa</span><br><span class="line">  sidebar: true</span><br><span class="line">  post: true</span><br><span class="line">  language: deed.zh</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <div class="note info">
             <p><strong>推送主题修改到GitHub</strong></p><p>因为我们是将Next主题直接clone到我们自己的Repository下。所以，我们推送的文件中，有个.git的文件夹。嵌套仓库可能会出问题。注意命令行的提示信息，会有类似让你执行下面这条命令的提示</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git rm --cached themes&#x2F;next</span><br></pre></td></tr></table></figure><p>这条真的有用，执行完就可以提交了。如果不行，你就多试几次，亲测有效。</p>
           </div>
@@ -179,9 +220,9 @@
         <category>Blog</category>
       </categories>
       <tags>
+        <tag>Blog</tag>
         <tag>Hexo</tag>
         <tag>Github</tag>
-        <tag>Blog</tag>
       </tags>
   </entry>
   <entry>
