@@ -115,7 +115,7 @@ feed:
 sitemap:
     path: sitemap.xml
     template:
-    rel: false
+    rel: true
 
 # Include / Exclude file(s)
 ## include:/exclude: options only apply to the 'source/' folder

@@ -311,7 +311,31 @@ gitalk:
 
 另外，评论系统你得发布到GitHub才能正常使用。
 
+#### CC license
 
+协议详情见[Creative Commons](https://creativecommons.org)
+
+将这个配置开启可以在文章最后加一个版权声明
+
+{% note danger  %}
+
+**本文作者：** xxx
+
+**本文链接：** xxx
+
+**版权声明：** 本博客所有文章除特别声明外，均采用 [BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh) 许可协议。转载请注明出处！
+
+{% endnote %}
+
+{% codeblock next/_config.yml %}
+
+creative_commons:
+  license: by-nc-sa
+  sidebar: true
+  post: true
+  language: deed.zh
+
+{% endcodeblock %}
 
 {% note info %}
 
