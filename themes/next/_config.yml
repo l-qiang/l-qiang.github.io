@@ -121,12 +121,12 @@ scheme: Gemini
 # External url should start with http:// or https://
 menu:
   home: / || home
-  about: /about/ || user
+  #about: /about/ || user
   tags: /tags/ || tags
   categories: /categories/ || th
   archives: /archives/ || archive
   #schedule: /schedule/ || calendar
-  #sitemap: /sitemap.xml || sitemap
+  sitemap: /sitemap.xml || sitemap
   commonweal: /404/ || heartbeat
 
 # Enable / Disable menu icons / item badges.
@@ -191,7 +191,7 @@ social:
   #YouTube: https://youtube.com/yourname || youtube
   #Instagram: https://instagram.com/yourname || instagram
   #Skype: skype:yourname?call|chat || skype
-  #RSS: /atom.xml || rss
+  RSS: /atom.xml || rss
 
 social_icons:
   enable: true

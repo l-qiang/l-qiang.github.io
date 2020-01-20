@@ -98,6 +98,24 @@ search:
   field: post
   format: html
   limit: 10000
+# feed
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content:
+  content_limit: 
+  content_limit_delim: ' '
+  order_by: -date
+  icon: 
+  autodiscovery: true
+  template:
+# sitemap
+sitemap:
+    path: sitemap.xml
+    template:
+    rel: false
 
 # Include / Exclude file(s)
 ## include:/exclude: options only apply to the 'source/' folder
