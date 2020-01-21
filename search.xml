@@ -394,6 +394,7 @@
 ]]></content>
       <categories>
         <category>Java</category>
+        <category>Jackson</category>
       </categories>
       <tags>
         <tag>Java</tag>
@@ -436,6 +437,220 @@
       <tags>
         <tag>Java</tag>
         <tag>Spring Boot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>记一次Java线程堆栈分析</title>
+    <url>/2019/10/30/%E8%AE%B0%E4%B8%80%E6%AC%A1Java%E7%BA%BF%E7%A8%8B%E5%A0%86%E6%A0%88%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<p>最新某系统经常出现无法登录，不能响应请求的情况。一开始找上我的时候，他们已经通过重启恢复了，然后让我查原因。我表示一脸懵逼，啥都没有就让我解决了，最起码得让我有东西分析吧。还好这个问题经常发生，于是就在一次故障发生的时候。</p>
+<a id="more"></a>
+
+<p>我使用<code>jps</code>查到<code>进程pid</code>，然后用<code>jstack</code>将堆栈信息保存到一个文件里，然后就用上了我不知道啥时候收藏的网站<a href="https://fastthread.io/" target="_blank" rel="noopener">fastThread</a>，将文件上传上去。</p>
+<img data-src="/2019/10/30/%E8%AE%B0%E4%B8%80%E6%AC%A1Java%E7%BA%BF%E7%A8%8B%E5%A0%86%E6%A0%88%E5%88%86%E6%9E%90/1.png" class="">
+
+<p>嚯，这么多线程再<code>WAITING</code>状态。点进去一个看看。</p>
+<img data-src="/2019/10/30/%E8%AE%B0%E4%B8%80%E6%AC%A1Java%E7%BA%BF%E7%A8%8B%E5%A0%86%E6%A0%88%E5%88%86%E6%9E%90/2.png" class="">
+
+<p>大多数线程的堆栈信息都跟上面差不多，都是在等从Druid数据库连接池等连接。</p>
+<p>所以，原因就是数据库连接不够用了。然后我看了一眼数据库连接池的配置。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">spring.datasource.maxActive&#x3D;80</span><br><span class="line">spring.datasource.removeAbandoned&#x3D;false</span><br></pre></td></tr></table></figure>
+
+<p>以我对这个系统的了解，这个配置完全够了。</p>
+<p>于是，我打开了<code>druid</code>的监控。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">spring.datasource.druid.web-stat-filter.enabled&#x3D;true</span><br><span class="line">spring.datasource.druid.stat-view-servlet.enabled&#x3D;true</span><br></pre></td></tr></table></figure>
+
+<p>监控页面的部分功能需要设置这个。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">spring.datasource.druid.removeAbandoned&#x3D;true</span><br></pre></td></tr></table></figure>
+
+<p>果然，<code>removeAbandoned</code>设置为<code>true</code>之后就有地方出现问题了，抛出了<code>connection holder is null</code>的异常错误。</p>
+<p>这说明，有地方长时间占用数据库连接了，由于超时回收，导致事务提交的时候出现问题。找到出错的代码后发现是因为定时任务的所有操作都在一个事务里，一个定时任务<code>几十分钟</code>。其实，这个定时任务完全没必要加一个这样的大粒度事务，它的大多数操作都不必与数据库交互。所以，只要把事务粒度控制好了问题就解决了。</p>
+<p>另外，还有一个原因是下面这个配置并不会生效。我其实挺不理解的，Spring Boot的文档写得很清楚了，为什么还有人把这些配置弄错了，而且还不验证有没有生效。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">spring.datasource.maxActive&#x3D;80</span><br><span class="line">spring.datasource.removeAbandoned&#x3D;false</span><br></pre></td></tr></table></figure>
+
+<p>因为系统用的Druid，所以<code>正确的配置</code>是下面这样的</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">spring.datasource.druid.maxActive&#x3D;80</span><br><span class="line">spring.datasource.druid.removeAbandoned&#x3D;false</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>fastThread</tag>
+        <tag>线程堆栈</tag>
+        <tag>Druid</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于Zookeeper与CAP的思考</title>
+    <url>/2019/10/24/%E5%85%B3%E4%BA%8EZookeeper%E4%B8%8ECAP%E7%9A%84%E6%80%9D%E8%80%83/</url>
+    <content><![CDATA[<p>我看到很多博客都说<code>Zookeeper</code>满足了<code>CAP</code>中的<code>CP</code>。但是Zookeeper的<code>Follower</code>和<code>Observer</code>是可以处理非事务请求的。</p>
+<p>那么，<code>如果一个读请求到了未同步的Follower和Observer上，那读到的数据不就是旧数据吗？那不就不一致了吗？</code></p>
+<a id="more"></a>
+
+<p>带着这个疑问，我在<code>Zookeeper</code>的官方文档中找到了这么一段话。</p>
+<blockquote>
+<p>Sometimes developers mistakenly assume one other guarantee that ZooKeeper does not in fact make. This is: * Simultaneously Consistent Cross-Client Views* : ZooKeeper does not guarantee that at every instance in time, two different clients will have identical views of ZooKeeper data. Due to factors like network delays, one client may perform an update before another client gets notified of the change. Consider the scenario of two clients, A and B. If client A sets the value of a znode /a from 0 to 1, then tells client B to read /a, client B may read the old value of 0, depending on which server it is connected to. If it is important that Client A and Client B read the same value, Client B should should call the sync() method from the ZooKeeper API method before it performs its read. So, ZooKeeper by itself doesn’t guarantee that changes occur synchronously across all servers, but ZooKeeper primitives can be used to construct higher level functions that provide useful client synchronization. (For more information, see the ZooKeeper Recipes. [tbd:..]).</p>
+</blockquote>
+<p>所以，数据不一致的问题确实是存在的，但是可以通过sync方法来获取最新数据。</p>
+]]></content>
+      <categories>
+        <category>Zookeeper</category>
+      </categories>
+      <tags>
+        <tag>Zookeeper</tag>
+        <tag>CAP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Spring注解之@Lookup</title>
+    <url>/2019/10/17/Spring%E6%B3%A8%E8%A7%A3%E4%B9%8B@Lookup/</url>
+    <content><![CDATA[<p>有时候我们在某个单例Bean中要用到原型Bean。那么我们怎么获取原型Bean呢？</p>
+<ul>
+<li>用@Autowired，@Resource注解注入</li>
+<li>用BeanFactory的getBean方法</li>
+</ul>
+<p>使用<code>@Autowired</code>，<code>@Resource</code>的话我们就没法达到原型Bean的效果。我想在一个单例Bean中多次获取原型Bean该怎么做，而且我不想用BeanFactory。</p>
+<a id="more"></a>
+
+<p><code>@Lookup</code>就能满足我的需要。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Service</span><br><span class="line">public class ServiceA &#123;</span><br><span class="line">    </span><br><span class="line">    public void print(String msg) &#123;</span><br><span class="line">        System.out.println(msg);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void test(String msg) &#123;</span><br><span class="line">        testBean(msg).print();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Lookup</span><br><span class="line">    protected TestBean testBean(String msg) &#123;</span><br><span class="line">        return new TestBean(msg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的test方法每次调用都需要一个新的TestBean。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Component</span><br><span class="line">@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)</span><br><span class="line">public class TestBean &#123;</span><br><span class="line">    </span><br><span class="line">    @Autowired</span><br><span class="line">    private ServiceA serviceA;</span><br><span class="line">    </span><br><span class="line">    private String msg;</span><br><span class="line"></span><br><span class="line">    public String getMsg() &#123;</span><br><span class="line">        return msg;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setMsg(String msg) &#123;</span><br><span class="line">        this.msg &#x3D; msg;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void print() &#123;</span><br><span class="line">        serviceA.print(msg);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public TestBean(String msg) &#123;</span><br><span class="line">        super();</span><br><span class="line">        this.msg &#x3D; msg;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>@Lookup并不神奇，它的就是通过BeanFactory的getBean实现的</p>
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>Spring</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Spring</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>OAuth解决了什么问题？</title>
+    <url>/2019/10/15/OAuth%E8%A7%A3%E5%86%B3%E4%BA%86%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%EF%BC%9F/</url>
+    <content><![CDATA[<blockquote><p>In the traditional client-server authentication model, the client<br>   requests an access-restricted resource (protected resource) on the<br>   server by authenticating with the server using the resource owner’s<br>   credentials.  In order to provide third-party applications access to<br>   restricted resources, the resource owner shares its credentials with<br>   the third party.  This creates several problems and limitations:</p>
+<a id="more"></a>
+
+<p>   o  Third-party applications are required to store the resource<br>      owner’s credentials for future use, typically a password in<br>      clear-text.</p>
+<p>   o  Servers are required to support password authentication, despite<br>      the security weaknesses inherent in passwords.</p>
+<p>   o  Third-party applications gain overly broad access to the resource<br>      owner’s protected resources, leaving resource owners without any<br>      ability to restrict duration or access to a limited subset of<br>      resources.</p>
+<p>   o  Resource owners cannot revoke access to an individual third party<br>      without revoking access to all third parties, and must do so by<br>      changing the third party’s password.<br>   o  Compromise of any third-party application results in compromise of<br>      the end-user’s password and all of the data protected by that<br>      password.</p>
+<footer><strong>RFC 6749</strong><cite><a href="https://tools.ietf.org/html/rfc6749#section-1" target="_blank" rel="noopener">section-1</a></cite></footer></blockquote>
+
+<p>大概意思就是</p>
+<ul>
+<li>第三方应用需要存储资源拥有者的密码，并且通常是明文密码</li>
+<li>尽管密码不安全，但是服务器必须支持密码验证</li>
+<li>资源拥有者不能限制第三方应用对资源访问的范围和持续时间</li>
+<li>资源拥有着不能撤销单个第三方应用的权限，只能是通过修改密码的方式来撤销所有第三方应用的权限</li>
+<li>任何第三方应用遭到破坏会导致用户密码和所有受到该密码保护的数据受到损害</li>
+</ul>
+]]></content>
+      <categories>
+        <category>OAuth</category>
+      </categories>
+      <tags>
+        <tag>OAuth</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>spring-session是怎样使用redis存session的？</title>
+    <url>/2019/10/13/spring-session%E6%98%AF%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8redis%E5%AD%98session%E7%9A%84%EF%BC%9F/</url>
+    <content><![CDATA[<p>其实，我的直觉告诉我使用Hash。</p>
+<p>我在项目里找到<a href="https://docs.spring.io/spring-session/docs/current/api/org/springframework/session/data/redis/RedisOperationsSessionRepository.html" target="_blank" rel="noopener">RedisOperationsSessionRepository</a>然后在注释中找到了答案</p>
+<blockquote>
+<p>Each session is stored in Redis as a <a href="http://redis.io/topics/data-types#hashes" target="_blank" rel="noopener">Hash</a>. Each session is set and updated using the <a href="http://redis.io/commands/hmset" target="_blank" rel="noopener">HMSET command</a>. </p>
+</blockquote>
+<a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">HMSET spring:session:sessions:33fdd1b6-b496-4b33-9f7d-df96679d32fe creationTime 1404360000000 maxInactiveInterval 1800 lastAccessedTime 1404360000000 sessionAttr:attrName someAttrValue sessionAttr:attrName2 someAttrValue2</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>33fdd1b6-b496-4b33-9f7d-df96679d32fe</code>是session id</li>
+<li><code>creationTime 1404360000000</code>是session的创建时间</li>
+<li><code>maxInactiveInterval 1800</code>是过期时间</li>
+<li><code>lastAccessedTime 1404360000000</code>是最后访问时间</li>
+<li>后面的就是一些自定义的属性了</li>
+</ul>
+<p>当然，除了上面的这些，在Redis中还存了一些过期时间相关的数据</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">EXPIRE spring:session:sessions:33fdd1b6-b496-4b33-9f7d-df96679d32fe 2100</span><br><span class="line">APPEND spring:session:sessions:expires:33fdd1b6-b496-4b33-9f7d-df96679d32fe &quot;&quot;</span><br><span class="line">EXPIRE spring:session:sessions:expires:33fdd1b6-b496-4b33-9f7d-df96679d32fe 1800</span><br><span class="line">SADD spring:session:expirations:1439245080000 expires:33fdd1b6-b496-4b33-9f7d-df96679d32fe</span><br><span class="line">EXPIRE spring:session:expirations1439245080000 2100</span><br></pre></td></tr></table></figure>
+
+<p>原因是Spring Session依赖Redis的过期键的删除触发<code>SessionDestroyedEvent</code>事件来释放资源。但是，Redis的键过期之后不能保证立马删除，所以就会有后台任务不断地访问session过期键来触发Redis过期键删除。</p>
+<p>这个可以在<code>RedisOperationsSessionRepository</code>的注释或者<a href="https://docs.spring.io/spring-session/docs/2.0.0.M4/reference/html5/#api-redisoperationssessionrepository-expiration" target="_blank" rel="noopener">Spring Session的文档</a>查看详细介绍。</p>
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>Spring Session</category>
+        <category>Redis</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Spring Session</tag>
+        <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Jackson序列化字段脱敏处理</title>
+    <url>/2019/10/11/Jackson%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%97%E6%AE%B5%E8%84%B1%E6%95%8F%E5%A4%84%E7%90%86/</url>
+    <content><![CDATA[<p>例如，我有如下类A，我需要A序列化为JSON是name字段值为***。</p>
+<figure class="highlight java"><figcaption><span>A.java</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line"></span><br><span class="line">​    <span class="meta">@JsonProperty</span></span><br><span class="line">​    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<p>我们可以这么做。</p>
+<div class="tabs" id="code"><ul class="nav-tabs"><li class="tab active"><a href="#code-1">StdConverter-></a></li><li class="tab"><a href="#code-2">A</a></li></ul><div class="tab-content"><div class="tab-pane active" id="code-1"><figure class="highlight java"><figcaption><span>NameDesensitizeConverter.java</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NameDesensitizeConverter</span> <span class="keyword">extends</span> <span class="title">StdConverter</span>&lt;<span class="title">String</span>, <span class="title">String</span>&gt;</span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">convert</span><span class="params">(String value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"***"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="code-2"><figure class="highlight java"><figcaption><span>A.java</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    <span class="meta">@JsonProperty</span></span><br><span class="line">    <span class="meta">@JsonSerialize</span>(converter = NameDesensitizeConverter<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">    <span class="title">private</span> <span class="title">String</span> <span class="title">name</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></div></div>
+
+<p>当然，网上还有<a href="https://blog.csdn.net/liufei198613/article/details/79009015" target="_blank" rel="noopener">其他的方法</a></p>
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>Jackson</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Jackson</tag>
+        <tag>JSON</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ConcurrentModificationException你真的了解吗？</title>
+    <url>/2019/10/11/ConcurrentModificationException%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BA%86%E8%A7%A3%E5%90%97%EF%BC%9F/</url>
+    <content><![CDATA[<p>我想很多人第一次遇到这个异常都是因为对<code>List</code>使用<code>foreach</code>遍历，然后删除元素的导致的。然后我们会在网上查到使用<code>Iterator</code>或<code>for倒序遍历</code>来解决这个问题。那么<code>ConcurrentModificationException</code>是怎么出现的？为什么要使用Iterator或for倒序遍历来解决呢？</p>
+<a id="more"></a>
+
+<p>首先，<code>ConcurrentModificationException</code>是<code>Iterator</code>的<code>remove</code>方法抛出来的，而不是<code>List</code>的<code>remove</code>方法，而<code>foreach</code>的实现原理其实就是<code>Iterator</code>。既然<code>foreach</code>是通过<code>Iterator</code>实现的，那为什么使用<code>Iterator</code>可以，而使用<code>foreach</code>却不行呢？</p>
+<p>别急，让我们先看看<code>Iterator</code>的<code>remove</code>和<code>List</code>的<code>remove</code>的区别。</p>
+<div class="tabs" id="remove"><ul class="nav-tabs"><li class="tab active"><a href="#remove-1">Iterator</a></li><li class="tab"><a href="#remove-2">List</a></li></ul><div class="tab-content"><div class="tab-pane active" id="remove-1"><figure class="highlight java"><figcaption><span>ArrayList$Itr</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (lastRet &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException();</span><br><span class="line">    checkForComodification();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        ArrayList.<span class="keyword">this</span>.remove(lastRet);</span><br><span class="line">        cursor = lastRet;</span><br><span class="line">        lastRet = -<span class="number">1</span>;</span><br><span class="line">        expectedModCount = modCount;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IndexOutOfBoundsException ex) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="remove-2"><figure class="highlight java"><figcaption><span>ArrayList</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    rangeCheck(index);</span><br><span class="line"></span><br><span class="line">    modCount++;</span><br><span class="line">    E oldValue = elementData(index);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> numMoved = size - index - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (numMoved &gt; <span class="number">0</span>)</span><br><span class="line">        System.arraycopy(elementData, index+<span class="number">1</span>, elementData, index,</span><br><span class="line">                             numMoved);</span><br><span class="line">    elementData[--size] = <span class="keyword">null</span>; <span class="comment">// clear to let GC do its work</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> oldValue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></div></div>
+
+<p>可以看到，<code>Iterator</code>的的<code>remove</code>方法除了调用<code>List</code>的<code>remove</code>方法之后，还有这样一个操作</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">expectedModCount &#x3D; modCount;</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>foreach</code>的时候会调用<code>checkForComodification</code>方法</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">final void checkForComodification() &#123;</span><br><span class="line">    if (modCount !&#x3D; expectedModCount)</span><br><span class="line">        throw new ConcurrentModificationException();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而我们使用foreach的时候一般都会习惯性的使用List的<code>remove</code>，导致了<code>modCount</code> 和 <code>expectedModCount</code>不相等。</p>
+<p><strong>为什么普通的for循环不会出现<code>ConcurrentModificationException</code>异常呢？</strong></p>
+<p>因为普通的for循环没有用到Iterator的方法，也就不存在<code>modCount</code> 和 <code>expectedModCount</code>是否相等的问题。</p>
+<p>但是，普通for循环也要注意要倒序。</p>
+<div class="tabs" id="for"><ul class="nav-tabs"><li class="tab active"><a href="#for-1">倒序</a></li><li class="tab"><a href="#for-2">正序</a></li></ul><div class="tab-content"><div class="tab-pane active" id="for-1"><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    List&lt;Integer&gt; lst = <span class="keyword">new</span> ArrayList&lt;Integer&gt;(Arrays.asList(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = lst.size() - <span class="number">1</span> ; i &gt;= <span class="number">0</span> ; i--) &#123;</span><br><span class="line">            System.out.println(lst.get(i));</span><br><span class="line">            lst.remove(i);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>上面的代码可以正常运行。并且输出和预料的一样是10,9,8,7,6,5,4,3,2,1</p></div><div class="tab-pane" id="for-2"><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    List&lt;Integer&gt; lst = <span class="keyword">new</span> ArrayList&lt;Integer&gt;(Arrays.asList(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; lst.size() ; i++) &#123;</span><br><span class="line">            System.out.println(lst.get(i));</span><br><span class="line">            lst.remove(i);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这就有问题了，输出1,3,5,7,9。原因就是删除1之后，2挪到了数组下标为0的位置，但是i已经变成1了，而1的位置已经不是2是3了，所以2就错过了。4,6,8,10也是同样的道理。</p></div></div></div>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
       </tags>
   </entry>
 </search>
