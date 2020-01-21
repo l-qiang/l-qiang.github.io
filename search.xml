@@ -659,6 +659,8 @@
     <content><![CDATA[<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	COL_B,</span><br><span class="line">	<span class="keyword">MAX</span>( <span class="keyword">CASE</span> COL_A <span class="keyword">WHEN</span> <span class="string">'a'</span> <span class="keyword">THEN</span> <span class="number">1</span> <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span> ) <span class="keyword">AS</span> <span class="string">'a'</span>,</span><br><span class="line">	<span class="keyword">MAX</span>( <span class="keyword">CASE</span> COL_A <span class="keyword">WHEN</span> <span class="string">'b'</span> <span class="keyword">THEN</span> <span class="number">1</span> <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span> ) <span class="keyword">AS</span> <span class="string">'b'</span>,</span><br><span class="line">	<span class="keyword">MAX</span>( <span class="keyword">CASE</span> COL_A <span class="keyword">WHEN</span> <span class="string">'c'</span> <span class="keyword">THEN</span> <span class="number">1</span> <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span> ) <span class="keyword">AS</span> <span class="string">'c'</span> </span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	<span class="keyword">Table</span> </span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line">	COL_B </span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> </span><br><span class="line">    COL_C <span class="keyword">DESC</span></span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">10</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>COL_C上建立了一个普通索引。<code>50w</code>数据这个SQL的执行时间大概为<code>3s</code>。</p>
+<a id="more"></a>
+
 <div class="tabs" id="优化"><ul class="nav-tabs"><li class="tab active"><a href="#优化-1">第一次优化</a></li><li class="tab"><a href="#优化-2">第二次优化</a></li></ul><div class="tab-content"><div class="tab-pane active" id="优化-1"><p>我将一条SQL拆成两条</p>
 <figure class="highlight sql"><figcaption><span>分页</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    COL_B </span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    <span class="keyword">Table</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line">    COL_B</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">    COL_C <span class="keyword">DESC</span></span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">10</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -681,6 +683,105 @@
         <tag>MySQL</tag>
         <tag>SQL</tag>
         <tag>优化查询</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>spring.mvc.favicon.enabled为什么不起作用？</title>
+    <url>/2019/09/05/spring.mvc.favicon.enabled%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%B5%B7%E4%BD%9C%E7%94%A8%EF%BC%9F/</url>
+    <content><![CDATA[<p>偶然发现不管我将spring.mvc.favicon.enabled设置成true还是false，系统表面上都没有什么变化。favicon该显示还是显示。</p>
+<p>那么这个配置究竟有什么用呢？</p>
+<a id="more"></a>
+
+<p>我在github的<a href="https://github.com/spring-projects/spring-boot/issues/17925" target="_blank" rel="noopener">issue</a>找到了答案。</p>
+<blockquote>
+<p>It only disables serving a favicon.ico from the root of the classpath. A favicon.ico that’s placed in one of the static resource locations will still be served.</p>
+</blockquote>
+<p>也就是说将<code>spring.mvc.favicon.enabled</code>设置成<code>false</code>，只是让<code>classpath</code>下的<code>favicon</code>图标不能用。而<code>static</code>下的<code>favicon</code>仍然可以用。</p>
+<p><code>WebMvcAutoConfiguration</code>的<code>FaviconConfiguration</code>也可以验证这一点。</p>
+<p>favicon的请求是由浏览器发起的，所以如果要禁用需要让系统不再请求这个图标。</p>
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>Spring Boot</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Spring Boot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>为什么修改SVN后Spring Cloud Config失效了？</title>
+    <url>/2019/09/04/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BF%AE%E6%94%B9SVN%E5%90%8ESpring%20Cloud%20Config%E5%A4%B1%E6%95%88%E4%BA%86%EF%BC%9F/</url>
+    <content><![CDATA[<p><code>spring.cloud.config.server.svn.uri</code>修改成<code>新的SVN地址</code>之后，访问配置中心获得的配置还是<code>修改前SVN</code>的。</p>
+<p>在我百思不得其姐的时候，我看到了配置中<code>spring.cloud.config.server.svn.basedir</code>指定了一个服务器上的目录。</p>
+<p>于是，我上服务器看了看<code>spring.cloud.config.server.svn.basedir</code>指定的目录有什么。</p>
+<p>果然跟我猜测的一样，这个目录其实就是SVN上Check out下来的文件。平时我们在自己电脑上换SVN的时候都会<code>relocate</code>一下，但是Spring Cloud Config没有<code>relocate</code>。</p>
+<p>所以，解决办法就是：</p>
+<ol>
+<li>手动<code>relocate</code> <code>spring.cloud.config.server.svn.basedir</code>指定的目录。</li>
+<li>直接删除<code>spring.cloud.config.server.svn.basedir</code>指定的目录。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>Spring Cloud</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Spring Cloud</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Spring Boot注解之@ConditionalOnProperty</title>
+    <url>/2019/09/04/Spring%20Boot%E6%B3%A8%E8%A7%A3%E4%B9%8B@ConditionalOnProperty/</url>
+    <content><![CDATA[<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@ConditionalOnProperty</span>(value = <span class="string">"spring.mvc.favicon.enabled"</span>,</span><br><span class="line">				matchIfMissing = <span class="keyword">true</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>当配置文件中<strong>没有</strong><code>spring.mvc.favicon.enabled</code>时，由于<code>matchIfMissing = true</code><strong>，属于条件</strong>匹配**。</p>
+</li>
+<li><p>当配置文件中<strong>有</strong><code>spring.mvc.favicon.enabled</code>时，此时配合<code>havingValue</code>，如下表。<code>havingValue</code>默认为<code>“”</code>，<code>spring.mvc.favicon.enabled=true</code>时属于条件<strong>匹配</strong>(yes)， <code>spring.mvc.favicon.enabled=false</code>时属于条件<strong>不匹配</strong>(no)</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Property Value</th>
+<th>havingValue=””</th>
+<th>havingValue=”true”</th>
+<th>havingValue=”false”</th>
+<th>havingValue=”foo”</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>“true”</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<td>“false”</td>
+<td>no</td>
+<td>no</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr>
+<td>“foo”</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+<td>yes</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>Spring Boot</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Spring Boot</tag>
       </tags>
   </entry>
 </search>
