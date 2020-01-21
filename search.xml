@@ -102,7 +102,7 @@
 <p>最终看到输出<span class="label default">Hexo is running at http://localhost:4000</span>就是启动好了。</p>
 </li>
 <li><p>打开浏览器输入<span class="label default">Hexo is running at http://localhost:4000</span>就能看到Hexo默认主题<span class="label default">landscape</span>的页面</p>
-<img data-src="/2020/01/17/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/hexo_landscape.png" class="" title="landscape主题图片">
+
 
 
 
@@ -258,20 +258,20 @@
 <p>Appium是客户端/服务器架构。我们下载的<a href="http://appium.io/" target="_blank" rel="noopener">Appium Desktop</a>就是服务器。而<a href="https://github.com/l-qiang/LitterBaby" target="_blank" rel="noopener">LitterBaby</a>做的就是使用Appium的Java客户端库定义一些操作来完成我的目标。</p>
 <p>我没有去了解太多关于Appium的知识。感兴趣的可以去官方文档查看<a href="https://appium.io/docs/en/about-appium/intro/" target="_blank" rel="noopener">详细介绍</a>。</p>
 <h3 id="Appium-Desktop"><a href="#Appium-Desktop" class="headerlink" title="Appium Desktop"></a>Appium Desktop</h3><p>打开Appium Desktop之后，显示如下界面，我将Host设置为<code>localhost</code>了</p>
-<img data-src="/2020/01/15/Java+Appium+%E5%A4%9C%E7%A5%9E%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%AD%A6%E4%B9%A0%E5%BC%BA%E5%9B%BD%E7%A7%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%8C%96/Appium_start.png" class="">
+
 
 <p>在<a class="btn" href="#">Start Server</a> 之前我们需要，先点击下面的按钮配置JDK和Android SDK 的路径</p>
 <p>然后启动，显示如下界面</p>
-<img data-src="/2020/01/15/Java+Appium+%E5%A4%9C%E7%A5%9E%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%AD%A6%E4%B9%A0%E5%BC%BA%E5%9B%BD%E7%A7%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%8C%96/Appium_cmd.png" class="">
+
 
 <p>点击放大镜。得到如下界面</p>
-<img data-src="/2020/01/15/Java+Appium+%E5%A4%9C%E7%A5%9E%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%AD%A6%E4%B9%A0%E5%BC%BA%E5%9B%BD%E7%A7%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%8C%96/Appium_conf.png" class="">
+
 
 <p>然后填入如下信息</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;platformName&quot;: &quot;android&quot;,</span><br><span class="line">  &quot;version&quot;: &quot;5.1.1&quot;,</span><br><span class="line">  &quot;appPackage&quot;: &quot;cn.xuexi.android&quot;,</span><br><span class="line">  &quot;appActivity&quot;: &quot;com.alibaba.android.rimet.biz.SplashActivity&quot;,</span><br><span class="line">  &quot;deviceName&quot;: &quot;127.0.0.1:62001&quot;,</span><br><span class="line">  &quot;noReset&quot;: true,</span><br><span class="line">  &quot;newCommandTimeout&quot;: 600</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>点击<a class="btn" href="#">Start Session</a>，就能得到如下界面。（在这之前得保证<code>adb devices</code>能看到你的设备，我这里是夜神模拟器）</p>
-<img data-src="/2020/01/15/Java+Appium+%E5%A4%9C%E7%A5%9E%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%AD%A6%E4%B9%A0%E5%BC%BA%E5%9B%BD%E7%A7%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%8C%96/Appium_op.png" class="">
+
 
 <p>这时候我们应该能看到<code>夜神模拟器</code>中的《学习强国》App也已经打开了。此时<code>Appium</code>和<code>夜神模拟器</code>看到的页面是同步的。以上界面对页面元素的操作按钮的所有操作都会反馈到夜神模拟器上的《学习强国》App。同样，在夜神模拟器上的操作也会反馈到上面的页面，点击<code>刷新</code>按钮就能刷新页面。</p>
 <p>到此为止就准备好了，可以开发了。</p>
@@ -290,7 +290,7 @@
 <h4 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h4><p><code>手机号</code>和<code>密码</code>登录就非常简单了。</p>
 <ol>
 <li><p>找到<code>手机号输入框</code>。我们在Appium Desktop上用选择元素的按钮选中<code>手机号输入框</code>。</p>
-<img data-src="/2020/01/15/Java+Appium+%E5%A4%9C%E7%A5%9E%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%AD%A6%E4%B9%A0%E5%BC%BA%E5%9B%BD%E7%A7%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%8C%96/login_phone_input.png" class="">
+
 
 <p>我们可以在右侧的<code>Selected Element</code>下看到<code>手机号输入框</code>的<code>XPath</code>，<code>Text</code>, <code>resource-id</code>等信息。</p>
 </li>
@@ -446,10 +446,10 @@
 <a id="more"></a>
 
 <p>我使用<code>jps</code>查到<code>进程pid</code>，然后用<code>jstack</code>将堆栈信息保存到一个文件里，然后就用上了我不知道啥时候收藏的网站<a href="https://fastthread.io/" target="_blank" rel="noopener">fastThread</a>，将文件上传上去。</p>
-<img data-src="/2019/10/30/%E8%AE%B0%E4%B8%80%E6%AC%A1Java%E7%BA%BF%E7%A8%8B%E5%A0%86%E6%A0%88%E5%88%86%E6%9E%90/1.png" class="">
+
 
 <p>嚯，这么多线程再<code>WAITING</code>状态。点进去一个看看。</p>
-<img data-src="/2019/10/30/%E8%AE%B0%E4%B8%80%E6%AC%A1Java%E7%BA%BF%E7%A8%8B%E5%A0%86%E6%A0%88%E5%88%86%E6%9E%90/2.png" class="">
+
 
 <p>大多数线程的堆栈信息都跟上面差不多，都是在等从Druid数据库连接池等连接。</p>
 <p>所以，原因就是数据库连接不够用了。然后我看了一眼数据库连接池的配置。</p>
@@ -651,6 +651,36 @@
       </categories>
       <tags>
         <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>记一次MySQL统计查询SQL优化</title>
+    <url>/2019/09/10/%E8%AE%B0%E4%B8%80%E6%AC%A1MySQL%E7%BB%9F%E8%AE%A1%E6%9F%A5%E8%AF%A2SQL%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	COL_B,</span><br><span class="line">	<span class="keyword">MAX</span>( <span class="keyword">CASE</span> COL_A <span class="keyword">WHEN</span> <span class="string">'a'</span> <span class="keyword">THEN</span> <span class="number">1</span> <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span> ) <span class="keyword">AS</span> <span class="string">'a'</span>,</span><br><span class="line">	<span class="keyword">MAX</span>( <span class="keyword">CASE</span> COL_A <span class="keyword">WHEN</span> <span class="string">'b'</span> <span class="keyword">THEN</span> <span class="number">1</span> <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span> ) <span class="keyword">AS</span> <span class="string">'b'</span>,</span><br><span class="line">	<span class="keyword">MAX</span>( <span class="keyword">CASE</span> COL_A <span class="keyword">WHEN</span> <span class="string">'c'</span> <span class="keyword">THEN</span> <span class="number">1</span> <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span> ) <span class="keyword">AS</span> <span class="string">'c'</span> </span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	<span class="keyword">Table</span> </span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line">	COL_B </span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> </span><br><span class="line">    COL_C <span class="keyword">DESC</span></span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">10</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>COL_C上建立了一个普通索引。<code>50w</code>数据这个SQL的执行时间大概为<code>3s</code>。</p>
+<div class="tabs" id="优化"><ul class="nav-tabs"><li class="tab active"><a href="#优化-1">第一次优化</a></li><li class="tab"><a href="#优化-2">第二次优化</a></li></ul><div class="tab-content"><div class="tab-pane active" id="优化-1"><p>我将一条SQL拆成两条</p>
+<figure class="highlight sql"><figcaption><span>分页</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    COL_B </span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    <span class="keyword">Table</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line">    COL_B</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">    COL_C <span class="keyword">DESC</span></span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">10</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><figcaption><span>查询</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    COL_B,</span><br><span class="line">    <span class="keyword">MAX</span>( <span class="keyword">CASE</span> COL_A <span class="keyword">WHEN</span> <span class="string">'a'</span> <span class="keyword">THEN</span> <span class="number">1</span> <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span> ) <span class="keyword">AS</span> <span class="string">'a'</span>,</span><br><span class="line">    <span class="keyword">MAX</span>( <span class="keyword">CASE</span> COL_A <span class="keyword">WHEN</span> <span class="string">'b'</span> <span class="keyword">THEN</span> <span class="number">1</span> <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span> ) <span class="keyword">AS</span> <span class="string">'b'</span>,</span><br><span class="line">    <span class="keyword">MAX</span>( <span class="keyword">CASE</span> COL_A <span class="keyword">WHEN</span> <span class="string">'c'</span> <span class="keyword">THEN</span> <span class="number">1</span> <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span> ) <span class="keyword">AS</span> <span class="string">'c'</span></span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    <span class="keyword">Table</span> </span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    COL_B <span class="keyword">IN</span> (...) </span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line">    COL_B</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> </span><br><span class="line">    COL_C <span class="keyword">DESC</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这条查询时间缩短到<code>0.5s</code>。在COL_B上加上索引之后，缩短到<code>0.1s</code>。</p>
+<p>在第一次优化之后，<code>查询</code>的速度我已经可以接受了，但是<code>分页</code>我还是觉得太慢了。</p></div><div class="tab-pane" id="优化-2"><p>对<code>分页</code>SQL执行EXPLAIN，发现Extra列有一个<code>Using filesort</code>，我想去掉这个。决定使用索引覆盖，在原来的COL_C的索引改为COL_C,COL_B的多列索引。但是这样还是不行，因为GROUP BY 使用的是COL_B，所以无法用到COL_C,COL_B的多列索引，因为索引中COL_C在COL_B左边。</p>
+<p>既然是GROUP BY这里引起的，那么我可以不用<code>GROUP BY</code>，改为用<code>DISTINCT</code></p>
+<figure class="highlight sql"><figcaption><span>分页</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    <span class="keyword">DISTINCT</span></span><br><span class="line">    COL_B </span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    <span class="keyword">Table</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">    COL_C <span class="keyword">DESC</span></span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">10</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这么一改时间由<code>1.4s</code>缩短至<code>0.1s</code>。</p>
+<p>原来一条SQL查询需要<code>3s</code>，优化之后变成了两个<code>0.1s</code>的SQL。</p></div></div></div>
+
+
+]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>SQL</tag>
+        <tag>优化查询</tag>
       </tags>
   </entry>
 </search>
