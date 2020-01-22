@@ -772,6 +772,75 @@
       </tags>
   </entry>
   <entry>
+    <title>Java书籍阅读记录</title>
+    <url>/2019/09/04/Java%E4%B9%A6%E7%B1%8D%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<p>有些书值得二刷，有些书第一刷都觉得浪费时间。记录下最近看的书，以前看的记不起就暂时不列了，后面如果再次二刷到再记录。</p>
+<p><strong>代码质量</strong><br>这些书算是近期收获最大的，毕竟提高代码质量不是一蹴而就的，这些肯定还会二刷。</p>
+<ol>
+<li><code>敏捷软件开发：原则、模式与实践</code><br>这本书讲了面向对象的设计原则、部分设计模式，我们经常听到的单一职责，开放封闭，里氏替换等等，里面都有具体介绍和小实例。</li>
+<li><code>代码整洁之道</code><br>这本书也很厉害，非常全面地介绍了怎么写好整洁的代码。连注释盖怎么写都有整整一章介绍，当然好代码是不需要注释的。</li>
+<li><code>重构：改善既有的代码设计</code><br>短小精悍</li>
+<li><code>测试驱动开发</code><br>用例子告诉你什么叫TDD</li>
+<li><code>重构与模式</code>（待看）</li>
+<li><code>Head first 设计模式</code><br>讲得很清楚，但是并不全</li>
+<li><code>Effective Java</code></li>
+<li><code>领域驱动设计：软件核心复杂性应对之道</code></li>
+<li><code>实现领域驱动设计</code></li>
+</ol>
+<p><strong>Zookeeper</strong><br>这个暂时就看过一本书，个人感觉看了这本就够了</p>
+<ol>
+<li><code>从Paxos到Zookeeper  分布式一致性原理与实践</code><br>由于之前没怎么了解过Zookeeper，看到这本书就感觉。哇！太厉害了。想了解Paxos的也可以看，都知道这个协议很复杂，但是这本书真的能让你了解到Paxos。</li>
+</ol>
+<p><strong>算法相关</strong><br>LeetCode刷刷题也可以学到一些思路</p>
+<ol>
+<li><code>算法</code><br>适合入门，内容真的不多</li>
+<li><code>算法导论</code><br>这个当初买了实体书，可以说非常难啃了，所以我就当买了就看了吧。因为需要大量的数学知识，数学我都还给老师了。</li>
+<li><code>编程珠玑</code><br>因为BitMap去看的，也就看了BitMap</li>
+</ol>
+<p><strong>Java</strong></p>
+<ol>
+<li><code>Java编程思想</code><br>买了就等于看了系列，书很厚当初看了一半，现在又没有去看的理由。</li>
+<li><code>Java并发编程实战</code></li>
+<li><code>Java性能优化权威指南</code></li>
+<li><code>深入理解Java虚拟机</code></li>
+</ol>
+<p><strong>Mysql</strong><br>有时间可以看看Mysql文档，比较详细了。</p>
+<ol>
+<li><code>高性能Mysql</code></li>
+<li><code>MySQL技术内幕：InnoDB存储引擎</code><br>快速浏览了第6章，相对于我的预期稍微有点失望，有些内容就完全是照搬官方文档。</li>
+</ol>
+<p><strong>Tomcat</strong></p>
+<ol>
+<li><code>深入剖析Tomcat</code><br>当初看的时候感觉，哇！厉害了！现在完全记不起讲啥了。</li>
+</ol>
+<p><strong>Spring</strong><br>Spring相关的文档就可以了吧</p>
+<ol>
+<li><code>Spring技术内幕</code><br>买了实体书，但是真的不适合我</li>
+<li><code>Spring Boot揭秘</code><br>我觉得不行</li>
+<li><code>Spring Cloud微服务架构开发实战</code><br>感觉什么都讲了，也感觉什么都没讲。不如自己看博客，文档</li>
+<li><code>Spring实战</code><br>这个好像还可以，很久之前看过</li>
+<li><code>精通Spring 4.x ――企业应用开发实战</code><br>同上</li>
+</ol>
+<p><strong>其他</strong></p>
+<ol>
+<li><code>代码大全</code><br>现在看起来觉得很枯燥，就看了一两章，以后再看</li>
+<li><code>大型网站系统与Java中间件实践</code></li>
+<li><code>图解HTTP</code><br>我觉得可以</li>
+<li><code>Netty实战</code><br>好像看过两遍，但是我现在还是忘了看了啥。</li>
+</ol>
+<p>看过，并忘过！</p>
+<p>​    </p>
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>书籍</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>书籍</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Spring Boot注解之@ConditionalOnProperty</title>
     <url>/2019/09/04/Spring%20Boot%E6%B3%A8%E8%A7%A3%E4%B9%8B@ConditionalOnProperty/</url>
     <content><![CDATA[<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@ConditionalOnProperty</span>(value = <span class="string">"spring.mvc.favicon.enabled"</span>,</span><br><span class="line">				matchIfMissing = <span class="keyword">true</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -870,6 +939,30 @@
         <tag>Java</tag>
         <tag>Spring Data Jpa</tag>
         <tag>分页</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java8漏洞-使用Collectors.toMap时，value为null报空指针异常</title>
+    <url>/2019/08/19/Java8%E6%BC%8F%E6%B4%9E-%E4%BD%BF%E7%94%A8Collectors-toMap%E6%97%B6%EF%BC%8Cvalue%E4%B8%BAnull%E6%8A%A5%E7%A9%BA%E6%8C%87%E9%92%88%E5%BC%82%E5%B8%B8/</url>
+    <content><![CDATA[<p>罪魁祸首就是<code>HashMap的merge</code>方法了，它的第一行就是这个：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (value == <span class="keyword">null</span>)</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br></pre></td></tr></table></figure>
+<p>谁调<code>merge</code>了？</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T, K, U, M extends Map&lt;K, U&gt;&gt;</span><br><span class="line">    Collector&lt;T, ?, M&gt; toMap(Function&lt;? <span class="keyword">super</span> T, ? extends K&gt; keyMapper,</span><br><span class="line">                                Function&lt;? <span class="keyword">super</span> T, ? extends U&gt; valueMapper,</span><br><span class="line">                                BinaryOperator&lt;U&gt; mergeFunction,</span><br><span class="line">                                Supplier&lt;M&gt; mapSupplier) &#123;</span><br><span class="line">        BiConsumer&lt;M, T&gt; accumulator</span><br><span class="line">                = (map, element) -&gt; map.merge(keyMapper.apply(element),</span><br><span class="line">                                              valueMapper.apply(element), mergeFunction);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> CollectorImpl&lt;&gt;(mapSupplier, accumulator, mapMerger(mergeFunction), CH_ID);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>那么怎么解决呢？<br>既然时merge方法造成的，那就不调merge方法。<br>我们用自己定义的<code>accumulator</code>,用Stream的另一个collect方法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;R&gt; <span class="function">R <span class="title">collect</span><span class="params">(Supplier&lt;R&gt; supplier,</span></span></span><br><span class="line"><span class="function"><span class="params">              BiConsumer&lt;R, ? <span class="keyword">super</span> T&gt; accumulator,</span></span></span><br><span class="line"><span class="function"><span class="params">              BiConsumer&lt;R, R&gt; combiner)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>这个方法上面的注释写了一段这个, 前两个参数干什么用的就很清楚了，第三个参数时并行计算用来组合结果的，所以用HashMap的putAll就好了</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">R result = supplier.get();</span><br><span class="line"><span class="keyword">for</span> (T element : <span class="keyword">this</span> stream)</span><br><span class="line">    accumulator.accept(result, element);</span><br><span class="line"><span class="keyword">return</span> result;</span><br></pre></td></tr></table></figure>
+<p>所以解决问题的代码大概就是这样的</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">params.stream().collect(LinkedHashMap::<span class="keyword">new</span>, (m, v) -&gt; m.put(v.getParam(), v.getParamValue()), LinkedHashMap::putAll);</span><br></pre></td></tr></table></figure>
+
+<p>当然，升级JDK也能解决这个问题。</p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
