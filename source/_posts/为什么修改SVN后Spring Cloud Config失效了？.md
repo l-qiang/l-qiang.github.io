@@ -1,6 +1,6 @@
 ---
 title: 为什么修改SVN后Spring Cloud Config失效了？
-date: 2019-09-04 19:20:03
+date: 2019-08-21 19:20:03
 categories:
  - Java
  - Spring Cloud
