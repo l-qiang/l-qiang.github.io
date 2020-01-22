@@ -159,7 +159,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">24</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">25</span></a>
 
   </li>
         <li class="menu-item menu-item-sitemap">
@@ -217,6 +217,113 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://l-qiang.github.io/2019/08/20/%E5%85%B3%E4%BA%8ESpring%20Data%20Jpa%E4%BD%BF%E7%94%A8@Query%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2%E7%9A%84%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="刘强">
+      <meta itemprop="description" content="好记性不如烂笔头">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘强">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/20/%E5%85%B3%E4%BA%8ESpring%20Data%20Jpa%E4%BD%BF%E7%94%A8@Query%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2%E7%9A%84%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">关于Spring Data Jpa使用@Query分页查询的问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-08-20 16:25:33" itemprop="dateCreated datePublished" datetime="2019-08-20T16:25:33+00:00">2019-08-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-22 09:39:34" itemprop="dateModified" datetime="2020-01-22T09:39:34+00:00">2020-01-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/Spring-Data-Jpa/" itemprop="url" rel="index">
+                    <span itemprop="name">Spring Data Jpa</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>原本没有想过要用@Query来查询的，毕竟JpaRepository提供的方法已经基本够用了。但是今天这个sql比较特殊可能要用正则匹配，然后看到了ExampleMatcher里的StringMatcher：</p>
+<figure class="highlight java"><figcaption><span>StringMatcher.class</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">enum</span> StringMatcher &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * Store specific default.</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        DEFAULT,</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * Matches the exact string</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        EXACT,</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * Matches string starting with pattern</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        STARTING,</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * Matches string ending with pattern</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        ENDING,</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * Matches string containing pattern</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        CONTAINING,</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * Treats strings as regular expression patterns</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        REGEX;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>有正则REGEX，我以为这样就很好办了（讲道理sql用正则真的非常慢）。然而事情并不是这么简单。因为会报一个异常<code>Unsupported StringMatcher REGEX</code>。<br>上面的枚举时有REGEX，但是QueryByExamplePredicateBuilder类的这部分代码:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> (exampleAccessor.getStringMatcherForPath(currentPath)) &#123;</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">case</span> DEFAULT:</span><br><span class="line">                    <span class="keyword">case</span> EXACT:</span><br><span class="line">                        predicates.add(cb.equal(expression, attributeValue));</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    <span class="keyword">case</span> CONTAINING:</span><br><span class="line">                        predicates.add(cb.like(expression, <span class="string">"%"</span> + attributeValue + <span class="string">"%"</span>));</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    <span class="keyword">case</span> STARTING:</span><br><span class="line">                        predicates.add(cb.like(expression, attributeValue + <span class="string">"%"</span>));</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    <span class="keyword">case</span> ENDING:</span><br><span class="line">                        predicates.add(cb.like(expression, <span class="string">"%"</span> + attributeValue));</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    <span class="keyword">default</span>:</span><br><span class="line">                        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(</span><br><span class="line">                                <span class="string">"Unsupported StringMatcher "</span> + exampleAccessor.getStringMatcherForPath(currentPath));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到并没有REGEX，这是什么骚操作？</p>
+<p>所以，我打算使用@Query。在官网文档找到如下示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserRepository</span> <span class="keyword">extends</span> <span class="title">JpaRepository</span>&lt;<span class="title">User</span>, <span class="title">Long</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Query</span>(value = <span class="string">"SELECT * FROM USERS WHERE LASTNAME = ?1"</span>,</span><br><span class="line">    countQuery = <span class="string">"SELECT count(*) FROM USERS WHERE LASTNAME = ?1"</span>,</span><br><span class="line">    nativeQuery = <span class="keyword">true</span>)</span><br><span class="line">  <span class="function">Page&lt;User&gt; <span class="title">findByLastname</span><span class="params">(String lastname, Pageable pageable)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>按照示例写好，然后一运行。非常好，报错了<code>Cannot use native queries with dynamic sorting and/or pagination in method...</code><br>看下报错地方的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">NativeJpaQuery</span><span class="params">(JpaQueryMethod method, EntityManager em, String queryString,</span></span></span><br><span class="line"><span class="function"><span class="params">            EvaluationContextProvider evaluationContextProvider, SpelExpressionParser parser)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">super</span>(method, em, queryString, evaluationContextProvider, parser);</span><br><span class="line">    </span><br><span class="line">        Parameters&lt;?, ?&gt; parameters = method.getParameters();</span><br><span class="line">        <span class="keyword">boolean</span> hasPagingOrSortingParameter = parameters.hasPageableParameter() || parameters.hasSortParameter();</span><br><span class="line">        <span class="keyword">boolean</span> containsPageableOrSortInQueryExpression = queryString.contains(<span class="string">"#pageable"</span>)</span><br><span class="line">                || queryString.contains(<span class="string">"#sort"</span>);</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">if</span> (hasPagingOrSortingParameter &amp;&amp; !containsPageableOrSortInQueryExpression) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> InvalidJpaQueryMethodException(</span><br><span class="line">                    <span class="string">"Cannot use native queries with dynamic sorting and/or pagination in method "</span> + method);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从这段代码里看出，报异常的原因时我们的sql里没有<code>#pageable</code><br>所以，加上这个就好了，修改后的代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserRepository</span> <span class="keyword">extends</span> <span class="title">JpaRepository</span>&lt;<span class="title">User</span>, <span class="title">Long</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Query</span>(value = <span class="string">"SELECT * FROM USERS WHERE LASTNAME = ?1 \n#pageable\n"</span>,</span><br><span class="line">    countQuery = <span class="string">"SELECT count(*) FROM USERS WHERE LASTNAME = ?1"</span>,</span><br><span class="line">    nativeQuery = <span class="keyword">true</span>)</span><br><span class="line">  <span class="function">Page&lt;User&gt; <span class="title">findByLastname</span><span class="params">(String lastname, Pageable pageable)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://l-qiang.github.io/2019/08/19/Java8%E6%BC%8F%E6%B4%9E-%E4%BD%BF%E7%94%A8Collectors-toMap%E6%97%B6%EF%BC%8Cvalue%E4%B8%BAnull%E6%8A%A5%E7%A9%BA%E6%8C%87%E9%92%88%E5%BC%82%E5%B8%B8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -248,7 +355,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-22 09:26:05" itemprop="dateModified" datetime="2020-01-22T09:26:05+00:00">2020-01-22</time>
+                <time title="修改时间：2020-01-22 09:39:34" itemprop="dateModified" datetime="2020-01-22T09:39:34+00:00">2020-01-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -350,7 +457,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-22 09:26:05" itemprop="dateModified" datetime="2020-01-22T09:26:05+00:00">2020-01-22</time>
+                <time title="修改时间：2020-01-22 09:39:34" itemprop="dateModified" datetime="2020-01-22T09:39:34+00:00">2020-01-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -448,7 +555,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-22 09:26:05" itemprop="dateModified" datetime="2020-01-22T09:26:05+00:00">2020-01-22</time>
+                <time title="修改时间：2020-01-22 09:39:34" itemprop="dateModified" datetime="2020-01-22T09:39:34+00:00">2020-01-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -556,7 +663,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-22 09:26:05" itemprop="dateModified" datetime="2020-01-22T09:26:05+00:00">2020-01-22</time>
+                <time title="修改时间：2020-01-22 09:39:34" itemprop="dateModified" datetime="2020-01-22T09:39:34+00:00">2020-01-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -715,7 +822,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -781,13 +888,13 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">48k</span>
+    <span title="站点总字数">49k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">40 分钟</span>
+    <span title="站点阅读时长">41 分钟</span>
 </div>
 
         

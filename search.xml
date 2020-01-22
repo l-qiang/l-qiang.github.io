@@ -894,6 +894,34 @@
       </tags>
   </entry>
   <entry>
+    <title>这才是正确地初始化只有一个元素的HashMap的方式</title>
+    <url>/2019/09/04/%E8%BF%99%E6%89%8D%E6%98%AF%E6%AD%A3%E7%A1%AE%E5%9C%B0%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0%E7%9A%84HashMap%E7%9A%84%E6%96%B9%E5%BC%8F/</url>
+    <content><![CDATA[<p>有时候我们需要一个只放一个元素的Map。 可能一开始是这样的</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> map = <span class="keyword">new</span> HashMap&lt;String, Object&gt;(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<p>上面这种写法相当于</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> map = <span class="keyword">new</span> HashMap&lt;String, Object&gt;(<span class="number">1</span>, <span class="number">0.75f</span>);</span><br></pre></td></tr></table></figure>
+
+<p>这种写法正确吗？</p>
+<a id="more"></a>
+
+<p>我们知道<code>threshold = capacity * loadFactor</code></p>
+<p>让我们看看<code>HashMap中的resize方法</code>的这部分代码</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (newThr == <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">float</span> ft = (<span class="keyword">float</span>)newCap * loadFactor;</span><br><span class="line">    newThr = (newCap &lt; MAXIMUM_CAPACITY &amp;&amp; ft &lt; (<span class="keyword">float</span>)MAXIMUM_CAPACITY ?(<span class="keyword">int</span>)ft : Integer.MAX_VALUE);</span><br><span class="line">&#125;</span><br><span class="line">threshold = newThr;</span><br></pre></td></tr></table></figure>
+<p>所以上面这种写法，在putVal开始的时候会调用resize()，导致threshold ==0（1*0.75强转int），然后在putVal的结束的时候</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (++size &gt; threshold)</span><br><span class="line">    resize();</span><br></pre></td></tr></table></figure>
+<p>1 &gt; 0 ，所以会再次调用resize()，这样Map的这个table长度就变成2了，但是Map此时是只有一个元素的。<br>但是，用这种方式就没问题了</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> map = <span class="keyword">new</span> HashMap&lt;String, Object&gt;(<span class="number">1</span>, <span class="number">1</span>.f);</span><br></pre></td></tr></table></figure>
+<p>当然，有时候可以用<code>Collections.singletonMap</code>(一个不可变的Map，只包含一个Key和一个Value)</p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>为什么修改SVN后Spring Cloud Config失效了？</title>
     <url>/2019/08/21/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BF%AE%E6%94%B9SVN%E5%90%8ESpring%20Cloud%20Config%E5%A4%B1%E6%95%88%E4%BA%86%EF%BC%9F/</url>
     <content><![CDATA[<p><code>spring.cloud.config.server.svn.uri</code>修改成<code>新的SVN地址</code>之后，访问配置中心获得的配置还是<code>修改前SVN</code>的。</p>
