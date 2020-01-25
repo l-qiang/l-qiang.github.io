@@ -19,8 +19,9 @@ tags:
 
 但是不太熟悉的人表示完全不知道说了啥，然后我在Select2官方文档中找到了[解决办法](https://stackoverflow.com/questions/18487056/select2-doesnt-work-when-embedded-in-a-bootstrap-modal/19574076#19574076)（由于官网之前的链接失效了，所以这附上Stack Overflow的）。
 
-{% codeblock lang:html %}
+<!-- more -->
 
+{% codeblock lang:html %}
 <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     ...
     <select id="mySelect2">
@@ -36,7 +37,6 @@ tags:
         dropdownParent: $('#myModal')
     });
 </script>
-
 {% endcodeblock %}
 
 
@@ -48,10 +48,8 @@ tags:
 至于这个方法
 
 {% codeblock lang:javascript %}
-
 // Do this before you initialize any of your modals
 $.fn.modal.Constructor.prototype.enforceFocus = function() {};
-
 {% endcodeblock %}
 
 一定要看清楚是在模态框初始化之前执行
