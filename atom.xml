@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://l-qiang.github.io/"/>
-  <updated>2020-01-25T12:00:16.029Z</updated>
+  <updated>2020-01-26T13:47:20.591Z</updated>
   <id>https://l-qiang.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://l-qiang.github.io/2020/01/22/Tomcat%E6%97%A5%E5%BF%97%E6%88%AA%E6%96%AD/"/>
     <id>https://l-qiang.github.io/2020/01/22/Tomcat%E6%97%A5%E5%BF%97%E6%88%AA%E6%96%AD/</id>
     <published>2020-01-22T12:30:43.000Z</published>
-    <updated>2020-01-25T12:00:16.029Z</updated>
+    <updated>2020-01-26T13:47:20.591Z</updated>
     
     <summary type="html">
     
@@ -49,11 +49,17 @@
     <link href="https://l-qiang.github.io/2020/01/20/Hexo%E6%B7%BB%E5%8A%A0RSS%E5%92%8C%E7%AB%99%E7%82%B9%E5%9C%B0%E5%9B%BE/"/>
     <id>https://l-qiang.github.io/2020/01/20/Hexo%E6%B7%BB%E5%8A%A0RSS%E5%92%8C%E7%AB%99%E7%82%B9%E5%9C%B0%E5%9B%BE/</id>
     <published>2020-01-20T13:08:57.000Z</published>
-    <updated>2020-01-25T12:00:16.025Z</updated>
+    <updated>2020-01-26T13:47:20.587Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;​    &lt;/p&gt;
+      
+      
+        
+        
+          
+        
+      
     
     </summary>
     
@@ -76,7 +82,7 @@
     <link href="https://l-qiang.github.io/2020/01/17/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
     <id>https://l-qiang.github.io/2020/01/17/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</id>
     <published>2020-01-17T16:56:05.000Z</published>
-    <updated>2020-01-25T12:00:16.025Z</updated>
+    <updated>2020-01-26T13:47:20.587Z</updated>
     
     <summary type="html">
     
@@ -101,7 +107,7 @@
     <link href="https://l-qiang.github.io/2020/01/15/Java+Appium+%E5%A4%9C%E7%A5%9E%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%AD%A6%E4%B9%A0%E5%BC%BA%E5%9B%BD%E7%A7%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
     <id>https://l-qiang.github.io/2020/01/15/Java+Appium+%E5%A4%9C%E7%A5%9E%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%AD%A6%E4%B9%A0%E5%BC%BA%E5%9B%BD%E7%A7%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%8C%96/</id>
     <published>2020-01-15T19:34:00.000Z</published>
-    <updated>2020-01-25T12:00:16.029Z</updated>
+    <updated>2020-01-26T13:47:20.591Z</updated>
     
     <summary type="html">
     
@@ -129,7 +135,7 @@
     <link href="https://l-qiang.github.io/2020/01/10/iText%E5%90%88%E5%B9%B6PDF%E5%92%8C%E6%B7%BB%E5%8A%A0%E4%B9%A6%E7%AD%BE/"/>
     <id>https://l-qiang.github.io/2020/01/10/iText%E5%90%88%E5%B9%B6PDF%E5%92%8C%E6%B7%BB%E5%8A%A0%E4%B9%A6%E7%AD%BE/</id>
     <published>2020-01-10T20:37:23.000Z</published>
-    <updated>2020-01-25T12:00:16.029Z</updated>
+    <updated>2020-01-26T13:47:20.591Z</updated>
     
     <summary type="html">
     
@@ -151,11 +157,65 @@
   </entry>
   
   <entry>
+    <title>(二)领域模型</title>
+    <link href="https://l-qiang.github.io/2019/12/27/(%E4%BA%8C)%E9%A2%86%E5%9F%9F%E6%A8%A1%E5%9E%8B/"/>
+    <id>https://l-qiang.github.io/2019/12/27/(%E4%BA%8C)%E9%A2%86%E5%9F%9F%E6%A8%A1%E5%9E%8B/</id>
+    <published>2019-12-27T19:56:55.000Z</published>
+    <updated>2020-01-26T13:47:20.587Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="DDD" scheme="https://l-qiang.github.io/categories/DDD/"/>
+    
+    
+      <category term="DDD" scheme="https://l-qiang.github.io/tags/DDD/"/>
+    
+      <category term="领域驱动设计" scheme="https://l-qiang.github.io/tags/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>(一)初识DDD</title>
+    <link href="https://l-qiang.github.io/2019/12/27/(%E4%B8%80)%E5%88%9D%E8%AF%86DDD/"/>
+    <id>https://l-qiang.github.io/2019/12/27/(%E4%B8%80)%E5%88%9D%E8%AF%86DDD/</id>
+    <published>2019-12-27T19:56:54.000Z</published>
+    <updated>2020-01-26T13:47:20.587Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;前一段时间看到了&lt;code&gt;领域驱动设计(DDD)&lt;/code&gt;这个词，第一印象就是“这跟编码关系不大吧”，在我了解了一些关于DDD的知识后，发现DDD其实是跟我们关系密切的，了解DDD非常有必要。&lt;/p&gt;
+&lt;p&gt;因此，我找了两本豆瓣评分较高的DDD的书籍（《领域驱动设计：软件核心复杂性应对之导》《实现领域驱动设计》）看了一遍。&lt;/p&gt;
+&lt;p&gt;之前基本看完书之后会立马去看其他的书，但是经验告诉我，这很容易忘记。根据&lt;code&gt;费曼学习法&lt;/code&gt;。所以写点什么记录一下印象会比较深刻。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="DDD" scheme="https://l-qiang.github.io/categories/DDD/"/>
+    
+    
+      <category term="DDD" scheme="https://l-qiang.github.io/tags/DDD/"/>
+    
+      <category term="领域驱动设计" scheme="https://l-qiang.github.io/tags/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Jackson将无嵌套JSON转嵌套对象</title>
     <link href="https://l-qiang.github.io/2019/12/19/Jackson%E5%B0%86%E6%97%A0%E5%B5%8C%E5%A5%97JSON%E8%BD%AC%E5%B5%8C%E5%A5%97%E5%AF%B9%E8%B1%A1/"/>
     <id>https://l-qiang.github.io/2019/12/19/Jackson%E5%B0%86%E6%97%A0%E5%B5%8C%E5%A5%97JSON%E8%BD%AC%E5%B5%8C%E5%A5%97%E5%AF%B9%E8%B1%A1/</id>
     <published>2019-12-19T19:04:52.000Z</published>
-    <updated>2020-01-25T12:00:16.025Z</updated>
+    <updated>2020-01-26T13:47:20.587Z</updated>
     
     <summary type="html">
     
@@ -188,7 +248,7 @@
     <link href="https://l-qiang.github.io/2019/12/13/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E7%9A%84Spring-Boot%E9%A1%B9%E7%9B%AE%E4%B8%8D%E8%83%BD%E8%AE%BF%E9%97%AE%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%EF%BC%9F/"/>
     <id>https://l-qiang.github.io/2019/12/13/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E7%9A%84Spring-Boot%E9%A1%B9%E7%9B%AE%E4%B8%8D%E8%83%BD%E8%AE%BF%E9%97%AE%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%EF%BC%9F/</id>
     <published>2019-12-13T19:10:42.000Z</published>
-    <updated>2020-01-25T12:00:16.029Z</updated>
+    <updated>2020-01-26T13:47:20.591Z</updated>
     
     <summary type="html">
     
@@ -214,7 +274,7 @@
     <link href="https://l-qiang.github.io/2019/10/30/%E8%AE%B0%E4%B8%80%E6%AC%A1Java%E7%BA%BF%E7%A8%8B%E5%A0%86%E6%A0%88%E5%88%86%E6%9E%90/"/>
     <id>https://l-qiang.github.io/2019/10/30/%E8%AE%B0%E4%B8%80%E6%AC%A1Java%E7%BA%BF%E7%A8%8B%E5%A0%86%E6%A0%88%E5%88%86%E6%9E%90/</id>
     <published>2019-10-30T13:44:41.000Z</published>
-    <updated>2020-01-25T12:00:16.029Z</updated>
+    <updated>2020-01-26T13:47:20.591Z</updated>
     
     <summary type="html">
     
@@ -241,7 +301,7 @@
     <link href="https://l-qiang.github.io/2019/10/24/%E5%85%B3%E4%BA%8EZookeeper%E4%B8%8ECAP%E7%9A%84%E6%80%9D%E8%80%83/"/>
     <id>https://l-qiang.github.io/2019/10/24/%E5%85%B3%E4%BA%8EZookeeper%E4%B8%8ECAP%E7%9A%84%E6%80%9D%E8%80%83/</id>
     <published>2019-10-24T19:55:22.000Z</published>
-    <updated>2020-01-25T12:00:16.029Z</updated>
+    <updated>2020-01-26T13:47:20.591Z</updated>
     
     <summary type="html">
     
@@ -265,7 +325,7 @@
     <link href="https://l-qiang.github.io/2019/10/17/Spring%E6%B3%A8%E8%A7%A3%E4%B9%8B@Lookup/"/>
     <id>https://l-qiang.github.io/2019/10/17/Spring%E6%B3%A8%E8%A7%A3%E4%B9%8B@Lookup/</id>
     <published>2019-10-17T16:12:49.000Z</published>
-    <updated>2020-01-25T12:00:16.029Z</updated>
+    <updated>2020-01-26T13:47:20.591Z</updated>
     
     <summary type="html">
     
@@ -295,7 +355,7 @@
     <link href="https://l-qiang.github.io/2019/10/15/OAuth%E8%A7%A3%E5%86%B3%E4%BA%86%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%EF%BC%9F/"/>
     <id>https://l-qiang.github.io/2019/10/15/OAuth%E8%A7%A3%E5%86%B3%E4%BA%86%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%EF%BC%9F/</id>
     <published>2019-10-15T19:47:15.000Z</published>
-    <updated>2020-01-25T12:00:16.029Z</updated>
+    <updated>2020-01-26T13:47:20.591Z</updated>
     
     <summary type="html">
     
@@ -316,7 +376,7 @@
     <link href="https://l-qiang.github.io/2019/10/13/spring-session%E6%98%AF%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8redis%E5%AD%98session%E7%9A%84%EF%BC%9F/"/>
     <id>https://l-qiang.github.io/2019/10/13/spring-session%E6%98%AF%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8redis%E5%AD%98session%E7%9A%84%EF%BC%9F/</id>
     <published>2019-10-13T19:07:11.000Z</published>
-    <updated>2020-01-25T12:00:16.029Z</updated>
+    <updated>2020-01-26T13:47:20.591Z</updated>
     
     <summary type="html">
     
@@ -349,7 +409,7 @@
     <link href="https://l-qiang.github.io/2019/10/11/Jackson%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%97%E6%AE%B5%E8%84%B1%E6%95%8F%E5%A4%84%E7%90%86/"/>
     <id>https://l-qiang.github.io/2019/10/11/Jackson%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%97%E6%AE%B5%E8%84%B1%E6%95%8F%E5%A4%84%E7%90%86/</id>
     <published>2019-10-11T20:25:55.000Z</published>
-    <updated>2020-01-25T12:00:16.029Z</updated>
+    <updated>2020-01-26T13:47:20.591Z</updated>
     
     <summary type="html">
     
@@ -377,7 +437,7 @@
     <link href="https://l-qiang.github.io/2019/10/11/ConcurrentModificationException%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BA%86%E8%A7%A3%E5%90%97%EF%BC%9F/"/>
     <id>https://l-qiang.github.io/2019/10/11/ConcurrentModificationException%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BA%86%E8%A7%A3%E5%90%97%EF%BC%9F/</id>
     <published>2019-10-11T12:41:15.000Z</published>
-    <updated>2020-01-25T12:00:16.025Z</updated>
+    <updated>2020-01-26T13:47:20.587Z</updated>
     
     <summary type="html">
     
@@ -398,7 +458,7 @@
     <link href="https://l-qiang.github.io/2019/09/10/%E8%AE%B0%E4%B8%80%E6%AC%A1MySQL%E7%BB%9F%E8%AE%A1%E6%9F%A5%E8%AF%A2SQL%E4%BC%98%E5%8C%96/"/>
     <id>https://l-qiang.github.io/2019/09/10/%E8%AE%B0%E4%B8%80%E6%AC%A1MySQL%E7%BB%9F%E8%AE%A1%E6%9F%A5%E8%AF%A2SQL%E4%BC%98%E5%8C%96/</id>
     <published>2019-09-10T19:59:47.000Z</published>
-    <updated>2020-01-25T12:00:16.033Z</updated>
+    <updated>2020-01-26T13:47:20.595Z</updated>
     
     <summary type="html">
     
@@ -425,7 +485,7 @@
     <link href="https://l-qiang.github.io/2019/09/05/spring.mvc.favicon.enabled%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%B5%B7%E4%BD%9C%E7%94%A8%EF%BC%9F/"/>
     <id>https://l-qiang.github.io/2019/09/05/spring.mvc.favicon.enabled%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%B5%B7%E4%BD%9C%E7%94%A8%EF%BC%9F/</id>
     <published>2019-09-05T18:01:25.000Z</published>
-    <updated>2020-01-25T12:00:16.029Z</updated>
+    <updated>2020-01-26T13:47:20.591Z</updated>
     
     <summary type="html">
     
@@ -451,7 +511,7 @@
     <link href="https://l-qiang.github.io/2019/09/04/Java%E4%B9%A6%E7%B1%8D%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/"/>
     <id>https://l-qiang.github.io/2019/09/04/Java%E4%B9%A6%E7%B1%8D%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/</id>
     <published>2019-09-04T19:38:10.000Z</published>
-    <updated>2020-01-25T12:00:16.029Z</updated>
+    <updated>2020-01-26T13:47:20.591Z</updated>
     
     <summary type="html">
     
@@ -482,7 +542,7 @@
     <link href="https://l-qiang.github.io/2019/09/04/Spring%20Boot%E6%B3%A8%E8%A7%A3%E4%B9%8B@ConditionalOnProperty/"/>
     <id>https://l-qiang.github.io/2019/09/04/Spring%20Boot%E6%B3%A8%E8%A7%A3%E4%B9%8B@ConditionalOnProperty/</id>
     <published>2019-09-04T18:09:42.000Z</published>
-    <updated>2020-01-25T12:00:16.029Z</updated>
+    <updated>2020-01-26T13:47:20.591Z</updated>
     
     <summary type="html">
     
@@ -505,64 +565,6 @@
       <category term="Java" scheme="https://l-qiang.github.io/tags/Java/"/>
     
       <category term="Spring Boot" scheme="https://l-qiang.github.io/tags/Spring-Boot/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>这才是正确地初始化只有一个元素的HashMap的方式</title>
-    <link href="https://l-qiang.github.io/2019/09/04/%E8%BF%99%E6%89%8D%E6%98%AF%E6%AD%A3%E7%A1%AE%E5%9C%B0%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0%E7%9A%84HashMap%E7%9A%84%E6%96%B9%E5%BC%8F/"/>
-    <id>https://l-qiang.github.io/2019/09/04/%E8%BF%99%E6%89%8D%E6%98%AF%E6%AD%A3%E7%A1%AE%E5%9C%B0%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0%E7%9A%84HashMap%E7%9A%84%E6%96%B9%E5%BC%8F/</id>
-    <published>2019-09-04T17:30:26.000Z</published>
-    <updated>2020-01-25T12:00:16.033Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;有时候我们需要一个只放一个元素的Map。 可能一开始是这样的&lt;/p&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; map = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; HashMap&amp;lt;String, Object&amp;gt;(&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-&lt;p&gt;上面这种写法相当于&lt;/p&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; map = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; HashMap&amp;lt;String, Object&amp;gt;(&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0.75f&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-&lt;p&gt;这种写法正确吗？&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Java" scheme="https://l-qiang.github.io/categories/Java/"/>
-    
-    
-      <category term="Java" scheme="https://l-qiang.github.io/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>为什么修改SVN后Spring Cloud Config失效了？</title>
-    <link href="https://l-qiang.github.io/2019/08/21/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BF%AE%E6%94%B9SVN%E5%90%8ESpring%20Cloud%20Config%E5%A4%B1%E6%95%88%E4%BA%86%EF%BC%9F/"/>
-    <id>https://l-qiang.github.io/2019/08/21/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BF%AE%E6%94%B9SVN%E5%90%8ESpring%20Cloud%20Config%E5%A4%B1%E6%95%88%E4%BA%86%EF%BC%9F/</id>
-    <published>2019-08-21T19:20:03.000Z</published>
-    <updated>2020-01-25T12:00:16.029Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Java" scheme="https://l-qiang.github.io/categories/Java/"/>
-    
-      <category term="Spring Cloud" scheme="https://l-qiang.github.io/categories/Java/Spring-Cloud/"/>
-    
-    
-      <category term="Java" scheme="https://l-qiang.github.io/tags/Java/"/>
-    
-      <category term="Spring Cloud" scheme="https://l-qiang.github.io/tags/Spring-Cloud/"/>
     
   </entry>
   

@@ -65,11 +65,10 @@
   <entry>
     <title>Hexo添加RSS和站点地图</title>
     <url>/2020/01/20/Hexo%E6%B7%BB%E5%8A%A0RSS%E5%92%8C%E7%AB%99%E7%82%B9%E5%9C%B0%E5%9B%BE/</url>
-    <content><![CDATA[<p>​    </p>
-<a id="more"></a>
+    <content><![CDATA[<a id="more"></a>
 
 <h2 id="RSS"><a href="#RSS" class="headerlink" title="RSS"></a>RSS</h2><p>给自己的博客添加RSS的话，其他人就可以订阅你的博客了。</p>
-<div class="tabs" id="rss"><ul class="nav-tabs"><li class="tab active"><a href="#rss-1">安装</a></li><li class="tab"><a href="#rss-2">配置</a></li></ul><div class="tab-content"><div class="tab-pane active" id="rss-1"><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-generator-feed --save</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="rss-2"><figure class="highlight plain"><figcaption><span>hexo/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">feed:</span><br><span class="line">  type: atom</span><br><span class="line">  path: atom.xml</span><br><span class="line">  limit: 20</span><br><span class="line">  hub:</span><br><span class="line">  content:</span><br><span class="line">  content_limit: </span><br><span class="line">  content_limit_delim: &#39; &#39;</span><br><span class="line">  order_by: -date</span><br><span class="line">  icon: </span><br><span class="line">  autodiscovery: true</span><br><span class="line">  template:</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<div class="tabs" id="rss"><ul class="nav-tabs"><li class="tab active"><a href="#rss-1">安装</a></li><li class="tab"><a href="#rss-2">配置</a></li></ul><div class="tab-content"><div class="tab-pane active" id="rss-1"><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm install hexo-generator-feed --save</span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="rss-2"><figure class="highlight plain"><figcaption><span>hexo/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">feed:</span><br><span class="line">  type: atom</span><br><span class="line">  path: atom.xml</span><br><span class="line">  limit: 20</span><br><span class="line">  hub:</span><br><span class="line">  content:</span><br><span class="line">  content_limit: </span><br><span class="line">  content_limit_delim: &#39; &#39;</span><br><span class="line">  order_by: -date</span><br><span class="line">  icon: </span><br><span class="line">  autodiscovery: true</span><br><span class="line">  template:</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>详细见<a href="https://github.com/hexojs/hexo-generator-feed" target="_blank" rel="noopener">hexo-generator-feed</a></p></div></div></div>
 
@@ -78,7 +77,7 @@
 <h2 id="站点地图"><a href="#站点地图" class="headerlink" title="站点地图"></a>站点地图</h2><blockquote><p>站点地图是一个网站所有链接的容器。很多网站的连接层次比较深，爬虫很难抓取到，站点地图可以方便爬虫抓取网站页面，通过抓取网站页面，清晰了解网站的架构，网站地图一般存放在根目录下并命名sitemap，为爬虫指路，增加网站重要内容页面的收录。站点地图就是根据网站的结构、框架、内容，生成的导航网页文件。站点地图对于提高用户体验有好处，它们为网站访问者指明方向，并帮助迷失的访问者找到他们想看的页面。</p>
 <footer><strong>百度百科</strong><cite><a href="https://baike.baidu.com/item/站点地图/9991876" target="_blank" rel="noopener">站点地图</a></cite></footer></blockquote>
 
-<div class="tabs" id="站点地图"><ul class="nav-tabs"><li class="tab active"><a href="#站点地图-1">安装</a></li><li class="tab"><a href="#站点地图-2">配置</a></li></ul><div class="tab-content"><div class="tab-pane active" id="站点地图-1"><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-generator-sitemap --save</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="站点地图-2"><figure class="highlight plain"><figcaption><span>hexo/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line">sitemap:</span><br><span class="line">    path: sitemap.xml</span><br><span class="line">    template:</span><br><span class="line">    rel: false</span><br></pre></td></tr></table></figure>
+<div class="tabs" id="站点地图"><ul class="nav-tabs"><li class="tab active"><a href="#站点地图-1">安装</a></li><li class="tab"><a href="#站点地图-2">配置</a></li></ul><div class="tab-content"><div class="tab-pane active" id="站点地图-1"><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm install hexo-generator-sitemap --save</span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="站点地图-2"><figure class="highlight plain"><figcaption><span>hexo/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line">sitemap:</span><br><span class="line">    path: sitemap.xml</span><br><span class="line">    template:</span><br><span class="line">    rel: false</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li><strong>path</strong> - Sitemap path. (Default: sitemap.xml)</li>
@@ -439,6 +438,101 @@
         <tag>Java</tag>
         <tag>PDF</tag>
         <tag>iText</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>(二)领域模型</title>
+    <url>/2019/12/27/(%E4%BA%8C)%E9%A2%86%E5%9F%9F%E6%A8%A1%E5%9E%8B/</url>
+    <content><![CDATA[<h2 id="什么是领域（Domain）？"><a href="#什么是领域（Domain）？" class="headerlink" title="什么是领域（Domain）？"></a>什么是领域（Domain）？</h2><blockquote>
+<p>每个软件程序的目的都是为了执行某项活动，或是满足用户的某种需求。用户把软件程序应用于某个主题区域，这个区域就是软件的领域。</p>
+</blockquote>
+<blockquote>
+<p>领域即是一个组织所做的事情以及其中所包含的一切。商业机构通常会确定一个市场，然后在这个市场中销售产品和服务。每个组织都有它自己的业务范围和做事方式。这个业务范围以及在其中所进行的活动便是领域。 </p>
+</blockquote>
+<h2 id="怎么表达领域知识？"><a href="#怎么表达领域知识？" class="headerlink" title="怎么表达领域知识？"></a>怎么表达领域知识？</h2><p>一个领域可能涉及的知识非常广，信息量很大。<strong>模型</strong>正是解决信息超载问题的工具，它对知识进行有选择的简化和有目的的结构化。</p>
+<p><em>其实就是用图的方式来表达领域的知识</em></p>
+<blockquote>
+<p>模型不是图。图的目的是帮助表达和解释模型。</p>
+</blockquote>
+<blockquote>
+<p>设计的重要细节应该在代码中体现出来</p>
+</blockquote>
+<blockquote>
+<p>文档应作为代码和口头交流的补充</p>
+</blockquote>
+<blockquote>
+<p>文档不应再重复表示代码已经明确表达出的内容</p>
+</blockquote>
+<h2 id="怎么得到领域模型？"><a href="#怎么得到领域模型？" class="headerlink" title="怎么得到领域模型？"></a>怎么得到领域模型？</h2><h3 id="知识消化"><a href="#知识消化" class="headerlink" title="知识消化"></a>知识消化</h3><blockquote>
+<p>知识消化并非一项孤立的活动，它一般是在开发人员的领导下，由开发人员与领域专家组成的团队共同协作。他们共同收集信息，并通过消化而将它组织为有用的形式。信息的资料来自领域专家头脑中的知识，来自现有系统的用户，也来自技术团队以前在相关遗留系统或同领域的其他项目中积累的经验。</p>
+</blockquote>
+<blockquote>
+<p>模型永远不会是完美的，因为它是一个不断完善的过程。</p>
+</blockquote>
+<h3 id="通用语言-UBIQUITOUS-LANGUAGE"><a href="#通用语言-UBIQUITOUS-LANGUAGE" class="headerlink" title="通用语言(UBIQUITOUS LANGUAGE)"></a>通用语言(UBIQUITOUS LANGUAGE)</h3><p>为了加强团队成员之间的沟通，项目需要一种公共语言。</p>
+<blockquote>
+<p>项目需要一种公共语言，这种语言并不是最简单的、大众化的东西，而是比其强大得多。通过团队的一致努力，领域模型可以成为这种公共语言的核心，同时将团队沟通与软件实现紧密联系到一起。</p>
+</blockquote>
+<blockquote>
+<p>UBIQUITOUS LANGUAGE的词汇表包括类名称和主要操作。LANGUAGE中包含术语，有些术语用来讨论模型中已经明确的规则，还有一些术语则来自施加于模型上的高级组织原则。</p>
+</blockquote>
+<blockquote>
+<p>所有开发人员都应该使用基于模型的语言来描述系统中的工件、任务和功能。这个模型应该为开发人员和领域专家提供一种用于相互交流的语言，而且领域专家还应该可以使用这种语言来讨论需求、开发计划和特性。</p>
+</blockquote>
+<blockquote>
+<p>一个团队，一种语言</p>
+</blockquote>
+<p><em>其实我们平常开发中就会用到通用语言，只是没有形成规范，个人觉得通用语言还是很重要的</em></p>
+<p>另外很重要的一点就是：<strong>绑定模型和实现</strong>。<br>如果实现脱离了模型，就没有意义了。</p>
+]]></content>
+      <categories>
+        <category>DDD</category>
+      </categories>
+      <tags>
+        <tag>DDD</tag>
+        <tag>领域驱动设计</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>(一)初识DDD</title>
+    <url>/2019/12/27/(%E4%B8%80)%E5%88%9D%E8%AF%86DDD/</url>
+    <content><![CDATA[<p>前一段时间看到了<code>领域驱动设计(DDD)</code>这个词，第一印象就是“这跟编码关系不大吧”，在我了解了一些关于DDD的知识后，发现DDD其实是跟我们关系密切的，了解DDD非常有必要。</p>
+<p>因此，我找了两本豆瓣评分较高的DDD的书籍（《领域驱动设计：软件核心复杂性应对之导》《实现领域驱动设计》）看了一遍。</p>
+<p>之前基本看完书之后会立马去看其他的书，但是经验告诉我，这很容易忘记。根据<code>费曼学习法</code>。所以写点什么记录一下印象会比较深刻。</p>
+<a id="more"></a>
+
+<h2 id="你可以实施DDD，如果你："><a href="#你可以实施DDD，如果你：" class="headerlink" title="你可以实施DDD，如果你："></a>你可以实施DDD，如果你：</h2><blockquote>
+<ul>
+<li>有开发卓越软件的激情和毅力</li>
+<li>渴望学习和进步</li>
+<li>有能力理解软件模式，并懂得如何应用模式</li>
+<li>有发掘不同设计方法的能力和耐性</li>
+<li>勇于改变现状</li>
+<li>看重细节，希望亲自试验</li>
+<li>希望编写更好的代码</li>
+</ul>
+</blockquote>
+<p><em>也许是因为最近都在<strong>追求编写更好的代码</strong>这一目标才了解DDD的</em></p>
+<h2 id="DDD的业务价值"><a href="#DDD的业务价值" class="headerlink" title="DDD的业务价值"></a>DDD的业务价值</h2><blockquote>
+<ol>
+<li>你获得了一个非常有用的领域模型</li>
+<li>你的业务得到了更准确的定义和理解</li>
+<li>领域专家可以为软件设计做出贡献</li>
+<li>更好的用户体验</li>
+<li>清晰的模型边界</li>
+<li>更好的企业架构</li>
+<li>敏捷 迭代式和持续建模</li>
+<li>使用战略和战术新工具</li>
+</ol>
+</blockquote>
+<p><em>反正就是这波不亏</em></p>
+]]></content>
+      <categories>
+        <category>DDD</category>
+      </categories>
+      <tags>
+        <tag>DDD</tag>
+        <tag>领域驱动设计</tag>
       </tags>
   </entry>
   <entry>
