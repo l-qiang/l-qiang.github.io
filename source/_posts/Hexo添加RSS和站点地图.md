@@ -9,9 +9,6 @@ tags:
  - RSS
  - sitemap
 ---
-
-​    
-
 <!-- more -->
 
 ## RSS
@@ -21,11 +18,9 @@ tags:
 {% tabs RSS %}
 
 <!-- tab 安装 -->
-
-```
+{% codeblock lang:shell %}
 $ npm install hexo-generator-feed --save
-```
-
+{% endcodeblock %}
 <!-- endtab -->
 
 <!-- tab 配置 -->
@@ -67,9 +62,9 @@ feed:
 
 <!-- tab 安装 -->
 
-```
+{% codeblock lang:shell %}
 $ npm install hexo-generator-sitemap --save
-```
+{% endcodeblock %}
 
 <!-- endtab -->
 
