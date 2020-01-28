@@ -50,21 +50,24 @@
   };
 </script>
 
-  <meta name="description" content="spring.cloud.config.server.svn.uri修改成新的SVN地址之后，访问配置中心获得的配置还是修改前SVN的。 在我百思不得其姐的时候，我看到了配置中spring.cloud.config.server.svn.basedir指定了一个服务器上的目录。 于是，我上服务器看了看spring.cloud.config.server.svn.basedir指定的目录有什么。 果">
+  <meta name="description" content="分层架构  用户接口层应用层领域层基础设施层负责向用户显示信息和解释用户指令。这里指的用户可以是另一个计算机系统，不一定是使用用户界面的人。定义软件要完成的任务，并且指挥表达领域概念的对象来解决问题。这一层所负责的工作对业务来说意义重大，也是与其他系统应用层进行交互的必要渠道。 应用层要尽量简单，不包含业务规则或者知识，而只为下一层的领域对象协调任务，分配工作，使它们互相协作。它没有反映业务情况状">
 <meta property="og:type" content="article">
-<meta property="og:title" content="为什么修改SVN后Spring Cloud Config失效了？">
-<meta property="og:url" content="https://l-qiang.github.io/2019/08/21/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BF%AE%E6%94%B9SVN%E5%90%8ESpring%20Cloud%20Config%E5%A4%B1%E6%95%88%E4%BA%86%EF%BC%9F/index.html">
+<meta property="og:title" content="(三)架构">
+<meta property="og:url" content="https://l-qiang.github.io/2019/12/27/(%E4%B8%89)%E6%9E%B6%E6%9E%84/index.html">
 <meta property="og:site_name" content="刘强">
-<meta property="og:description" content="spring.cloud.config.server.svn.uri修改成新的SVN地址之后，访问配置中心获得的配置还是修改前SVN的。 在我百思不得其姐的时候，我看到了配置中spring.cloud.config.server.svn.basedir指定了一个服务器上的目录。 于是，我上服务器看了看spring.cloud.config.server.svn.basedir指定的目录有什么。 果">
+<meta property="og:description" content="分层架构  用户接口层应用层领域层基础设施层负责向用户显示信息和解释用户指令。这里指的用户可以是另一个计算机系统，不一定是使用用户界面的人。定义软件要完成的任务，并且指挥表达领域概念的对象来解决问题。这一层所负责的工作对业务来说意义重大，也是与其他系统应用层进行交互的必要渠道。 应用层要尽量简单，不包含业务规则或者知识，而只为下一层的领域对象协调任务，分配工作，使它们互相协作。它没有反映业务情况状">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2019-08-21T19:20:03.000Z">
-<meta property="article:modified_time" content="2020-01-28T03:42:58.729Z">
+<meta property="og:image" content="https://l-qiang.github.io/2019/12/27/(%E4%B8%89)%E6%9E%B6%E6%9E%84/1.png">
+<meta property="og:image" content="https://l-qiang.github.io/2019/12/27/(%E4%B8%89)%E6%9E%B6%E6%9E%84/2.png">
+<meta property="article:published_time" content="2019-12-27T19:56:56.000Z">
+<meta property="article:modified_time" content="2020-01-28T03:42:58.721Z">
 <meta property="article:author" content="刘强">
-<meta property="article:tag" content="Java">
-<meta property="article:tag" content="Spring Cloud">
+<meta property="article:tag" content="DDD">
+<meta property="article:tag" content="领域驱动设计">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://l-qiang.github.io/2019/12/27/(%E4%B8%89)%E6%9E%B6%E6%9E%84/1.png">
 
-<link rel="canonical" href="https://l-qiang.github.io/2019/08/21/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BF%AE%E6%94%B9SVN%E5%90%8ESpring%20Cloud%20Config%E5%A4%B1%E6%95%88%E4%BA%86%EF%BC%9F/">
+<link rel="canonical" href="https://l-qiang.github.io/2019/12/27/(%E4%B8%89)%E6%9E%B6%E6%9E%84/">
 
 
 <script id="page-configurations">
@@ -76,7 +79,7 @@
   };
 </script>
 
-  <title>为什么修改SVN后Spring Cloud Config失效了？ | 刘强</title>
+  <title>(三)架构 | 刘强</title>
   
 
 
@@ -217,7 +220,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://l-qiang.github.io/2019/08/21/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BF%AE%E6%94%B9SVN%E5%90%8ESpring%20Cloud%20Config%E5%A4%B1%E6%95%88%E4%BA%86%EF%BC%9F/">
+    <link itemprop="mainEntityOfPage" href="https://l-qiang.github.io/2019/12/27/(%E4%B8%89)%E6%9E%B6%E6%9E%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -230,7 +233,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          为什么修改SVN后Spring Cloud Config失效了？
+          (三)架构
         </h2>
 
         <div class="post-meta">
@@ -240,7 +243,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-08-21 19:20:03" itemprop="dateCreated datePublished" datetime="2019-08-21T19:20:03+00:00">2019-08-21</time>
+              <time title="创建时间：2019-12-27 19:56:56" itemprop="dateCreated datePublished" datetime="2019-12-27T19:56:56+00:00">2019-12-27</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -255,14 +258,8 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/Spring-Cloud/" itemprop="url" rel="index">
-                    <span itemprop="name">Spring Cloud</span>
+                  <a href="/categories/DDD/" itemprop="url" rel="index">
+                    <span itemprop="name">DDD</span>
                   </a>
                 </span>
             </span>
@@ -273,7 +270,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>404</span>
+              <span>1.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -292,15 +289,32 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><code>spring.cloud.config.server.svn.uri</code>修改成<code>新的SVN地址</code>之后，访问配置中心获得的配置还是<code>修改前SVN</code>的。</p>
-<p>在我百思不得其姐的时候，我看到了配置中<code>spring.cloud.config.server.svn.basedir</code>指定了一个服务器上的目录。</p>
-<p>于是，我上服务器看了看<code>spring.cloud.config.server.svn.basedir</code>指定的目录有什么。</p>
-<p>果然跟我猜测的一样，这个目录其实就是SVN上Check out下来的文件。平时我们在自己电脑上换SVN的时候都会<code>relocate</code>一下，但是Spring Cloud Config没有<code>relocate</code>。</p>
-<p>所以，解决办法就是：</p>
-<ol>
-<li>手动<code>relocate</code> <code>spring.cloud.config.server.svn.basedir</code>指定的目录。</li>
-<li>直接删除<code>spring.cloud.config.server.svn.basedir</code>指定的目录。</li>
-</ol>
+        <h2 id="分层架构"><a href="#分层架构" class="headerlink" title="分层架构"></a>分层架构</h2><img data-src="/2019/12/27/(%E4%B8%89)%E6%9E%B6%E6%9E%84/1.png" class="">
+
+<div class="tabs" id="分层架构"><ul class="nav-tabs"><li class="tab active"><a href="#分层架构-1">用户接口层</a></li><li class="tab"><a href="#分层架构-2">应用层</a></li><li class="tab"><a href="#分层架构-3">领域层</a></li><li class="tab"><a href="#分层架构-4">基础设施层</a></li></ul><div class="tab-content"><div class="tab-pane active" id="分层架构-1"><p>负责向用户显示信息和解释用户指令。这里指的用户可以是另一个计算机系统，不一定是使用用户界面的人。</p></div><div class="tab-pane" id="分层架构-2"><p>定义软件要完成的任务，并且指挥表达领域概念的对象来解决问题。这一层所负责的工作对业务来说意义重大，也是与其他系统应用层进行交互的必要渠道。</p>
+<p>应用层要尽量简单，不包含业务规则或者知识，而只为下一层的领域对象协调任务，分配工作，使它们互相协作。它没有反映业务情况状态，但是却可以具有另一种状态，为用户或程序显示某个任务的进度。</p></div><div class="tab-pane" id="分层架构-3"><p>负责表达业务概念，业务状态信息以及业务规则。尽管保持业务状态的技术细节是由基础设施层实现的。但是反映业务情况的状态是由本层控制并且使用的。<code>领域层是业务软件的核心。</code></p></div><div class="tab-pane" id="分层架构-4"><p>为上面各层提供通用的技术能力：为应用层传递消息，为领域层提供持久化机制，为用户界面层绘制屏幕组件等等。基础设施层还能通过架构框架来支持四个层间的交互模式。</p></div></div></div>
+
+<p><em>这个分层架构我们可能会感觉很熟悉，因为有很多系统都采用了类似的分层模式或者其变种。但是这里强调的是<code>领域层</code>，而且我们的业务代码应该在领域层，而现实中我看到的代码很多业务逻辑都涉及到了用户接口层。当然，也不是所有系统都应该按照分层模式来设计。但是，复杂系统应该做到解耦。</em></p>
+<blockquote>
+<p>采用标准的分层架构模式，只与上层进行松散连接。将所有与领域模型相关的代码放在一个层中，并把它与用户界面层、应用层以及基础设施层的代码分开。领域对象应该将重点放在如何表达领域模型上，而不需要考虑自己的显示和存储问题，也无需管理应用任务等内容。这使得模型的含义足够丰富，结构足够清晰，可以捕捉到基本的业务知识，并有效地使用这些知识。</p>
+</blockquote>
+<blockquote>
+<p>事实上，较低层也是可以和较高层发生耦合的，但是这只局限于采用<code>观察者（Observer）</code>模式或<code>调停者（Mediator）</code>模式的情况。较低层是绝对不能直接访问较高层的。</p>
+</blockquote>
+<h3 id="依赖倒置原则"><a href="#依赖倒置原则" class="headerlink" title="依赖倒置原则"></a>依赖倒置原则</h3><blockquote>
+<p>高层模块不应该依赖于底层模块，两者都应该依赖于抽象。<br>抽象不应该依赖于细节，细节应该依赖于抽象。</p>
+</blockquote>
+<blockquote>
+<p>我们应该将关注点放在领域层上，采用依赖导致原则，使领域层和基础设施层都只依赖于由领域模型定义的抽象接口。由于应用层是领域层的直接客户，它将依赖于领域层接口，并且间接地访问资源库和由基础设施层提供的实现类。</p>
+</blockquote>
+<h2 id="六边形架构"><a href="#六边形架构" class="headerlink" title="六边形架构"></a>六边形架构</h2><img data-src="/2019/12/27/(%E4%B8%89)%E6%9E%B6%E6%9E%84/2.png" class="">
+
+<blockquote>
+<p>六边形架构提倡用一种新的视角来看待整个系统，如图所示。该架构中存在两个区域，分别是”外部区域”和“内部区域”。在外部区域中，不同的客户均可以提交输入；而内部的系统则用于获取持久化数据，并对程序进行存储（比如数据库），或者在中途将输出转发到另外的地方（比如消息）。</p>
+</blockquote>
+<blockquote>
+<p>有3个客户请求均抵达相同的输入端口（适配器A、B和C），另一个客户请求使用了适配器D。可能前3个请求使用了HTTP协议（浏览器、REST和SOAP等），而后一个请求使用了AMQP协议（比如RabbitMQ）。端口并没有明确的定义，它是一个非常灵活的概念。无论采用哪种方式对端口进行划分，当客户请求到达时，都应该有相应的适配器对输入进行转化，然后端口将调用应用程序的某个操作或者向应用程序发送一个事件，控制权由此交给内部区域。</p>
+</blockquote>
 
     </div>
 
@@ -311,19 +325,10 @@
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2019/05/22/Feign使用服务名调用微服务/" rel="bookmark">Feign使用服务名调用微服务</a></div>
+      <div class="popular-posts-title"><a href="/2019/12/27/(一)初识DDD/" rel="bookmark">(一)初识DDD</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2020/01/10/iText合并PDF和添加书签/" rel="bookmark">iText合并PDF和添加书签</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2019/12/19/Jackson将无嵌套JSON转嵌套对象/" rel="bookmark">Jackson将无嵌套JSON转嵌套对象</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2019/10/11/Jackson序列化字段脱敏处理/" rel="bookmark">Jackson序列化字段脱敏处理</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2019/08/19/Java8漏洞-使用Collectors-toMap时，value为null报空指针异常/" rel="bookmark">Java8漏洞-使用Collectors.toMap时，value为null报空指针异常</a></div>
+      <div class="popular-posts-title"><a href="/2019/12/27/(二)领域模型/" rel="bookmark">(二)领域模型</a></div>
     </li>
   </ul>
 
@@ -356,7 +361,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://l-qiang.github.io/2019/08/21/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BF%AE%E6%94%B9SVN%E5%90%8ESpring%20Cloud%20Config%E5%A4%B1%E6%95%88%E4%BA%86%EF%BC%9F/" title="为什么修改SVN后Spring Cloud Config失效了？">https://l-qiang.github.io/2019/08/21/为什么修改SVN后Spring Cloud Config失效了？/</a>
+    <a href="https://l-qiang.github.io/2019/12/27/(%E4%B8%89)%E6%9E%B6%E6%9E%84/" title="(三)架构">https://l-qiang.github.io/2019/12/27/(三)架构/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -367,8 +372,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Java/" rel="tag"># Java</a>
-              <a href="/tags/Spring-Cloud/" rel="tag"># Spring Cloud</a>
+              <a href="/tags/DDD/" rel="tag"># DDD</a>
+              <a href="/tags/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/" rel="tag"># 领域驱动设计</a>
           </div>
 
         
@@ -377,12 +382,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/08/20/%E5%85%B3%E4%BA%8ESpring%20Data%20Jpa%E4%BD%BF%E7%94%A8@Query%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2%E7%9A%84%E9%97%AE%E9%A2%98/" rel="prev" title="关于Spring Data Jpa使用@Query分页查询的问题">
-      <i class="fa fa-chevron-left"></i> 关于Spring Data Jpa使用@Query分页查询的问题
+    <a href="/2019/12/27/(%E4%BA%8C)%E9%A2%86%E5%9F%9F%E6%A8%A1%E5%9E%8B/" rel="prev" title="(二)领域模型">
+      <i class="fa fa-chevron-left"></i> (二)领域模型
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/09/04/%E8%BF%99%E6%89%8D%E6%98%AF%E6%AD%A3%E7%A1%AE%E5%9C%B0%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0%E7%9A%84HashMap%E7%9A%84%E6%96%B9%E5%BC%8F/" rel="next" title="这才是正确地初始化只有一个元素的HashMap的方式">
-      这才是正确地初始化只有一个元素的HashMap的方式 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/01/10/iText%E5%90%88%E5%B9%B6PDF%E5%92%8C%E6%B7%BB%E5%8A%A0%E4%B9%A6%E7%AD%BE/" rel="next" title="iText合并PDF和添加书签">
+      iText合并PDF和添加书签 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -444,6 +449,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#分层架构"><span class="nav-number">1.</span> <span class="nav-text">分层架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖倒置原则"><span class="nav-number">1.1.</span> <span class="nav-text">依赖倒置原则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六边形架构"><span class="nav-number">2.</span> <span class="nav-text">六边形架构</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -668,7 +674,7 @@ window.addEventListener('pjax:success', () => {
       quicklink({
         timeout: 3000,
         priority: true,
-        ignores: [uri => uri.includes('#'),uri => uri == 'https://l-qiang.github.io/2019/08/21/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BF%AE%E6%94%B9SVN%E5%90%8ESpring%20Cloud%20Config%E5%A4%B1%E6%95%88%E4%BA%86%EF%BC%9F/',]
+        ignores: [uri => uri.includes('#'),uri => uri == 'https://l-qiang.github.io/2019/12/27/(%E4%B8%89)%E6%9E%B6%E6%9E%84/',]
       });
       });
   </script>
@@ -684,7 +690,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo: 'BlogGitalk',
       owner: 'l-qiang',
       admin: ['l-qiang'],
-      id: '308cb8286bcacc226d802feadbcd1a64',
+      id: 'e804a3dded58ed71509564b7800c7c37',
         language: 'zh-CN',
       distractionFreeMode: true
     });

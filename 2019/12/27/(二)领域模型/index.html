@@ -58,7 +58,7 @@
 <meta property="og:description" content="什么是领域（Domain）？ 每个软件程序的目的都是为了执行某项活动，或是满足用户的某种需求。用户把软件程序应用于某个主题区域，这个区域就是软件的领域。   领域即是一个组织所做的事情以及其中所包含的一切。商业机构通常会确定一个市场，然后在这个市场中销售产品和服务。每个组织都有它自己的业务范围和做事方式。这个业务范围以及在其中所进行的活动便是领域。   怎么表达领域知识？一个领域可能涉及的知识非常">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-12-27T19:56:55.000Z">
-<meta property="article:modified_time" content="2020-01-26T13:49:36.453Z">
+<meta property="article:modified_time" content="2020-01-28T03:42:58.725Z">
 <meta property="article:author" content="刘强">
 <meta property="article:tag" content="DDD">
 <meta property="article:tag" content="领域驱动设计">
@@ -159,7 +159,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">29</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">30</span></a>
 
   </li>
         <li class="menu-item menu-item-sitemap">
@@ -247,7 +247,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-26 13:49:36" itemprop="dateModified" datetime="2020-01-26T13:49:36+00:00">2020-01-26</time>
+                <time title="修改时间：2020-01-28 03:42:58" itemprop="dateModified" datetime="2020-01-28T03:42:58+00:00">2020-01-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -267,7 +267,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>907</span>
+              <span>1.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -327,6 +327,19 @@
 </blockquote>
 <p><em>其实我们平常开发中就会用到通用语言，只是没有形成规范，个人觉得通用语言还是很重要的</em></p>
 <p>另外很重要的一点就是：<strong>绑定模型和实现</strong>。<br>如果实现脱离了模型，就没有意义了。</p>
+<h2 id="核心领域"><a href="#核心领域" class="headerlink" title="核心领域"></a>核心领域</h2><blockquote>
+<p>一个严峻的现实是我们不可能对所有设计部分进行同等的精化，而是必须分出优先级。为了使领域模型成为有价值的资产，必须整齐地梳理出模型的真正核心，并完全根据这个核心来创建应用程序的功能。但本来就稀缺的高水平开发人员往往会把工作重心放在技术基础设施上，或者只是去解决那些不需要专门领域知识就能理解的领域问题。</p>
+</blockquote>
+<blockquote>
+<p>对模型进行提炼。找到核心领域并提供一种易于区分的方法把它与那些起辅助作用的模型和代码分开。最有价值和最专业的概念要轮廓分明。尽量压缩核心领域。</p>
+</blockquote>
+<p><em>核心领域是一个相对的概念，你的核心不一定就是别人的核心。</em></p>
+<h2 id="通用子域"><a href="#通用子域" class="headerlink" title="通用子域"></a>通用子域</h2><blockquote>
+<p>模型中有些部分除了增加复杂性以外并没有捕捉或传递任何专门的知识。任何外来因素都会使核心领域更难以分辨和理解。模型中包含大量的众所周知的一般原则，或者是专门的细节，这些细节并不是我们的主要关注点，而只是起到支持作用。</p>
+</blockquote>
+<blockquote>
+<p>把内聚的子领域（它们不是项目的动机）识别出来。把这些子领域的通用模型提取出来，并放到单独的模块中。</p>
+</blockquote>
 
     </div>
 
@@ -338,6 +351,9 @@
   <ul class="popular-posts">
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="/2019/12/27/(一)初识DDD/" rel="bookmark">(一)初识DDD</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2019/12/27/(三)架构/" rel="bookmark">(三)架构</a></div>
     </li>
   </ul>
 
@@ -395,8 +411,8 @@
       <i class="fa fa-chevron-left"></i> (一)初识DDD
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/01/10/iText%E5%90%88%E5%B9%B6PDF%E5%92%8C%E6%B7%BB%E5%8A%A0%E4%B9%A6%E7%AD%BE/" rel="next" title="iText合并PDF和添加书签">
-      iText合并PDF和添加书签 <i class="fa fa-chevron-right"></i>
+    <a href="/2019/12/27/(%E4%B8%89)%E6%9E%B6%E6%9E%84/" rel="next" title="(三)架构">
+      (三)架构 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -458,7 +474,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是领域（Domain）？"><span class="nav-number">1.</span> <span class="nav-text">什么是领域（Domain）？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么表达领域知识？"><span class="nav-number">2.</span> <span class="nav-text">怎么表达领域知识？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么得到领域模型？"><span class="nav-number">3.</span> <span class="nav-text">怎么得到领域模型？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#知识消化"><span class="nav-number">3.1.</span> <span class="nav-text">知识消化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通用语言-UBIQUITOUS-LANGUAGE"><span class="nav-number">3.2.</span> <span class="nav-text">通用语言(UBIQUITOUS LANGUAGE)</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是领域（Domain）？"><span class="nav-number">1.</span> <span class="nav-text">什么是领域（Domain）？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么表达领域知识？"><span class="nav-number">2.</span> <span class="nav-text">怎么表达领域知识？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么得到领域模型？"><span class="nav-number">3.</span> <span class="nav-text">怎么得到领域模型？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#知识消化"><span class="nav-number">3.1.</span> <span class="nav-text">知识消化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通用语言-UBIQUITOUS-LANGUAGE"><span class="nav-number">3.2.</span> <span class="nav-text">通用语言(UBIQUITOUS LANGUAGE)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#核心领域"><span class="nav-number">4.</span> <span class="nav-text">核心领域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通用子域"><span class="nav-number">5.</span> <span class="nav-text">通用子域</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -472,7 +488,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -538,13 +554,13 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">51k</span>
+    <span title="站点总字数">53k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">43 分钟</span>
+    <span title="站点阅读时长">44 分钟</span>
 </div>
 
         
