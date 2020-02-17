@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>STS4启动报错Missing tools.jar</title>
+    <url>/2020/02/17/STS4%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99Missing%20tools.jar/</url>
+    <content><![CDATA[<p>今天将我的STS3升级到了STS4，升级完启动STS4的时候发现报<code>Missing tools.jar</code>的错误。</p>
+<img data-src="/2020/02/17/STS4%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99Missing%20tools.jar/1.png" class="">
+<a id="more"></a>
+<p>从图中我们可以看出STS去C盘找<code>tools.jar</code>了。但是我的JDK并不是装在这个目录。我想大多数人的JDK都不在图上的目录吧。</p>
+<p>那么这个路径从哪来的呢？</p>
+<p>我们通过<code>Help -&gt; About Spring Tool Suite 4 -&gt; Installation Details -&gt; Configuration</code>可以看到：</p>
+<img data-src="/2020/02/17/STS4%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99Missing%20tools.jar/2.png" class="">
+
+<p>那么，这个配置该怎么修改呢？</p>
+<p>我们打开STS4的安装目录，找到<code>SpringToolSuite4.ini</code>增加一下两行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-vm</span><br><span class="line">D:\soft\java8\bin\javaw.exe</span><br></pre></td></tr></table></figure>
+
+<p>将<code>D:\soft\java8\bin</code>修改为自己电脑上的JDK目录即可。注意，这两行要加在<code>-vmargs</code>上面。</p>
+]]></content>
+      <categories>
+        <category>Spring</category>
+        <category>Spring Tool Suite</category>
+      </categories>
+      <tags>
+        <tag>Spring Tool Suite</tag>
+        <tag>STS4</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Tomcat日志截断</title>
     <url>/2020/01/22/Tomcat%E6%97%A5%E5%BF%97%E6%88%AA%E6%96%AD/</url>
     <content><![CDATA[<p>为了避免生产环境<code>Tomcat</code>的<code>catalina.out</code>越来越大，我们需要轮替<code>catalina.out</code>，那么我们该怎么做呢？</p>
