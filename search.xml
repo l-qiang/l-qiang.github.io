@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>为什么Spring Boot读取UTF-8编码的properties会中文乱码？</title>
+    <url>/2020/03/01/%E4%B8%BA%E4%BB%80%E4%B9%88Spring%20Boot%E8%AF%BB%E5%8F%96UTF-8%E7%BC%96%E7%A0%81%E7%9A%84properties%E4%BC%9A%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%EF%BC%9F/</url>
+    <content><![CDATA[<p>我们经常会在<code>properties</code>文件中使用中文。当然大多数时候中文都是写在注释里。我们也会在STS中安装<a href="https://java-properties-editor.com/index.html" target="_blank" rel="noopener">PropertiesEditor</a>插件显示中文。但是，在我升级STS4之后我没有安装<code>PropertiesEditor</code>，而是直接修改<code>properties</code>文件为<code>UTF-8</code>编码，然后在里面写中文。这样就发生了一个问题，应用程序读取出来的<br><code>properties</code>属性里中文是乱码的。</p>
+<a id="more"></a>
+<h2 id="那么这是为什么呢？"><a href="#那么这是为什么呢？" class="headerlink" title="那么这是为什么呢？"></a>那么这是为什么呢？</h2><p>我们可以追溯到Spring Boot加载<code>properties</code>文件的一段代码。</p>
+<figure class="highlight java"><figcaption><span>PropertiesLoaderUtils.java</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Load properties from the given resource (in ISO-8859-1 encoding).</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> resource the resource to load from</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> the populated Properties instance</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> IOException if loading failed</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span> #fillProperties(java.util.Properties, Resource)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Properties <span class="title">loadProperties</span><span class="params">(Resource resource)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		Properties props = <span class="keyword">new</span> Properties();</span><br><span class="line">		fillProperties(props, resource);</span><br><span class="line">		<span class="keyword">return</span> props;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们从注释中可以看到，使用<code>ISO-8859-1</code>编码加载资源文件。所以<code>UTF-8</code>编码的文件用<code>ISO-8859-1</code>编码读取出来所以中文乱码了。</p>
+<p>那么，为什么使用<code>PropertiesEditor</code>就没有问题呢？</p>
+<p>因为，<code>PropertiesEditor</code>只是让你看到中文，但是实际文件里<strong>\u</strong>xxxx的形式的中文（用文本编辑器打开properties文件看看）。</p>
+<p>在这之前还有<code>native2ascii</code>这个东西，想了解的也可以去了解一下。</p>
+<h2 id="关于这个问题，我是怎么解决的呢？"><a href="#关于这个问题，我是怎么解决的呢？" class="headerlink" title="关于这个问题，我是怎么解决的呢？"></a>关于这个问题，我是怎么解决的呢？</h2><p>我没有用<code>PropertiesEditor</code>，因为我希望我的一些配置不用<code>PropertiesEditor</code>仍然能看懂什么意思。</p>
+<p>所以，我把我的配置文件分成了<code>两份</code>，属于系统的一些配置仍然放在<code>application.properties</code>里面使用<code>ISO-8859-1</code>编码，属于业务相关的配置放到了另一个配置文件<code>xxqg.properties</code>使用<code>UTF-8</code>编码。</p>
+<p>然后，读取配置的地方使用<code>@PropertySource</code>注解。</p>
+<p>例如，以下代码</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix=<span class="string">"xpath.agreement"</span>)</span><br><span class="line"><span class="meta">@PropertySource</span>(value = <span class="string">"xxqg.properties"</span>, encoding = <span class="string">"UTF-8"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@Data</span> <span class="class"><span class="keyword">class</span> <span class="title">AgreementXPath</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String agree;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>Spring Boot</category>
+      </categories>
+      <tags>
+        <tag>Spring Boot</tag>
+        <tag>乱码</tag>
+        <tag>UTF-8</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>STS4启动报错Missing tools.jar</title>
     <url>/2020/02/17/STS4%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99Missing%20tools.jar/</url>
     <content><![CDATA[<p>今天将我的STS3升级到了STS4，升级完启动STS4的时候发现报<code>Missing tools.jar</code>的错误。</p>
