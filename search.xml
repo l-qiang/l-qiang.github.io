@@ -1257,7 +1257,7 @@
   </entry>
   <entry>
     <title>同一个Controller的@RequestMapping指向同一个value会发生什么？</title>
-    <url>/2019/08/08/%E5%90%8C%E4%B8%80%E4%B8%AAController%E7%9A%84@RequestMapping%E6%8C%87%E5%90%91%E5%90%8C%E4%B8%80%E4%B8%AAvalue%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88%EF%BC%9F/</url>
+    <url>/2019/08/08/%E5%90%8C%E4%B8%80%E4%B8%AAController%E7%9A%84@RequestMapping%E6%8C%87%E5%90%91%E5%90%8C%E4%B8%80%E4%B8%AAvalue%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88/</url>
     <content><![CDATA[<p>首先，是如下这种写法</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">"/a"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">a</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"a"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@RequestMapping</span>(value=<span class="string">"/a"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">d</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"a"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -1267,9 +1267,9 @@
 </blockquote>
 <p>那是不是value的值一定不能一样呢，答案是否定的</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestController</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value=<span class="string">"/a"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">a</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"a"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value=<span class="string">"/a"</span>, method = RequestMethod.HEAD)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ResponseEntity&lt;Void&gt; <span class="title">b</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> ResponseEntity.ok().header(<span class="string">"b"</span>, <span class="string">"b"</span>).build();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value=<span class="string">"/a"</span>, method = RequestMethod.GET)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">c</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"c"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<img data-src="/2019/08/08/%E5%90%8C%E4%B8%80%E4%B8%AAController%E7%9A%84@RequestMapping%E6%8C%87%E5%90%91%E5%90%8C%E4%B8%80%E4%B8%AAvalue%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88%EF%BC%9F/1.png" class="">
-<img data-src="/2019/08/08/%E5%90%8C%E4%B8%80%E4%B8%AAController%E7%9A%84@RequestMapping%E6%8C%87%E5%90%91%E5%90%8C%E4%B8%80%E4%B8%AAvalue%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88%EF%BC%9F/2.png" class="">
-<img data-src="/2019/08/08/%E5%90%8C%E4%B8%80%E4%B8%AAController%E7%9A%84@RequestMapping%E6%8C%87%E5%90%91%E5%90%8C%E4%B8%80%E4%B8%AAvalue%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88%EF%BC%9F/3.png" class="">
+
+
+
 <p>从结果可以看出，只要指定不同method就行。而且会优先匹配对应的方法，没有找到匹配的才会执行没有指定method的@RequestMapping对应方法</p>
 ]]></content>
       <categories>
