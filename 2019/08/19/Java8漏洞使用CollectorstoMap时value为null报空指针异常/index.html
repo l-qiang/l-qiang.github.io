@@ -25,21 +25,20 @@
     var CONFIG = {"hostname":"l-qiang.github.io","root":"/","scheme":"Gemini","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="问题源于一个客户这边自己封装的框架。 一直以来，我都对这种框架无感，因为它一般是由开源项目改编的，而且不一定是改得更好了。封装越多用起来越笨重。">
+  <meta name="description" content="罪魁祸首就是HashMap的merge方法了，它的第一行就是这个： 12if (value &#x3D;&#x3D; null)    throw new NullPointerException(); 谁调merge了？ 12345678910public static &lt;T, K, U, M extends Map&lt;K, U&gt;&gt;    Collector&lt;T, ?, M&gt; to">
 <meta property="og:type" content="article">
-<meta property="og:title" content="为什么我的Spring Boot项目不能访问静态资源？">
-<meta property="og:url" content="https://l-qiang.github.io/2019/12/13/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E7%9A%84Spring-Boot%E9%A1%B9%E7%9B%AE%E4%B8%8D%E8%83%BD%E8%AE%BF%E9%97%AE%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%EF%BC%9F/index.html">
+<meta property="og:title" content="Java8漏洞-使用Collectors.toMap时，value为null报空指针异常">
+<meta property="og:url" content="https://l-qiang.github.io/2019/08/19/Java8%E6%BC%8F%E6%B4%9E%E4%BD%BF%E7%94%A8CollectorstoMap%E6%97%B6value%E4%B8%BAnull%E6%8A%A5%E7%A9%BA%E6%8C%87%E9%92%88%E5%BC%82%E5%B8%B8/index.html">
 <meta property="og:site_name" content="刘强">
-<meta property="og:description" content="问题源于一个客户这边自己封装的框架。 一直以来，我都对这种框架无感，因为它一般是由开源项目改编的，而且不一定是改得更好了。封装越多用起来越笨重。">
+<meta property="og:description" content="罪魁祸首就是HashMap的merge方法了，它的第一行就是这个： 12if (value &#x3D;&#x3D; null)    throw new NullPointerException(); 谁调merge了？ 12345678910public static &lt;T, K, U, M extends Map&lt;K, U&gt;&gt;    Collector&lt;T, ?, M&gt; to">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2019-12-13T19:10:42.000Z">
-<meta property="article:modified_time" content="2020-03-02T02:38:34.835Z">
+<meta property="article:published_time" content="2019-08-19T16:47:17.000Z">
+<meta property="article:modified_time" content="2020-03-02T03:01:12.656Z">
 <meta property="article:author" content="刘强">
 <meta property="article:tag" content="Java">
-<meta property="article:tag" content="Spring Boot">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://l-qiang.github.io/2019/12/13/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E7%9A%84Spring-Boot%E9%A1%B9%E7%9B%AE%E4%B8%8D%E8%83%BD%E8%AE%BF%E9%97%AE%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%EF%BC%9F/">
+<link rel="canonical" href="https://l-qiang.github.io/2019/08/19/Java8%E6%BC%8F%E6%B4%9E%E4%BD%BF%E7%94%A8CollectorstoMap%E6%97%B6value%E4%B8%BAnull%E6%8A%A5%E7%A9%BA%E6%8C%87%E9%92%88%E5%BC%82%E5%B8%B8/">
 
 
 <script id="page-configurations">
@@ -51,7 +50,7 @@
   };
 </script>
 
-  <title>为什么我的Spring Boot项目不能访问静态资源？ | 刘强</title>
+  <title>Java8漏洞-使用Collectors.toMap时，value为null报空指针异常 | 刘强</title>
   
 
 
@@ -194,7 +193,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://l-qiang.github.io/2019/12/13/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E7%9A%84Spring-Boot%E9%A1%B9%E7%9B%AE%E4%B8%8D%E8%83%BD%E8%AE%BF%E9%97%AE%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%EF%BC%9F/">
+    <link itemprop="mainEntityOfPage" href="https://l-qiang.github.io/2019/08/19/Java8%E6%BC%8F%E6%B4%9E%E4%BD%BF%E7%94%A8CollectorstoMap%E6%97%B6value%E4%B8%BAnull%E6%8A%A5%E7%A9%BA%E6%8C%87%E9%92%88%E5%BC%82%E5%B8%B8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -207,7 +206,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          为什么我的Spring Boot项目不能访问静态资源？
+          Java8漏洞-使用Collectors.toMap时，value为null报空指针异常
         </h2>
 
         <div class="post-meta">
@@ -217,14 +216,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-12-13 19:10:42" itemprop="dateCreated datePublished" datetime="2019-12-13T19:10:42+00:00">2019-12-13</time>
+              <time title="创建时间：2019-08-19 16:47:17" itemprop="dateCreated datePublished" datetime="2019-08-19T16:47:17+00:00">2019-08-19</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-02 02:38:34" itemprop="dateModified" datetime="2020-03-02T02:38:34+00:00">2020-03-02</time>
+                <time title="修改时间：2020-03-02 03:01:12" itemprop="dateModified" datetime="2020-03-02T03:01:12+00:00">2020-03-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -236,12 +235,6 @@
                     <span itemprop="name">Java</span>
                   </a>
                 </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/Spring-Boot/" itemprop="url" rel="index">
-                    <span itemprop="name">Spring Boot</span>
-                  </a>
-                </span>
             </span>
 
           <br>
@@ -250,7 +243,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>547</span>
+              <span>1.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -269,30 +262,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>问题源于一个客户这边自己封装的框架。</p>
-<p>一直以来，我都对这种框架无感，因为它一般是由开源项目改编的，而且不一定是改得更好了。封装越多用起来越笨重。</p>
-<a id="more"></a>
+        <p>罪魁祸首就是<code>HashMap的merge</code>方法了，它的第一行就是这个：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (value == <span class="keyword">null</span>)</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br></pre></td></tr></table></figure>
+<p>谁调<code>merge</code>了？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T, K, U, M extends Map&lt;K, U&gt;&gt;</span><br><span class="line">    Collector&lt;T, ?, M&gt; toMap(Function&lt;? <span class="keyword">super</span> T, ? extends K&gt; keyMapper,</span><br><span class="line">                                Function&lt;? <span class="keyword">super</span> T, ? extends U&gt; valueMapper,</span><br><span class="line">                                BinaryOperator&lt;U&gt; mergeFunction,</span><br><span class="line">                                Supplier&lt;M&gt; mapSupplier) &#123;</span><br><span class="line">        BiConsumer&lt;M, T&gt; accumulator</span><br><span class="line">                = (map, element) -&gt; map.merge(keyMapper.apply(element),</span><br><span class="line">                                              valueMapper.apply(element), mergeFunction);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> CollectorImpl&lt;&gt;(mapSupplier, accumulator, mapMerger(mergeFunction), CH_ID);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>由于缺少文档的原因，查原因就稍微曲折了一点。</p>
-<ul>
-<li><p>首先我从出错信息开始</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">401 认证失败</span><br></pre></td></tr></table></figure>
+<p>那么怎么解决呢？<br>既然时merge方法造成的，那就不调merge方法。<br>我们用自己定义的<code>accumulator</code>,用Stream的另一个collect方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;R&gt; <span class="function">R <span class="title">collect</span><span class="params">(Supplier&lt;R&gt; supplier,</span></span></span><br><span class="line"><span class="function"><span class="params">              BiConsumer&lt;R, ? <span class="keyword">super</span> T&gt; accumulator,</span></span></span><br><span class="line"><span class="function"><span class="params">              BiConsumer&lt;R, R&gt; combiner)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>这个方法上面的注释写了一段这个, 前两个参数干什么用的就很清楚了，第三个参数时并行计算用来组合结果的，所以用HashMap的putAll就好了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">R result = supplier.get();</span><br><span class="line"><span class="keyword">for</span> (T element : <span class="keyword">this</span> stream)</span><br><span class="line">    accumulator.accept(result, element);</span><br><span class="line"><span class="keyword">return</span> result;</span><br></pre></td></tr></table></figure>
+<p>所以解决问题的代码大概就是这样的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">params.stream().collect(LinkedHashMap::<span class="keyword">new</span>, (m, v) -&gt; m.put(v.getParam(), v.getParamValue()), LinkedHashMap::putAll);</span><br></pre></td></tr></table></figure>
 
-<p>这就有意思了，我访问一个静态资源，而且我按照所谓的文档已经关闭权限认证了。最头疼的是，这个错误信息在这个框架的自定义的错误码里面根本没有。然后我顺着代码看了个遍，终于找到了这个错误信息。他不是用的自定义的错误码，而是直接写死的，我服了…</p>
-</li>
-<li><p>然后debug找到原本的错误信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">No handler mapping for xxx</span><br></pre></td></tr></table></figure>
-
-<p>醉了，这错误多明显，为啥要改成<code>401 认证失败</code>返回呢。</p>
-<p>错误虽然明显，但是确实超过了我的经验范围，静态资源需要啥Handler呢，还是我太年轻了。不过踩一次坑涨一波经验也不亏。</p>
-</li>
-<li><p>最终，我在配置文件中发现了这个</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spring</span><br><span class="line">    resources:</span><br><span class="line">        add-mappings: false</span><br></pre></td></tr></table></figure>
-
-<p>这不是坑爹吗，这么多配置项中掺了一个这个，还没有任何说明。</p>
-</li>
-</ul>
-<p>所以原因就是因为<code>spring.resource.add-mappings</code>这个被设置成false，导致<code>WebMvcConfigurer</code>的<code>addResourceHandlers</code>方法直接返回了，所以没有Handler处理静态资源。</p>
+<p>当然，升级JDK也能解决这个问题。</p>
 
     </div>
 
@@ -303,19 +285,19 @@
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2019/09/04/Spring Boot注解之@ConditionalOnProperty/" rel="bookmark">Spring Boot注解之@ConditionalOnProperty</a></div>
+      <div class="popular-posts-title"><a href="/2019/09/05/spring.mvc.favicon.enabled为什么不起作用/" rel="bookmark">spring.mvc.favicon.enabled为什么不起作用？</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2019/09/05/spring.mvc.favicon.enabled为什么不起作用？/" rel="bookmark">spring.mvc.favicon.enabled为什么不起作用？</a></div>
+      <div class="popular-posts-title"><a href="/2019/10/11/ConcurrentModificationException你真的了解吗/" rel="bookmark">ConcurrentModificationException你真的了解吗？</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2019/10/13/spring-session是怎样使用redis存session的？/" rel="bookmark">spring-session是怎样使用redis存session的？</a></div>
+      <div class="popular-posts-title"><a href="/2019/12/19/Jackson将无嵌套JSON转嵌套对象/" rel="bookmark">Jackson将无嵌套JSON转嵌套对象</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="/2019/10/11/Jackson序列化字段脱敏处理/" rel="bookmark">Jackson序列化字段脱敏处理</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2019/08/19/Java8漏洞-使用Collectors-toMap时，value为null报空指针异常/" rel="bookmark">Java8漏洞-使用Collectors.toMap时，value为null报空指针异常</a></div>
+      <div class="popular-posts-title"><a href="/2019/09/04/Java书籍阅读记录/" rel="bookmark">Java书籍阅读记录</a></div>
     </li>
   </ul>
 
@@ -348,7 +330,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://l-qiang.github.io/2019/12/13/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E7%9A%84Spring-Boot%E9%A1%B9%E7%9B%AE%E4%B8%8D%E8%83%BD%E8%AE%BF%E9%97%AE%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%EF%BC%9F/" title="为什么我的Spring Boot项目不能访问静态资源？">https://l-qiang.github.io/2019/12/13/为什么我的Spring-Boot项目不能访问静态资源？/</a>
+    <a href="https://l-qiang.github.io/2019/08/19/Java8%E6%BC%8F%E6%B4%9E%E4%BD%BF%E7%94%A8CollectorstoMap%E6%97%B6value%E4%B8%BAnull%E6%8A%A5%E7%A9%BA%E6%8C%87%E9%92%88%E5%BC%82%E5%B8%B8/" title="Java8漏洞-使用Collectors.toMap时，value为null报空指针异常">https://l-qiang.github.io/2019/08/19/Java8漏洞使用CollectorstoMap时value为null报空指针异常/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -360,7 +342,6 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/Java/" rel="tag"># Java</a>
-              <a href="/tags/Spring-Boot/" rel="tag"># Spring Boot</a>
           </div>
 
         
@@ -369,12 +350,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/10/30/%E8%AE%B0%E4%B8%80%E6%AC%A1Java%E7%BA%BF%E7%A8%8B%E5%A0%86%E6%A0%88%E5%88%86%E6%9E%90/" rel="prev" title="记一次Java线程堆栈分析">
-      <i class="fa fa-chevron-left"></i> 记一次Java线程堆栈分析
+    <a href="/2019/08/12/ApacheVFS%E7%A7%BB%E5%8A%A8FTP%E6%96%87%E4%BB%B6%E5%A4%AA%E6%85%A2%E5%8E%9F%E5%9B%A0%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" rel="prev" title="Apache VFS移动FTP文件太慢原因及解决办法">
+      <i class="fa fa-chevron-left"></i> Apache VFS移动FTP文件太慢原因及解决办法
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/12/19/Jackson%E5%B0%86%E6%97%A0%E5%B5%8C%E5%A5%97JSON%E8%BD%AC%E5%B5%8C%E5%A5%97%E5%AF%B9%E8%B1%A1/" rel="next" title="Jackson将无嵌套JSON转嵌套对象">
-      Jackson将无嵌套JSON转嵌套对象 <i class="fa fa-chevron-right"></i>
+    <a href="/2019/08/20/%E5%85%B3%E4%BA%8ESpringDataJpa%E4%BD%BF%E7%94%A8@Query%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2%E7%9A%84%E9%97%AE%E9%A2%98/" rel="next" title="关于Spring Data Jpa使用@Query分页查询的问题">
+      关于Spring Data Jpa使用@Query分页查询的问题 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -660,7 +641,7 @@ window.addEventListener('pjax:success', () => {
       quicklink({
         timeout: 3000,
         priority: true,
-        ignores: [uri => uri.includes('#'),uri => uri == 'https://l-qiang.github.io/2019/12/13/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E7%9A%84Spring-Boot%E9%A1%B9%E7%9B%AE%E4%B8%8D%E8%83%BD%E8%AE%BF%E9%97%AE%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%EF%BC%9F/',]
+        ignores: [uri => uri.includes('#'),uri => uri == 'https://l-qiang.github.io/2019/08/19/Java8%E6%BC%8F%E6%B4%9E%E4%BD%BF%E7%94%A8CollectorstoMap%E6%97%B6value%E4%B8%BAnull%E6%8A%A5%E7%A9%BA%E6%8C%87%E9%92%88%E5%BC%82%E5%B8%B8/',]
       });
       });
   </script>
@@ -676,7 +657,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'BlogGitalk',
       owner       : 'l-qiang',
       admin       : ['l-qiang'],
-      id          : '0a1448880c6121f34495a4010dcacc68',
+      id          : 'b62a8cbaf47420fc17453cea1cec53cd',
         language: 'zh-CN',
       distractionFreeMode: true
     });

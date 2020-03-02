@@ -25,20 +25,22 @@
     var CONFIG = {"hostname":"l-qiang.github.io","root":"/","scheme":"Gemini","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="我想很多人第一次遇到这个异常都是因为对List使用foreach遍历，然后删除元素的导致的。然后我们会在网上查到使用Iterator或for倒序遍历来解决这个问题。那么ConcurrentModificationException是怎么出现的？为什么要使用Iterator或for倒序遍历来解决呢？">
+  <meta name="description" content="我们经常会在properties文件中使用中文。当然大多数时候中文都是写在注释里。我们也会在STS中安装PropertiesEditor插件显示中文。但是，在我升级STS4之后我没有安装PropertiesEditor，而是直接修改properties文件为UTF-8编码，然后在里面写中文。这样就发生了一个问题，应用程序读取出来的properties属性里中文是乱码的。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ConcurrentModificationException你真的了解吗？">
-<meta property="og:url" content="https://l-qiang.github.io/2019/10/11/ConcurrentModificationException%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BA%86%E8%A7%A3%E5%90%97%EF%BC%9F/index.html">
+<meta property="og:title" content="为什么Spring Boot读取UTF-8编码的properties会中文乱码？">
+<meta property="og:url" content="https://l-qiang.github.io/2020/03/01/%E4%B8%BA%E4%BB%80%E4%B9%88SpringBoot%E8%AF%BB%E5%8F%96UTF-8%E7%BC%96%E7%A0%81%E7%9A%84properties%E4%BC%9A%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/index.html">
 <meta property="og:site_name" content="刘强">
-<meta property="og:description" content="我想很多人第一次遇到这个异常都是因为对List使用foreach遍历，然后删除元素的导致的。然后我们会在网上查到使用Iterator或for倒序遍历来解决这个问题。那么ConcurrentModificationException是怎么出现的？为什么要使用Iterator或for倒序遍历来解决呢？">
+<meta property="og:description" content="我们经常会在properties文件中使用中文。当然大多数时候中文都是写在注释里。我们也会在STS中安装PropertiesEditor插件显示中文。但是，在我升级STS4之后我没有安装PropertiesEditor，而是直接修改properties文件为UTF-8编码，然后在里面写中文。这样就发生了一个问题，应用程序读取出来的properties属性里中文是乱码的。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2019-10-11T12:41:15.000Z">
-<meta property="article:modified_time" content="2020-03-02T02:38:34.831Z">
+<meta property="article:published_time" content="2020-03-01T09:41:04.000Z">
+<meta property="article:modified_time" content="2020-03-02T03:01:12.656Z">
 <meta property="article:author" content="刘强">
-<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Spring Boot">
+<meta property="article:tag" content="乱码">
+<meta property="article:tag" content="UTF-8">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://l-qiang.github.io/2019/10/11/ConcurrentModificationException%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BA%86%E8%A7%A3%E5%90%97%EF%BC%9F/">
+<link rel="canonical" href="https://l-qiang.github.io/2020/03/01/%E4%B8%BA%E4%BB%80%E4%B9%88SpringBoot%E8%AF%BB%E5%8F%96UTF-8%E7%BC%96%E7%A0%81%E7%9A%84properties%E4%BC%9A%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/">
 
 
 <script id="page-configurations">
@@ -50,7 +52,7 @@
   };
 </script>
 
-  <title>ConcurrentModificationException你真的了解吗？ | 刘强</title>
+  <title>为什么Spring Boot读取UTF-8编码的properties会中文乱码？ | 刘强</title>
   
 
 
@@ -193,7 +195,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://l-qiang.github.io/2019/10/11/ConcurrentModificationException%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BA%86%E8%A7%A3%E5%90%97%EF%BC%9F/">
+    <link itemprop="mainEntityOfPage" href="https://l-qiang.github.io/2020/03/01/%E4%B8%BA%E4%BB%80%E4%B9%88SpringBoot%E8%AF%BB%E5%8F%96UTF-8%E7%BC%96%E7%A0%81%E7%9A%84properties%E4%BC%9A%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -206,7 +208,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          ConcurrentModificationException你真的了解吗？
+          为什么Spring Boot读取UTF-8编码的properties会中文乱码？
         </h2>
 
         <div class="post-meta">
@@ -216,14 +218,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-10-11 12:41:15" itemprop="dateCreated datePublished" datetime="2019-10-11T12:41:15+00:00">2019-10-11</time>
+              <time title="创建时间：2020-03-01 09:41:04" itemprop="dateCreated datePublished" datetime="2020-03-01T09:41:04+00:00">2020-03-01</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-02 02:38:34" itemprop="dateModified" datetime="2020-03-02T02:38:34+00:00">2020-03-02</time>
+                <time title="修改时间：2020-03-02 03:01:12" itemprop="dateModified" datetime="2020-03-02T03:01:12+00:00">2020-03-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -235,6 +237,12 @@
                     <span itemprop="name">Java</span>
                   </a>
                 </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/Spring-Boot/" itemprop="url" rel="index">
+                    <span itemprop="name">Spring Boot</span>
+                  </a>
+                </span>
             </span>
 
           <br>
@@ -243,14 +251,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2k</span>
+              <span>1.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>1 分钟</span>
             </span>
 
         </div>
@@ -262,28 +270,24 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>我想很多人第一次遇到这个异常都是因为对<code>List</code>使用<code>foreach</code>遍历，然后删除元素的导致的。然后我们会在网上查到使用<code>Iterator</code>或<code>for倒序遍历</code>来解决这个问题。那么<code>ConcurrentModificationException</code>是怎么出现的？为什么要使用Iterator或for倒序遍历来解决呢？</p>
+        <p>我们经常会在<code>properties</code>文件中使用中文。当然大多数时候中文都是写在注释里。我们也会在STS中安装<a href="https://java-properties-editor.com/index.html" target="_blank" rel="noopener">PropertiesEditor</a>插件显示中文。但是，在我升级STS4之后我没有安装<code>PropertiesEditor</code>，而是直接修改<code>properties</code>文件为<code>UTF-8</code>编码，然后在里面写中文。这样就发生了一个问题，应用程序读取出来的<br><code>properties</code>属性里中文是乱码的。</p>
 <a id="more"></a>
+<h2 id="那么这是为什么呢？"><a href="#那么这是为什么呢？" class="headerlink" title="那么这是为什么呢？"></a>那么这是为什么呢？</h2><p>我们可以追溯到Spring Boot加载<code>properties</code>文件的一段代码。</p>
+<figure class="highlight java"><figcaption><span>PropertiesLoaderUtils.java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Load properties from the given resource (in ISO-8859-1 encoding).</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> resource the resource to load from</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> the populated Properties instance</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> IOException if loading failed</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span> #fillProperties(java.util.Properties, Resource)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Properties <span class="title">loadProperties</span><span class="params">(Resource resource)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		Properties props = <span class="keyword">new</span> Properties();</span><br><span class="line">		fillProperties(props, resource);</span><br><span class="line">		<span class="keyword">return</span> props;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>首先，<code>ConcurrentModificationException</code>是<code>Iterator</code>的<code>remove</code>方法抛出来的，而不是<code>List</code>的<code>remove</code>方法，而<code>foreach</code>的实现原理其实就是<code>Iterator</code>。既然<code>foreach</code>是通过<code>Iterator</code>实现的，那为什么使用<code>Iterator</code>可以，而使用<code>foreach</code>却不行呢？</p>
-<p>别急，让我们先看看<code>Iterator</code>的<code>remove</code>和<code>List</code>的<code>remove</code>的区别。</p>
-<div class="tabs" id="remove"><ul class="nav-tabs"><li class="tab active"><a href="#remove-1">Iterator</a></li><li class="tab"><a href="#remove-2">List</a></li></ul><div class="tab-content"><div class="tab-pane active" id="remove-1"><figure class="highlight java"><figcaption><span>ArrayList$Itr</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (lastRet &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException();</span><br><span class="line">    checkForComodification();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        ArrayList.<span class="keyword">this</span>.remove(lastRet);</span><br><span class="line">        cursor = lastRet;</span><br><span class="line">        lastRet = -<span class="number">1</span>;</span><br><span class="line">        expectedModCount = modCount;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IndexOutOfBoundsException ex) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="remove-2"><figure class="highlight java"><figcaption><span>ArrayList</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    rangeCheck(index);</span><br><span class="line"></span><br><span class="line">    modCount++;</span><br><span class="line">    E oldValue = elementData(index);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> numMoved = size - index - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (numMoved &gt; <span class="number">0</span>)</span><br><span class="line">        System.arraycopy(elementData, index+<span class="number">1</span>, elementData, index,</span><br><span class="line">                             numMoved);</span><br><span class="line">    elementData[--size] = <span class="keyword">null</span>; <span class="comment">// clear to let GC do its work</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> oldValue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></div></div>
+<p>我们从注释中可以看到，使用<code>ISO-8859-1</code>编码加载资源文件。所以<code>UTF-8</code>编码的文件用<code>ISO-8859-1</code>编码读取出来所以中文乱码了。</p>
+<p>那么，为什么使用<code>PropertiesEditor</code>就没有问题呢？</p>
+<p>因为，<code>PropertiesEditor</code>只是让你看到中文，但是实际文件里<strong>\u</strong>xxxx的形式的中文（用文本编辑器打开properties文件看看）。</p>
+<p>在这之前还有<code>native2ascii</code>这个东西，想了解的也可以去了解一下。</p>
+<h2 id="关于这个问题，我是怎么解决的呢？"><a href="#关于这个问题，我是怎么解决的呢？" class="headerlink" title="关于这个问题，我是怎么解决的呢？"></a>关于这个问题，我是怎么解决的呢？</h2><p>我没有用<code>PropertiesEditor</code>，因为我希望我的一些配置不用<code>PropertiesEditor</code>仍然能看懂什么意思。</p>
+<p>所以，我把我的配置文件分成了<code>两份</code>，属于系统的一些配置仍然放在<code>application.properties</code>里面使用<code>ISO-8859-1</code>编码，属于业务相关的配置放到了另一个配置文件<code>xxqg.properties</code>使用<code>UTF-8</code>编码。</p>
+<p>然后，读取配置的地方使用<code>@PropertySource</code>注解。</p>
+<p>例如，以下代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix=<span class="string">"xpath.agreement"</span>)</span><br><span class="line"><span class="meta">@PropertySource</span>(value = <span class="string">"xxqg.properties"</span>, encoding = <span class="string">"UTF-8"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@Data</span> <span class="class"><span class="keyword">class</span> <span class="title">AgreementXPath</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String agree;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>可以看到，<code>Iterator</code>的的<code>remove</code>方法除了调用<code>List</code>的<code>remove</code>方法之后，还有这样一个操作</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">expectedModCount &#x3D; modCount;</span><br></pre></td></tr></table></figure>
 
-<p>使用<code>foreach</code>的时候会调用<code>checkForComodification</code>方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">final void checkForComodification() &#123;</span><br><span class="line">    if (modCount !&#x3D; expectedModCount)</span><br><span class="line">        throw new ConcurrentModificationException();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>而我们使用foreach的时候一般都会习惯性的使用List的<code>remove</code>，导致了<code>modCount</code> 和 <code>expectedModCount</code>不相等。</p>
-<p><strong>为什么普通的for循环不会出现<code>ConcurrentModificationException</code>异常呢？</strong></p>
-<p>因为普通的for循环没有用到Iterator的方法，也就不存在<code>modCount</code> 和 <code>expectedModCount</code>是否相等的问题。</p>
-<p>但是，普通for循环也要注意要倒序。</p>
-<div class="tabs" id="for"><ul class="nav-tabs"><li class="tab active"><a href="#for-1">倒序</a></li><li class="tab"><a href="#for-2">正序</a></li></ul><div class="tab-content"><div class="tab-pane active" id="for-1"><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    List&lt;Integer&gt; lst = <span class="keyword">new</span> ArrayList&lt;Integer&gt;(Arrays.asList(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = lst.size() - <span class="number">1</span> ; i &gt;= <span class="number">0</span> ; i--) &#123;</span><br><span class="line">            System.out.println(lst.get(i));</span><br><span class="line">            lst.remove(i);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>上面的代码可以正常运行。并且输出和预料的一样是10,9,8,7,6,5,4,3,2,1</p></div><div class="tab-pane" id="for-2"><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    List&lt;Integer&gt; lst = <span class="keyword">new</span> ArrayList&lt;Integer&gt;(Arrays.asList(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; lst.size() ; i++) &#123;</span><br><span class="line">            System.out.println(lst.get(i));</span><br><span class="line">            lst.remove(i);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>这就有问题了，输出1,3,5,7,9。原因就是删除1之后，2挪到了数组下标为0的位置，但是i已经变成1了，而1的位置已经不是2是3了，所以2就错过了。4,6,8,10也是同样的道理。</p></div></div></div>
     </div>
 
     
@@ -293,19 +297,13 @@
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2019/10/13/spring-session是怎样使用redis存session的？/" rel="bookmark">spring-session是怎样使用redis存session的？</a></div>
+      <div class="popular-posts-title"><a href="/2019/09/04/SpringBoot注解之@ConditionalOnProperty/" rel="bookmark">Spring Boot注解之@ConditionalOnProperty</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2019/05/22/Feign使用服务名调用微服务/" rel="bookmark">Feign使用服务名调用微服务</a></div>
+      <div class="popular-posts-title"><a href="/2019/09/05/spring.mvc.favicon.enabled为什么不起作用/" rel="bookmark">spring.mvc.favicon.enabled为什么不起作用？</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2019/10/11/Jackson序列化字段脱敏处理/" rel="bookmark">Jackson序列化字段脱敏处理</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2019/08/19/Java8漏洞-使用Collectors-toMap时，value为null报空指针异常/" rel="bookmark">Java8漏洞-使用Collectors.toMap时，value为null报空指针异常</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2019/09/04/Java书籍阅读记录/" rel="bookmark">Java书籍阅读记录</a></div>
+      <div class="popular-posts-title"><a href="/2019/12/13/为什么我的SpringBoot项目不能访问静态资源/" rel="bookmark">为什么我的Spring Boot项目不能访问静态资源？</a></div>
     </li>
   </ul>
 
@@ -338,7 +336,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://l-qiang.github.io/2019/10/11/ConcurrentModificationException%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BA%86%E8%A7%A3%E5%90%97%EF%BC%9F/" title="ConcurrentModificationException你真的了解吗？">https://l-qiang.github.io/2019/10/11/ConcurrentModificationException你真的了解吗？/</a>
+    <a href="https://l-qiang.github.io/2020/03/01/%E4%B8%BA%E4%BB%80%E4%B9%88SpringBoot%E8%AF%BB%E5%8F%96UTF-8%E7%BC%96%E7%A0%81%E7%9A%84properties%E4%BC%9A%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/" title="为什么Spring Boot读取UTF-8编码的properties会中文乱码？">https://l-qiang.github.io/2020/03/01/为什么SpringBoot读取UTF-8编码的properties会中文乱码/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -349,7 +347,9 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/Spring-Boot/" rel="tag"># Spring Boot</a>
+              <a href="/tags/%E4%B9%B1%E7%A0%81/" rel="tag"># 乱码</a>
+              <a href="/tags/UTF-8/" rel="tag"># UTF-8</a>
           </div>
 
         
@@ -358,13 +358,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/09/10/%E8%AE%B0%E4%B8%80%E6%AC%A1MySQL%E7%BB%9F%E8%AE%A1%E6%9F%A5%E8%AF%A2SQL%E4%BC%98%E5%8C%96/" rel="prev" title="记一次MySQL统计查询SQL优化">
-      <i class="fa fa-chevron-left"></i> 记一次MySQL统计查询SQL优化
+    <a href="/2020/02/17/STS4%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99Missingtools.jar/" rel="prev" title="STS4启动报错Missing tools.jar">
+      <i class="fa fa-chevron-left"></i> STS4启动报错Missing tools.jar
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2019/10/11/Jackson%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%97%E6%AE%B5%E8%84%B1%E6%95%8F%E5%A4%84%E7%90%86/" rel="next" title="Jackson序列化字段脱敏处理">
-      Jackson序列化字段脱敏处理 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -425,6 +422,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#那么这是为什么呢？"><span class="nav-number">1.</span> <span class="nav-text">那么这是为什么呢？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于这个问题，我是怎么解决的呢？"><span class="nav-number">2.</span> <span class="nav-text">关于这个问题，我是怎么解决的呢？</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -649,7 +647,7 @@ window.addEventListener('pjax:success', () => {
       quicklink({
         timeout: 3000,
         priority: true,
-        ignores: [uri => uri.includes('#'),uri => uri == 'https://l-qiang.github.io/2019/10/11/ConcurrentModificationException%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BA%86%E8%A7%A3%E5%90%97%EF%BC%9F/',]
+        ignores: [uri => uri.includes('#'),uri => uri == 'https://l-qiang.github.io/2020/03/01/%E4%B8%BA%E4%BB%80%E4%B9%88SpringBoot%E8%AF%BB%E5%8F%96UTF-8%E7%BC%96%E7%A0%81%E7%9A%84properties%E4%BC%9A%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/',]
       });
       });
   </script>
@@ -665,7 +663,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'BlogGitalk',
       owner       : 'l-qiang',
       admin       : ['l-qiang'],
-      id          : '2ef5e41f6bc59da7993a23f090940554',
+      id          : '2ee71323ee6ad6037c7420a3591fc418',
         language: 'zh-CN',
       distractionFreeMode: true
     });

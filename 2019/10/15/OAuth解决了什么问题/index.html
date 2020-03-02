@@ -25,22 +25,20 @@
     var CONFIG = {"hostname":"l-qiang.github.io","root":"/","scheme":"Gemini","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="其实，我的直觉告诉我使用Hash。 我在项目里找到RedisOperationsSessionRepository然后在注释中找到了答案  Each session is stored in Redis as a Hash. Each session is set and updated using the HMSET command.">
+  <meta name="description" content="In the traditional client-server authentication model, the client   requests an access-restricted resource (protected resource) on the   server by authenticating with the server using the resource own">
 <meta property="og:type" content="article">
-<meta property="og:title" content="spring-session是怎样使用redis存session的？">
-<meta property="og:url" content="https://l-qiang.github.io/2019/10/13/spring-session%E6%98%AF%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8redis%E5%AD%98session%E7%9A%84%EF%BC%9F/index.html">
+<meta property="og:title" content="OAuth解决了什么问题？">
+<meta property="og:url" content="https://l-qiang.github.io/2019/10/15/OAuth%E8%A7%A3%E5%86%B3%E4%BA%86%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="刘强">
-<meta property="og:description" content="其实，我的直觉告诉我使用Hash。 我在项目里找到RedisOperationsSessionRepository然后在注释中找到了答案  Each session is stored in Redis as a Hash. Each session is set and updated using the HMSET command.">
+<meta property="og:description" content="In the traditional client-server authentication model, the client   requests an access-restricted resource (protected resource) on the   server by authenticating with the server using the resource own">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2019-10-13T19:07:11.000Z">
-<meta property="article:modified_time" content="2020-03-02T02:38:34.835Z">
+<meta property="article:published_time" content="2019-10-15T19:47:15.000Z">
+<meta property="article:modified_time" content="2020-03-02T03:01:12.656Z">
 <meta property="article:author" content="刘强">
-<meta property="article:tag" content="Java">
-<meta property="article:tag" content="Spring Session">
-<meta property="article:tag" content="Redis">
+<meta property="article:tag" content="OAuth">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://l-qiang.github.io/2019/10/13/spring-session%E6%98%AF%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8redis%E5%AD%98session%E7%9A%84%EF%BC%9F/">
+<link rel="canonical" href="https://l-qiang.github.io/2019/10/15/OAuth%E8%A7%A3%E5%86%B3%E4%BA%86%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98/">
 
 
 <script id="page-configurations">
@@ -52,7 +50,7 @@
   };
 </script>
 
-  <title>spring-session是怎样使用redis存session的？ | 刘强</title>
+  <title>OAuth解决了什么问题？ | 刘强</title>
   
 
 
@@ -195,7 +193,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://l-qiang.github.io/2019/10/13/spring-session%E6%98%AF%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8redis%E5%AD%98session%E7%9A%84%EF%BC%9F/">
+    <link itemprop="mainEntityOfPage" href="https://l-qiang.github.io/2019/10/15/OAuth%E8%A7%A3%E5%86%B3%E4%BA%86%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -208,7 +206,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          spring-session是怎样使用redis存session的？
+          OAuth解决了什么问题？
         </h2>
 
         <div class="post-meta">
@@ -218,14 +216,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-10-13 19:07:11" itemprop="dateCreated datePublished" datetime="2019-10-13T19:07:11+00:00">2019-10-13</time>
+              <time title="创建时间：2019-10-15 19:47:15" itemprop="dateCreated datePublished" datetime="2019-10-15T19:47:15+00:00">2019-10-15</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-02 02:38:34" itemprop="dateModified" datetime="2020-03-02T02:38:34+00:00">2020-03-02</time>
+                <time title="修改时间：2020-03-02 03:01:12" itemprop="dateModified" datetime="2020-03-02T03:01:12+00:00">2020-03-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -233,20 +231,8 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/Spring-Session/" itemprop="url" rel="index">
-                    <span itemprop="name">Spring Session</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Redis/" itemprop="url" rel="index">
-                    <span itemprop="name">Redis</span>
+                  <a href="/categories/OAuth/" itemprop="url" rel="index">
+                    <span itemprop="name">OAuth</span>
                   </a>
                 </span>
             </span>
@@ -257,7 +243,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.1k</span>
+              <span>1.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -276,27 +262,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>其实，我的直觉告诉我使用Hash。</p>
-<p>我在项目里找到<a href="https://docs.spring.io/spring-session/docs/current/api/org/springframework/session/data/redis/RedisOperationsSessionRepository.html" target="_blank" rel="noopener">RedisOperationsSessionRepository</a>然后在注释中找到了答案</p>
-<blockquote>
-<p>Each session is stored in Redis as a <a href="http://redis.io/topics/data-types#hashes" target="_blank" rel="noopener">Hash</a>. Each session is set and updated using the <a href="http://redis.io/commands/hmset" target="_blank" rel="noopener">HMSET command</a>. </p>
-</blockquote>
+        <blockquote><p>In the traditional client-server authentication model, the client<br>   requests an access-restricted resource (protected resource) on the<br>   server by authenticating with the server using the resource owner’s<br>   credentials.  In order to provide third-party applications access to<br>   restricted resources, the resource owner shares its credentials with<br>   the third party.  This creates several problems and limitations:</p>
 <a id="more"></a>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HMSET spring:session:sessions:33fdd1b6-b496-4b33-9f7d-df96679d32fe creationTime 1404360000000 maxInactiveInterval 1800 lastAccessedTime 1404360000000 sessionAttr:attrName someAttrValue sessionAttr:attrName2 someAttrValue2</span><br></pre></td></tr></table></figure>
+<p>   o  Third-party applications are required to store the resource<br>      owner’s credentials for future use, typically a password in<br>      clear-text.</p>
+<p>   o  Servers are required to support password authentication, despite<br>      the security weaknesses inherent in passwords.</p>
+<p>   o  Third-party applications gain overly broad access to the resource<br>      owner’s protected resources, leaving resource owners without any<br>      ability to restrict duration or access to a limited subset of<br>      resources.</p>
+<p>   o  Resource owners cannot revoke access to an individual third party<br>      without revoking access to all third parties, and must do so by<br>      changing the third party’s password.<br>   o  Compromise of any third-party application results in compromise of<br>      the end-user’s password and all of the data protected by that<br>      password.</p>
+<footer><strong>RFC 6749</strong><cite><a href="https://tools.ietf.org/html/rfc6749#section-1" target="_blank" rel="noopener">section-1</a></cite></footer></blockquote>
 
+<p>大概意思就是</p>
 <ul>
-<li><code>33fdd1b6-b496-4b33-9f7d-df96679d32fe</code>是session id</li>
-<li><code>creationTime 1404360000000</code>是session的创建时间</li>
-<li><code>maxInactiveInterval 1800</code>是过期时间</li>
-<li><code>lastAccessedTime 1404360000000</code>是最后访问时间</li>
-<li>后面的就是一些自定义的属性了</li>
+<li>第三方应用需要存储资源拥有者的密码，并且通常是明文密码</li>
+<li>尽管密码不安全，但是服务器必须支持密码验证</li>
+<li>资源拥有者不能限制第三方应用对资源访问的范围和持续时间</li>
+<li>资源拥有着不能撤销单个第三方应用的权限，只能是通过修改密码的方式来撤销所有第三方应用的权限</li>
+<li>任何第三方应用遭到破坏会导致用户密码和所有受到该密码保护的数据受到损害</li>
 </ul>
-<p>当然，除了上面的这些，在Redis中还存了一些过期时间相关的数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">EXPIRE spring:session:sessions:33fdd1b6-b496-4b33-9f7d-df96679d32fe 2100</span><br><span class="line">APPEND spring:session:sessions:expires:33fdd1b6-b496-4b33-9f7d-df96679d32fe &quot;&quot;</span><br><span class="line">EXPIRE spring:session:sessions:expires:33fdd1b6-b496-4b33-9f7d-df96679d32fe 1800</span><br><span class="line">SADD spring:session:expirations:1439245080000 expires:33fdd1b6-b496-4b33-9f7d-df96679d32fe</span><br><span class="line">EXPIRE spring:session:expirations1439245080000 2100</span><br></pre></td></tr></table></figure>
-
-<p>原因是Spring Session依赖Redis的过期键的删除触发<code>SessionDestroyedEvent</code>事件来释放资源。但是，Redis的键过期之后不能保证立马删除，所以就会有后台任务不断地访问session过期键来触发Redis过期键删除。</p>
-<p>这个可以在<code>RedisOperationsSessionRepository</code>的注释或者<a href="https://docs.spring.io/spring-session/docs/2.0.0.M4/reference/html5/#api-redisoperationssessionrepository-expiration" target="_blank" rel="noopener">Spring Session的文档</a>查看详细介绍。</p>
 
     </div>
 
@@ -304,24 +286,6 @@
     
     
       
-  <div class="popular-posts-header">相关文章</div>
-  <ul class="popular-posts">
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2020/01/10/iText合并PDF和添加书签/" rel="bookmark">iText合并PDF和添加书签</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2019/10/11/ConcurrentModificationException你真的了解吗？/" rel="bookmark">ConcurrentModificationException你真的了解吗？</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2019/12/19/Jackson将无嵌套JSON转嵌套对象/" rel="bookmark">Jackson将无嵌套JSON转嵌套对象</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2019/10/11/Jackson序列化字段脱敏处理/" rel="bookmark">Jackson序列化字段脱敏处理</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2019/08/19/Java8漏洞-使用Collectors-toMap时，value为null报空指针异常/" rel="bookmark">Java8漏洞-使用Collectors.toMap时，value为null报空指针异常</a></div>
-    </li>
-  </ul>
 
         <div class="reward-container">
   <div></div>
@@ -352,7 +316,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://l-qiang.github.io/2019/10/13/spring-session%E6%98%AF%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8redis%E5%AD%98session%E7%9A%84%EF%BC%9F/" title="spring-session是怎样使用redis存session的？">https://l-qiang.github.io/2019/10/13/spring-session是怎样使用redis存session的？/</a>
+    <a href="https://l-qiang.github.io/2019/10/15/OAuth%E8%A7%A3%E5%86%B3%E4%BA%86%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98/" title="OAuth解决了什么问题？">https://l-qiang.github.io/2019/10/15/OAuth解决了什么问题/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -363,9 +327,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Java/" rel="tag"># Java</a>
-              <a href="/tags/Spring-Session/" rel="tag"># Spring Session</a>
-              <a href="/tags/Redis/" rel="tag"># Redis</a>
+              <a href="/tags/OAuth/" rel="tag"># OAuth</a>
           </div>
 
         
@@ -374,12 +336,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/10/11/Jackson%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%97%E6%AE%B5%E8%84%B1%E6%95%8F%E5%A4%84%E7%90%86/" rel="prev" title="Jackson序列化字段脱敏处理">
-      <i class="fa fa-chevron-left"></i> Jackson序列化字段脱敏处理
+    <a href="/2019/10/13/springsession%E6%98%AF%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8redis%E5%AD%98session%E7%9A%84/" rel="prev" title="spring-session是怎样使用redis存session的？">
+      <i class="fa fa-chevron-left"></i> spring-session是怎样使用redis存session的？
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/10/15/OAuth%E8%A7%A3%E5%86%B3%E4%BA%86%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%EF%BC%9F/" rel="next" title="OAuth解决了什么问题？">
-      OAuth解决了什么问题？ <i class="fa fa-chevron-right"></i>
+    <a href="/2019/10/17/Spring%E6%B3%A8%E8%A7%A3%E4%B9%8B@Lookup/" rel="next" title="Spring注解之@Lookup">
+      Spring注解之@Lookup <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -665,7 +627,7 @@ window.addEventListener('pjax:success', () => {
       quicklink({
         timeout: 3000,
         priority: true,
-        ignores: [uri => uri.includes('#'),uri => uri == 'https://l-qiang.github.io/2019/10/13/spring-session%E6%98%AF%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8redis%E5%AD%98session%E7%9A%84%EF%BC%9F/',]
+        ignores: [uri => uri.includes('#'),uri => uri == 'https://l-qiang.github.io/2019/10/15/OAuth%E8%A7%A3%E5%86%B3%E4%BA%86%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98/',]
       });
       });
   </script>
@@ -681,7 +643,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'BlogGitalk',
       owner       : 'l-qiang',
       admin       : ['l-qiang'],
-      id          : 'b598259258f646154d9cd17e9343cb74',
+      id          : '89ff4bdc78c3d5be9ad464e45d184697',
         language: 'zh-CN',
       distractionFreeMode: true
     });
