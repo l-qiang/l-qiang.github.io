@@ -1,6 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>解决Linux下使用Pdfbox将PDF转图片乱码问题</title>
+    <url>/2020/03/11/%E8%A7%A3%E5%86%B3Linux%E4%B8%8B%E4%BD%BF%E7%94%A8Pdfbox%E5%B0%86PDF%E8%BD%AC%E5%9B%BE%E7%89%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>今天测试跟我说我们的PDF转换图片的时候会出现中文乱码，然而我在自己的电脑上验证的时候发现并不会出现乱码的问题，我的第一反应就是这不是代码的问题，应该是服务器的环境问题。究竟是不是跟我猜想的一样呢？</p>
+<a id="more"></a>
+
+<h2 id="Invalid-or-corrupt-jarfile"><a href="#Invalid-or-corrupt-jarfile" class="headerlink" title="Invalid or corrupt jarfile"></a>Invalid or corrupt jarfile</h2><p>我将需要验证的代码打了个jar包放到服务器上运行。但是却出现了<code>Invalid or corrupt jarfile</code>问题。</p>
+<p>这个jar包我在本地是试过的。完全没有问题呀。</p>
+<p>我查了查网上说的都是<code>没有指定Main方法</code>或者是<code>上传jar包的时候文件损坏了</code>。但是这跟我的情况都不符合。</p>
+<p>那怎么办呢？</p>
+<p>首先，这个问题是因为找不到Main方法，那么我强制指定Main方法运行。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">java -cp pdf.jar packagename.classname</span><br></pre></td></tr></table></figure>
+
+<p>一执行就出错了，<code>java.lang.UnsupportedClassVersionError</code>这个错误就好办了。<code>jdk版本的问题</code>。</p>
+<h2 id="STSong-Light"><a href="#STSong-Light" class="headerlink" title="STSong Light"></a>STSong Light</h2><p>jdk的问题解决后jar包可以执行了，而且执行的结果确实和测试说的一样，中文显示不出来。而且在输出日志中看到了<code>警告</code>信息，缺少<code>STSong Light</code>字体。</p>
+<p>既然缺少字体，那给我们的系统装上字体不就好了。</p>
+<p>问题在于我们该上哪去找<code>STSong Light</code>字体。</p>
+<p>首先，<code>STSong Light</code>字体其实就是华文宋体。我们在Windows系统<code>C:\Windows\Fonts</code>可以看到很多字体。我们只要宋体就行了。在我的系统上宋体的文件是<code>simsun.ttc</code>。</p>
+<p>字体找到了，那么接下来就是给Linux装上这个字体。</p>
+<h2 id="安装字体"><a href="#安装字体" class="headerlink" title="安装字体"></a>安装字体</h2><p>在<code>/usr/share/fonts/</code>下新建一个文件夹，名字自己定。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> /usr/share/fonts/</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mkdir win</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> win/</span></span><br></pre></td></tr></table></figure>
+
+<p>然后将<code>simsun.ttc</code>上传到新建的文件夹里。然后执行</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">fc</span>-cache -fv</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">fc</span>-list</span></span><br></pre></td></tr></table></figure>
+
+<p><code>fc-list</code>执行后我们可以看到，字体里面有我们新增的宋体。</p>
+<div class="note success">
+            <p>如果没有<code>/usr/share/fonts/</code>文件夹。那么就是没有安装<code>fontconfig</code>。</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> yum -y install fontconfig</span></span><br></pre></td></tr></table></figure>使用上述命名安装就OK了。
+          </div>
+
+
+
+
+
+
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>pdfbox</tag>
+        <tag>STSong Light</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>为什么Spring Boot读取UTF-8编码的properties会中文乱码？</title>
     <url>/2020/03/01/%E4%B8%BA%E4%BB%80%E4%B9%88SpringBoot%E8%AF%BB%E5%8F%96UTF-8%E7%BC%96%E7%A0%81%E7%9A%84properties%E4%BC%9A%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/</url>
     <content><![CDATA[<p>我们经常会在<code>properties</code>文件中使用中文。当然大多数时候中文都是写在注释里。我们也会在STS中安装<a href="https://java-properties-editor.com/index.html" target="_blank" rel="noopener">PropertiesEditor</a>插件显示中文。但是，在我升级STS4之后我没有安装<code>PropertiesEditor</code>，而是直接修改<code>properties</code>文件为<code>UTF-8</code>编码，然后在里面写中文。这样就发生了一个问题，应用程序读取出来的<br><code>properties</code>属性里中文是乱码的。</p>
