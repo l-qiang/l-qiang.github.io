@@ -2,11 +2,9 @@
 title: SpringBoot与Docker的经验分享
 date: 2020-06-28 14:19:36
 categories:
- - Spring Boot
- - Docker
+ - [Spring Boot, Docker]
 tags:
- - Spring Boot
- - Docker
+ - [Spring Boot, Docker]
 ---
 
 关于怎么将Spring Boot应用构建Docker镜像的教程，我们可以在Spring Boot的官网找到。
