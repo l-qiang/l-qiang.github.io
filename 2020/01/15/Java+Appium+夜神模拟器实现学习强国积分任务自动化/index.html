@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="google-site-verification" content="tGh_xeLNwY7FE5PK4gsdImcr8b34xU_3-k78QkHUSh0">
+  <meta name="msvalidate.01" content="430F2F1AD017CA52464100FFC59D8780">
+  <meta name="baidu-site-verification" content="m2Rz4sJu0u">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"l-qiang.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="首先，先放源码LitterBaby。 我想装了《学习强国》App的同学都为每天30积分的任务苦恼过。我之前也是因为这30积分非常头疼，不是《学习强国》App不好，而是真的不适合我。我们会学习，但可能不是被迫学习指定内容，为了指标而学习。 GitHub上面有很多Python写的《学习强国》自动化学习项目。我也有在用，但是我想有一个Java编写的，自己改起来顺手的《学习强国》自动学习。 为此，我就写了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java + Appium + 夜神模拟器实现学习强国积分任务自动化">
+<meta property="og:url" content="https://l-qiang.github.io/2020/01/15/Java+Appium+%E5%A4%9C%E7%A5%9E%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%AD%A6%E4%B9%A0%E5%BC%BA%E5%9B%BD%E7%A7%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%8C%96/index.html">
+<meta property="og:site_name" content="刘强">
+<meta property="og:description" content="首先，先放源码LitterBaby。 我想装了《学习强国》App的同学都为每天30积分的任务苦恼过。我之前也是因为这30积分非常头疼，不是《学习强国》App不好，而是真的不适合我。我们会学习，但可能不是被迫学习指定内容，为了指标而学习。 GitHub上面有很多Python写的《学习强国》自动化学习项目。我也有在用，但是我想有一个Java编写的，自己改起来顺手的《学习强国》自动学习。 为此，我就写了">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://l-qiang.github.io/2020/01/15/Java+Appium+%E5%A4%9C%E7%A5%9E%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%AD%A6%E4%B9%A0%E5%BC%BA%E5%9B%BD%E7%A7%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%8C%96/Appium_start.png">
+<meta property="og:image" content="https://l-qiang.github.io/2020/01/15/Java+Appium+%E5%A4%9C%E7%A5%9E%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%AD%A6%E4%B9%A0%E5%BC%BA%E5%9B%BD%E7%A7%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%8C%96/Appium_cmd.png">
+<meta property="og:image" content="https://l-qiang.github.io/2020/01/15/Java+Appium+%E5%A4%9C%E7%A5%9E%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%AD%A6%E4%B9%A0%E5%BC%BA%E5%9B%BD%E7%A7%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%8C%96/Appium_conf.png">
+<meta property="og:image" content="https://l-qiang.github.io/2020/01/15/Java+Appium+%E5%A4%9C%E7%A5%9E%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%AD%A6%E4%B9%A0%E5%BC%BA%E5%9B%BD%E7%A7%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%8C%96/Appium_op.png">
+<meta property="og:image" content="https://l-qiang.github.io/2020/01/15/Java+Appium+%E5%A4%9C%E7%A5%9E%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%AD%A6%E4%B9%A0%E5%BC%BA%E5%9B%BD%E7%A7%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%8C%96/login_phone_input.png">
+<meta property="article:published_time" content="2020-01-15T19:34:00.000Z">
+<meta property="article:modified_time" content="2020-11-16T09:21:18.977Z">
+<meta property="article:author" content="刘强">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Appium">
+<meta property="article:tag" content="自动化测试">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://l-qiang.github.io/2020/01/15/Java+Appium+%E5%A4%9C%E7%A5%9E%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%AD%A6%E4%B9%A0%E5%BC%BA%E5%9B%BD%E7%A7%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%8C%96/Appium_start.png">
+
+<link rel="canonical" href="https://l-qiang.github.io/2020/01/15/Java+Appium+%E5%A4%9C%E7%A5%9E%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%AD%A6%E4%B9%A0%E5%BC%BA%E5%9B%BD%E7%A7%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%8C%96/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Java + Appium + 夜神模拟器实现学习强国积分任务自动化 | 刘强</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="刘强" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">刘强</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">55</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">28</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">40</span></a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/l-qiang" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://l-qiang.github.io/2020/01/15/Java+Appium+%E5%A4%9C%E7%A5%9E%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%AD%A6%E4%B9%A0%E5%BC%BA%E5%9B%BD%E7%A7%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="刘强">
+      <meta itemprop="description" content="好记性不如烂笔头">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘强">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java + Appium + 夜神模拟器实现学习强国积分任务自动化
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-15 19:34:00" itemprop="dateCreated datePublished" datetime="2020-01-15T19:34:00+00:00">2020-01-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-16 09:21:18" itemprop="dateModified" datetime="2020-11-16T09:21:18+00:00">2020-11-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>首先，先放源码<a href="https://github.com/l-qiang/LitterBaby" target="_blank" rel="noopener">LitterBaby</a>。</p>
+<p>我想装了《学习强国》App的同学都为每天30积分的任务苦恼过。我之前也是因为这30积分非常头疼，不是《学习强国》App不好，而是真的不适合我。我们会学习，但可能不是被迫学习指定内容，为了指标而学习。</p>
+<p>GitHub上面有很多Python写的《学习强国》自动化学习项目。我也有在用，但是我想有一个Java编写的，自己改起来顺手的《学习强国》自动学习。</p>
+<p>为此，我就写了一个Java的，目前已经实现刷30分。</p>
+<a id="more"></a>
+
+<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><ol>
+<li><p><a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">JDK8</a></p>
+</li>
+<li><p><a href="https://www.androiddevtools.cn/" target="_blank" rel="noopener">Android SDK 24.4.1</a></p>
+</li>
+<li><p><a href="http://appium.io/" target="_blank" rel="noopener">Appium 1.15.1</a></p>
+</li>
+<li><p><a href="https://www.yeshen.com/" target="_blank" rel="noopener">夜神模拟器 6.5.0.3</a>，当然里面还需要安装《学习强国》</p>
+</li>
+<li><p><a href="https://spring.io/tools" target="_blank" rel="noopener">Sping Tool Suite</a></p>
+</li>
+<li><p><a href="https://projectlombok.org/setup/eclipse" target="_blank" rel="noopener">Lombok</a></p>
+<p>（1、5、6我电脑上本来就已经装了，所以我就只用装2、3、4就行了</p>
+<p>安装基本都比较顺利，网上教程也挺多。）</p>
+</li>
+</ol>
+<div class="note info">
+            <p>上面的环境准备好之后，启动<code>夜神模拟器</code>后，命令行执行下列命令</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb devices</span><br></pre></td></tr></table></figure><p>如果<code>List of devices attached</code>没有显示内容</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">List of devices attached</span><br><span class="line">127.0.0.1:62002 device</span><br></pre></td></tr></table></figure><p>那么，需要使用SDK下<code>platform-tools</code>文件夹的<strong>adb.exe</strong>覆盖掉夜神模拟器安装目录下<code>bin</code>目录中的<strong>adb.exe</strong>和<strong>nox_adb.exe</strong></p><p>如果做了上面的操作还是不行，试试以下指令。还是不行的话，看看adb的<a href="https://developer.android.google.cn/studio/command-line/adb?hl=zh-cn" target="_blank" rel="noopener">用户指南</a>。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb connect device_ip_address</span><br></pre></td></tr></table></figure><p>我这里夜神模拟器的<code>device_ip_address</code>是<code>127.0.0.1:62001</code></p>
+          </div>
+
+<h2 id="Appium"><a href="#Appium" class="headerlink" title="Appium"></a>Appium</h2><p><a href="https://github.com/l-qiang/LitterBaby" target="_blank" rel="noopener">LitterBaby</a>的核心就是<code>Appium</code>了。</p>
+<p>Appium是客户端/服务器架构。我们下载的<a href="http://appium.io/" target="_blank" rel="noopener">Appium Desktop</a>就是服务器。而<a href="https://github.com/l-qiang/LitterBaby" target="_blank" rel="noopener">LitterBaby</a>做的就是使用Appium的Java客户端库定义一些操作来完成我的目标。</p>
+<p>我没有去了解太多关于Appium的知识。感兴趣的可以去官方文档查看<a href="https://appium.io/docs/en/about-appium/intro/" target="_blank" rel="noopener">详细介绍</a>。</p>
+<h3 id="Appium-Desktop"><a href="#Appium-Desktop" class="headerlink" title="Appium Desktop"></a>Appium Desktop</h3><p>打开Appium Desktop之后，显示如下界面，我将Host设置为<code>localhost</code>了</p>
+<img data-src="/2020/01/15/Java+Appium+%E5%A4%9C%E7%A5%9E%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%AD%A6%E4%B9%A0%E5%BC%BA%E5%9B%BD%E7%A7%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%8C%96/Appium_start.png" class="">
+
+<p>在<a class="btn" href="#">
+            <i class="fa fa-"></i>Start Server
+          </a> 之前我们需要，先点击下面的按钮配置JDK和Android SDK 的路径</p>
+<p>然后启动，显示如下界面</p>
+<img data-src="/2020/01/15/Java+Appium+%E5%A4%9C%E7%A5%9E%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%AD%A6%E4%B9%A0%E5%BC%BA%E5%9B%BD%E7%A7%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%8C%96/Appium_cmd.png" class="">
+
+<p>点击放大镜。得到如下界面</p>
+<img data-src="/2020/01/15/Java+Appium+%E5%A4%9C%E7%A5%9E%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%AD%A6%E4%B9%A0%E5%BC%BA%E5%9B%BD%E7%A7%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%8C%96/Appium_conf.png" class="">
+
+<p>然后填入如下信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;platformName&quot;: &quot;android&quot;,</span><br><span class="line">  &quot;version&quot;: &quot;5.1.1&quot;,</span><br><span class="line">  &quot;appPackage&quot;: &quot;cn.xuexi.android&quot;,</span><br><span class="line">  &quot;appActivity&quot;: &quot;com.alibaba.android.rimet.biz.SplashActivity&quot;,</span><br><span class="line">  &quot;deviceName&quot;: &quot;127.0.0.1:62001&quot;,</span><br><span class="line">  &quot;noReset&quot;: true,</span><br><span class="line">  &quot;newCommandTimeout&quot;: 600</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>点击<a class="btn" href="#">
+            <i class="fa fa-"></i>Start Session
+          </a>，就能得到如下界面。（在这之前得保证<code>adb devices</code>能看到你的设备，我这里是夜神模拟器）</p>
+<img data-src="/2020/01/15/Java+Appium+%E5%A4%9C%E7%A5%9E%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%AD%A6%E4%B9%A0%E5%BC%BA%E5%9B%BD%E7%A7%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%8C%96/Appium_op.png" class="">
+
+<p>这时候我们应该能看到<code>夜神模拟器</code>中的《学习强国》App也已经打开了。此时<code>Appium</code>和<code>夜神模拟器</code>看到的页面是同步的。以上界面对页面元素的操作按钮的所有操作都会反馈到夜神模拟器上的《学习强国》App。同样，在夜神模拟器上的操作也会反馈到上面的页面，点击<code>刷新</code>按钮就能刷新页面。</p>
+<p>到此为止就准备好了，可以开发了。</p>
+<h2 id="开始开发"><a href="#开始开发" class="headerlink" title="开始开发"></a>开始开发</h2><h3 id="新建工程"><a href="#新建工程" class="headerlink" title="新建工程"></a>新建工程</h3><p>用 <a href="https://spring.io/tools" target="_blank" rel="noopener">Sping Tool Suite</a>建一个Spring Boot工程</p>
+<h3 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h3><figure class="highlight plain"><figcaption><span>pom.xml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">​	&lt;dependency&gt;</span><br><span class="line">  			&lt;groupId&gt;io.appium&lt;&#x2F;groupId&gt;</span><br><span class="line">  			&lt;artifactId&gt;java-client&lt;&#x2F;artifactId&gt;</span><br><span class="line">  			&lt;version&gt;7.3.0&lt;&#x2F;version&gt;</span><br><span class="line">​		&lt;&#x2F;dependency&gt;</span><br><span class="line">​		&lt;dependency&gt;</span><br><span class="line">​			&lt;groupId&gt;org.projectlombok&lt;&#x2F;groupId&gt;</span><br><span class="line">​			&lt;artifactId&gt;lombok&lt;&#x2F;artifactId&gt;</span><br><span class="line">​			&lt;optional&gt;true&lt;&#x2F;optional&gt;</span><br><span class="line">​		&lt;&#x2F;dependency&gt;</span><br><span class="line">​		&lt;dependency&gt;</span><br><span class="line">​			&lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">​			&lt;artifactId&gt;spring-boot-configuration-processor&lt;&#x2F;artifactId&gt;</span><br><span class="line">​			&lt;optional&gt;true&lt;&#x2F;optional&gt;</span><br><span class="line">​		&lt;&#x2F;dependency&gt;</span><br><span class="line">​		&lt;dependency&gt;</span><br><span class="line">​			&lt;groupId&gt;com.h2database&lt;&#x2F;groupId&gt;</span><br><span class="line">​			&lt;artifactId&gt;h2&lt;&#x2F;artifactId&gt;</span><br><span class="line">​		&lt;&#x2F;dependency&gt;</span><br><span class="line">​		&lt;dependency&gt;</span><br><span class="line">​			&lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">​			&lt;artifactId&gt;spring-boot-starter-data-jpa&lt;&#x2F;artifactId&gt;</span><br><span class="line">​		&lt;&#x2F;dependency&gt;</span><br><span class="line">​		&lt;dependency&gt;</span><br><span class="line">​			&lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">​			&lt;artifactId&gt;spring-boot-starter-web&lt;&#x2F;artifactId&gt;</span><br><span class="line">​	&lt;&#x2F;dependency&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>主要还是Appium客户端的依赖，其他的都是为了方便完成学习强国的积分任务功能而添加的</p>
+<p>上面这些完成了就可以开始写代码了。当然你可以直接clone这个<a href="https://github.com/l-qiang/LitterBaby" target="_blank" rel="noopener">LitterBaby</a>。</p>
+<h3 id="添加功能"><a href="#添加功能" class="headerlink" title="添加功能"></a>添加功能</h3><p>下面我以《学习强国》里的<code>登录</code>和<code>阅读文章</code>为例，讲述怎么使用Appium的Java客户端库。</p>
+<p>因为几乎所有的操作都是从<code>AndroidDriver</code>开始的，所以我们需要构建<code>AndroidDriver</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;platformName&quot;: &quot;android&quot;,</span><br><span class="line">  &quot;version&quot;: &quot;5.1.1&quot;,</span><br><span class="line">  &quot;appPackage&quot;: &quot;cn.xuexi.android&quot;,</span><br><span class="line">  &quot;appActivity&quot;: &quot;com.alibaba.android.rimet.biz.SplashActivity&quot;,</span><br><span class="line">  &quot;deviceName&quot;: &quot;127.0.0.1:62001&quot;,</span><br><span class="line">  &quot;noReset&quot;: true,</span><br><span class="line">  &quot;newCommandTimeout&quot;: 600</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://github.com/l-qiang/LitterBaby" target="_blank" rel="noopener">LitterBaby</a>中的代码如下：</p>
+<figure class="highlight java"><figcaption><span>AppiumConfig.java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="meta">@Scope</span>(ConfigurableBeanFactory.SCOPE_PROTOTYPE)</span><br><span class="line"><span class="function"><span class="keyword">public</span> AndroidDriver&lt;AndroidElement&gt; <span class="title">androidDriver</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">	DesiredCapabilities capabilities = <span class="keyword">new</span> DesiredCapabilities();</span><br><span class="line">	capabilities.setPlatform(Platform.ANDROID);</span><br><span class="line">	capabilities.setVersion(version); <span class="comment">// 安卓版本</span></span><br><span class="line">	capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, appPackage);</span><br><span class="line">	capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, appActivity);</span><br><span class="line">	capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName); <span class="comment">// adb devices 查看</span></span><br><span class="line">	capabilities.setCapability(<span class="string">"noReset"</span>, noReset); </span><br><span class="line">	capabilities.setCapability(<span class="string">"newCommandTimeout"</span>, newCommandTimeout); </span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> AndroidDriver&lt;AndroidElement&gt;(<span class="keyword">new</span> URL(appiumServer), capabilities);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h4><p><code>手机号</code>和<code>密码</code>登录就非常简单了。</p>
+<ol>
+<li><p>找到<code>手机号输入框</code>。我们在Appium Desktop上用选择元素的按钮选中<code>手机号输入框</code>。</p>
+<img data-src="/2020/01/15/Java+Appium+%E5%A4%9C%E7%A5%9E%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%AD%A6%E4%B9%A0%E5%BC%BA%E5%9B%BD%E7%A7%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%8C%96/login_phone_input.png" class="">
+
+<p>我们可以在右侧的<code>Selected Element</code>下看到<code>手机号输入框</code>的<code>XPath</code>，<code>Text</code>, <code>resource-id</code>等信息。</p>
+</li>
+<li><p>使用<code>AndroidDriver</code>的<code>findElementByXPath</code>方法。(所有的元素我都用的XPath查找，我们可以在网上搜索XPath的教程来学习XPath，这个并不复杂)</p>
+<p>这里我使用以下XPath查找，意思就是查找所有元素中<code>resource-id</code>为<code>cn.xuexi.android:id/et_phone_input</code>的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;*[@resource-id&#x3D;&#39;cn.xuexi.android:id&#x2F;et_phone_input&#39;]</span><br></pre></td></tr></table></figure>
+
+<div class="note info">
+            <p>所有的XPath都可以在Appium Desktop的搜索中按XPath搜索尝试能不能搜到元素。</p>
+          </div>
+</li>
+<li><p>然后调用第2步中<code>findElementByXPath</code>返回的<code>AndroidElement</code>对象的<code>sendKeys</code>方法，并传入手机号作为参数。</p>
+</li>
+<li><p>同样的操作找到<code>密码输入框</code>，并输入密码。找到<code>登录</code>按钮，然后调用<code>click()</code>方法点击</p>
+</li>
+</ol>
+<p>到此为止，登录就实现了。</p>
+<h4 id="阅读文章"><a href="#阅读文章" class="headerlink" title="阅读文章"></a>阅读文章</h4><p>阅读文章不外乎是这些操作</p>
+<ol>
+<li>找文章</li>
+<li>进入文章</li>
+<li>上下滑动阅读文章</li>
+<li>等待阅读到达指定时间</li>
+<li>返回</li>
+</ol>
+<p>这5步中比较特别的就是<code>上下滑动</code>和<code>返回</code>了，其他的就跟<code>登录</code>差不多，都是先<code>findElementByXPath</code>找到元素然后调用<code>click()</code>方法。</p>
+<h5 id="那么滑动怎么做呢"><a href="#那么滑动怎么做呢" class="headerlink" title="那么滑动怎么做呢?"></a>那么滑动怎么做呢?</h5><ol>
+<li>我们需要创建一个新的对象<code>AndroidTouchAction</code></li>
+</ol>
+<figure class="highlight java"><figcaption><span>DriverService.java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">androidTouchAction = <span class="keyword">new</span> AndroidTouchAction(androidDriver);</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>获取设备的<code>宽</code>和<code>高</code></li>
+</ol>
+<figure class="highlight java"><figcaption><span>DriverService.java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">val size = androidDriver.manage().window().getSize();</span><br><span class="line">height = size.height;</span><br><span class="line">width = size.width;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>然后相继调用<code>AndroidTouchAction</code>的<code>press</code>，<code>moveTo</code>，<code>release</code>，<code>perform</code>方法</li>
+</ol>
+<figure class="highlight java"><figcaption><span>DriverService.java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">swipeUp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		androidTouchAction.press(PointOption.point(width / <span class="number">2</span>, height / <span class="number">2</span> + <span class="number">200</span>))</span><br><span class="line">						  .waitAction()</span><br><span class="line">						  .moveTo(PointOption.point(width / <span class="number">2</span>, height / <span class="number">2</span> - <span class="number">400</span>))</span><br><span class="line">						  .release()</span><br><span class="line">						  .perform();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="返回操作"><a href="#返回操作" class="headerlink" title="返回操作"></a>返回操作</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">androidDriver.navigate().back();</span><br></pre></td></tr></table></figure>
+
+<div class="note warning">
+            <p><strong>常见问题</strong></p><ol><li><p>XPath对了但是找不到元素</p><p>这种情况基本就是元素还没加载。我们可以用WebDriverWait对象等待</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wait &#x3D; new WebDriverWait(androidDriver,30);</span><br><span class="line">wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));</span><br></pre></td></tr></table></figure></li><li><p>滑动的时候报不能在指定元素上执行touch操作</p><p>解决办法也是跟上面类似，都是需要等待元素加载完成。</p></li></ol>
+          </div>
+
+<div class="note info">
+            <p><strong>XPath的常用写法</strong></p><ul><li><p>指定属性为&lt;xxx&gt;的元素，例</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;*[@text&#x3D;&#39;&lt;xxxx&gt;&#39;]</span><br><span class="line">&#x2F;&#x2F;*[@resource-id&#x3D;&#39;&lt;xxx&gt;&#39;]</span><br></pre></td></tr></table></figure></li><li><p>指定某个元素的父元素，例</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;*[@resource-id&#x3D;&#39;cn.xuexi.android:id&#x2F;general_card_title_id&#39;]&#x2F;parent::*</span><br></pre></td></tr></table></figure><p><code>resource-id</code>为<code>cn.xuexi.android:id/general_card_title_id</code>的元素的父元素</p></li><li><p>指定元素之后的同级元素</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;android.widget.ImageView&#x2F;following-sibling::android.widget.TextView[ends-with(@text, &quot;学习平台&quot;)]</span><br></pre></td></tr></table></figure><p><code>android.widget.ImageView</code>元素之后的同级元素为<code>android.widget.TextView</code>的text内容以<code>学习平台</code>结尾的元素</p></li><li><p>指定元素之前的同级元素</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;*[@resource-id&#x3D;&#39;cn.xuexi.android:id&#x2F;action_bar_root&#39;]&#x2F;&#x2F;android.widget.TextView[@text&#x3D;&#39;分享到学习强国&#39;]&#x2F;preceding-sibling::*</span><br></pre></td></tr></table></figure></li><li><p>倒数第二个元素</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;android.widget.TextView[@text&#x3D;&#39;欢迎发表你的观点&#39;]&#x2F;following-sibling::*[last()-1]</span><br></pre></td></tr></table></figure><p><code>android.widget.TextView</code>的text内容为<code>欢迎发表你的观点</code>的元素之后的同级元素中的倒数第二个元素</p><p><a href="https://github.com/l-qiang/LitterBaby/blob/master/src/main/resources/application.properties" target="_blank" rel="noopener">更多用法示例</a></p></li></ul>
+          </div>
+
+
+
+
+
+
+
+
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2019/09/05/spring.mvc.favicon.enabled为什么不起作用/" rel="bookmark">spring.mvc.favicon.enabled为什么不起作用？</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2019/10/11/ConcurrentModificationException你真的了解吗/" rel="bookmark">ConcurrentModificationException你真的了解吗？</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2019/12/19/Jackson将无嵌套JSON转嵌套对象/" rel="bookmark">Jackson将无嵌套JSON转嵌套对象</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2019/10/11/Jackson序列化字段脱敏处理/" rel="bookmark">Jackson序列化字段脱敏处理</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2019/08/19/Java8漏洞使用CollectorstoMap时value为null报空指针异常/" rel="bookmark">Java8漏洞-使用Collectors.toMap时，value为null报空指针异常</a></div>
+    </li>
+  </ul>
+
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="刘强 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="刘强 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>刘强
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://l-qiang.github.io/2020/01/15/Java+Appium+%E5%A4%9C%E7%A5%9E%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%AD%A6%E4%B9%A0%E5%BC%BA%E5%9B%BD%E7%A7%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%8C%96/" title="Java + Appium + 夜神模拟器实现学习强国积分任务自动化">https://l-qiang.github.io/2020/01/15/Java+Appium+夜神模拟器实现学习强国积分任务自动化/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/Appium/" rel="tag"># Appium</a>
+              <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" rel="tag"># 自动化测试</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/01/10/iText%E5%90%88%E5%B9%B6PDF%E5%92%8C%E6%B7%BB%E5%8A%A0%E4%B9%A6%E7%AD%BE/" rel="prev" title="iText合并PDF和添加书签">
+      <i class="fa fa-chevron-left"></i> iText合并PDF和添加书签
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/01/17/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" rel="next" title="Hexo搭建个人博客">
+      Hexo搭建个人博客 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境准备"><span class="nav-number">1.</span> <span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Appium"><span class="nav-number">2.</span> <span class="nav-text">Appium</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Appium-Desktop"><span class="nav-number">2.1.</span> <span class="nav-text">Appium Desktop</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始开发"><span class="nav-number">3.</span> <span class="nav-text">开始开发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#新建工程"><span class="nav-number">3.1.</span> <span class="nav-text">新建工程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加依赖"><span class="nav-number">3.2.</span> <span class="nav-text">添加依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加功能"><span class="nav-number">3.3.</span> <span class="nav-text">添加功能</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#登录"><span class="nav-number">3.3.1.</span> <span class="nav-text">登录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#阅读文章"><span class="nav-number">3.3.2.</span> <span class="nav-text">阅读文章</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#那么滑动怎么做呢"><span class="nav-number">3.3.2.1.</span> <span class="nav-text">那么滑动怎么做呢?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回操作"><span class="nav-number">3.3.2.2.</span> <span class="nav-text">返回操作</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">刘强</p>
+  <div class="site-description" itemprop="description">好记性不如烂笔头</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="sidebar-button motion-element">
+    <a onclick="Chatra('openChat', true);"><i class="fa fa-comment"></i>
+    Chat
+  </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/l-qiang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;l-qiang" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:liuqiang.ryan@gmail.com" title="E-Mail → mailto:liuqiang.ryan@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="rss fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘强</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">70k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:04</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+  <script data-pjax>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+  <script>
+    (function(d, w, c) {
+      w.ChatraID = 'PJHEH9s3N8PGPzJqD';
+      var s = d.createElement('script');
+      w[c] = w[c] || function() {
+        (w[c].q = w[c].q || []).push(arguments);
+      };
+      s.async = true;
+      s.src = 'https://call.chatra.io/chatra.js';
+      if (d.head) d.head.appendChild(s);
+    })(document, window, 'Chatra');
+  </script>
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://l-qiang.github.io/2020/01/15/Java+Appium+%E5%A4%9C%E7%A5%9E%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%AD%A6%E4%B9%A0%E5%BC%BA%E5%9B%BD%E7%A7%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%8C%96/',]
+      });
+      });
+  </script>
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'c7698ac0c1888a422ff8',
+      clientSecret: '9e95b025bc3dad1fbf7ca56e6086afbe25117805',
+      repo        : 'BlogGitalk',
+      owner       : 'l-qiang',
+      admin       : ['l-qiang'],
+      id          : 'cd446a460a0cea45283953017df94b6c',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+    </div>
+</body>
+</html>

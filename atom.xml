@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>刘强</title>
+  
+  <subtitle>博客</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://l-qiang.github.io/"/>
+  <updated>2020-11-16T09:21:18.981Z</updated>
+  <id>https://l-qiang.github.io/</id>
+  
+  <author>
+    <name>刘强</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>开源框架及工具网站备忘录</title>
+    <link href="https://l-qiang.github.io/2020/11/06/%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%8F%8A%E5%B7%A5%E5%85%B7%E7%BD%91%E7%AB%99%E5%A4%87%E5%BF%98%E5%BD%95/"/>
+    <id>https://l-qiang.github.io/2020/11/06/%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%8F%8A%E5%B7%A5%E5%85%B7%E7%BD%91%E7%AB%99%E5%A4%87%E5%BF%98%E5%BD%95/</id>
+    <published>2020-11-06T09:46:53.000Z</published>
+    <updated>2020-11-16T09:21:18.981Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;持续更新…&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>踩坑SpringBoot单元测试与spring.profiles.active</title>
+    <link href="https://l-qiang.github.io/2020/11/03/%E8%B8%A9%E5%9D%91SpringBoot%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E4%B8%8Espring.profiles.active/"/>
+    <id>https://l-qiang.github.io/2020/11/03/%E8%B8%A9%E5%9D%91SpringBoot%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E4%B8%8Espring.profiles.active/</id>
+    <published>2020-11-03T15:45:19.000Z</published>
+    <updated>2020-11-16T09:21:18.985Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今天运行单元测试的时候，突然就报错了，大概意思就是无法解析${spring.profiles.active}，但是之前的跑完全没问呀，而且单测的类上已经加了&lt;code&gt;@ActiveProfiles&lt;/code&gt;注解了。为什么呢？&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Spring Boot" scheme="https://l-qiang.github.io/categories/Spring-Boot/"/>
+    
+    
+      <category term="Spring Boot" scheme="https://l-qiang.github.io/tags/Spring-Boot/"/>
+    
+      <category term="单元测试" scheme="https://l-qiang.github.io/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用@sun.misc.Contended注解后竟然...</title>
+    <link href="https://l-qiang.github.io/2020/10/20/%E4%BD%BF%E7%94%A8@sun.misc.Contended%E6%B3%A8%E8%A7%A3%E5%90%8E%E7%AB%9F%E7%84%B6.../"/>
+    <id>https://l-qiang.github.io/2020/10/20/%E4%BD%BF%E7%94%A8@sun.misc.Contended%E6%B3%A8%E8%A7%A3%E5%90%8E%E7%AB%9F%E7%84%B6.../</id>
+    <published>2020-10-20T16:44:32.000Z</published>
+    <updated>2020-11-16T09:21:18.981Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一段代码使用@sun.misc.Contended注解后竟然…&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://l-qiang.github.io/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://l-qiang.github.io/tags/Java/"/>
+    
+      <category term="伪共享" scheme="https://l-qiang.github.io/tags/%E4%BC%AA%E5%85%B1%E4%BA%AB/"/>
+    
+      <category term="缓存行" scheme="https://l-qiang.github.io/tags/%E7%BC%93%E5%AD%98%E8%A1%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring Cloud升级记录</title>
+    <link href="https://l-qiang.github.io/2020/09/24/SpringCloud%E5%8D%87%E7%BA%A7%E8%AE%B0%E5%BD%95/"/>
+    <id>https://l-qiang.github.io/2020/09/24/SpringCloud%E5%8D%87%E7%BA%A7%E8%AE%B0%E5%BD%95/</id>
+    <published>2020-09-24T13:22:26.000Z</published>
+    <updated>2020-11-16T09:21:18.981Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Spring Cloud" scheme="https://l-qiang.github.io/categories/Spring-Cloud/"/>
+    
+      <category term="Spring Boot" scheme="https://l-qiang.github.io/categories/Spring-Cloud/Spring-Boot/"/>
+    
+    
+      <category term="Spring Cloud,Spring Boot" scheme="https://l-qiang.github.io/tags/Spring-Cloud-Spring-Boot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringBoot与Docker的经验分享</title>
+    <link href="https://l-qiang.github.io/2020/06/28/SpringBoot%E4%B8%8EDocker%E7%9A%84%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/"/>
+    <id>https://l-qiang.github.io/2020/06/28/SpringBoot%E4%B8%8EDocker%E7%9A%84%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/</id>
+    <published>2020-06-28T14:19:36.000Z</published>
+    <updated>2020-11-16T09:21:18.977Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;关于怎么将Spring Boot应用构建Docker镜像的教程，我们可以在Spring Boot的官网找到。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://spring.io/guides/gs/spring-boot-docker/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Spring Boot with Docker&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://spring.io/guides/topicals/spring-boot-docker&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Spring Boot Docker&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;从上面两个教程中，我主要了解的就是怎么写好&lt;code&gt;Dockerfile&lt;/code&gt;，以及怎么构建镜像然后运行。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Spring Boot" scheme="https://l-qiang.github.io/categories/Spring-Boot/"/>
+    
+      <category term="Docker" scheme="https://l-qiang.github.io/categories/Spring-Boot/Docker/"/>
+    
+    
+      <category term="Spring Boot,Docker" scheme="https://l-qiang.github.io/tags/Spring-Boot-Docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringBoot统一异常处理与404</title>
+    <link href="https://l-qiang.github.io/2020/05/21/SpringBoot%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E4%B8%8E404/"/>
+    <id>https://l-qiang.github.io/2020/05/21/SpringBoot%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E4%B8%8E404/</id>
+    <published>2020-05-21T14:40:29.000Z</published>
+    <updated>2020-11-16T09:21:18.977Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;几天前，我收到一封邮件，邮件是&lt;strong&gt;Chatra&lt;/strong&gt;的消息。有人问了我一个问题。从消息里我猜是关于SpringBoot统一异常处理与404的问题。当时，没啥时间就没去自己试。现在，我来说说我的解决办法。&lt;/p&gt;
+&lt;img src=&quot;/2020/05/21/SpringBoot%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E4%B8%8E404/1.jpg&quot; class=&quot;&quot;&gt;
+    
+    </summary>
+    
+    
+      <category term="Spring Boot" scheme="https://l-qiang.github.io/categories/Spring-Boot/"/>
+    
+    
+      <category term="Spring Boot" scheme="https://l-qiang.github.io/tags/Spring-Boot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>maven RSA premaster secret error SunTls12RsaPremasterSecret KeyGenerator not available</title>
+    <link href="https://l-qiang.github.io/2020/05/18/maven%20RSA%20premaster%20secret%20error%20SunTls12RsaPremasterSecret%20KeyGenerator%20not%20available/"/>
+    <id>https://l-qiang.github.io/2020/05/18/maven%20RSA%20premaster%20secret%20error%20SunTls12RsaPremasterSecret%20KeyGenerator%20not%20available/</id>
+    <published>2020-05-18T20:51:29.000Z</published>
+    <updated>2020-11-16T09:21:18.981Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Maven" scheme="https://l-qiang.github.io/categories/Maven/"/>
+    
+    
+      <category term="Maven" scheme="https://l-qiang.github.io/tags/Maven/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Docker Desktop安装后启动报Cannot enable Hyper-V service错误</title>
+    <link href="https://l-qiang.github.io/2020/05/18/Docker%20Desktop%E5%AE%89%E8%A3%85%E5%90%8E%E5%90%AF%E5%8A%A8%E6%8A%A5Cannot%20enable%20Hyper-V%20service%E9%94%99%E8%AF%AF/"/>
+    <id>https://l-qiang.github.io/2020/05/18/Docker%20Desktop%E5%AE%89%E8%A3%85%E5%90%8E%E5%90%AF%E5%8A%A8%E6%8A%A5Cannot%20enable%20Hyper-V%20service%E9%94%99%E8%AF%AF/</id>
+    <published>2020-05-18T20:26:46.000Z</published>
+    <updated>2020-11-16T09:21:18.973Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今天在自己的Win10系统笔记本上装了个Docker Desktop，启动的时候报错Cannot enable Hyper-V service。&lt;/p&gt;
+&lt;p&gt;上网一查，很多都说的是在&lt;code&gt;控制面版-&amp;gt;程序-&amp;gt;程序和功能&lt;/code&gt;的&lt;code&gt;启用或关闭Windows功能&lt;/code&gt;里面把&lt;strong&gt;Hyper-V&lt;/strong&gt;开启就好了。&lt;/p&gt;
+&lt;p&gt;但是，我的电脑的&lt;strong&gt;Hyper-V&lt;/strong&gt;本来就是开着的呀。这确实让我头疼了好一会儿。究竟是怎么一回事呢？&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Docker" scheme="https://l-qiang.github.io/categories/Docker/"/>
+    
+      <category term="Docker Desktop" scheme="https://l-qiang.github.io/categories/Docker/Docker-Desktop/"/>
+    
+    
+      <category term="Docker" scheme="https://l-qiang.github.io/tags/Docker/"/>
+    
+      <category term="Docker Desktop" scheme="https://l-qiang.github.io/tags/Docker-Desktop/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>我的第一个微信小程序开发经验</title>
+    <link href="https://l-qiang.github.io/2020/05/09/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/"/>
+    <id>https://l-qiang.github.io/2020/05/09/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/</id>
+    <published>2020-05-09T18:10:13.000Z</published>
+    <updated>2020-11-16T09:21:18.981Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;前段时间项目里要开发一个微信小程序，我也是临危受命吧，大概学习了几个小时，然后花了一天写好（功能比较简单所以…）。一般使用一个新东西的时候我都会先大致了解一下文档，然后才开始开发，主要是为了少踩点坑。记录一下自己开发这个小程序的一些经验，说不定以后能用到。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="微信小程序" scheme="https://l-qiang.github.io/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+    
+      <category term="微信小程序" scheme="https://l-qiang.github.io/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>解决Linux下使用Pdfbox将PDF转图片乱码问题</title>
+    <link href="https://l-qiang.github.io/2020/03/11/%E8%A7%A3%E5%86%B3Linux%E4%B8%8B%E4%BD%BF%E7%94%A8Pdfbox%E5%B0%86PDF%E8%BD%AC%E5%9B%BE%E7%89%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/"/>
+    <id>https://l-qiang.github.io/2020/03/11/%E8%A7%A3%E5%86%B3Linux%E4%B8%8B%E4%BD%BF%E7%94%A8Pdfbox%E5%B0%86PDF%E8%BD%AC%E5%9B%BE%E7%89%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/</id>
+    <published>2020-03-11T18:11:31.000Z</published>
+    <updated>2020-11-16T09:21:18.981Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今天测试跟我说我们的PDF转换图片的时候会出现中文乱码，然而我在自己的电脑上验证的时候发现并不会出现乱码的问题，我的第一反应就是这不是代码的问题，应该是服务器的环境问题。究竟是不是跟我猜想的一样呢？&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="https://l-qiang.github.io/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="https://l-qiang.github.io/tags/Linux/"/>
+    
+      <category term="pdfbox" scheme="https://l-qiang.github.io/tags/pdfbox/"/>
+    
+      <category term="STSong Light" scheme="https://l-qiang.github.io/tags/STSong-Light/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>为什么Spring Boot读取UTF-8编码的properties会中文乱码？</title>
+    <link href="https://l-qiang.github.io/2020/03/01/%E4%B8%BA%E4%BB%80%E4%B9%88SpringBoot%E8%AF%BB%E5%8F%96UTF-8%E7%BC%96%E7%A0%81%E7%9A%84properties%E4%BC%9A%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/"/>
+    <id>https://l-qiang.github.io/2020/03/01/%E4%B8%BA%E4%BB%80%E4%B9%88SpringBoot%E8%AF%BB%E5%8F%96UTF-8%E7%BC%96%E7%A0%81%E7%9A%84properties%E4%BC%9A%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/</id>
+    <published>2020-03-01T09:41:04.000Z</published>
+    <updated>2020-11-16T09:21:18.981Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;我们经常会在&lt;code&gt;properties&lt;/code&gt;文件中使用中文。当然大多数时候中文都是写在注释里。我们也会在STS中安装&lt;a href=&quot;https://java-properties-editor.com/index.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PropertiesEditor&lt;/a&gt;插件显示中文。但是，在我升级STS4之后我没有安装&lt;code&gt;PropertiesEditor&lt;/code&gt;，而是直接修改&lt;code&gt;properties&lt;/code&gt;文件为&lt;code&gt;UTF-8&lt;/code&gt;编码，然后在里面写中文。这样就发生了一个问题，应用程序读取出来的&lt;br&gt;&lt;code&gt;properties&lt;/code&gt;属性里中文是乱码的。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://l-qiang.github.io/categories/Java/"/>
+    
+      <category term="Spring Boot" scheme="https://l-qiang.github.io/categories/Java/Spring-Boot/"/>
+    
+    
+      <category term="Spring Boot" scheme="https://l-qiang.github.io/tags/Spring-Boot/"/>
+    
+      <category term="乱码" scheme="https://l-qiang.github.io/tags/%E4%B9%B1%E7%A0%81/"/>
+    
+      <category term="UTF-8" scheme="https://l-qiang.github.io/tags/UTF-8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>STS4启动报错Missing tools.jar</title>
+    <link href="https://l-qiang.github.io/2020/02/17/STS4%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99Missingtools.jar/"/>
+    <id>https://l-qiang.github.io/2020/02/17/STS4%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99Missingtools.jar/</id>
+    <published>2020-02-17T12:42:52.000Z</published>
+    <updated>2020-11-16T09:21:18.977Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今天将我的STS3升级到了STS4，升级完启动STS4的时候发现报&lt;code&gt;Missing tools.jar&lt;/code&gt;的错误。&lt;/p&gt;
+&lt;img src=&quot;/2020/02/17/STS4%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99Missingtools.jar/1.png&quot; class=&quot;&quot;&gt;
+    
+    </summary>
+    
+    
+      <category term="Spring" scheme="https://l-qiang.github.io/categories/Spring/"/>
+    
+      <category term="Spring Tool Suite" scheme="https://l-qiang.github.io/categories/Spring/Spring-Tool-Suite/"/>
+    
+    
+      <category term="Spring Tool Suite" scheme="https://l-qiang.github.io/tags/Spring-Tool-Suite/"/>
+    
+      <category term="STS4" scheme="https://l-qiang.github.io/tags/STS4/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Tomcat日志截断</title>
+    <link href="https://l-qiang.github.io/2020/01/22/Tomcat%E6%97%A5%E5%BF%97%E6%88%AA%E6%96%AD/"/>
+    <id>https://l-qiang.github.io/2020/01/22/Tomcat%E6%97%A5%E5%BF%97%E6%88%AA%E6%96%AD/</id>
+    <published>2020-01-22T12:30:43.000Z</published>
+    <updated>2020-11-16T09:21:18.981Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;为了避免生产环境&lt;code&gt;Tomcat&lt;/code&gt;的&lt;code&gt;catalina.out&lt;/code&gt;越来越大，我们需要轮替&lt;code&gt;catalina.out&lt;/code&gt;，那么我们该怎么做呢？&lt;/p&gt;
+&lt;p&gt;关于这个问题，我在&lt;code&gt;Tomcat&lt;/code&gt;的&lt;code&gt;FAQ&lt;/code&gt;中找到了答案。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Tomcat" scheme="https://l-qiang.github.io/categories/Tomcat/"/>
+    
+      <category term="Linux" scheme="https://l-qiang.github.io/categories/Linux/"/>
+    
+    
+      <category term="Tomcat" scheme="https://l-qiang.github.io/tags/Tomcat/"/>
+    
+      <category term="logrotate" scheme="https://l-qiang.github.io/tags/logrotate/"/>
+    
+      <category term="Linux" scheme="https://l-qiang.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo添加RSS和站点地图</title>
+    <link href="https://l-qiang.github.io/2020/01/20/Hexo%E6%B7%BB%E5%8A%A0RSS%E5%92%8C%E7%AB%99%E7%82%B9%E5%9C%B0%E5%9B%BE/"/>
+    <id>https://l-qiang.github.io/2020/01/20/Hexo%E6%B7%BB%E5%8A%A0RSS%E5%92%8C%E7%AB%99%E7%82%B9%E5%9C%B0%E5%9B%BE/</id>
+    <published>2020-01-20T13:08:57.000Z</published>
+    <updated>2020-11-16T09:21:18.977Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Blog" scheme="https://l-qiang.github.io/categories/Blog/"/>
+    
+    
+      <category term="Blog" scheme="https://l-qiang.github.io/tags/Blog/"/>
+    
+      <category term="Hexo" scheme="https://l-qiang.github.io/tags/Hexo/"/>
+    
+      <category term="RSS" scheme="https://l-qiang.github.io/tags/RSS/"/>
+    
+      <category term="sitemap" scheme="https://l-qiang.github.io/tags/sitemap/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo搭建个人博客</title>
+    <link href="https://l-qiang.github.io/2020/01/17/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
+    <id>https://l-qiang.github.io/2020/01/17/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</id>
+    <published>2020-01-17T16:56:05.000Z</published>
+    <updated>2020-11-16T09:21:18.973Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这不完全是一篇搭建个人博客的教程，因为&lt;a href=&quot;https://hexo.io/zh-cn/docs/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;的文档其实写得非常清楚了。但是，我们按照教程来不一定很顺利。所以，这主要还是一个小白的经验之谈。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Blog" scheme="https://l-qiang.github.io/categories/Blog/"/>
+    
+    
+      <category term="Blog" scheme="https://l-qiang.github.io/tags/Blog/"/>
+    
+      <category term="Hexo" scheme="https://l-qiang.github.io/tags/Hexo/"/>
+    
+      <category term="Github" scheme="https://l-qiang.github.io/tags/Github/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java + Appium + 夜神模拟器实现学习强国积分任务自动化</title>
+    <link href="https://l-qiang.github.io/2020/01/15/Java+Appium+%E5%A4%9C%E7%A5%9E%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%AD%A6%E4%B9%A0%E5%BC%BA%E5%9B%BD%E7%A7%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
+    <id>https://l-qiang.github.io/2020/01/15/Java+Appium+%E5%A4%9C%E7%A5%9E%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%AD%A6%E4%B9%A0%E5%BC%BA%E5%9B%BD%E7%A7%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%8C%96/</id>
+    <published>2020-01-15T19:34:00.000Z</published>
+    <updated>2020-11-16T09:21:18.977Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;首先，先放源码&lt;a href=&quot;https://github.com/l-qiang/LitterBaby&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;LitterBaby&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;我想装了《学习强国》App的同学都为每天30积分的任务苦恼过。我之前也是因为这30积分非常头疼，不是《学习强国》App不好，而是真的不适合我。我们会学习，但可能不是被迫学习指定内容，为了指标而学习。&lt;/p&gt;
+&lt;p&gt;GitHub上面有很多Python写的《学习强国》自动化学习项目。我也有在用，但是我想有一个Java编写的，自己改起来顺手的《学习强国》自动学习。&lt;/p&gt;
+&lt;p&gt;为此，我就写了一个Java的，目前已经实现刷30分。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://l-qiang.github.io/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://l-qiang.github.io/tags/Java/"/>
+    
+      <category term="Appium" scheme="https://l-qiang.github.io/tags/Appium/"/>
+    
+      <category term="自动化测试" scheme="https://l-qiang.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iText合并PDF和添加书签</title>
+    <link href="https://l-qiang.github.io/2020/01/10/iText%E5%90%88%E5%B9%B6PDF%E5%92%8C%E6%B7%BB%E5%8A%A0%E4%B9%A6%E7%AD%BE/"/>
+    <id>https://l-qiang.github.io/2020/01/10/iText%E5%90%88%E5%B9%B6PDF%E5%92%8C%E6%B7%BB%E5%8A%A0%E4%B9%A6%E7%AD%BE/</id>
+    <published>2020-01-10T20:37:23.000Z</published>
+    <updated>2020-11-16T09:21:18.981Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;关于这个问题，其实在iText官网和Stack Overflow上面都有答案。之所以还要记录是想有更多人看到简单易懂的解决办法。因为我不想再有人直接CSDN搜一个，不管是否要新引入Jar包也不管代码是否复杂，然后告诉我参考那个写。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://itextpdf.com/en/resources/examples/itext-5-legacy/merging-documents-bookmarks#39-mergewithoutlines.java&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;官网例子&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://l-qiang.github.io/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://l-qiang.github.io/tags/Java/"/>
+    
+      <category term="PDF" scheme="https://l-qiang.github.io/tags/PDF/"/>
+    
+      <category term="iText" scheme="https://l-qiang.github.io/tags/iText/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>领域驱动设计</title>
+    <link href="https://l-qiang.github.io/2019/12/27/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/"/>
+    <id>https://l-qiang.github.io/2019/12/27/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/</id>
+    <published>2019-12-27T19:56:54.000Z</published>
+    <updated>2020-11-16T09:21:18.985Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="DDD" scheme="https://l-qiang.github.io/categories/DDD/"/>
+    
+    
+      <category term="DDD" scheme="https://l-qiang.github.io/tags/DDD/"/>
+    
+      <category term="领域驱动设计" scheme="https://l-qiang.github.io/tags/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Jackson将无嵌套JSON转嵌套对象</title>
+    <link href="https://l-qiang.github.io/2019/12/19/Jackson%E5%B0%86%E6%97%A0%E5%B5%8C%E5%A5%97JSON%E8%BD%AC%E5%B5%8C%E5%A5%97%E5%AF%B9%E8%B1%A1/"/>
+    <id>https://l-qiang.github.io/2019/12/19/Jackson%E5%B0%86%E6%97%A0%E5%B5%8C%E5%A5%97JSON%E8%BD%AC%E5%B5%8C%E5%A5%97%E5%AF%B9%E8%B1%A1/</id>
+    <published>2019-12-19T19:04:52.000Z</published>
+    <updated>2020-11-16T09:21:18.977Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://l-qiang.github.io/categories/Java/"/>
+    
+      <category term="Jackson" scheme="https://l-qiang.github.io/categories/Java/Jackson/"/>
+    
+    
+      <category term="Java" scheme="https://l-qiang.github.io/tags/Java/"/>
+    
+      <category term="Jackson" scheme="https://l-qiang.github.io/tags/Jackson/"/>
+    
+      <category term="JSON" scheme="https://l-qiang.github.io/tags/JSON/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>为什么我的Spring Boot项目不能访问静态资源？</title>
+    <link href="https://l-qiang.github.io/2019/12/13/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E7%9A%84SpringBoot%E9%A1%B9%E7%9B%AE%E4%B8%8D%E8%83%BD%E8%AE%BF%E9%97%AE%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/"/>
+    <id>https://l-qiang.github.io/2019/12/13/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E7%9A%84SpringBoot%E9%A1%B9%E7%9B%AE%E4%B8%8D%E8%83%BD%E8%AE%BF%E9%97%AE%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/</id>
+    <published>2019-12-13T19:10:42.000Z</published>
+    <updated>2020-11-16T09:21:18.981Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;问题源于一个客户这边自己封装的框架。&lt;/p&gt;
+&lt;p&gt;一直以来，我都对这种框架无感，因为它一般是由开源项目改编的，而且不一定是改得更好了。封装越多用起来越笨重。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://l-qiang.github.io/categories/Java/"/>
+    
+      <category term="Spring Boot" scheme="https://l-qiang.github.io/categories/Java/Spring-Boot/"/>
+    
+    
+      <category term="Java" scheme="https://l-qiang.github.io/tags/Java/"/>
+    
+      <category term="Spring Boot" scheme="https://l-qiang.github.io/tags/Spring-Boot/"/>
+    
+  </entry>
+  
+</feed>
