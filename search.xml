@@ -135,6 +135,8 @@
     <content><![CDATA[<p> 最近接到一个将所有项目的Spring Cloud升级到最新版的任务。一开始我觉得挺不容易的，比较目前我们的版本很低，真正做起来发现并没有想象中难。</p>
 <p><code>Spring Cloud</code>升级版本为<strong>Edgware.SR1</strong> =&gt; <strong>Hoxton.SR8</strong>。</p>
 <p><code>Spring Boot</code>升级版本为<strong>1.5.20.RELEASE</strong> =&gt; <strong>2.3.3.RELEASE</strong>。</p>
+<a id="more"></a>
+
 <h2 id="Eureka-Server"><a href="#Eureka-Server" class="headerlink" title="Eureka Server"></a>Eureka Server</h2><p>我们之前是使用<strong>Eureka</strong>做服务注册与发现，这次升级我继续使用<strong>Eureka</strong>。</p>
 <p>我将Eureka Server项目的<strong>pom.xml</strong>里的<code>Spring Cloud</code>和<code>Spring Boot</code>的版本号改为目标版本号。</p>
 <p>不出意外，此时，项目就报错了。由于Eureka Server的是没有业务代码的，所以需要修改的代码并不多。</p>

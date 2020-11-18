@@ -25,15 +25,15 @@
     var CONFIG = {"hostname":"l-qiang.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="最近接到一个将所有项目的Spring Cloud升级到最新版的任务。一开始我觉得挺不容易的，比较目前我们的版本很低，真正做起来发现并没有想象中难。 Spring Cloud升级版本为Edgware.SR1 &#x3D;&gt; Hoxton.SR8。 Spring Boot升级版本为1.5.20.RELEASE &#x3D;&gt; 2.3.3.RELEASE。 Eureka Server我们之前是使用Eureka">
+  <meta name="description" content="最近接到一个将所有项目的Spring Cloud升级到最新版的任务。一开始我觉得挺不容易的，比较目前我们的版本很低，真正做起来发现并没有想象中难。 Spring Cloud升级版本为Edgware.SR1 &#x3D;&gt; Hoxton.SR8。 Spring Boot升级版本为1.5.20.RELEASE &#x3D;&gt; 2.3.3.RELEASE。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring Cloud升级记录">
 <meta property="og:url" content="https://l-qiang.github.io/2020/09/24/SpringCloud%E5%8D%87%E7%BA%A7%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="刘强">
-<meta property="og:description" content="最近接到一个将所有项目的Spring Cloud升级到最新版的任务。一开始我觉得挺不容易的，比较目前我们的版本很低，真正做起来发现并没有想象中难。 Spring Cloud升级版本为Edgware.SR1 &#x3D;&gt; Hoxton.SR8。 Spring Boot升级版本为1.5.20.RELEASE &#x3D;&gt; 2.3.3.RELEASE。 Eureka Server我们之前是使用Eureka">
+<meta property="og:description" content="最近接到一个将所有项目的Spring Cloud升级到最新版的任务。一开始我觉得挺不容易的，比较目前我们的版本很低，真正做起来发现并没有想象中难。 Spring Cloud升级版本为Edgware.SR1 &#x3D;&gt; Hoxton.SR8。 Spring Boot升级版本为1.5.20.RELEASE &#x3D;&gt; 2.3.3.RELEASE。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-09-24T13:22:26.000Z">
-<meta property="article:modified_time" content="2020-11-16T09:21:18.981Z">
+<meta property="article:modified_time" content="2020-11-18T08:30:43.161Z">
 <meta property="article:author" content="刘强">
 <meta property="article:tag" content="Spring Cloud,Spring Boot">
 <meta name="twitter:card" content="summary">
@@ -230,7 +230,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-16 09:21:18" itemprop="dateModified" datetime="2020-11-16T09:21:18+00:00">2020-11-16</time>
+                <time title="修改时间：2020-11-18 08:30:43" itemprop="dateModified" datetime="2020-11-18T08:30:43+00:00">2020-11-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -274,6 +274,8 @@
         <p> 最近接到一个将所有项目的Spring Cloud升级到最新版的任务。一开始我觉得挺不容易的，比较目前我们的版本很低，真正做起来发现并没有想象中难。</p>
 <p><code>Spring Cloud</code>升级版本为<strong>Edgware.SR1</strong> =&gt; <strong>Hoxton.SR8</strong>。</p>
 <p><code>Spring Boot</code>升级版本为<strong>1.5.20.RELEASE</strong> =&gt; <strong>2.3.3.RELEASE</strong>。</p>
+<a id="more"></a>
+
 <h2 id="Eureka-Server"><a href="#Eureka-Server" class="headerlink" title="Eureka Server"></a>Eureka Server</h2><p>我们之前是使用<strong>Eureka</strong>做服务注册与发现，这次升级我继续使用<strong>Eureka</strong>。</p>
 <p>我将Eureka Server项目的<strong>pom.xml</strong>里的<code>Spring Cloud</code>和<code>Spring Boot</code>的版本号改为目标版本号。</p>
 <p>不出意外，此时，项目就报错了。由于Eureka Server的是没有业务代码的，所以需要修改的代码并不多。</p>

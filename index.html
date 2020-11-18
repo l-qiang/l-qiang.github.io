@@ -231,7 +231,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-16 09:21:18" itemprop="dateModified" datetime="2020-11-16T09:21:18+00:00">2020-11-16</time>
+                <time title="修改时间：2020-11-18 08:30:43" itemprop="dateModified" datetime="2020-11-18T08:30:43+00:00">2020-11-18</time>
               </span>
 
           <br>
@@ -319,7 +319,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-16 09:21:18" itemprop="dateModified" datetime="2020-11-16T09:21:18+00:00">2020-11-16</time>
+                <time title="修改时间：2020-11-18 08:30:43" itemprop="dateModified" datetime="2020-11-18T08:30:43+00:00">2020-11-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -416,7 +416,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-16 09:21:18" itemprop="dateModified" datetime="2020-11-16T09:21:18+00:00">2020-11-16</time>
+                <time title="修改时间：2020-11-18 08:30:43" itemprop="dateModified" datetime="2020-11-18T08:30:43+00:00">2020-11-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -513,7 +513,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-16 09:21:18" itemprop="dateModified" datetime="2020-11-16T09:21:18+00:00">2020-11-16</time>
+                <time title="修改时间：2020-11-18 08:30:43" itemprop="dateModified" datetime="2020-11-18T08:30:43+00:00">2020-11-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -557,98 +557,14 @@
           <p> 最近接到一个将所有项目的Spring Cloud升级到最新版的任务。一开始我觉得挺不容易的，比较目前我们的版本很低，真正做起来发现并没有想象中难。</p>
 <p><code>Spring Cloud</code>升级版本为<strong>Edgware.SR1</strong> =&gt; <strong>Hoxton.SR8</strong>。</p>
 <p><code>Spring Boot</code>升级版本为<strong>1.5.20.RELEASE</strong> =&gt; <strong>2.3.3.RELEASE</strong>。</p>
-<h2 id="Eureka-Server"><a href="#Eureka-Server" class="headerlink" title="Eureka Server"></a>Eureka Server</h2><p>我们之前是使用<strong>Eureka</strong>做服务注册与发现，这次升级我继续使用<strong>Eureka</strong>。</p>
-<p>我将Eureka Server项目的<strong>pom.xml</strong>里的<code>Spring Cloud</code>和<code>Spring Boot</code>的版本号改为目标版本号。</p>
-<p>不出意外，此时，项目就报错了。由于Eureka Server的是没有业务代码的，所以需要修改的代码并不多。</p>
-<ul>
-<li><p>pom.xml</p>
-<p>改完版本号，发现<strong>hystrix</strong>和<strong>eureka</strong>的依赖都报错了，这里可以从Spring Cloud的<a href="https://docs.spring.io/spring-cloud-netflix/docs/2.2.5.RELEASE/reference/html/" target="_blank" rel="noopener">官方文档</a>了解到，这些依赖的jar包的<strong>artifactId</strong>都改了。</p>
-<div class="tabs" id="eureka-server-pom"><ul class="nav-tabs"><li class="tab active"><a href="#eureka-server-pom-1">修改前</a></li><li class="tab"><a href="#eureka-server-pom-2">修改后</a></li></ul><div class="tab-content"><div class="tab-pane active" id="eureka-server-pom-1"><figure class="highlight xml"><figcaption><span>pom.xml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-eureka-server<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-hystrix<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-hystrix-dashboard<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="eureka-server-pom-2"><figure class="highlight xml"><figcaption><span>pom.xml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-server<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-hystrix<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-hystrix-dashboard<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></div></div></div>
-</li>
-<li><p>Eureka Server配置</p>
-<div class="tabs" id="eureka-server-properties"><ul class="nav-tabs"><li class="tab active"><a href="#eureka-server-properties-1">修改前</a></li><li class="tab"><a href="#eureka-server-properties-2">修改后</a></li></ul><div class="tab-content"><div class="tab-pane active" id="eureka-server-properties-1"><figure class="highlight plain"><figcaption><span>application.properties</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">eureka.client.register-with-eureka&#x3D;false</span><br><span class="line">eureka.client.fetch-registry&#x3D;false</span><br><span class="line"></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="eureka-server-properties-2"><figure class="highlight plain"><figcaption><span>application.properties</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">eureka.client.registerWithEureka&#x3D;false</span><br><span class="line">eureka.client.fetchRegistry&#x3D;false</span><br><span class="line"></span><br><span class="line">eureka.client.serviceUrl.defaultZone&#x3D;http:&#x2F;&#x2F;$&#123;service.center.username&#125;:$&#123;service.center.password&#125;@localhost:9999&#x2F;eureka&#x2F;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div></div></div>
-
-<p>这里添加了eureka.client.serviceUrl.defaultZone的配置，且指向自己。是因为控制台一直报错<strong>Connect to localhost:8761 time out</strong>，具体原因我们都可以再网上查到。</p>
-</li>
-<li><p>jar包升级</p>
-<p>在我们修改完代码和配置文件，项目的代码没有红叉叉的时候。启动项目可能会有这样的信息。</p>
-<blockquote><p><span id="error1">Description:</span></p>
-<p>The bean ‘multipartConfigElement’, defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/MultipartAutoConfiguration.class], could not be registered. A bean with that name has already been defined in class path resource [com/h3c/config/MultipartConfig.class] and overriding is disabled.</p>
-<p>Action:</p>
-<p>Consider renaming one of the beans or enabling overriding by setting spring.main.allow-bean-definition-overriding=true</p>
-</blockquote>
-
-<p>如果bean是自己代码，则需要自己修改（<a href="#filetemp">见后文</a>）。如果不是，可以尝试升级对应的jar包。</p>
-</li>
-<li><p>Spring Security</p>
-<p>由于我们的Eureka Server使用了简单的<code>HTTP Basic</code>认证。所以，有关于Spring Security的配置。</p>
-<p>在上面的操作都完成后，就可以成功启动项目了。但升级还未结束，启动完后，访问<code>http://localhost:9999</code>发现，验证方式变成Form表单验证了，而且输入用户名密码告诉我错了。</p>
-<p>此时，需要进行两处修改。</p>
-<ol>
-<li><p>application.properties</p>
-<p><strong>security.user.name</strong> =&gt;<strong>spring.security.user.name</strong></p>
-<p><strong>security.user.password</strong>=&gt;<strong>spring.security.user.password</strong></p>
-</li>
-<li><p>WebSecurityConfigurerAdapter</p>
-<p>继承WebSecurityConfigurerAdapter，并覆盖对应方法。</p>
-<figure class="highlight java"><figcaption><span>WebSecurityConfig.java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.security.config.annotation.web.builders.HttpSecurity;</span><br><span class="line"><span class="keyword">import</span> org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;</span><br><span class="line"><span class="keyword">import</span> org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableWebSecurity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebSecurityConfig</span> <span class="keyword">extends</span> <span class="title">WebSecurityConfigurerAdapter</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        http.csrf().disable(); <span class="comment">// 不加这个也不行</span></span><br><span class="line">        http.authorizeRequests().anyRequest().authenticated().and().httpBasic();</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-</li>
-</ul>
-<h2 id="Eureka-Client"><a href="#Eureka-Client" class="headerlink" title="Eureka Client"></a>Eureka Client</h2><p>上面说过的就在这不说了，下面的一些问题都跟项目相关，是否会遇到取决于是否使用了相关的依赖。</p>
-<ul>
-<li><p><span id="filetemp">Spring Boot文件上传配置更新</span></p>
-<p>之前的Spring Boot需要配置<strong>MultipartConfigElement</strong>设置文件上传的临时目录，升级之后会<a href="#error1">报错</a>。</p>
-<p>升级之后使用<code>spring.servlet.multipart.location</code>来设置文件上传的临时目录。更多相关配置见<a href="https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html#web-properties" target="_blank" rel="noopener">官方文档</a></p>
-</li>
-<li><p>flyway配置修改</p>
-<p><strong>flyway.baseline-on-migrate</strong> =&gt; <strong>spring.flyway.baseline-on-migrate</strong></p>
-<p><strong>flyway.locations</strong> =&gt; <strong>spring.flyway.locations</strong></p>
-</li>
-<li><p>Spring Data JPA 相关接口名称及构造方法改变</p>
-</li>
-<li><p>Logger</p>
-<p>之前都是用的<code>org.apache.log4j.Logger</code>，现改为<code>org.slf4j.Logger</code>。这种遍布所有代码且不统一的话，最好还是自己再封一层，以后修改会方便很多，不用到处改。</p>
-</li>
-<li><p>This may be the result of an unspecified view, due to default view name generation</p>
-<p>访问页面报错，这个问题网上也有解决办法，什么view和path不能同名啥的，引入thymeleaf依赖之类的。</p>
-<p>这些在我这可不好使，我典型的逆反心理，我就是要同名。而且我没用thymeleaf，我引什么这个依赖。</p>
-<p>直接一个<strong>spring.freemarker.suffix=.ftl</strong>解决，造成问题的原因就是找不到视图，由于默认freemarker视图后缀是<code>.ftlh</code>，但是我们项目中的都是<code>.ftl</code>，所以修改一下视图后缀就好了。</p>
-</li>
-<li><p>Feign</p>
-<p>我们项目的Feign可以说是用的很老版本的了，当时的Feign Form甚至不支持多文件。基本不需要太大的改变。</p>
-<p>首先，是依赖包修改。</p>
-<div class="tabs" id="feign-pom"><ul class="nav-tabs"><li class="tab active"><a href="#feign-pom-1">修改前</a></li><li class="tab"><a href="#feign-pom-2">修改后</a></li></ul><div class="tab-content"><div class="tab-pane active" id="feign-pom-1"><figure class="highlight xml"><figcaption><span>pom.xml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>     </span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>     </span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-feign<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>     </span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.github.openfeign.form<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>     </span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>feign-form<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>     </span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>     </span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.github.openfeign.form<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>feign-form-spring<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"> </span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="feign-pom-2"><figure class="highlight xml"><figcaption><span>pom.xml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>     </span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>     </span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-openfeign<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span> </span><br></pre></td></tr></table></figure></div></div></div>
-
-<p>然后，启动就报了一个错，<strong>The bean ‘服务名.FeignClientSpecification’ could not be registered. A bean with that name has already been defined and overriding is disabled.</strong></p>
-<p>这个错是因为<code>@FeignClient</code>有多个同<code>name</code>的，通过在<code>@FeignClient</code>中指定<code>contextId</code>即可解决。</p>
-</li>
-<li><p>Spring Security</p>
-<p>升级Spring Boot后，Spring Security也升级成5.x，这对于我目前的项目来说，最大的影响就是PasswordEncoder。我们之前是使用MD5加密，升级之后是没有<code>Md5PasswordEncoder</code>这个类了。</p>
-<p>但是，我们可以使用<code>new MessageDigestPasswordEncoder(&quot;MD5&quot;)</code>，这个类也提示我们弃用了，所以最好的办法是升级我们的密码编码方式。</p>
-<p>为了能<code>兼容</code>以前的MD5的密码，我通过以下的方式来修改Spring Security配置的PasswordEncoder。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DelegatingPasswordEncoder encoder = (DelegatingPasswordEncoder) PasswordEncoderFactories.createDelegatingPasswordEncoder();</span><br><span class="line">encoder.setDefaultPasswordEncoderForMatches(<span class="keyword">new</span> MessageDigestPasswordEncoder(<span class="string">"MD5"</span>));</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Spring Session Data Redis</p>
-<p>除了<a href="https://docs.spring.io/spring-session/docs/2.3.1.RELEASE/reference/html5/" target="_blank" rel="noopener">官方文档</a>的说明之外，再说三点。</p>
-<ol>
-<li><p>需要加上Jedis的依赖。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>不需要再自定义Bean<code>RedisOperationsSessionRepository</code>，且已弃用，直接注入使用<code>RedisIndexedSessionRepository</code>即可。</p>
-</li>
-<li><p>ConfigureRedisAction的配置依然需要，一开始我是把所有配置全删了。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span>  </span><br><span class="line"><span class="function"><span class="keyword">public</span> ConfigureRedisAction <span class="title">configureRedisAction</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> ConfigureRedisAction.NO_OP;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-</li>
-</ul>
-<h2 id="Spring-Cloud-Config"><a href="#Spring-Cloud-Config" class="headerlink" title="Spring Cloud Config"></a>Spring Cloud Config</h2><p>版本一改直接启动，毫无问题</p>
-<h2 id="Zuul"><a href="#Zuul" class="headerlink" title="Zuul"></a>Zuul</h2><p><strong>spring-cloud-starter-zuul</strong> =&gt; <strong>spring-cloud-starter-netflix-zuul</strong></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/09/24/SpringCloud%E5%8D%87%E7%BA%A7%E8%AE%B0%E5%BD%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -700,7 +616,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-16 09:21:18" itemprop="dateModified" datetime="2020-11-16T09:21:18+00:00">2020-11-16</time>
+                <time title="修改时间：2020-11-18 08:30:43" itemprop="dateModified" datetime="2020-11-18T08:30:43+00:00">2020-11-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -804,7 +720,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-16 09:21:18" itemprop="dateModified" datetime="2020-11-16T09:21:18+00:00">2020-11-16</time>
+                <time title="修改时间：2020-11-18 08:30:43" itemprop="dateModified" datetime="2020-11-18T08:30:43+00:00">2020-11-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -902,7 +818,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-16 09:21:18" itemprop="dateModified" datetime="2020-11-16T09:21:18+00:00">2020-11-16</time>
+                <time title="修改时间：2020-11-18 08:30:43" itemprop="dateModified" datetime="2020-11-18T08:30:43+00:00">2020-11-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -997,7 +913,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-16 09:21:18" itemprop="dateModified" datetime="2020-11-16T09:21:18+00:00">2020-11-16</time>
+                <time title="修改时间：2020-11-18 08:30:43" itemprop="dateModified" datetime="2020-11-18T08:30:43+00:00">2020-11-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1100,7 +1016,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-16 09:21:18" itemprop="dateModified" datetime="2020-11-16T09:21:18+00:00">2020-11-16</time>
+                <time title="修改时间：2020-11-18 08:30:43" itemprop="dateModified" datetime="2020-11-18T08:30:43+00:00">2020-11-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1197,7 +1113,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-16 09:21:18" itemprop="dateModified" datetime="2020-11-16T09:21:18+00:00">2020-11-16</time>
+                <time title="修改时间：2020-11-18 08:30:43" itemprop="dateModified" datetime="2020-11-18T08:30:43+00:00">2020-11-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
