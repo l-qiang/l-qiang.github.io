@@ -13,6 +13,8 @@ tags:
 
 `Spring Boot`升级版本为**1.5.20.RELEASE** => **2.3.3.RELEASE**。
 
+<!-- more -->
+
 ## Eureka Server
 
 我们之前是使用**Eureka**做服务注册与发现，这次升级我继续使用**Eureka**。
