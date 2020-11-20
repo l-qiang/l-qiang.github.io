@@ -3,7 +3,7 @@ build:
   steps:
     - arjen/hugo-build:
         version: "0.78.2"
-        theme: LoveIt
+        theme: even
         flags: --buildDrafts=true
 
 deploy:
