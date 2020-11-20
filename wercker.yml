@@ -11,7 +11,7 @@ build:
     # hugo build
     - arjen/hugo-build:
         version: "HEAD"
-        theme: even # 替換為你的theme
+        theme: hugo-theme-even # 替換為你的theme
 
 deploy:
   steps:
