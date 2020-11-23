@@ -1,8 +1,8 @@
 ---
 title: 记一次Java线程堆栈分析
 date: 2019-10-30 13:44:41
-categories: ["Java"]
-tags: ["Java", "fastThread", "线程堆栈", "Druid"]
+categories: ["Java", "JVM"]
+tags: ["Java", "fastThread", "线程堆栈", "Druid", "JVM"]
 toc: false
 ---
 
