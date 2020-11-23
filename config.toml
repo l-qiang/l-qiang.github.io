@@ -1,7 +1,7 @@
 baseURL = "https://l-qiang.github.io/"
 languageCode = "zh-cn"
 defaultContentLanguage = "zh-cn"                             # en / zh-cn / ... (This field determines which i18n file to use)
-title = "l-qiang"
+title = "L-Qiang"
 preserveTaxonomyNames = true
 enableRobotsTXT = true
 enableEmoji = true
@@ -175,9 +175,9 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
     pagePV = true
 
   [params.reward]                                         # 文章打赏
-    enable = false
-    wechat = "/path/to/your/wechat-qr-code.png"           # 微信二维码
-    alipay = "/path/to/your/alipay-qr-code.png"           # 支付宝二维码
+    enable = true
+    wechat = "/image/wechat-qr-code.png"           # 微信二维码
+    alipay = "/image/alipay-qr-code.png"           # 支付宝二维码
 
   [params.social]                                         # 社交链接
     a-email = "mailto:liuqiang.ryan@gmail.com"
