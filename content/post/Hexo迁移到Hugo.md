@@ -1,6 +1,7 @@
 ---
 title: "Hexo迁移到Hugo"
 date: 2020-11-23T16:35:28+08:00
+lastmod: 2020-12-04T16:04:28+08:00
 categories: ["Blog", "Hexo", "Hugo"]
 tags: ["Blog", "Hexo", "Hugo", "博客迁移", "wercker"]
 draft: false
@@ -133,7 +134,7 @@ wercker难点就是hugo的官方文档都是八百年前的教程了。
                git submodule init
                git submodule update --remote --recursive
        - arjen/hugo-build@2.14.0:
-           version: "0.78.2"
+           version: "0.79.0"
            theme: even
            flags: --environment=production
    
@@ -170,9 +171,9 @@ wercker难点就是hugo的官方文档都是八百年前的教程了。
 
 ```yaml
 - arjen/hugo-build@2.14.0:
-        version: "0.78.2"
+        version: "0.79.0"
         theme: even
-        flags: --buildDrafts=true --environment=production
+        flags: --environment=production
 ```
 
 ```yaml
