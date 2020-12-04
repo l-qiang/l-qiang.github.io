@@ -1,8 +1,6 @@
-box: golang:latest
-
 build:
   box:
-    id: golang
+    id: golang:latest
     username: $DOCKERHUB_USERNAME
     password: $DOCKERHUB_PASSWORD
   steps:
