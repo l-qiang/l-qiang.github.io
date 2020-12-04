@@ -1,6 +1,10 @@
 box: golang:latest
 
 build:
+  box:
+    id: golang
+    username: $DOCKERHUB_USERNAME
+    password: $DOCKERHUB_PASSWORD
   steps:
     - script:
         name: initialize and update git submodules
