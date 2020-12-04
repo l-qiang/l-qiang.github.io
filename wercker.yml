@@ -1,4 +1,3 @@
-box: golang:latest
 build:
   box:
     id: golang:latest
@@ -16,6 +15,10 @@ build:
         flags: --environment=production
 
 deploy:
+  box:
+    id: golang:latest
+    username: $DOCKERHUB_USERNAME
+    password: $DOCKERHUB_PASSWORD
   steps:
     - install-packages:
             packages: git ssh-client
