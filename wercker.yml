@@ -1,4 +1,4 @@
-box:golang:latest
+box: golang:latest
 build:
   box:
     username: $DOCKERHUB_USERNAME
