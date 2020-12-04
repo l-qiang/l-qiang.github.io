@@ -1,8 +1,9 @@
+box:
+  id: golang:latest
+  username: $DOCKERHUB_USERNAME
+  password: $DOCKERHUB_PASSWORD
+
 build:
-  box:
-    id: golang:latest
-    username: $DOCKERHUB_USERNAME
-    password: $DOCKERHUB_PASSWORD
   steps:
     - script:
         name: initialize and update git submodules
@@ -15,10 +16,6 @@ build:
         flags: --environment=production
 
 deploy:
-  box:
-    id: golang:latest
-    username: $DOCKERHUB_USERNAME
-    password: $DOCKERHUB_PASSWORD
   steps:
     - install-packages:
             packages: git ssh-client
