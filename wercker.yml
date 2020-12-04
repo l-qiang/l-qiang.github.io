@@ -1,8 +1,8 @@
-build:
-  box:
-    id: golang:latest
+box:
+  id: golang:latest
     username: $DOCKERHUB_USERNAME
     password: $DOCKERHUB_PASSWORD
+build:
   steps:
     - script:
         name: initialize and update git submodules
