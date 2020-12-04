@@ -135,7 +135,7 @@ wercker难点就是hugo的官方文档都是八百年前的教程了。
        - arjen/hugo-build@2.14.0:
            version: "0.78.2"
            theme: even
-           flags: --buildDrafts=true --environment=production
+           flags: --environment=production
    
    deploy:
      steps:
