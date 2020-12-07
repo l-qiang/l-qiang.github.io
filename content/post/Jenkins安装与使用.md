@@ -4,8 +4,10 @@ date: 2020-12-02T13:49:36+08:00
 categories: ["Jenkins"]
 tags: ["Jenkins", "Linux", "OpenJDK"]
 keywords: ["Jenkins", "Linux", "OpenJDK"]
-draft: true
+draft: false
 ---
+
+<!--more-->
 
 ## 安装准备JDK
 
@@ -61,7 +63,7 @@ yum install java-1.8.0-openjdk-devel
 
 2. 将war包上传到服务器。
 
-   这里我直接使用rz。没有的这个命令的话需要安装`lrzsz`
+   这里我直接使用rz。（没有的这个命令的话需要安装`lrzsz`）
 
    ```shell
    rz
@@ -85,11 +87,11 @@ yum install java-1.8.0-openjdk-devel
 
 ### 插件安装
 
-由于不能访问外网，所以只能离线安装了。
-
-通过**Manage Jenkins**->**Manage Plugins**->**advanced**下的**Upload Plugin**上传`.hpi`即可安装
-
 - 中文
+
+  由于不能访问外网，这里选择了离线安装。
+
+  通过**Manage Jenkins**->**Manage Plugins**->**advanced**下的**Upload Plugin**上传`.hpi`即可安装
 
   我们可以在[https://plugins.jenkins.io/](https://plugins.jenkins.io/)下载插件。
 
@@ -103,12 +105,46 @@ yum install java-1.8.0-openjdk-devel
 
   用下载的文件一上传就发现报错了。因为这个插件需要依赖[Localization Support ≥ 1.1](https://plugins.jenkins.io/localization-support/)，所以需要先将依赖的插件安装完。
 
-  安装完，效果如下
-
-  ![这是一张图片](/image/Jenkins安装与使用/1.png)
-
 - Maven Integration
 
-  这个插件离线安装的话，额，俄罗斯套娃似的依赖。所以我放弃了，选择申请机器访问外网。
-
+  俄罗斯套娃似的依赖，所以，请务必在线安装。
   
+  在线安装实在是好用太多，在已安装插件里能将插件降级，比如上面的本地化插件就是因为版本太高导致效果不太好。
+  
+  ![这是一张图片](/image/Jenkins安装与使用/1.png)
+  
+  可以看到，会自动安装依赖的插件。
+  
+  ![这是一张图片](/image/Jenkins安装与使用/3.png)
+  
+  虽然，这里显示一些插件安装失败了，但是[重启Jenkins](http://localhost:8080/restart)之后，`Maven Integration`已经安装好了
+  
+- Publish Over SSH
+
+  添加这个插件可以在系统配置里添加发布的服务器。
+
+- Subversion
+
+  添加完这个插件可以，新建的任务里就有`Subversion`选项了。
+
+{{% admonition info%}}
+
+`降低版本`有时候是必须的，比如这里我就因为其他插件版本太高导致无法成功安装`Maven Integration`
+
+{{% /admonition %}}
+
+## 安装Maven
+
+我们这里选择直接使用Jenkins的`全局工具配置`来安装Maven，选择**自动安装**，然后在第一次使用Maven的时候就会把Maven安装上。
+
+安装目录在`/home/用户目录/.jenkins/tools/hudson.tasks.Maven_MavenInstallation/maven-3.6.3`
+
+## 部署
+
+流程：
+
+1. 使用`Subversion`将SVN上的Maven项目Checkout下来。Checkout的代码在`/home/用户目录/.jenkins/workspace`。
+2. 使用`Maven`打包项目
+3. 使用`Publish Over SSH`，将第2步中生成的jar包上传到目标服务器后，使用shell脚本启动应用程序。
+
+
