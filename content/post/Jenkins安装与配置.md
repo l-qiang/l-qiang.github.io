@@ -1,5 +1,5 @@
 ---
-title: "Jenkins安装与使用"
+title: "Jenkins安装与配置"
 date: 2020-12-02T13:49:36+08:00
 categories: ["Jenkins"]
 tags: ["Jenkins", "Linux", "OpenJDK"]
@@ -97,11 +97,11 @@ yum install java-1.8.0-openjdk-devel
 
   搜索`Localization`
 
-  ![这是一张图片](/image/Jenkins安装与使用/2.png)
+  ![这是一张图片](/image/Jenkins安装与配置/2.png)
 
   选择`Localization: Chinese (Simplified)`，然后下载`.hpi`文件。
 
-  ![这是一张图片](/image/Jenkins安装与使用/4.png)
+  ![这是一张图片](/image/Jenkins安装与配置/4.png)
 
   用下载的文件一上传就发现报错了。因为这个插件需要依赖[Localization Support ≥ 1.1](https://plugins.jenkins.io/localization-support/)，所以需要先将依赖的插件安装完。
 
@@ -111,17 +111,17 @@ yum install java-1.8.0-openjdk-devel
   
   在线安装实在是好用太多，在已安装插件里能将插件降级，比如上面的本地化插件就是因为版本太高导致效果不太好。
   
-  ![这是一张图片](/image/Jenkins安装与使用/1.png)
+  ![这是一张图片](/image/Jenkins安装与配置/1.png)
   
   可以看到，会自动安装依赖的插件。
   
-  ![这是一张图片](/image/Jenkins安装与使用/3.png)
+  ![这是一张图片](/image/Jenkins安装与配置/3.png)
   
   虽然，这里显示一些插件安装失败了，但是[重启Jenkins](http://localhost:8080/restart)之后，`Maven Integration`已经安装好了
   
 - Publish Over SSH
 
-  添加这个插件可以在系统配置里添加发布的服务器。
+  添加这个插件可以在系统配置里添加发布的服务器，并将文件传输到服务器。
 
 - Subversion
 
@@ -137,14 +137,11 @@ yum install java-1.8.0-openjdk-devel
 
 我们这里选择直接使用Jenkins的`全局工具配置`来安装Maven，选择**自动安装**，然后在第一次使用Maven的时候就会把Maven安装上。
 
-安装目录在`/home/用户目录/.jenkins/tools/hudson.tasks.Maven_MavenInstallation/maven-3.6.3`
+![这是一张图片](/image/Jenkins安装与配置/5.png)
 
-## 部署
+如果需要修改**setting.xml**，请在安装Jenkins的服务器上的下列目录修改。
 
-流程：
-
-1. 使用`Subversion`将SVN上的Maven项目Checkout下来。Checkout的代码在`/home/用户目录/.jenkins/workspace`。
-2. 使用`Maven`打包项目
-3. 使用`Publish Over SSH`，将第2步中生成的jar包上传到目标服务器后，使用shell脚本启动应用程序。
-
+```
+/home/用户目录/.jenkins/tools/hudson.tasks.Maven_MavenInstallation/maven-3.6.3
+```
 
