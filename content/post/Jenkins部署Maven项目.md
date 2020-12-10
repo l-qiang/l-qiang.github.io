@@ -97,5 +97,11 @@ cd backup/ || exit
 ls -lt|awk 'NR>5{print $NF}'|xargs rm -rf
 ```
 
+{{% admonition warning "注意" %}}
 
+shell脚本换行符得是`\n`，这个可以在编辑的时候使用IDEA，然后在右下角修改。
+
+![图片](/image/Jenkins部署Maven项目/6.png)
+
+{{% /admonition %}}
 
