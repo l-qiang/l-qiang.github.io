@@ -72,7 +72,7 @@ yum install java-1.8.0-openjdk-devel
 3. 启动Jenkins
 
    ```
-   nohup java -jar jenkins.war &
+   nohup java -jar jenkins.war >jenkins.log 2>&1 &
    ```
 
 ## 配置Jenkins
