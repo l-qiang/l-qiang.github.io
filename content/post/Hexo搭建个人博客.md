@@ -278,7 +278,7 @@ hexo clean
 
 评论系统我选的Gitalk。嗯，我比较喜欢GitHub那一套。
 
-具体过程，按照过程来就行。
+具体过程，按照Gitalk的文档来就行。
 
 需要注意的就是这个配置`next/_config.yml`
 
