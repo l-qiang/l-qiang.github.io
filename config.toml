@@ -1,4 +1,4 @@
-baseURL = "https://l-qiang.github.io/"
+baseURL = "https://blog.l-qiang.xyz/"
 languageCode = "zh-cn"
 defaultContentLanguage = "zh-cn"                             # en / zh-cn / ... (This field determines which i18n file to use)
 title = "L-Qiang"
