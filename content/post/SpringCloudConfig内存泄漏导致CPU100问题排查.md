@@ -232,3 +232,25 @@ MAT,YYDS。
 
 详见：[JDK-4872014](https://bugs.openjdk.java.net/browse/JDK-4872014)
 
+{{% admonition info %}}
+
+```java
+public void deleteOnExit() {
+        SecurityManager security = System.getSecurityManager();
+        if (security != null) {
+            security.checkDelete(path);
+        }
+        if (isInvalid()) {
+            return;
+        }
+        DeleteOnExitHook.add(path);
+    }
+```
+
+`File.deleteOnExit`的作用就是在JVM退出的时候删除文件。
+
+调用`File.deleteOnExit`会将路径添加到`DeleteOnExitHook`中的LinkedHashSet里面，如果不断添加，那么就会内存溢出。
+
+所以`File.deleteOnExit`不能随便作为`File.delete()`的候选方法，比如：我怕`File.delete()`没删掉，然后调用`File.deleteOnExit`。这么做，如果是会创建大量文件的话，那么就很容易把内存撑爆了。
+
+{{% /admonition %}}
