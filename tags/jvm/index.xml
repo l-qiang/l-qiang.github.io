@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JVM on L-Qiang</title>
+    <link>https://blog.l-qiang.xyz/tags/jvm/</link>
+    <description>Recent content in JVM on L-Qiang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 09 Jun 2021 12:37:05 +0800</lastBuildDate><atom:link href="https://blog.l-qiang.xyz/tags/jvm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Spring Cloud Config内存泄漏导致CPU100%问题排查</title>
+      <link>https://blog.l-qiang.xyz/post/springcloudconfig%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%AF%BC%E8%87%B4cpu100%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/</link>
+      <pubDate>Wed, 09 Jun 2021 12:37:05 +0800</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/springcloudconfig%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%AF%BC%E8%87%B4cpu100%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/</guid>
+      <description>&lt;p&gt;前段时间，作为工具人的我被要求排查某台服务器&lt;code&gt;CPU 100%&lt;/code&gt;。当时听了内心狂喜，终于让我遇到CPU 100%问题了。但是，当时服务器着急重启，没有足够的时间给我排查问题，但是我还是在重启之前把堆Dump文件保存了下来。&lt;/p&gt;
+&lt;p&gt;这两天忙里偷闲就想着分析一下原因。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>线上定时任务长时间未结束问题诊断</title>
+      <link>https://blog.l-qiang.xyz/post/%E7%BA%BF%E4%B8%8A%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E9%95%BF%E6%97%B6%E9%97%B4%E6%9C%AA%E7%BB%93%E6%9D%9F%E9%97%AE%E9%A2%98%E8%AF%8A%E6%96%AD/</link>
+      <pubDate>Mon, 23 Nov 2020 11:25:22 +0800</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/%E7%BA%BF%E4%B8%8A%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E9%95%BF%E6%97%B6%E9%97%B4%E6%9C%AA%E7%BB%93%E6%9D%9F%E9%97%AE%E9%A2%98%E8%AF%8A%E6%96%AD/</guid>
+      <description>&lt;p&gt;最近线上经常出现定时任务长时间运行不结束的问题，最终通过日志及线程堆栈分析定位到具体代码从而得到解决。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>记一次Java线程堆栈分析</title>
+      <link>https://blog.l-qiang.xyz/post/%E8%AE%B0%E4%B8%80%E6%AC%A1java%E7%BA%BF%E7%A8%8B%E5%A0%86%E6%A0%88%E5%88%86%E6%9E%90/</link>
+      <pubDate>Wed, 30 Oct 2019 13:44:41 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/%E8%AE%B0%E4%B8%80%E6%AC%A1java%E7%BA%BF%E7%A8%8B%E5%A0%86%E6%A0%88%E5%88%86%E6%9E%90/</guid>
+      <description>最新某系统经常出现无法登录，不能响应请求的情况。一开始找上我的时候，他们已经通过重启恢复了，然后让我查原因。我表示一脸懵逼，啥都没有就让我解</description>
+    </item>
+    
+  </channel>
+</rss>

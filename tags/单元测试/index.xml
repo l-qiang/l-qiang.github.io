@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>单元测试 on L-Qiang</title>
+    <link>https://blog.l-qiang.xyz/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</link>
+    <description>Recent content in 单元测试 on L-Qiang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 03 Nov 2020 15:45:19 +0000</lastBuildDate><atom:link href="https://blog.l-qiang.xyz/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>踩坑SpringBoot单元测试与spring.profiles.active</title>
+      <link>https://blog.l-qiang.xyz/post/%E8%B8%A9%E5%9D%91springboot%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E4%B8%8Espring.profiles.active/</link>
+      <pubDate>Tue, 03 Nov 2020 15:45:19 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/%E8%B8%A9%E5%9D%91springboot%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E4%B8%8Espring.profiles.active/</guid>
+      <description>&lt;p&gt;今天运行单元测试的时候，突然就报错了，大概意思就是无法解析${spring.profiles.active}，但是之前的跑完全没问呀，而且单测的类上已经加了&lt;code&gt;@ActiveProfiles&lt;/code&gt;注解了。为什么呢？&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

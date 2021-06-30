@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo on L-Qiang</title>
+    <link>https://blog.l-qiang.xyz/categories/hugo/</link>
+    <description>Recent content in Hugo on L-Qiang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 14 Apr 2021 15:53:01 +0800</lastBuildDate><atom:link href="https://blog.l-qiang.xyz/categories/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>博客自定义域名-为什么CNAME内容消失了</title>
+      <link>https://blog.l-qiang.xyz/post/%E5%8D%9A%E5%AE%A2%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D-%E4%B8%BA%E4%BB%80%E4%B9%88cname%E5%86%85%E5%AE%B9%E6%B6%88%E5%A4%B1%E4%BA%86/</link>
+      <pubDate>Wed, 14 Apr 2021 15:53:01 +0800</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/%E5%8D%9A%E5%AE%A2%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D-%E4%B8%BA%E4%BB%80%E4%B9%88cname%E5%86%85%E5%AE%B9%E6%B6%88%E5%A4%B1%E4%BA%86/</guid>
+      <description>&lt;p&gt;现象是这样的：在static目录下新建了一个&lt;code&gt;CNAME&lt;/code&gt;文件，并填写了域名&lt;code&gt;blog.l-qiang.xyz&lt;/code&gt;。但是，使用Git将更改push到Github之后，发现gh-pages分支下的&lt;code&gt;CNAME&lt;/code&gt;的内容为&lt;strong&gt;空&lt;/strong&gt;，&lt;code&gt;blog.l-qiang.xyz&lt;/code&gt;竟然消失了！！！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Wercker部署Hugo博客拉取Docker镜像出错问题解决</title>
+      <link>https://blog.l-qiang.xyz/post/wercker%E9%83%A8%E7%BD%B2hugo%E5%8D%9A%E5%AE%A2%E6%8B%89%E5%8F%96docker%E9%95%9C%E5%83%8F%E5%87%BA%E9%94%99%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</link>
+      <pubDate>Fri, 04 Dec 2020 17:27:46 +0800</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/wercker%E9%83%A8%E7%BD%B2hugo%E5%8D%9A%E5%AE%A2%E6%8B%89%E5%8F%96docker%E9%95%9C%E5%83%8F%E5%87%BA%E9%94%99%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</guid>
+      <description>&lt;p&gt;话不多说，直接上错误信息。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;fetch failed to pull image golang: API error (500): {&amp;ldquo;message&amp;rdquo;:&amp;ldquo;toomanyrequests: You have reached your pull rate limit. You may increase the limit by authenticating and upgrading: &lt;a href=&#34;https://www.docker.com/increase-rate-limit%22%7D&#34;&gt;https://www.docker.com/increase-rate-limit&amp;quot;}&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hexo迁移到Hugo</title>
+      <link>https://blog.l-qiang.xyz/post/hexo%E8%BF%81%E7%A7%BB%E5%88%B0hugo/</link>
+      <pubDate>Mon, 23 Nov 2020 16:35:28 +0800</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/hexo%E8%BF%81%E7%A7%BB%E5%88%B0hugo/</guid>
+      <description>&lt;p&gt;之前一直一直使用Hexo，后来发现Hugo比Hexo看起来就好用，于是就从Hexo迁到Hugo。&lt;/p&gt;
+&lt;p&gt;Hexo建博客及本文的一些操作可参考&lt;a href=&#34;https://blog.l-qiang.xyz/post/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/&#34;&gt;Hexo搭建个人博客&lt;/a&gt;。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

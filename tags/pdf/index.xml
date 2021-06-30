@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PDF on L-Qiang</title>
+    <link>https://blog.l-qiang.xyz/tags/pdf/</link>
+    <description>Recent content in PDF on L-Qiang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 10 Jan 2020 20:37:23 +0000</lastBuildDate><atom:link href="https://blog.l-qiang.xyz/tags/pdf/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>iText合并PDF和添加书签</title>
+      <link>https://blog.l-qiang.xyz/post/itext%E5%90%88%E5%B9%B6pdf%E5%92%8C%E6%B7%BB%E5%8A%A0%E4%B9%A6%E7%AD%BE/</link>
+      <pubDate>Fri, 10 Jan 2020 20:37:23 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/itext%E5%90%88%E5%B9%B6pdf%E5%92%8C%E6%B7%BB%E5%8A%A0%E4%B9%A6%E7%AD%BE/</guid>
+      <description>&lt;p&gt;关于这个问题，其实在iText官网和Stack Overflow上面都有答案。之所以还要记录是想有更多人看到简单易懂的解决办法。因为我不想再有人直接CSDN搜一个，不管是否要新引入Jar包也不管代码是否复杂，然后告诉我参考那个写。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://itextpdf.com/en/resources/examples/itext-5-legacy/merging-documents-bookmarks#39-mergewithoutlines.java&#34;&gt;官网例子&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

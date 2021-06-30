@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JMolecules on L-Qiang</title>
+    <link>https://blog.l-qiang.xyz/tags/jmolecules/</link>
+    <description>Recent content in JMolecules on L-Qiang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 22 Apr 2021 10:22:27 +0800</lastBuildDate><atom:link href="https://blog.l-qiang.xyz/tags/jmolecules/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JMolecules究竟是啥,竟然Spring Data JDBC都为它单独给了example</title>
+      <link>https://blog.l-qiang.xyz/post/jmolecules%E7%A9%B6%E7%AB%9F%E6%98%AF%E5%95%A5%E7%AB%9F%E7%84%B6spring-data-jdbc%E9%83%BD%E5%8D%95%E7%8B%AC%E7%BB%99%E4%BA%86example/</link>
+      <pubDate>Thu, 22 Apr 2021 10:22:27 +0800</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/jmolecules%E7%A9%B6%E7%AB%9F%E6%98%AF%E5%95%A5%E7%AB%9F%E7%84%B6spring-data-jdbc%E9%83%BD%E5%8D%95%E7%8B%AC%E7%BB%99%E4%BA%86example/</guid>
+      <description>&lt;p&gt;前两天在选择Demo工程的框架的时候，选了从未用过的&lt;code&gt;Spring Data JDBC&lt;/code&gt;。在官方给出的&lt;em&gt;Examples&lt;/em&gt;里，发现有个单独的模块&lt;a href=&#34;https://github.com/spring-projects/spring-data-examples/tree/main/jdbc/jmolecules&#34;&gt;&lt;strong&gt;jmolecules-example&lt;/strong&gt;&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;我感觉挺惊讶的，Spring官方竟然给一个在Github上&lt;strong&gt;star&lt;/strong&gt;不超过&lt;code&gt;400&lt;/code&gt;（截止到2021-4-22）的项目给了单独的使用示例。&lt;/p&gt;
+&lt;p&gt;但是，我看到这个项目的第一眼就&lt;strong&gt;star&lt;/strong&gt;上了。用注解和接口表达&lt;code&gt;领域驱动设计中&lt;/code&gt;的概念，实在是太&lt;code&gt;coooool&lt;/code&gt;了。&lt;/p&gt;
+&lt;p&gt;所以，我就决定将这个示例&lt;a href=&#34;https://github.com/spring-projects/spring-data-examples/tree/main/jdbc/jmolecules&#34;&gt;&lt;strong&gt;jmolecules-example&lt;/strong&gt;&lt;/a&gt;，clone下来研究一下。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

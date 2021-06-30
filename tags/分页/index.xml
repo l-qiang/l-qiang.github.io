@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>分页 on L-Qiang</title>
+    <link>https://blog.l-qiang.xyz/tags/%E5%88%86%E9%A1%B5/</link>
+    <description>Recent content in 分页 on L-Qiang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 20 Aug 2019 16:25:33 +0000</lastBuildDate><atom:link href="https://blog.l-qiang.xyz/tags/%E5%88%86%E9%A1%B5/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>关于Spring Data Jpa使用@Query分页查询的问题</title>
+      <link>https://blog.l-qiang.xyz/post/%E5%85%B3%E4%BA%8Espringdatajpa%E4%BD%BF%E7%94%A8query%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2%E7%9A%84%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Tue, 20 Aug 2019 16:25:33 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/%E5%85%B3%E4%BA%8Espringdatajpa%E4%BD%BF%E7%94%A8query%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2%E7%9A%84%E9%97%AE%E9%A2%98/</guid>
+      <description>原本没有想过要用@Query来查询的，毕竟JpaRepository提供的方法已经基本够用了。但是今天这个sql比较特殊可能要用正则匹配，然</description>
+    </item>
+    
+  </channel>
+</rss>
