@@ -1,7 +1,7 @@
 ## 个人信息
 
 - **刘强**/男/28岁/湖南/汉族/党员
-- 手机：`15510907115`，邮箱：liuqiang.ryan@gmail.com
+- 手机：`15510907115`，邮箱：l.qiang.xyz@gmail.com
 - 博客：https://blog.l-qiang.xyz/
 - Github：https://github.com/l-qiang
 

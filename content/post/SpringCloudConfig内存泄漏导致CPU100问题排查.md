@@ -49,6 +49,16 @@ keywords: ["Spring Cloud Config" ,"JVM", "MAT", "内存泄漏", "CPU100%", "Dele
 
    结果忘截图了。不过结果很明显，4个线程都是**垃圾收集线程**。
 
+{{% admonition warning 注意 %}}
+
+执行jstack的用户需要与启动Java进程的用户一致。可通过以下命令查看启动Java进程的用户。
+
+```shell
+ps -ef | grep java
+```
+
+{{% /admonition %}}
+
 ### 垃圾收集
 
 所以，究竟是为什么导致垃圾收集吃满了CPU呢？
