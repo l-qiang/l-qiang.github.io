@@ -15,7 +15,7 @@
 
 - **计算机基础**：熟悉计算机网络、数据结构、算法、操作系统等课内基础知识。
 - **Java**：熟练掌握Java基础知识、Java并发、JVM，有过JVM排查问题的经历。
-- **框架**：熟练使用Spring、Spring MVC、Spring Boot、Mybatis、Spring Security等主流开发框架。
+- **框架**：熟练使用Spring、Spring MVC、Spring Boot、Mybatis等主流开发框架。
 - **Linux**：熟练使用Linux的常用操作命令。
 - **数据库**：熟练掌握MySQL数据库以及常见优化手段（比如索引、SQL优化），熟悉Redis。
 - **CI/CD**:  熟悉使用Jenkins、Docker。
