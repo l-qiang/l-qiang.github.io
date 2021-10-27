@@ -82,14 +82,16 @@ ssh-agent bash
 
 在`~/.ssh/`目录（也就是存放密钥的目录）下创建**config**文件，并将以下内容修改后写入**config**文件。
 
-> Host github.com
->     HostName github.com
->     User git
->     IdentityFile ~/.ssh/id_rsa_github
-> Host gitlab.com
->     HostName gitlab.com
->     User git
->     IdentityFile ~/.ssh/id_rsa_gitlab
+```
+Host github.com
+ HostName github.com
+ User git
+ IdentityFile ~/.ssh/id_rsa_github
+Host gitlab.com
+ HostName gitlab.com
+ User git
+ IdentityFile ~/.ssh/id_rsa_gitlab
+```
 
 {{% admonition warning "注意" %}}
 
