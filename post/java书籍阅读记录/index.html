@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Java书籍阅读记录 - L-Qiang</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="刘强" /><meta name="description" content="有些书值得二刷，有些书第一刷都觉得浪费时间。记录下最近看的书，以前看的记不起就暂时不列了，后面如果再次二刷到再记录。
+" /><meta name="keywords" content="刘强, Java, Spring, MySQL, Blog, Docker, Linux, Redis, Zookeeper" />
+
+
+<meta name="baidu-site-verification" content="code-aOguXvJrXJ" />
+<meta name="google-site-verification" content="q9bP2qBubZQnLPEVZsEaqAVrsSTjpyAvMvA-Rf2VKXA" />
+
+
+<meta name="generator" content="Hugo 0.90.0 with theme even" />
+
+
+<link rel="canonical" href="https://blog.l-qiang.xyz/post/java%E4%B9%A6%E7%B1%8D%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Java书籍阅读记录" />
+<meta property="og:description" content="有些书值得二刷，有些书第一刷都觉得浪费时间。记录下最近看的书，以前看的记不起就暂时不列了，后面如果再次二刷到再记录。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.l-qiang.xyz/post/java%E4%B9%A6%E7%B1%8D%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2019-09-04T19:38:10+00:00" />
+<meta property="article:modified_time" content="2020-11-23T21:33:00+00:00" />
+
+<meta itemprop="name" content="Java书籍阅读记录">
+<meta itemprop="description" content="有些书值得二刷，有些书第一刷都觉得浪费时间。记录下最近看的书，以前看的记不起就暂时不列了，后面如果再次二刷到再记录。"><meta itemprop="datePublished" content="2019-09-04T19:38:10+00:00" />
+<meta itemprop="dateModified" content="2020-11-23T21:33:00+00:00" />
+<meta itemprop="wordCount" content="1169">
+<meta itemprop="keywords" content="Java,书籍," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java书籍阅读记录"/>
+<meta name="twitter:description" content="有些书值得二刷，有些书第一刷都觉得浪费时间。记录下最近看的书，以前看的记不起就暂时不列了，后面如果再次二刷到再记录。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">L-Qiang</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">L-Qiang</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Java书籍阅读记录</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-09-04 </span>
+        <div class="post-category">
+            <a href="/categories/java/"> Java </a>
+            <a href="/categories/%E4%B9%A6%E7%B1%8D/"> 书籍 </a>
+            </div>
+          <span class="more-meta"> 约 1169 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    
+    <div class="post-content">
+      <p>有些书值得二刷，有些书第一刷都觉得浪费时间。记录下最近看的书，以前看的记不起就暂时不列了，后面如果再次二刷到再记录。</p>
+<p><strong>代码质量</strong>
+这些书算是近期收获最大的，毕竟提高代码质量不是一蹴而就的，这些肯定还会二刷。</p>
+<ol>
+<li>
+<p><code>敏捷软件开发：原则、模式与实践</code>
+这本书讲了面向对象的设计原则、部分设计模式，我们经常听到的单一职责，开放封闭，里氏替换等等，里面都有具体介绍和小实例。</p>
+</li>
+<li>
+<p><code>代码整洁之道</code>
+这本书也很厉害，非常全面地介绍了怎么写好整洁的代码。连注释盖怎么写都有整整一章介绍，当然好代码是不需要注释的。</p>
+</li>
+<li>
+<p><code>重构：改善既有的代码设计</code>
+短小精悍</p>
+</li>
+<li>
+<p><code>测试驱动开发</code>
+用例子告诉你什么叫TDD</p>
+</li>
+<li>
+<p><code>重构与模式</code>（待看）</p>
+</li>
+<li>
+<p><code>Head first 设计模式</code>
+讲得很清楚，但是并不全</p>
+</li>
+<li>
+<p><code>设计模式之禅</code></p>
+<p>中规中矩，没啥特色</p>
+</li>
+<li>
+<p><code>Effective Java</code></p>
+</li>
+<li>
+<p><code>领域驱动设计：软件核心复杂性应对之道</code></p>
+</li>
+<li>
+<p><code>实现领域驱动设计</code></p>
+</li>
+<li>
+<p><code>实现模式</code>（待看）</p>
+<p>等一个微信读书上架</p>
+</li>
+</ol>
+<p><strong>Zookeeper</strong></p>
+<ol>
+<li><code>从Paxos到Zookeeper  分布式一致性原理与实践</code>
+由于之前没怎么了解过Zookeeper，看到这本书就感觉。哇！太厉害了。想了解Paxos的也可以看，都知道这个协议很复杂，但是这本书真的能让你了解到Paxos。</li>
+</ol>
+<p><strong>算法相关</strong>
+LeetCode刷刷题也可以学到一些思路</p>
+<ol>
+<li>
+<p><code>算法</code>
+适合入门，内容真的不多</p>
+</li>
+<li>
+<p><code>算法导论</code>
+这个当初买了实体书，可以说非常难啃了，所以我就当买了就看了吧。因为需要大量的数学知识，数学我都还给老师了。</p>
+</li>
+<li>
+<p><code>编程珠玑</code>
+因为BitMap去看的，也就看了BitMap</p>
+</li>
+<li>
+<p><code>labuladong的算法小抄</code></p>
+</li>
+</ol>
+<p>目前看过一点点，有时候会有醍醐灌顶的感觉，但是这书的风评不太好。</p>
+<p><a href="https://leetcode-cn.com/circle/discuss/MKwnEl/">https://leetcode-cn.com/circle/discuss/MKwnEl/</a></p>
+<p><strong>Java</strong></p>
+<ol>
+<li><code>Java编程思想</code>
+买了就等于看了系列，书很厚当初看了一半，现在又没有去看的理由。</li>
+<li><code>Java并发编程实战</code></li>
+<li><code>Java性能优化权威指南</code></li>
+<li><code>深入理解Java虚拟机</code></li>
+</ol>
+<p><strong>Mysql</strong>
+有时间可以看看Mysql文档，比较详细了。</p>
+<ol>
+<li><code>高性能Mysql</code></li>
+<li><code>MySQL技术内幕：InnoDB存储引擎</code>
+快速浏览了第6章，相对于我的预期稍微有点失望，有些内容就完全是照搬官方文档。</li>
+</ol>
+<p><strong>Tomcat</strong></p>
+<ol>
+<li><code>深入剖析Tomcat</code>
+当初看的时候感觉，哇！厉害了！现在完全记不起讲啥了。</li>
+</ol>
+<p><strong>Spring</strong>
+Spring相关的文档就可以了吧</p>
+<ol>
+<li><code>Spring技术内幕</code>
+买了实体书，但是真的不适合我</li>
+<li><code>Spring Boot揭秘</code>
+我觉得不行</li>
+<li><code>Spring Cloud微服务架构开发实战</code>
+感觉什么都讲了，也感觉什么都没讲。不如自己看博客，文档</li>
+<li><code>Spring实战</code>
+这个好像还可以，很久之前看过</li>
+<li><code>精通Spring 4.x ――企业应用开发实战</code>
+同上</li>
+</ol>
+<p><strong>计算机网络</strong></p>
+<ol>
+<li>
+<p><code>图解HTTP</code></p>
+</li>
+<li>
+<p><code>计算机网络(第7版)-谢希仁</code></p>
+<p>之前上学时候的课本，全忘了。现在重新看感觉挺不错。</p>
+</li>
+<li>
+<p><code>TCP/IP详解 卷1</code></p>
+<p>说实话看完上面这本，我在看这本感觉看不太下去。就看了前面一点点，我觉得也并不详细呀。</p>
+</li>
+</ol>
+<p><strong>安全</strong></p>
+<ol>
+<li>
+<p><code>白帽子讲Web安全</code></p>
+<p>久闻大名，我看起来感觉十分的枯燥。</p>
+</li>
+</ol>
+<p><strong>其他</strong></p>
+<ol>
+<li><code>代码大全</code>
+现在看起来觉得很枯燥，就看了一两章，以后再看</li>
+<li><code>大型网站系统与Java中间件实践</code></li>
+<li><code>Netty实战</code>
+好像看过两遍，但是我现在还是忘了看了啥。</li>
+</ol>
+<p>​</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">刘强</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-11-23
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/image/wechat-qr-code.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/image/alipay-qr-code.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/java/">Java</a>
+          <a href="/tags/%E4%B9%A6%E7%B1%8D/">书籍</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/spring.mvc.favicon.enabled%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%B5%B7%E4%BD%9C%E7%94%A8/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">spring.mvc.favicon.enabled为什么不起作用？</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/springboot%E6%B3%A8%E8%A7%A3%E4%B9%8Bconditionalonproperty/">
+            <span class="next-text nav-default">Spring Boot注解之@ConditionalOnProperty</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2019-09-04 19:38:10 \u002b0000 UTC',
+        title: 'Java书籍阅读记录',
+        clientID: 'c7698ac0c1888a422ff8',
+        clientSecret: '9e95b025bc3dad1fbf7ca56e6086afbe25117805',
+        repo: 'BlogGitalk',
+        owner: 'l-qiang',
+        admin: ['l-qiang'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:liuqiang.ryan@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/l-qiang" class="iconfont icon-github" title="github"></a>
+  <a href="https://blog.l-qiang.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>刘强</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-669K7NHHPY', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script id="baidu_push">
+  (function(){
+    if (window.location.hostname === 'localhost') return;
+    var bp = document.createElement('script'); bp.async = true;
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+
+
+</body>
+</html>

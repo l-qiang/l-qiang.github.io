@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker on L-Qiang</title>
+    <link>https://blog.l-qiang.xyz/categories/docker/</link>
+    <description>Recent content in Docker on L-Qiang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 04 Dec 2020 17:27:46 +0800</lastBuildDate><atom:link href="https://blog.l-qiang.xyz/categories/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Wercker部署Hugo博客拉取Docker镜像出错问题解决</title>
+      <link>https://blog.l-qiang.xyz/post/wercker%E9%83%A8%E7%BD%B2hugo%E5%8D%9A%E5%AE%A2%E6%8B%89%E5%8F%96docker%E9%95%9C%E5%83%8F%E5%87%BA%E9%94%99%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</link>
+      <pubDate>Fri, 04 Dec 2020 17:27:46 +0800</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/wercker%E9%83%A8%E7%BD%B2hugo%E5%8D%9A%E5%AE%A2%E6%8B%89%E5%8F%96docker%E9%95%9C%E5%83%8F%E5%87%BA%E9%94%99%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</guid>
+      <description>&lt;p&gt;话不多说，直接上错误信息。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;fetch failed to pull image golang: API error (500): {&amp;ldquo;message&amp;rdquo;:&amp;ldquo;toomanyrequests: You have reached your pull rate limit. You may increase the limit by authenticating and upgrading: &lt;a href=&#34;https://www.docker.com/increase-rate-limit%22%7D&#34;&gt;https://www.docker.com/increase-rate-limit&amp;quot;}&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>SpringBoot与Docker的经验分享</title>
+      <link>https://blog.l-qiang.xyz/post/springboot%E4%B8%8Edocker%E7%9A%84%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/</link>
+      <pubDate>Sun, 28 Jun 2020 14:19:36 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/springboot%E4%B8%8Edocker%E7%9A%84%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/</guid>
+      <description>&lt;p&gt;关于怎么将Spring Boot应用构建Docker镜像的教程，我们可以在Spring Boot的官网找到。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://spring.io/guides/gs/spring-boot-docker/&#34;&gt;Spring Boot with Docker&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://spring.io/guides/topicals/spring-boot-docker&#34;&gt;Spring Boot Docker&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;从上面两个教程中，我主要了解的就是怎么写好&lt;code&gt;Dockerfile&lt;/code&gt;，以及怎么构建镜像然后运行。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Docker Desktop安装后启动报Cannot enable Hyper-V service错误</title>
+      <link>https://blog.l-qiang.xyz/post/docker-desktop%E5%AE%89%E8%A3%85%E5%90%8E%E5%90%AF%E5%8A%A8%E6%8A%A5cannot-enable-hyper-v-service%E9%94%99%E8%AF%AF/</link>
+      <pubDate>Mon, 18 May 2020 20:26:46 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/docker-desktop%E5%AE%89%E8%A3%85%E5%90%8E%E5%90%AF%E5%8A%A8%E6%8A%A5cannot-enable-hyper-v-service%E9%94%99%E8%AF%AF/</guid>
+      <description>&lt;p&gt;今天在自己的Win10系统笔记本上装了个Docker Desktop，启动的时候报错Cannot enable Hyper-V service。&lt;/p&gt;
+&lt;p&gt;上网一查，很多都说的是在&lt;code&gt;控制面版-&amp;gt;程序-&amp;gt;程序和功能&lt;/code&gt;的&lt;code&gt;启用或关闭Windows功能&lt;/code&gt;里面把&lt;strong&gt;Hyper-V&lt;/strong&gt;开启就好了。&lt;/p&gt;
+&lt;p&gt;但是，我的电脑的&lt;strong&gt;Hyper-V&lt;/strong&gt;本来就是开着的呀。这确实让我头疼了好一会儿。究竟是怎么一回事呢？&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

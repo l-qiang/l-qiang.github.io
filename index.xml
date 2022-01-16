@@ -1,0 +1,839 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>L-Qiang</title>
+    <link>https://blog.l-qiang.xyz/</link>
+    <description>Recent content on L-Qiang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 26 Oct 2021 21:01:06 +0800</lastBuildDate><atom:link href="https://blog.l-qiang.xyz/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MySQL非索引列等号左边使用函数与右边使用函数的区别</title>
+      <link>https://blog.l-qiang.xyz/post/mysql%E9%9D%9E%E7%B4%A2%E5%BC%95%E5%88%97%E7%AD%89%E5%8F%B7%E5%B7%A6%E8%BE%B9%E4%BD%BF%E7%94%A8%E5%87%BD%E6%95%B0%E4%B8%8E%E5%8F%B3%E8%BE%B9%E4%BD%BF%E7%94%A8%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%BA%E5%88%AB/</link>
+      <pubDate>Tue, 26 Oct 2021 21:01:06 +0800</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/mysql%E9%9D%9E%E7%B4%A2%E5%BC%95%E5%88%97%E7%AD%89%E5%8F%B7%E5%B7%A6%E8%BE%B9%E4%BD%BF%E7%94%A8%E5%87%BD%E6%95%B0%E4%B8%8E%E5%8F%B3%E8%BE%B9%E4%BD%BF%E7%94%A8%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%BA%E5%88%AB/</guid>
+      <description>&lt;p&gt;MySQL查询&lt;strong&gt;upper(name) = &amp;lsquo;A&amp;rsquo;&lt;/strong&gt; 与 &lt;strong&gt;name = upper(&amp;lsquo;A&amp;rsquo;)&lt;strong&gt;哪个更快，我想在&lt;code&gt;name&lt;/code&gt;列为索引的情况下，都知道&lt;/strong&gt;后者&lt;/strong&gt;更快。那么&lt;code&gt;name&lt;/code&gt;列为非索引的情况哪个更快呢？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Git多账号配置</title>
+      <link>https://blog.l-qiang.xyz/post/git%E5%A4%9A%E8%B4%A6%E5%8F%B7%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Sun, 24 Oct 2021 22:07:41 +0800</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/git%E5%A4%9A%E8%B4%A6%E5%8F%B7%E9%85%8D%E7%BD%AE/</guid>
+      <description>&lt;p&gt;网上有太多关于Git多账号配置的文章了，给我的感觉就是很乱，没有找到一篇可以收藏的，所以还是决定自己写一篇记录一下。&lt;/p&gt;
+&lt;p&gt;暂时记录我的使用情况，后续有补充或修改再更新。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Spring Cloud Config内存泄漏导致CPU100%问题排查</title>
+      <link>https://blog.l-qiang.xyz/post/springcloudconfig%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%AF%BC%E8%87%B4cpu100%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/</link>
+      <pubDate>Wed, 09 Jun 2021 12:37:05 +0800</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/springcloudconfig%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%AF%BC%E8%87%B4cpu100%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/</guid>
+      <description>&lt;p&gt;前段时间，作为工具人的我被要求排查某台服务器&lt;code&gt;CPU 100%&lt;/code&gt;。当时听了内心狂喜，终于让我遇到CPU 100%问题了。但是，当时服务器着急重启，没有足够的时间给我排查问题，但是我还是在重启之前把堆Dump文件保存了下来。&lt;/p&gt;
+&lt;p&gt;这两天忙里偷闲就想着分析一下原因。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Flyway使用Java代码Repair</title>
+      <link>https://blog.l-qiang.xyz/post/flyway%E4%BD%BF%E7%94%A8java%E4%BB%A3%E7%A0%81repair/</link>
+      <pubDate>Tue, 01 Jun 2021 15:31:42 +0800</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/flyway%E4%BD%BF%E7%94%A8java%E4%BB%A3%E7%A0%81repair/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>JMolecules究竟是啥,竟然Spring Data JDBC都为它单独给了example</title>
+      <link>https://blog.l-qiang.xyz/post/jmolecules%E7%A9%B6%E7%AB%9F%E6%98%AF%E5%95%A5%E7%AB%9F%E7%84%B6spring-data-jdbc%E9%83%BD%E5%8D%95%E7%8B%AC%E7%BB%99%E4%BA%86example/</link>
+      <pubDate>Thu, 22 Apr 2021 10:22:27 +0800</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/jmolecules%E7%A9%B6%E7%AB%9F%E6%98%AF%E5%95%A5%E7%AB%9F%E7%84%B6spring-data-jdbc%E9%83%BD%E5%8D%95%E7%8B%AC%E7%BB%99%E4%BA%86example/</guid>
+      <description>&lt;p&gt;前两天在选择Demo工程的框架的时候，选了从未用过的&lt;code&gt;Spring Data JDBC&lt;/code&gt;。在官方给出的&lt;em&gt;Examples&lt;/em&gt;里，发现有个单独的模块&lt;a href=&#34;https://github.com/spring-projects/spring-data-examples/tree/main/jdbc/jmolecules&#34;&gt;&lt;strong&gt;jmolecules-example&lt;/strong&gt;&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;我感觉挺惊讶的，Spring官方竟然给一个在Github上&lt;strong&gt;star&lt;/strong&gt;不超过&lt;code&gt;400&lt;/code&gt;（截止到2021-4-22）的项目给了单独的使用示例。&lt;/p&gt;
+&lt;p&gt;但是，我看到这个项目的第一眼就&lt;strong&gt;star&lt;/strong&gt;上了。用注解和接口表达&lt;code&gt;领域驱动设计中&lt;/code&gt;的概念，实在是太&lt;code&gt;coooool&lt;/code&gt;了。&lt;/p&gt;
+&lt;p&gt;所以，我就决定将这个示例&lt;a href=&#34;https://github.com/spring-projects/spring-data-examples/tree/main/jdbc/jmolecules&#34;&gt;&lt;strong&gt;jmolecules-example&lt;/strong&gt;&lt;/a&gt;，clone下来研究一下。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>博客自定义域名-为什么CNAME内容消失了</title>
+      <link>https://blog.l-qiang.xyz/post/%E5%8D%9A%E5%AE%A2%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D-%E4%B8%BA%E4%BB%80%E4%B9%88cname%E5%86%85%E5%AE%B9%E6%B6%88%E5%A4%B1%E4%BA%86/</link>
+      <pubDate>Wed, 14 Apr 2021 15:53:01 +0800</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/%E5%8D%9A%E5%AE%A2%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D-%E4%B8%BA%E4%BB%80%E4%B9%88cname%E5%86%85%E5%AE%B9%E6%B6%88%E5%A4%B1%E4%BA%86/</guid>
+      <description>&lt;p&gt;现象是这样的：在static目录下新建了一个&lt;code&gt;CNAME&lt;/code&gt;文件，并填写了域名&lt;code&gt;blog.l-qiang.xyz&lt;/code&gt;。但是，使用Git将更改push到Github之后，发现gh-pages分支下的&lt;code&gt;CNAME&lt;/code&gt;的内容为&lt;strong&gt;空&lt;/strong&gt;，&lt;code&gt;blog.l-qiang.xyz&lt;/code&gt;竟然消失了！！！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Spring的@Lookup注解使用上的一些小问题</title>
+      <link>https://blog.l-qiang.xyz/post/spring%E7%9A%84lookup%E6%B3%A8%E8%A7%A3%E4%BD%BF%E7%94%A8%E4%B8%8A%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Tue, 13 Apr 2021 18:42:43 +0800</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/spring%E7%9A%84lookup%E6%B3%A8%E8%A7%A3%E4%BD%BF%E7%94%A8%E4%B8%8A%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E9%97%AE%E9%A2%98/</guid>
+      <description>&lt;p&gt;关于为什么要使用&lt;code&gt;@Lookup&lt;/code&gt;的原因，在我之前的博客&lt;a href=&#34;https://blog.l-qiang.xyz/post/spring%E6%B3%A8%E8%A7%A3%E4%B9%8Blookup/&#34;&gt;Spring注解之@Lookup&lt;/a&gt;中有写到。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Controller统一返回结果文件下载怎么处理？</title>
+      <link>https://blog.l-qiang.xyz/post/controller%E7%BB%9F%E4%B8%80%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%80%8E%E4%B9%88%E5%A4%84%E7%90%86/</link>
+      <pubDate>Thu, 14 Jan 2021 21:46:33 +0800</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/controller%E7%BB%9F%E4%B8%80%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%80%8E%E4%B9%88%E5%A4%84%E7%90%86/</guid>
+      <description>&lt;p&gt;我们经常会使用一个&lt;strong&gt;自定义&lt;/strong&gt;的Controller返回结果&lt;code&gt;Response&lt;/code&gt;，例如：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;43
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Response&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+
+    &lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;final&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;SUCCESS&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;final&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ERROR&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+
+    &lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;String&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;message&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;code&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;T&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+
+    &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;Response&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;String&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;message&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;code&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;T&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;message&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;message&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;code&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;code&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+
+    &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Response&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Void&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;error&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;String&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;msg&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Response&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;msg&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ERROR&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+
+    &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Response&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;success&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;T&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Response&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;success&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;SUCCESS&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+
+    &lt;span class=&#34;nd&#34;&gt;@JsonProperty&lt;/span&gt;
+    &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;T&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+
+    &lt;span class=&#34;nd&#34;&gt;@JsonProperty&lt;/span&gt;
+    &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;code&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;code&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+
+    &lt;span class=&#34;nd&#34;&gt;@JsonProperty&lt;/span&gt;
+    &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;String&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;message&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;message&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+
+    &lt;span class=&#34;nd&#34;&gt;@JsonIgnore&lt;/span&gt;
+    &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;boolean&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;isFileData&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;instanceof&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;FileData&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;但是，关于文件下载，我们一般就是在Controller修改&lt;strong&gt;HttpServletResponse&lt;/strong&gt;或者使用&lt;strong&gt;ResponseEntity&lt;/strong&gt;。如果，我不想在Controller中写这些，我想跟其他方法一样直接返回&lt;code&gt;Response&lt;/code&gt;，那该怎么做呢？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Jenkins的Pipeline插件实践</title>
+      <link>https://blog.l-qiang.xyz/post/jenkins%E7%9A%84pipeline%E6%8F%92%E4%BB%B6%E5%AE%9E%E8%B7%B5/</link>
+      <pubDate>Tue, 15 Dec 2020 21:12:12 +0800</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/jenkins%E7%9A%84pipeline%E6%8F%92%E4%BB%B6%E5%AE%9E%E8%B7%B5/</guid>
+      <description>&lt;p&gt;在Jenkins的&lt;a href=&#34;https://www.jenkins.io/doc/book/&#34;&gt;官方文档&lt;/a&gt;中，可以看到到处都是&lt;strong&gt;Pipeline&lt;/strong&gt;的身影，而且文档多数内容都是讲Pipeline。由此可见，Pipeline非常重要，我愿称之为Jenkins的精髓。最重要的是，Pipeline还很好用。接下来，以一个&lt;code&gt;多模块的Maven项目&lt;/code&gt;为例，记录一下我使用Pipeline的一些经验。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Jenkins部署Maven项目</title>
+      <link>https://blog.l-qiang.xyz/post/jenkins%E9%83%A8%E7%BD%B2maven%E9%A1%B9%E7%9B%AE/</link>
+      <pubDate>Thu, 10 Dec 2020 13:22:22 +0800</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/jenkins%E9%83%A8%E7%BD%B2maven%E9%A1%B9%E7%9B%AE/</guid>
+      <description>&lt;p&gt;这是关于我使用Jenkins部署Maven项目的经验之谈，包括了部署流程、Maven多模块的一些试验，以及使用&lt;code&gt;Publish Over SSH&lt;/code&gt;的问题。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Wercker部署Hugo博客拉取Docker镜像出错问题解决</title>
+      <link>https://blog.l-qiang.xyz/post/wercker%E9%83%A8%E7%BD%B2hugo%E5%8D%9A%E5%AE%A2%E6%8B%89%E5%8F%96docker%E9%95%9C%E5%83%8F%E5%87%BA%E9%94%99%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</link>
+      <pubDate>Fri, 04 Dec 2020 17:27:46 +0800</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/wercker%E9%83%A8%E7%BD%B2hugo%E5%8D%9A%E5%AE%A2%E6%8B%89%E5%8F%96docker%E9%95%9C%E5%83%8F%E5%87%BA%E9%94%99%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</guid>
+      <description>&lt;p&gt;话不多说，直接上错误信息。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;fetch failed to pull image golang: API error (500): {&amp;ldquo;message&amp;rdquo;:&amp;ldquo;toomanyrequests: You have reached your pull rate limit. You may increase the limit by authenticating and upgrading: &lt;a href=&#34;https://www.docker.com/increase-rate-limit%22%7D&#34;&gt;https://www.docker.com/increase-rate-limit&amp;quot;}&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>Jenkins安装与配置</title>
+      <link>https://blog.l-qiang.xyz/post/jenkins%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Wed, 02 Dec 2020 13:49:36 +0800</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/jenkins%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux新增用户及Jenkins使用新用户发布应用</title>
+      <link>https://blog.l-qiang.xyz/post/linux%E6%96%B0%E5%A2%9E%E7%94%A8%E6%88%B7%E5%8F%8Ajenkins%E4%BD%BF%E7%94%A8%E6%96%B0%E7%94%A8%E6%88%B7%E5%8F%91%E5%B8%83%E5%BA%94%E7%94%A8/</link>
+      <pubDate>Tue, 01 Dec 2020 16:21:09 +0800</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/linux%E6%96%B0%E5%A2%9E%E7%94%A8%E6%88%B7%E5%8F%8Ajenkins%E4%BD%BF%E7%94%A8%E6%96%B0%E7%94%A8%E6%88%B7%E5%8F%91%E5%B8%83%E5%BA%94%E7%94%A8/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Spring Boot Admin实践</title>
+      <link>https://blog.l-qiang.xyz/post/spring-boot-admin%E5%AE%9E%E8%B7%B5/</link>
+      <pubDate>Wed, 25 Nov 2020 21:17:44 +0800</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/spring-boot-admin%E5%AE%9E%E8%B7%B5/</guid>
+      <description>&lt;p&gt;接触到Spring Boot Admin还是因为需要一个方便查看日志的方式，Spring Boot Admin界面很友好而且还支持Eureka。Spring Boot Admin的文档真的是跟Spring系列的文档非常类似，详细又不那么详细。总体来说，这次Spring Boot Admin的使用还算比较顺利。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hexo迁移到Hugo</title>
+      <link>https://blog.l-qiang.xyz/post/hexo%E8%BF%81%E7%A7%BB%E5%88%B0hugo/</link>
+      <pubDate>Mon, 23 Nov 2020 16:35:28 +0800</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/hexo%E8%BF%81%E7%A7%BB%E5%88%B0hugo/</guid>
+      <description>&lt;p&gt;之前一直一直使用Hexo，后来发现Hugo比Hexo看起来就好用，于是就从Hexo迁到Hugo。&lt;/p&gt;
+&lt;p&gt;Hexo建博客及本文的一些操作可参考&lt;a href=&#34;https://blog.l-qiang.xyz/post/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/&#34;&gt;Hexo搭建个人博客&lt;/a&gt;。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>线上定时任务长时间未结束问题诊断</title>
+      <link>https://blog.l-qiang.xyz/post/%E7%BA%BF%E4%B8%8A%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E9%95%BF%E6%97%B6%E9%97%B4%E6%9C%AA%E7%BB%93%E6%9D%9F%E9%97%AE%E9%A2%98%E8%AF%8A%E6%96%AD/</link>
+      <pubDate>Mon, 23 Nov 2020 11:25:22 +0800</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/%E7%BA%BF%E4%B8%8A%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E9%95%BF%E6%97%B6%E9%97%B4%E6%9C%AA%E7%BB%93%E6%9D%9F%E9%97%AE%E9%A2%98%E8%AF%8A%E6%96%AD/</guid>
+      <description>&lt;p&gt;最近线上经常出现定时任务长时间运行不结束的问题，最终通过日志及线程堆栈分析定位到具体代码从而得到解决。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>开源框架及工具网站备忘录</title>
+      <link>https://blog.l-qiang.xyz/post/%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%8F%8A%E5%B7%A5%E5%85%B7%E7%BD%91%E7%AB%99%E5%A4%87%E5%BF%98%E5%BD%95/</link>
+      <pubDate>Fri, 06 Nov 2020 09:46:53 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%8F%8A%E5%B7%A5%E5%85%B7%E7%BD%91%E7%AB%99%E5%A4%87%E5%BF%98%E5%BD%95/</guid>
+      <description>&lt;p&gt;持续更新&amp;hellip;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>踩坑SpringBoot单元测试与spring.profiles.active</title>
+      <link>https://blog.l-qiang.xyz/post/%E8%B8%A9%E5%9D%91springboot%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E4%B8%8Espring.profiles.active/</link>
+      <pubDate>Tue, 03 Nov 2020 15:45:19 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/%E8%B8%A9%E5%9D%91springboot%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E4%B8%8Espring.profiles.active/</guid>
+      <description>&lt;p&gt;今天运行单元测试的时候，突然就报错了，大概意思就是无法解析${spring.profiles.active}，但是之前的跑完全没问呀，而且单测的类上已经加了&lt;code&gt;@ActiveProfiles&lt;/code&gt;注解了。为什么呢？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用@sun.misc.Contended注解后竟然...</title>
+      <link>https://blog.l-qiang.xyz/post/%E4%BD%BF%E7%94%A8contended%E6%B3%A8%E8%A7%A3%E5%90%8E%E7%AB%9F%E7%84%B6/</link>
+      <pubDate>Tue, 20 Oct 2020 16:44:32 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/%E4%BD%BF%E7%94%A8contended%E6%B3%A8%E8%A7%A3%E5%90%8E%E7%AB%9F%E7%84%B6/</guid>
+      <description>&lt;p&gt;一段代码使用@sun.misc.Contended注解后竟然&amp;hellip;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Spring Cloud升级记录</title>
+      <link>https://blog.l-qiang.xyz/post/springcloud%E5%8D%87%E7%BA%A7%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Thu, 24 Sep 2020 13:22:26 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/springcloud%E5%8D%87%E7%BA%A7%E8%AE%B0%E5%BD%95/</guid>
+      <description>&lt;p&gt;最近接到一个将所有项目的Spring Cloud升级到最新版的任务。一开始我觉得挺不容易的，比较目前我们的版本很低，真正做起来发现并没有想象中难。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Spring Cloud&lt;/code&gt;升级版本为&lt;del&gt;Edgware.SR1&lt;/del&gt; =&amp;gt; &lt;strong&gt;Hoxton.SR8&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Spring Boot&lt;/code&gt;升级版本为&lt;del&gt;1.5.20.RELEASE&lt;/del&gt;=&amp;gt; &lt;strong&gt;2.3.3.RELEASE&lt;/strong&gt;。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>SpringBoot与Docker的经验分享</title>
+      <link>https://blog.l-qiang.xyz/post/springboot%E4%B8%8Edocker%E7%9A%84%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/</link>
+      <pubDate>Sun, 28 Jun 2020 14:19:36 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/springboot%E4%B8%8Edocker%E7%9A%84%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/</guid>
+      <description>&lt;p&gt;关于怎么将Spring Boot应用构建Docker镜像的教程，我们可以在Spring Boot的官网找到。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://spring.io/guides/gs/spring-boot-docker/&#34;&gt;Spring Boot with Docker&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://spring.io/guides/topicals/spring-boot-docker&#34;&gt;Spring Boot Docker&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;从上面两个教程中，我主要了解的就是怎么写好&lt;code&gt;Dockerfile&lt;/code&gt;，以及怎么构建镜像然后运行。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>SpringBoot统一异常处理与404</title>
+      <link>https://blog.l-qiang.xyz/post/springboot%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E4%B8%8E404/</link>
+      <pubDate>Thu, 21 May 2020 14:40:29 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/springboot%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E4%B8%8E404/</guid>
+      <description>&lt;p&gt;几天前，我收到一封邮件，邮件是&lt;strong&gt;Chatra&lt;/strong&gt;的消息。有人问了我一个问题。从消息里我猜是关于SpringBoot统一异常处理与404的问题。当时，没啥时间就没去自己试。现在，我来说说我的解决办法。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.l-qiang.xyz/image/SpringBoot%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E4%B8%8E404/1.jpg&#34; alt=&#34;这是一张图片&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>maven RSA premaster secret error SunTls12RsaPremasterSecret KeyGenerator not available</title>
+      <link>https://blog.l-qiang.xyz/post/maven-rsa-premaster-secret-error-suntls12rsapremastersecret-keygenerator-not-available/</link>
+      <pubDate>Mon, 18 May 2020 20:51:29 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/maven-rsa-premaster-secret-error-suntls12rsapremastersecret-keygenerator-not-available/</guid>
+      <description>今天使用Maven打包的时候，报了一个maven RSA premaster secret error SunTls12RsaPremasterSecret KeyGenerator not available这样的错。而前面的报错信息给我的原因是某个Jar包下载不下来</description>
+    </item>
+    
+    <item>
+      <title>Docker Desktop安装后启动报Cannot enable Hyper-V service错误</title>
+      <link>https://blog.l-qiang.xyz/post/docker-desktop%E5%AE%89%E8%A3%85%E5%90%8E%E5%90%AF%E5%8A%A8%E6%8A%A5cannot-enable-hyper-v-service%E9%94%99%E8%AF%AF/</link>
+      <pubDate>Mon, 18 May 2020 20:26:46 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/docker-desktop%E5%AE%89%E8%A3%85%E5%90%8E%E5%90%AF%E5%8A%A8%E6%8A%A5cannot-enable-hyper-v-service%E9%94%99%E8%AF%AF/</guid>
+      <description>&lt;p&gt;今天在自己的Win10系统笔记本上装了个Docker Desktop，启动的时候报错Cannot enable Hyper-V service。&lt;/p&gt;
+&lt;p&gt;上网一查，很多都说的是在&lt;code&gt;控制面版-&amp;gt;程序-&amp;gt;程序和功能&lt;/code&gt;的&lt;code&gt;启用或关闭Windows功能&lt;/code&gt;里面把&lt;strong&gt;Hyper-V&lt;/strong&gt;开启就好了。&lt;/p&gt;
+&lt;p&gt;但是，我的电脑的&lt;strong&gt;Hyper-V&lt;/strong&gt;本来就是开着的呀。这确实让我头疼了好一会儿。究竟是怎么一回事呢？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>我的第一个微信小程序开发经验</title>
+      <link>https://blog.l-qiang.xyz/post/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/</link>
+      <pubDate>Sat, 09 May 2020 18:10:13 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/</guid>
+      <description>前段时间项目里要开发一个微信小程序，我也是临危受命吧，大概学习了几个小时，然后花了一天写好（功能比较简单所以&amp;hellip;）。一般使用一个</description>
+    </item>
+    
+    <item>
+      <title>解决Linux下使用Pdfbox将PDF转图片乱码问题</title>
+      <link>https://blog.l-qiang.xyz/post/%E8%A7%A3%E5%86%B3linux%E4%B8%8B%E4%BD%BF%E7%94%A8pdfbox%E5%B0%86pdf%E8%BD%AC%E5%9B%BE%E7%89%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Wed, 11 Mar 2020 18:11:31 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/%E8%A7%A3%E5%86%B3linux%E4%B8%8B%E4%BD%BF%E7%94%A8pdfbox%E5%B0%86pdf%E8%BD%AC%E5%9B%BE%E7%89%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/</guid>
+      <description>今天测试跟我说我们的PDF转换图片的时候会出现中文乱码，然而我在自己的电脑上验证的时候发现并不会出现乱码的问题，我的第一反应就是这不是代码的</description>
+    </item>
+    
+    <item>
+      <title>为什么Spring Boot读取UTF-8编码的properties会中文乱码？</title>
+      <link>https://blog.l-qiang.xyz/post/%E4%B8%BA%E4%BB%80%E4%B9%88springboot%E8%AF%BB%E5%8F%96utf-8%E7%BC%96%E7%A0%81%E7%9A%84properties%E4%BC%9A%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/</link>
+      <pubDate>Sun, 01 Mar 2020 09:41:04 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/%E4%B8%BA%E4%BB%80%E4%B9%88springboot%E8%AF%BB%E5%8F%96utf-8%E7%BC%96%E7%A0%81%E7%9A%84properties%E4%BC%9A%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/</guid>
+      <description>&lt;p&gt;我们经常会在&lt;code&gt;properties&lt;/code&gt;文件中使用中文。当然大多数时候中文都是写在注释里。我们也会在STS中安装&lt;a href=&#34;https://java-properties-editor.com/index.html&#34;&gt;PropertiesEditor&lt;/a&gt;插件显示中文。但是，在我升级STS4之后我没有安装&lt;code&gt;PropertiesEditor&lt;/code&gt;，而是直接修改&lt;code&gt;properties&lt;/code&gt;文件为&lt;code&gt;UTF-8&lt;/code&gt;编码，然后在里面写中文。这样就发生了一个问题，应用程序读取出来的
+&lt;code&gt;properties&lt;/code&gt;属性里中文是乱码的。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>STS4启动报错Missing tools.jar</title>
+      <link>https://blog.l-qiang.xyz/post/sts4%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99missingtools.jar/</link>
+      <pubDate>Mon, 17 Feb 2020 12:42:52 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/sts4%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99missingtools.jar/</guid>
+      <description>&lt;p&gt;今天将我的STS3升级到了STS4，升级完启动STS4的时候发现报&lt;code&gt;Missing tools.jar&lt;/code&gt;的错误。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.l-qiang.xyz/image/STS4%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99Missingtools.jar/1.png&#34; alt=&#34;这是一直图片&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Tomcat日志截断</title>
+      <link>https://blog.l-qiang.xyz/post/tomcat%E6%97%A5%E5%BF%97%E6%88%AA%E6%96%AD/</link>
+      <pubDate>Wed, 22 Jan 2020 12:30:43 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/tomcat%E6%97%A5%E5%BF%97%E6%88%AA%E6%96%AD/</guid>
+      <description>&lt;p&gt;为了避免生产环境&lt;code&gt;Tomcat&lt;/code&gt;的&lt;code&gt;catalina.out&lt;/code&gt;越来越大，我们需要轮替&lt;code&gt;catalina.out&lt;/code&gt;，那么我们该怎么做呢？&lt;/p&gt;
+&lt;p&gt;关于这个问题，我在&lt;code&gt;Tomcat&lt;/code&gt;的&lt;code&gt;FAQ&lt;/code&gt;&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;中找到了答案。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hexo添加RSS和站点地图</title>
+      <link>https://blog.l-qiang.xyz/post/hexo%E6%B7%BB%E5%8A%A0rss%E5%92%8C%E7%AB%99%E7%82%B9%E5%9C%B0%E5%9B%BE/</link>
+      <pubDate>Mon, 20 Jan 2020 13:08:57 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/hexo%E6%B7%BB%E5%8A%A0rss%E5%92%8C%E7%AB%99%E7%82%B9%E5%9C%B0%E5%9B%BE/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hexo搭建个人博客</title>
+      <link>https://blog.l-qiang.xyz/post/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
+      <pubDate>Fri, 17 Jan 2020 16:56:05 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid>
+      <description>&lt;p&gt;这不完全是一篇搭建个人博客的教程，因为&lt;a href=&#34;https://hexo.io/zh-cn/docs/&#34;&gt;Hexo&lt;/a&gt;的文档其实写得非常清楚了。但是，我们按照教程来不一定很顺利。所以，这主要还是一个小白的经验之谈。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Java &#43; Appium &#43; 夜神模拟器实现学习强国积分任务自动化</title>
+      <link>https://blog.l-qiang.xyz/post/java&#43;appium&#43;%E5%A4%9C%E7%A5%9E%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%AD%A6%E4%B9%A0%E5%BC%BA%E5%9B%BD%E7%A7%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%8C%96/</link>
+      <pubDate>Wed, 15 Jan 2020 19:34:00 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/java&#43;appium&#43;%E5%A4%9C%E7%A5%9E%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%AD%A6%E4%B9%A0%E5%BC%BA%E5%9B%BD%E7%A7%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%8C%96/</guid>
+      <description>&lt;p&gt;首先，先放源码&lt;a href=&#34;https://github.com/l-qiang/LitterBaby&#34;&gt;LitterBaby&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;我想装了《学习强国》App的同学都为每天30积分的任务苦恼过。我之前也是因为这30积分非常头疼，不是《学习强国》App不好，而是真的不适合我。我们会学习，但可能不是被迫学习指定内容，为了指标而学习。&lt;/p&gt;
+&lt;p&gt;GitHub上面有很多Python写的《学习强国》自动化学习项目。我也有在用，但是我想有一个Java编写的，自己改起来顺手的《学习强国》自动学习。&lt;/p&gt;
+&lt;p&gt;为此，我就写了一个Java的，目前已经实现刷30分。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>iText合并PDF和添加书签</title>
+      <link>https://blog.l-qiang.xyz/post/itext%E5%90%88%E5%B9%B6pdf%E5%92%8C%E6%B7%BB%E5%8A%A0%E4%B9%A6%E7%AD%BE/</link>
+      <pubDate>Fri, 10 Jan 2020 20:37:23 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/itext%E5%90%88%E5%B9%B6pdf%E5%92%8C%E6%B7%BB%E5%8A%A0%E4%B9%A6%E7%AD%BE/</guid>
+      <description>&lt;p&gt;关于这个问题，其实在iText官网和Stack Overflow上面都有答案。之所以还要记录是想有更多人看到简单易懂的解决办法。因为我不想再有人直接CSDN搜一个，不管是否要新引入Jar包也不管代码是否复杂，然后告诉我参考那个写。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://itextpdf.com/en/resources/examples/itext-5-legacy/merging-documents-bookmarks#39-mergewithoutlines.java&#34;&gt;官网例子&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Jackson将无嵌套JSON转嵌套对象</title>
+      <link>https://blog.l-qiang.xyz/post/jackson%E5%B0%86%E6%97%A0%E5%B5%8C%E5%A5%97json%E8%BD%AC%E5%B5%8C%E5%A5%97%E5%AF%B9%E8%B1%A1/</link>
+      <pubDate>Thu, 19 Dec 2019 19:04:52 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/jackson%E5%B0%86%E6%97%A0%E5%B5%8C%E5%A5%97json%E8%BD%AC%E5%B5%8C%E5%A5%97%E5%AF%B9%E8%B1%A1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>为什么我的Spring Boot项目不能访问静态资源？</title>
+      <link>https://blog.l-qiang.xyz/post/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E7%9A%84springboot%E9%A1%B9%E7%9B%AE%E4%B8%8D%E8%83%BD%E8%AE%BF%E9%97%AE%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/</link>
+      <pubDate>Fri, 13 Dec 2019 19:10:42 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E7%9A%84springboot%E9%A1%B9%E7%9B%AE%E4%B8%8D%E8%83%BD%E8%AE%BF%E9%97%AE%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/</guid>
+      <description>&lt;p&gt;问题源于一个客户这边自己封装的框架。&lt;/p&gt;
+&lt;p&gt;一直以来，我都对这种框架无感，因为它一般是由开源项目改编的，而且不一定是改得更好了。封装越多用起来越笨重。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>记一次Java线程堆栈分析</title>
+      <link>https://blog.l-qiang.xyz/post/%E8%AE%B0%E4%B8%80%E6%AC%A1java%E7%BA%BF%E7%A8%8B%E5%A0%86%E6%A0%88%E5%88%86%E6%9E%90/</link>
+      <pubDate>Wed, 30 Oct 2019 13:44:41 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/%E8%AE%B0%E4%B8%80%E6%AC%A1java%E7%BA%BF%E7%A8%8B%E5%A0%86%E6%A0%88%E5%88%86%E6%9E%90/</guid>
+      <description>最新某系统经常出现无法登录，不能响应请求的情况。一开始找上我的时候，他们已经通过重启恢复了，然后让我查原因。我表示一脸懵逼，啥都没有就让我解</description>
+    </item>
+    
+    <item>
+      <title>关于Zookeeper与CAP的思考</title>
+      <link>https://blog.l-qiang.xyz/post/%E5%85%B3%E4%BA%8Ezookeeper%E4%B8%8Ecap%E7%9A%84%E6%80%9D%E8%80%83/</link>
+      <pubDate>Thu, 24 Oct 2019 19:55:22 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/%E5%85%B3%E4%BA%8Ezookeeper%E4%B8%8Ecap%E7%9A%84%E6%80%9D%E8%80%83/</guid>
+      <description>&lt;p&gt;我看到很多博客都说&lt;code&gt;Zookeeper&lt;/code&gt;满足了&lt;code&gt;CAP&lt;/code&gt;中的&lt;code&gt;CP&lt;/code&gt;。但是Zookeeper的&lt;code&gt;Follower&lt;/code&gt;和&lt;code&gt;Observer&lt;/code&gt;是可以处理非事务请求的。&lt;/p&gt;
+&lt;p&gt;那么，&lt;code&gt;如果一个读请求到了未同步的Follower和Observer上，那读到的数据不就是旧数据吗？那不就不一致了吗？&lt;/code&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Spring注解之@Lookup</title>
+      <link>https://blog.l-qiang.xyz/post/spring%E6%B3%A8%E8%A7%A3%E4%B9%8Blookup/</link>
+      <pubDate>Thu, 17 Oct 2019 16:12:49 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/spring%E6%B3%A8%E8%A7%A3%E4%B9%8Blookup/</guid>
+      <description>&lt;p&gt;有时候我们在某个单例Bean中要用到原型Bean。那么我们怎么获取原型Bean呢？&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用@Autowired，@Resource注解注入&lt;/li&gt;
+&lt;li&gt;用BeanFactory的getBean方法&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用&lt;code&gt;@Autowired&lt;/code&gt;，&lt;code&gt;@Resource&lt;/code&gt;的话我们就没法达到原型Bean的效果。我想在一个单例Bean中多次获取原型Bean该怎么做，而且我不想用BeanFactory。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>OAuth解决了什么问题？</title>
+      <link>https://blog.l-qiang.xyz/post/oauth%E8%A7%A3%E5%86%B3%E4%BA%86%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Tue, 15 Oct 2019 19:47:15 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/oauth%E8%A7%A3%E5%86%B3%E4%BA%86%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98/</guid>
+      <description>&lt;p&gt;为什么会有OAuth，为了解决什么问题呢？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>spring-session是怎样使用redis存session的？</title>
+      <link>https://blog.l-qiang.xyz/post/springsession%E6%98%AF%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8redis%E5%AD%98session%E7%9A%84/</link>
+      <pubDate>Sun, 13 Oct 2019 19:07:11 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/springsession%E6%98%AF%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8redis%E5%AD%98session%E7%9A%84/</guid>
+      <description>&lt;p&gt;其实，我的直觉告诉我使用Hash。&lt;/p&gt;
+&lt;p&gt;我在项目里找到&lt;a href=&#34;https://docs.spring.io/spring-session/docs/current/api/org/springframework/session/data/redis/RedisOperationsSessionRepository.html&#34;&gt;RedisOperationsSessionRepository&lt;/a&gt;然后在注释中找到了答案&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Each session is stored in Redis as a &lt;a href=&#34;http://redis.io/topics/data-types#hashes&#34;&gt;Hash&lt;/a&gt;. Each session is set and updated using the &lt;a href=&#34;http://redis.io/commands/hmset&#34;&gt;HMSET command&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>Jackson序列化字段脱敏处理</title>
+      <link>https://blog.l-qiang.xyz/post/jackson%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%97%E6%AE%B5%E8%84%B1%E6%95%8F%E5%A4%84%E7%90%86/</link>
+      <pubDate>Fri, 11 Oct 2019 20:25:55 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/jackson%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%97%E6%AE%B5%E8%84%B1%E6%95%8F%E5%A4%84%E7%90%86/</guid>
+      <description>&lt;p&gt;例如，我有如下类A，我需要A序列化为JSON是name字段值为***。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;A&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+
+	&lt;span class=&#34;nd&#34;&gt;@JsonProperty&lt;/span&gt;
+	&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;String&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>ConcurrentModificationException你真的了解吗？</title>
+      <link>https://blog.l-qiang.xyz/post/concurrentmodificationexception%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BA%86%E8%A7%A3%E5%90%97/</link>
+      <pubDate>Fri, 11 Oct 2019 12:41:15 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/concurrentmodificationexception%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BA%86%E8%A7%A3%E5%90%97/</guid>
+      <description>&lt;p&gt;我想很多人第一次遇到这个异常都是因为对&lt;code&gt;List&lt;/code&gt;使用&lt;code&gt;foreach&lt;/code&gt;遍历，然后删除元素的导致的。然后我们会在网上查到使用&lt;code&gt;Iterator&lt;/code&gt;或&lt;code&gt;for倒序遍历&lt;/code&gt;来解决这个问题。那么&lt;code&gt;ConcurrentModificationException&lt;/code&gt;是怎么出现的？为什么要使用Iterator或for倒序遍历来解决呢？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>记一次MySQL统计查询SQL优化</title>
+      <link>https://blog.l-qiang.xyz/post/%E8%AE%B0%E4%B8%80%E6%AC%A1mysql%E7%BB%9F%E8%AE%A1%E6%9F%A5%E8%AF%A2sql%E4%BC%98%E5%8C%96/</link>
+      <pubDate>Tue, 10 Sep 2019 19:59:47 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/%E8%AE%B0%E4%B8%80%E6%AC%A1mysql%E7%BB%9F%E8%AE%A1%E6%9F%A5%E8%AF%A2sql%E4%BC%98%E5%8C%96/</guid>
+      <description>&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-mysql&#34; data-lang=&#34;mysql&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;COL_B&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;MAX&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;CASE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;COL_A&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WHEN&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;a&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;THEN&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ELSE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;END&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;AS&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;a&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;MAX&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;CASE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;COL_A&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WHEN&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;b&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;THEN&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ELSE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;END&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;AS&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;b&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;MAX&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;CASE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;COL_A&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WHEN&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;c&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;THEN&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ELSE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;END&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;AS&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;c&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; 
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;Table&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; 
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;GROUP&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;BY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;	&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;COL_B&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; 
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ORDER&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;BY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; 
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;COL_C&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;DESC&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;LIMIT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;COL_C上建立了一个普通索引。&lt;code&gt;50w&lt;/code&gt;数据这个SQL的执行时间大概为&lt;code&gt;3s&lt;/code&gt;。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>spring.mvc.favicon.enabled为什么不起作用？</title>
+      <link>https://blog.l-qiang.xyz/post/spring.mvc.favicon.enabled%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%B5%B7%E4%BD%9C%E7%94%A8/</link>
+      <pubDate>Thu, 05 Sep 2019 18:01:25 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/spring.mvc.favicon.enabled%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%B5%B7%E4%BD%9C%E7%94%A8/</guid>
+      <description>&lt;p&gt;偶然发现不管我将spring.mvc.favicon.enabled设置成true还是false，系统表面上都没有什么变化。favicon该显示还是显示。&lt;/p&gt;
+&lt;p&gt;那么这个配置究竟有什么用呢？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Java书籍阅读记录</title>
+      <link>https://blog.l-qiang.xyz/post/java%E4%B9%A6%E7%B1%8D%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Wed, 04 Sep 2019 19:38:10 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/java%E4%B9%A6%E7%B1%8D%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/</guid>
+      <description>&lt;p&gt;有些书值得二刷，有些书第一刷都觉得浪费时间。记录下最近看的书，以前看的记不起就暂时不列了，后面如果再次二刷到再记录。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Spring Boot注解之@ConditionalOnProperty</title>
+      <link>https://blog.l-qiang.xyz/post/springboot%E6%B3%A8%E8%A7%A3%E4%B9%8Bconditionalonproperty/</link>
+      <pubDate>Wed, 04 Sep 2019 18:09:42 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/springboot%E6%B3%A8%E8%A7%A3%E4%B9%8Bconditionalonproperty/</guid>
+      <description>&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;nd&#34;&gt;@ConditionalOnProperty&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;spring.mvc.favicon.enabled&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt;
+				&lt;span class=&#34;n&#34;&gt;matchIfMissing&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;当配置文件中&lt;strong&gt;没有&lt;/strong&gt;&lt;code&gt;spring.mvc.favicon.enabled&lt;/code&gt;时，由于&lt;code&gt;matchIfMissing = true&lt;/code&gt;，属于条件&lt;strong&gt;匹配&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;当配置文件中&lt;strong&gt;有&lt;/strong&gt;&lt;code&gt;spring.mvc.favicon.enabled&lt;/code&gt;时，此时配合&lt;code&gt;havingValue&lt;/code&gt;，如下表。&lt;code&gt;havingValue&lt;/code&gt;默认为&lt;code&gt;“”&lt;/code&gt;，&lt;code&gt;spring.mvc.favicon.enabled=true&lt;/code&gt;时属于条件&lt;strong&gt;匹配&lt;/strong&gt;(yes)， &lt;code&gt;spring.mvc.favicon.enabled=false&lt;/code&gt;时属于条件&lt;strong&gt;不匹配&lt;/strong&gt;(no)&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>这才是正确地初始化只有一个元素的HashMap的方式</title>
+      <link>https://blog.l-qiang.xyz/post/%E8%BF%99%E6%89%8D%E6%98%AF%E6%AD%A3%E7%A1%AE%E5%9C%B0%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0%E7%9A%84hashmap%E7%9A%84%E6%96%B9%E5%BC%8F/</link>
+      <pubDate>Wed, 04 Sep 2019 17:30:26 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/%E8%BF%99%E6%89%8D%E6%98%AF%E6%AD%A3%E7%A1%AE%E5%9C%B0%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0%E7%9A%84hashmap%E7%9A%84%E6%96%B9%E5%BC%8F/</guid>
+      <description>&lt;p&gt;有时候我们需要一个只放一个元素的Map。 可能一开始是这样的&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;n&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;map&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;HashMap&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Object&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;上面这种写法相当于&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;n&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;map&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;HashMap&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Object&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;75f&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;这种写法正确吗？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>为什么修改SVN后Spring Cloud Config失效了？</title>
+      <link>https://blog.l-qiang.xyz/post/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BF%AE%E6%94%B9svn%E5%90%8Espringcloudconfig%E5%A4%B1%E6%95%88%E4%BA%86/</link>
+      <pubDate>Wed, 21 Aug 2019 19:20:03 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BF%AE%E6%94%B9svn%E5%90%8Espringcloudconfig%E5%A4%B1%E6%95%88%E4%BA%86/</guid>
+      <description>spring.cloud.config.server.svn.uri修改成新的SVN地址之后，访问配置中心获得的配置还是修改前SVN的。 在我</description>
+    </item>
+    
+    <item>
+      <title>关于Spring Data Jpa使用@Query分页查询的问题</title>
+      <link>https://blog.l-qiang.xyz/post/%E5%85%B3%E4%BA%8Espringdatajpa%E4%BD%BF%E7%94%A8query%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2%E7%9A%84%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Tue, 20 Aug 2019 16:25:33 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/%E5%85%B3%E4%BA%8Espringdatajpa%E4%BD%BF%E7%94%A8query%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2%E7%9A%84%E9%97%AE%E9%A2%98/</guid>
+      <description>原本没有想过要用@Query来查询的，毕竟JpaRepository提供的方法已经基本够用了。但是今天这个sql比较特殊可能要用正则匹配，然</description>
+    </item>
+    
+    <item>
+      <title>Java8漏洞-使用Collectors.toMap时，value为null报空指针异常</title>
+      <link>https://blog.l-qiang.xyz/post/java8%E6%BC%8F%E6%B4%9E%E4%BD%BF%E7%94%A8collectorstomap%E6%97%B6value%E4%B8%BAnull%E6%8A%A5%E7%A9%BA%E6%8C%87%E9%92%88%E5%BC%82%E5%B8%B8/</link>
+      <pubDate>Mon, 19 Aug 2019 16:47:17 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/java8%E6%BC%8F%E6%B4%9E%E4%BD%BF%E7%94%A8collectorstomap%E6%97%B6value%E4%B8%BAnull%E6%8A%A5%E7%A9%BA%E6%8C%87%E9%92%88%E5%BC%82%E5%B8%B8/</guid>
+      <description>&lt;p&gt;罪魁祸首就是&lt;code&gt;HashMap的merge&lt;/code&gt;方法了，它的第一行就是这个：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;throw&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;NullPointerException&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;();&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;谁调&lt;code&gt;merge&lt;/code&gt;了？&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;K&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;U&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;M&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;extends&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Map&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;K&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;U&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;Collector&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;?,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;M&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;toMap&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Function&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;?&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;super&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;?&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;extends&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;K&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;keyMapper&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt;
+                                &lt;span class=&#34;n&#34;&gt;Function&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;?&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;super&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;?&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;extends&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;U&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;valueMapper&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt;
+                                &lt;span class=&#34;n&#34;&gt;BinaryOperator&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;U&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mergeFunction&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt;
+                                &lt;span class=&#34;n&#34;&gt;Supplier&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;M&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mapSupplier&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;BiConsumer&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;M&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;accumulator&lt;/span&gt;
+                &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;map&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;element&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;map&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;merge&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;keyMapper&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;apply&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;element&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;),&lt;/span&gt;
+                                              &lt;span class=&#34;n&#34;&gt;valueMapper&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;apply&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;element&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mergeFunction&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;CollectorImpl&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mapSupplier&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;accumulator&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mapMerger&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mergeFunction&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;CH_ID&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;那么怎么解决呢？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Apache VFS移动FTP文件太慢原因及解决办法</title>
+      <link>https://blog.l-qiang.xyz/post/apachevfs%E7%A7%BB%E5%8A%A8ftp%E6%96%87%E4%BB%B6%E5%A4%AA%E6%85%A2%E5%8E%9F%E5%9B%A0%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</link>
+      <pubDate>Mon, 12 Aug 2019 19:56:45 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/apachevfs%E7%A7%BB%E5%8A%A8ftp%E6%96%87%E4%BB%B6%E5%A4%AA%E6%85%A2%E5%8E%9F%E5%9B%A0%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</guid>
+      <description>&lt;p&gt;项目中我们使用Apache VFS操作FTP服务器上得文件。但是最近发现，如果一个文件夹里面的文件特别多，移动这个文件夹里的文件就会特别慢。&lt;/p&gt;
+&lt;p&gt;于是，我就找了找原因。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>同一个Controller的@RequestMapping指向同一个value会发生什么？</title>
+      <link>https://blog.l-qiang.xyz/post/%E5%90%8C%E4%B8%80%E4%B8%AAcontroller%E7%9A%84requestmapping%E6%8C%87%E5%90%91%E5%90%8C%E4%B8%80%E4%B8%AAvalue%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88/</link>
+      <pubDate>Thu, 08 Aug 2019 17:03:22 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/%E5%90%8C%E4%B8%80%E4%B8%AAcontroller%E7%9A%84requestmapping%E6%8C%87%E5%90%91%E5%90%8C%E4%B8%80%E4%B8%AAvalue%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88/</guid>
+      <description>&lt;p&gt;首先，是如下这种写法&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;nd&#34;&gt;@RequestMapping&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;/a&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;String&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;a&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+    &lt;span class=&#34;nd&#34;&gt;@RequestMapping&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;/a&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;String&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;a&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;这个应该都知道了，肯定会报错的&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;org.springframework.beans.factory.BeanCreationException: Error creating bean with name &amp;lsquo;requestMappingHandlerMapping&amp;rsquo; defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: &lt;code&gt;Ambiguous mapping&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>关于Select2在Bootstrap模态框无法获得焦点问题的解决办法</title>
+      <link>https://blog.l-qiang.xyz/post/%E5%85%B3%E4%BA%8Eselect2%E5%9C%A8bootstrap%E6%A8%A1%E6%80%81%E6%A1%86%E6%97%A0%E6%B3%95%E8%8E%B7%E5%BE%97%E7%84%A6%E7%82%B9%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</link>
+      <pubDate>Mon, 22 Jul 2019 19:21:13 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/%E5%85%B3%E4%BA%8Eselect2%E5%9C%A8bootstrap%E6%A8%A1%E6%80%81%E6%A1%86%E6%97%A0%E6%B3%95%E8%8E%B7%E5%BE%97%E7%84%A6%E7%82%B9%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</guid>
+      <description>&lt;p&gt;虽然，我比较少写前端的东西，但是遇到这种问题我的直觉告诉我将input框的z-index设大应该就行了。然后，我的直觉错了，改了z-index并没有解决。&lt;/p&gt;
+&lt;p&gt;于是，我就在网上搜了搜，发现有一下两种解决办法：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;把页面中的 tabindex=&amp;quot;-1&amp;quot; 删掉&lt;/li&gt;
+&lt;li&gt;$.fn.modal.Constructor.prototype.enforceFocus = function() {};&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;但是不太熟悉的人表示完全不知道说了啥，然后我在Select2官方文档中找到了&lt;a href=&#34;https://stackoverflow.com/questions/18487056/select2-doesnt-work-when-embedded-in-a-bootstrap-modal/19574076#19574076&#34;&gt;解决办法&lt;/a&gt;（由于官网之前的链接失效了，所以这附上Stack Overflow的）。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Feign使用服务名调用微服务</title>
+      <link>https://blog.l-qiang.xyz/post/feign%E4%BD%BF%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%90%8D%E8%B0%83%E7%94%A8%E5%BE%AE%E6%9C%8D%E5%8A%A1/</link>
+      <pubDate>Wed, 22 May 2019 14:47:28 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/feign%E4%BD%BF%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%90%8D%E8%B0%83%E7%94%A8%E5%BE%AE%E6%9C%8D%E5%8A%A1/</guid>
+      <description>&lt;p&gt;在这之前都是使用@FeignClient，在@FeignClient中的name指定服务名。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;nd&#34;&gt;@FeignClient&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;name&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;file-upload-service&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;configuration&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;FileUploadServiceClient&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;MultipartSupportConfig&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;class&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;interface&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;FileUploadServiceClient&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;extends&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;IFileUploadServiceClient&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;MultipartSupportConfig&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;nd&#34;&gt;@Autowired&lt;/span&gt;
+        &lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ObjectFactory&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;HttpMessageConverters&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;messageConverters&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+    
+
+        &lt;span class=&#34;nd&#34;&gt;@Bean&lt;/span&gt;
+        &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Encoder&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;feignFormEncoder&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;SpringFormEncoder&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;SpringEncoder&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;messageConverters&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;));&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+  &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;这种方式有地方不能满足我的要求，于是我就采用了这种方式&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Java文件下载文件名包含特殊字符处理</title>
+      <link>https://blog.l-qiang.xyz/post/java%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E5%90%8D%E5%8C%85%E5%90%AB%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6%E5%A4%84%E7%90%86/</link>
+      <pubDate>Tue, 02 Apr 2019 19:52:15 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/java%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E5%90%8D%E5%8C%85%E5%90%AB%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6%E5%A4%84%E7%90%86/</guid>
+      <description>&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;n&#34;&gt;response&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;setCharacterEncoding&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;UTF-8&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
+            &lt;span class=&#34;n&#34;&gt;response&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;setContentType&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;multipart/form-data&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
+            &lt;span class=&#34;n&#34;&gt;response&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;setHeader&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Content-Disposition&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt;
+                    &lt;span class=&#34;s&#34;&gt;&amp;#34;attachment;fileName*=UTF-8&amp;#39;&amp;#39;&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;UriUtils&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;encode&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fileName&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;UTF-8&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;));&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

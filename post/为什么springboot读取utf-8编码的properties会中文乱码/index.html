@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>为什么Spring Boot读取UTF-8编码的properties会中文乱码？ - L-Qiang</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="刘强" /><meta name="description" content="我们经常会在properties文件中使用中文。当然大多数时候中文都是写在注释里。我们也会在STS中安装PropertiesEditor插件显示中文。但是，在我升级STS4之后我没有安装PropertiesEditor，而是直接修改properties文件为UTF-8编码，然后在里面写中文。这样就发生了一个问题，应用程序读取出来的 properties属性里中文是乱码的。
+" /><meta name="keywords" content="刘强, Java, Spring, MySQL, Blog, Docker, Linux, Redis, Zookeeper" />
+
+
+<meta name="baidu-site-verification" content="code-aOguXvJrXJ" />
+<meta name="google-site-verification" content="q9bP2qBubZQnLPEVZsEaqAVrsSTjpyAvMvA-Rf2VKXA" />
+
+
+<meta name="generator" content="Hugo 0.90.0 with theme even" />
+
+
+<link rel="canonical" href="https://blog.l-qiang.xyz/post/%E4%B8%BA%E4%BB%80%E4%B9%88springboot%E8%AF%BB%E5%8F%96utf-8%E7%BC%96%E7%A0%81%E7%9A%84properties%E4%BC%9A%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="为什么Spring Boot读取UTF-8编码的properties会中文乱码？" />
+<meta property="og:description" content="我们经常会在properties文件中使用中文。当然大多数时候中文都是写在注释里。我们也会在STS中安装PropertiesEditor插件显示中文。但是，在我升级STS4之后我没有安装PropertiesEditor，而是直接修改properties文件为UTF-8编码，然后在里面写中文。这样就发生了一个问题，应用程序读取出来的
+properties属性里中文是乱码的。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.l-qiang.xyz/post/%E4%B8%BA%E4%BB%80%E4%B9%88springboot%E8%AF%BB%E5%8F%96utf-8%E7%BC%96%E7%A0%81%E7%9A%84properties%E4%BC%9A%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-03-01T09:41:04+00:00" />
+<meta property="article:modified_time" content="2020-03-01T09:41:04+00:00" />
+
+<meta itemprop="name" content="为什么Spring Boot读取UTF-8编码的properties会中文乱码？">
+<meta itemprop="description" content="我们经常会在properties文件中使用中文。当然大多数时候中文都是写在注释里。我们也会在STS中安装PropertiesEditor插件显示中文。但是，在我升级STS4之后我没有安装PropertiesEditor，而是直接修改properties文件为UTF-8编码，然后在里面写中文。这样就发生了一个问题，应用程序读取出来的
+properties属性里中文是乱码的。"><meta itemprop="datePublished" content="2020-03-01T09:41:04+00:00" />
+<meta itemprop="dateModified" content="2020-03-01T09:41:04+00:00" />
+<meta itemprop="wordCount" content="760">
+<meta itemprop="keywords" content="Spring Boot,乱码,UTF-8," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="为什么Spring Boot读取UTF-8编码的properties会中文乱码？"/>
+<meta name="twitter:description" content="我们经常会在properties文件中使用中文。当然大多数时候中文都是写在注释里。我们也会在STS中安装PropertiesEditor插件显示中文。但是，在我升级STS4之后我没有安装PropertiesEditor，而是直接修改properties文件为UTF-8编码，然后在里面写中文。这样就发生了一个问题，应用程序读取出来的
+properties属性里中文是乱码的。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">L-Qiang</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">L-Qiang</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">为什么Spring Boot读取UTF-8编码的properties会中文乱码？</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-03-01 </span>
+        <div class="post-category">
+            <a href="/categories/spring-boot/"> Spring Boot </a>
+            </div>
+          <span class="more-meta"> 约 760 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#那么这是为什么呢">那么这是为什么呢？</a></li>
+        <li><a href="#关于这个问题我是怎么解决的呢">关于这个问题，我是怎么解决的呢？</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>我们经常会在<code>properties</code>文件中使用中文。当然大多数时候中文都是写在注释里。我们也会在STS中安装<a href="https://java-properties-editor.com/index.html">PropertiesEditor</a>插件显示中文。但是，在我升级STS4之后我没有安装<code>PropertiesEditor</code>，而是直接修改<code>properties</code>文件为<code>UTF-8</code>编码，然后在里面写中文。这样就发生了一个问题，应用程序读取出来的
+<code>properties</code>属性里中文是乱码的。</p>
+<h2 id="那么这是为什么呢">那么这是为什么呢？</h2>
+<p>我们可以追溯到Spring Boot加载<code>properties</code>文件的一段代码。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm"> * Load properties from the given resource (in ISO-8859-1 encoding).
+</span><span class="cm"> * @param resource the resource to load from
+</span><span class="cm"> * @return the populated Properties instance
+</span><span class="cm"> * @throws IOException if loading failed
+</span><span class="cm"> * @see #fillProperties(java.util.Properties, Resource)
+</span><span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">Properties</span> <span class="nf">loadProperties</span><span class="o">(</span><span class="n">Resource</span> <span class="n">resource</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+		<span class="n">Properties</span> <span class="n">props</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Properties</span><span class="o">();</span>
+		<span class="n">fillProperties</span><span class="o">(</span><span class="n">props</span><span class="o">,</span> <span class="n">resource</span><span class="o">);</span>
+		<span class="k">return</span> <span class="n">props</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>我们从注释中可以看到，使用<code>ISO-8859-1</code>编码加载资源文件。所以<code>UTF-8</code>编码的文件用<code>ISO-8859-1</code>编码读取出来所以中文乱码了。</p>
+<p>那么，为什么使用<code>PropertiesEditor</code>就没有问题呢？</p>
+<p>因为，<code>PropertiesEditor</code>只是让你看到中文，但是实际文件里**\u**xxxx的形式的中文（用文本编辑器打开properties文件看看）。</p>
+<p>在这之前还有<code>native2ascii</code>这个东西，想了解的也可以去了解一下。</p>
+<h2 id="关于这个问题我是怎么解决的呢">关于这个问题，我是怎么解决的呢？</h2>
+<p>我没有用<code>PropertiesEditor</code>，因为我希望我的一些配置不用<code>PropertiesEditor</code>仍然能看懂什么意思。</p>
+<p>所以，我把我的配置文件分成了<code>两份</code>，属于系统的一些配置仍然放在<code>application.properties</code>里面使用<code>ISO-8859-1</code>编码，属于业务相关的配置放到了另一个配置文件<code>xxqg.properties</code>使用<code>UTF-8</code>编码。</p>
+<p>然后，读取配置的地方使用<code>@PropertySource</code>注解。</p>
+<p>例如，以下代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Configuration</span>
+<span class="nd">@ConfigurationProperties</span><span class="o">(</span><span class="n">prefix</span><span class="o">=</span><span class="s">&#34;xpath.agreement&#34;</span><span class="o">)</span>
+<span class="nd">@PropertySource</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&#34;xxqg.properties&#34;</span><span class="o">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s">&#34;UTF-8&#34;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="nd">@Data</span> <span class="kd">class</span> <span class="nc">AgreementXPath</span> <span class="o">{</span>
+	<span class="kd">private</span> <span class="n">String</span> <span class="n">agree</span><span class="o">;</span>
+
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">刘强</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-03-01
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/image/wechat-qr-code.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/image/alipay-qr-code.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/spring-boot/">Spring Boot</a>
+          <a href="/tags/%E4%B9%B1%E7%A0%81/">乱码</a>
+          <a href="/tags/utf-8/">UTF-8</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/%E8%A7%A3%E5%86%B3linux%E4%B8%8B%E4%BD%BF%E7%94%A8pdfbox%E5%B0%86pdf%E8%BD%AC%E5%9B%BE%E7%89%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">解决Linux下使用Pdfbox将PDF转图片乱码问题</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/sts4%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99missingtools.jar/">
+            <span class="next-text nav-default">STS4启动报错Missing tools.jar</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2020-03-01 09:41:04 \u002b0000 UTC',
+        title: '为什么Spring Boot读取UTF-8编码的properties会中文乱码？',
+        clientID: 'c7698ac0c1888a422ff8',
+        clientSecret: '9e95b025bc3dad1fbf7ca56e6086afbe25117805',
+        repo: 'BlogGitalk',
+        owner: 'l-qiang',
+        admin: ['l-qiang'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:liuqiang.ryan@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/l-qiang" class="iconfont icon-github" title="github"></a>
+  <a href="https://blog.l-qiang.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>刘强</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-669K7NHHPY', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script id="baidu_push">
+  (function(){
+    if (window.location.hostname === 'localhost') return;
+    var bp = document.createElement('script'); bp.async = true;
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+
+
+</body>
+</html>

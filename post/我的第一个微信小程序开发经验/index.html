@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>我的第一个微信小程序开发经验 - L-Qiang</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="刘强" /><meta name="description" content="前段时间项目里要开发一个微信小程序，我也是临危受命吧，大概学习了几个小时，然后花了一天写好（功能比较简单所以&amp;hellip;）。一般使用一个" /><meta name="keywords" content="刘强, Java, Spring, MySQL, Blog, Docker, Linux, Redis, Zookeeper" />
+
+
+<meta name="baidu-site-verification" content="code-aOguXvJrXJ" />
+<meta name="google-site-verification" content="q9bP2qBubZQnLPEVZsEaqAVrsSTjpyAvMvA-Rf2VKXA" />
+
+
+<meta name="generator" content="Hugo 0.90.0 with theme even" />
+
+
+<link rel="canonical" href="https://blog.l-qiang.xyz/post/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="我的第一个微信小程序开发经验" />
+<meta property="og:description" content="前段时间项目里要开发一个微信小程序，我也是临危受命吧，大概学习了几个小时，然后花了一天写好（功能比较简单所以&hellip;）。一般使用一个" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.l-qiang.xyz/post/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-05-09T18:10:13+00:00" />
+<meta property="article:modified_time" content="2020-05-09T18:10:13+00:00" />
+
+<meta itemprop="name" content="我的第一个微信小程序开发经验">
+<meta itemprop="description" content="前段时间项目里要开发一个微信小程序，我也是临危受命吧，大概学习了几个小时，然后花了一天写好（功能比较简单所以&hellip;）。一般使用一个"><meta itemprop="datePublished" content="2020-05-09T18:10:13+00:00" />
+<meta itemprop="dateModified" content="2020-05-09T18:10:13+00:00" />
+<meta itemprop="wordCount" content="1842">
+<meta itemprop="keywords" content="微信小程序," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="我的第一个微信小程序开发经验"/>
+<meta name="twitter:description" content="前段时间项目里要开发一个微信小程序，我也是临危受命吧，大概学习了几个小时，然后花了一天写好（功能比较简单所以&hellip;）。一般使用一个"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">L-Qiang</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">L-Qiang</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">我的第一个微信小程序开发经验</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-05-09 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"> 微信小程序 </a>
+            </div>
+          <span class="more-meta"> 约 1842 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#小程序账号">小程序账号</a></li>
+        <li><a href="#微信开发者工具">微信开发者工具</a></li>
+        <li><a href="#小程序结构">小程序结构</a></li>
+        <li><a href="#小程序ui">小程序UI</a></li>
+        <li><a href="#wxs">WXS</a></li>
+        <li><a href="#调试">调试</a>
+          <ul>
+            <li><a href="#预览">预览</a></li>
+            <li><a href="#真机调试">真机调试</a></li>
+          </ul>
+        </li>
+        <li><a href="#qa">Q&amp;A</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>前段时间项目里要开发一个微信小程序，我也是临危受命吧，大概学习了几个小时，然后花了一天写好（功能比较简单所以&hellip;）。一般使用一个新东西的时候我都会先大致了解一下文档，然后才开始开发，主要是为了少踩点坑。记录一下自己开发这个小程序的一些经验，说不定以后能用到。</p>
+<!-- more -->
+<h2 id="小程序账号">小程序账号</h2>
+<p>首先，我们需要<a href="https://mp.weixin.qq.com/wxopen/waregister?action=step1">申请一个小程序账号</a>。有<code>个人账号</code>也有<code>企业账号</code>。我这里是公司申请的企业账号，我之前自己也试过申请个人账号，印象中个人账号还是挺容易申请的。</p>
+<p><a href="https://mp.weixin.qq.com/">登录</a>这个账号的管理后台，就可以管理自己的小程序，可以在菜单 “开发”-“开发设置” 看到小程序的 <strong>AppID</strong> 了 。</p>
+<p>这个<strong>AppID</strong> 在开发阶段不是必须的。<code>微信开发者工具</code>可以生成测试号，所以在没有账号的时候，我们还是可以开发的。</p>
+<h2 id="微信开发者工具">微信开发者工具</h2>
+<p>微信小程序有自己的那一套代码结构（JSON, WXML, WXSS, JS），所以也就有自己的一个开发工具了。<a href="https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html">下载</a>一个开发工具，然后装上就可以开始开发了。</p>
+<h2 id="小程序结构">小程序结构</h2>
+<p>小程序是前后端分离的，所以小程序基本是一些前端代码组成，虽然小程序有自己的一套前端。但是，具备HTML，JS，CSS的基本使用就能直接入手了。当然，会Vue，Angular等数据驱动的框架就更好了。</p>
+<p>在我看来小程序就是由不同的页面组成，然后使用一些路由方法(例如: <a href="https://developers.weixin.qq.com/miniprogram/dev/api/route/wx.navigateTo.html">wx.navigateTo</a>)跳转。每个页面由</p>
+<ol>
+<li><code>.json</code> 后缀的 <code>JSON</code> 配置文件</li>
+<li><code>.wxml</code> 后缀的 <code>WXML</code> 模板文件</li>
+<li><code>.wxss</code> 后缀的 <code>WXSS</code> 样式文件</li>
+<li><code>.js</code> 后缀的 <code>JS</code> 脚本逻辑文件</li>
+</ol>
+<p>4个文件构成。这些文件，我们可以直接使用微信开发工具直接生成。</p>
+<p>除了页面的文件，还有就是一些公共的配置（例如：app.js，app.json，app.wxss，project.config.json等）</p>
+<p>对于我的这次开发也就改了project.config.json里的appid。在app.json里修改了小程序首页路径，标题，标题颜色等配置。在app.js里设置了一些全局变量。</p>
+<h2 id="小程序ui">小程序UI</h2>
+<p>小程序自己本身的一些组件的UI能基本满足我们的需求，但是有时候还是需要一些额外的UI组件。官方也提供了WeUI的小程序版（WeUI有企业微信版的，但是小程序的WeUI没有企业微信版。所以要做出企业微信风格的还是需要我们自己改样式）。我们可以使用WeUI来满足我们的其他需求。由于，官方的文档有些不太清楚的地方。所以，我说一下我是怎么使用的。</p>
+<ol>
+<li>
+<p>下载WeUI的代码包。</p>
+</li>
+<li>
+<p>将代码包解压后，放到小程序的根目录下（与pages目录平级，解压的目录名为<code>weui-miniprogram</code>）。</p>
+</li>
+<li>
+<p>在 app.wxss 里面引入 weui.wxss。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">@import &#39;./weui-miniprogram/weui-wxss/dist/style/weui.wxss&#39;;
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>在需要的页面引入组件。例如，我要在index页面使用<code>cell</code>和<code>cells</code>组件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+
+ <span class="nt">&#34;usingComponents&#34;</span><span class="p">:</span> <span class="p">{</span>
+
+  <span class="nt">&#34;mp-cells&#34;</span><span class="p">:</span> <span class="s2">&#34;../../../weui-miniprogram/cells/cells&#34;</span><span class="p">,</span>
+
+  <span class="nt">&#34;mp-cell&#34;</span> <span class="p">:</span> <span class="s2">&#34;../../../weui-miniprogram/cell/cell&#34;</span>
+
+ <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>mp-cells和mp-cell的路径为WeUI里cells和cell相对于index页面的路径</strong>。</p>
+</li>
+<li>
+<p>在index页面使用mp-cells和mp-cell标签。</p>
+</li>
+</ol>
+<h2 id="wxs">WXS</h2>
+<p>一开始看文档的时候，我都忽略了这部分。直到我需要在WXML里面处理一些数据。</p>
+<p>由于数据驱动的原因，我们使用数据来渲染页面的时候，可能需要做一些处理。例如，我有一些数据的格式不确定，可能是对象可能是数组。在WXML里对数组和对象的处理方式是不一样的，所以我们需要判断一下，但是怎么判断呢？</p>
+<p>我们可以在WXML里写一段WXS。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">wxs</span> <span class="na">module</span><span class="o">=</span><span class="s">&#34;m&#34;</span><span class="p">&gt;</span>
+var isArray = function(o) {
+
+ return o.constructor == &#34;Array&#34;;
+
+}
+module.exports.isArray = isArray;
+
+<span class="p">&lt;/</span><span class="nt">wxs</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>然后使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">wx:if=&#34;{{!m.isArray(item)}}&#34;
+</code></pre></td></tr></table>
+</div>
+</div><p>这样的方式来处理。还有一些像字符串分割等操作也可以用类似的方法。</p>
+<h2 id="调试">调试</h2>
+<p>小程序的前端的效果都可以在模拟器中看到。但是，调后台接口的就稍微麻烦一点。因为小程序调的接口的域名得是小程序账号后台配置的域名。一开始，可能我们的接口还是调的本地的，所以要使用<code>局域网通信</code>来调试。因为不能同本机通信，所以我们可以让手机跟电脑连同一wifi来使用手机调试。</p>
+<h3 id="预览">预览</h3>
+<p>直接点击<code>微信开发者工具</code>的预览，然后用手机扫描后即可在手机上预览效果了，然后可以在手机上打开调试模式。</p>
+<h3 id="真机调试">真机调试</h3>
+<p>真机调试需要使用小程序的<code>appId</code>，测试号的appId的话，微信开发者工具上就没有真机调试按钮。</p>
+<h2 id="qa">Q&amp;A</h2>
+<ol>
+<li>
+<p>为什么调试模式程序正常，关掉调试模式就不行？</p>
+<p>这基本就是，域名设置问题。注意wx.request和wx.uploadFile都要设置域名。</p>
+</li>
+<li>
+<p>为什么this.setData不起作用？</p>
+<p>注意this指的是什么，可以在外层使用var that = this，然后使用that.setData来设置数据。</p>
+</li>
+<li>
+<p>如何设置域名？</p>
+<p>登录小程序管理后台，开发设置里设置，注意一个月只能改5次。</p>
+</li>
+<li>
+<p>怎么发布小程序？</p>
+<p>微信开发者工具，点击上传，然后在管理后台发布。</p>
+</li>
+</ol>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">刘强</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-05-09
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/image/wechat-qr-code.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/image/alipay-qr-code.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/docker-desktop%E5%AE%89%E8%A3%85%E5%90%8E%E5%90%AF%E5%8A%A8%E6%8A%A5cannot-enable-hyper-v-service%E9%94%99%E8%AF%AF/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Docker Desktop安装后启动报Cannot enable Hyper-V service错误</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/%E8%A7%A3%E5%86%B3linux%E4%B8%8B%E4%BD%BF%E7%94%A8pdfbox%E5%B0%86pdf%E8%BD%AC%E5%9B%BE%E7%89%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/">
+            <span class="next-text nav-default">解决Linux下使用Pdfbox将PDF转图片乱码问题</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2020-05-09 18:10:13 \u002b0000 UTC',
+        title: '我的第一个微信小程序开发经验',
+        clientID: 'c7698ac0c1888a422ff8',
+        clientSecret: '9e95b025bc3dad1fbf7ca56e6086afbe25117805',
+        repo: 'BlogGitalk',
+        owner: 'l-qiang',
+        admin: ['l-qiang'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:liuqiang.ryan@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/l-qiang" class="iconfont icon-github" title="github"></a>
+  <a href="https://blog.l-qiang.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>刘强</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-669K7NHHPY', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script id="baidu_push">
+  (function(){
+    if (window.location.hostname === 'localhost') return;
+    var bp = document.createElement('script'); bp.async = true;
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+
+
+</body>
+</html>

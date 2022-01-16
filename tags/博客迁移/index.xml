@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>博客迁移 on L-Qiang</title>
+    <link>https://blog.l-qiang.xyz/tags/%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/</link>
+    <description>Recent content in 博客迁移 on L-Qiang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 23 Nov 2020 16:35:28 +0800</lastBuildDate><atom:link href="https://blog.l-qiang.xyz/tags/%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hexo迁移到Hugo</title>
+      <link>https://blog.l-qiang.xyz/post/hexo%E8%BF%81%E7%A7%BB%E5%88%B0hugo/</link>
+      <pubDate>Mon, 23 Nov 2020 16:35:28 +0800</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/hexo%E8%BF%81%E7%A7%BB%E5%88%B0hugo/</guid>
+      <description>&lt;p&gt;之前一直一直使用Hexo，后来发现Hugo比Hexo看起来就好用，于是就从Hexo迁到Hugo。&lt;/p&gt;
+&lt;p&gt;Hexo建博客及本文的一些操作可参考&lt;a href=&#34;https://blog.l-qiang.xyz/post/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/&#34;&gt;Hexo搭建个人博客&lt;/a&gt;。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

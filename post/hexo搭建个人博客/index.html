@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Hexo搭建个人博客 - L-Qiang</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="刘强" /><meta name="description" content="这不完全是一篇搭建个人博客的教程，因为Hexo的文档其实写得非常清楚了。但是，我们按照教程来不一定很顺利。所以，这主要还是一个小白的经验之谈。
+" /><meta name="keywords" content="刘强, Java, Spring, MySQL, Blog, Docker, Linux, Redis, Zookeeper" />
+
+
+<meta name="baidu-site-verification" content="code-aOguXvJrXJ" />
+<meta name="google-site-verification" content="q9bP2qBubZQnLPEVZsEaqAVrsSTjpyAvMvA-Rf2VKXA" />
+
+
+<meta name="generator" content="Hugo 0.90.0 with theme even" />
+
+
+<link rel="canonical" href="https://blog.l-qiang.xyz/post/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Hexo搭建个人博客" />
+<meta property="og:description" content="这不完全是一篇搭建个人博客的教程，因为Hexo的文档其实写得非常清楚了。但是，我们按照教程来不一定很顺利。所以，这主要还是一个小白的经验之谈。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.l-qiang.xyz/post/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-01-17T16:56:05+00:00" />
+<meta property="article:modified_time" content="2020-01-17T16:56:05+00:00" />
+
+<meta itemprop="name" content="Hexo搭建个人博客">
+<meta itemprop="description" content="这不完全是一篇搭建个人博客的教程，因为Hexo的文档其实写得非常清楚了。但是，我们按照教程来不一定很顺利。所以，这主要还是一个小白的经验之谈。"><meta itemprop="datePublished" content="2020-01-17T16:56:05+00:00" />
+<meta itemprop="dateModified" content="2020-01-17T16:56:05+00:00" />
+<meta itemprop="wordCount" content="3709">
+<meta itemprop="keywords" content="Hexo,博客,Github,Blog," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Hexo搭建个人博客"/>
+<meta name="twitter:description" content="这不完全是一篇搭建个人博客的教程，因为Hexo的文档其实写得非常清楚了。但是，我们按照教程来不一定很顺利。所以，这主要还是一个小白的经验之谈。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">L-Qiang</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">L-Qiang</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Hexo搭建个人博客</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-01-17 </span>
+        <div class="post-category">
+            <a href="/categories/blog/"> Blog </a>
+            </div>
+          <span class="more-meta"> 约 3709 字 </span>
+          <span class="more-meta"> 预计阅读 8 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#hexo">Hexo</a>
+          <ul>
+            <li><a href="#我为什么选择hexo呢">我为什么选择Hexo呢？</a></li>
+            <li><a href="#安装hexo">安装Hexo</a></li>
+            <li><a href="#建站">建站</a></li>
+          </ul>
+        </li>
+        <li><a href="#github-pages">GitHub Pages</a></li>
+        <li><a href="#hexo主题">Hexo主题</a>
+          <ul>
+            <li><a href="#安装-1">安装</a></li>
+            <li><a href="#配置">配置</a></li>
+            <li><a href="#使用">使用</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>这不完全是一篇搭建个人博客的教程，因为<a href="https://hexo.io/zh-cn/docs/">Hexo</a>的文档其实写得非常清楚了。但是，我们按照教程来不一定很顺利。所以，这主要还是一个小白的经验之谈。</p>
+<h2 id="hexo">Hexo</h2>
+<h3 id="我为什么选择hexo呢">我为什么选择Hexo呢？</h3>
+<ol>
+<li>网上很多人推荐使用Hexo</li>
+<li>我本来也打算用Jekyll，但是由于网络原因Ruby的开发环境的安装包我下载不下来。</li>
+</ol>
+<p>什么？还有其他的比Hexo好用，为什么不用？别问，问就是Hexo是最好用的。</p>
+<h3 id="安装hexo">安装Hexo</h3>
+<h4 id="准备">准备</h4>
+<ul>
+<li><a href="https://git-scm.com/">Git</a></li>
+<li><a href="https://nodejs.org/en/">Node.js</a> (Node.js 版本需不低于 8.10，建议使用 Node.js 10.0 及以上版本)</li>
+</ul>
+<p>这两我都是用得很少，一般都是现学现用。安装也不难，这就不多说了。</p>
+<h5 id="git配置">Git配置</h5>
+<p>由于最终我们的是将网站部署到<code>GitHub Pages</code>，所以这里需要配置Git，将Git和GitHub关联上，以便之后将文件push到GitHub。</p>
+<ol>
+<li>
+<p>鼠标右击，选择<strong>Git Bash Here</strong>打开Git命令行。</p>
+</li>
+<li>
+<p>配置<strong>user.name</strong>和<strong>user.email</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">git config --global user.name <span class="s1">&#39;你的GitHub用户名&#39;</span>
+git config --global user.email <span class="s1">&#39;你的GitHub注册邮箱&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>生成SSH密钥</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">ssh-keygen -t rsa -C &#39;你的GitHub注册邮箱&#39;
+</code></pre></td></tr></table>
+</div>
+</div><p>然后直接连续回车就OK，默认不需要设置密码</p>
+</li>
+<li>
+<p>复制公钥</p>
+<p>打开.ssh文件夹中的id_rsa.pub文件(用文本编辑器打开就好了)，复制里面的内容。（我的在这个目录下：C:\Users\Admin\.ssh）</p>
+</li>
+<li>
+<p>到<a href="https://github.com/settings/ssh/new">GitHub设置SSH keys</a></p>
+<p>Title的内容随意，Key里面粘贴<strong>第4步</strong>中复制的内容，然后点击<code>Add SSH Key</code></p>
+</li>
+<li>
+<p>检查</p>
+<p>打开Git Bash，输入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">ssh git@github.com
+</code></pre></td></tr></table>
+</div>
+</div><p>显示<code>You've successfully authenticated</code>这样的话，就是成功了。</p>
+</li>
+</ol>
+<h4 id="安装">安装</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">npm install -g hexo-cli
+</code></pre></td></tr></table>
+</div>
+</div><p>打开一个新的命令行窗口输入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">Hexo
+</code></pre></td></tr></table>
+</div>
+</div><p>能显示出一些帮助信息就说明装成功了</p>
+<h3 id="建站">建站</h3>
+<h4 id="初始化网站">初始化网站</h4>
+<p>找一个你想放网站文件的地方，然后执行下列命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">hexo init &lt;folder&gt;
+<span class="nb">cd</span> &lt;folder&gt;
+npm install
+</code></pre></td></tr></table>
+</div>
+</div><p><a name='folder'>&lt;folder&gt;</a>换成你想要的文件夹名字。完成后，能看到指定文件夹的目录如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">.
+├── _config.yml
+├── package.json
+├── scaffolds
+├── source
+|   ├── _drafts
+|   └── _posts
+└── themes
+</code></pre></td></tr></table>
+</div>
+</div><p>到目前为止，网站就建好了。但是我们要在本地看效果还需要将网站部署到本地服务器。</p>
+<h4 id="服务器">服务器</h4>
+<ol>
+<li>
+<p>安装hexo-server</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">npm install hexo-server --save
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>启动</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">hexo server
+</code></pre></td></tr></table>
+</div>
+</div><p><code>这里一定要切换到网站文件夹下启动</code>。</p>
+<p>最终看到输出<code>Hexo is running at http://localhost:4000</code>就是启动好了。</p>
+</li>
+<li>
+<p>打开浏览器输入<a href="http://localhost:4000">http://localhost:4000</a>就能看到Hexo默认主题<code>landscape</code>的页面</p>
+<p><img src="/image/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/hexo_landscape.png" alt="这是一张图片"></p>
+</li>
+</ol>
+<h2 id="github-pages">GitHub Pages</h2>
+<p>我们现在已经在本地部署过搭建的网站了。为了让其他人也能看到，我们要个人网站部署到GitHub Pages。</p>
+<p>这个教程在<a href="https://hexo.io/zh-cn/docs/github-pages">Hexo</a>也是有的，有<strong>两种</strong>方式。我比较推荐第一种，就是使用<a href="https://travis-ci.com/">Travis CI</a> 。</p>
+<div class="admonition info"><p class="admonition-title">info</p>
+<p><strong>为什么选第一种?</strong></p>
+<p>主要还是我按第二种，GitHub上只存了Hexo生成的页面，但是我想源文件也想存下来，当然我们也可以将源文件也上传到GitHub，达到跟第一种类似的效果。但是，持续集成服务，免费的，它不香吗？</p>
+</div>
+<p>如果你按官方教程后最终发现这个：</p>
+<blockquote>
+<p>User pages must be built from the <code>master</code> branch.</p>
+</blockquote>
+<p>那么下面的内容就有用了。因为<a href="https://hexo.io/zh-cn/docs/github-pages">Hexo</a>的教程是将Hexo的文件放<strong>master</strong>，然后生成的html放<strong>gh-pages</strong>的，以前可能是没问题，<del>但是现在GitHub规定你必须将页面放到<strong>master</strong></del>。</p>
+<div class="admonition info"><p class="admonition-title">info</p>
+<p>2020年11月20日更新，现在不仅可选分支，甚至可以选分支下/doc目录</p>
+</div>
+<ol>
+<li>
+<p>GitHub新建一个 repository。命名为<code>&lt;你的 GitHub 用户名&gt;.github.io</code>。选择<strong>Public</strong>，勾上<strong>Initialize this repository with a README</strong></p>
+</li>
+<li>
+<p>然后选择一个地方新建一个空的文件夹。进入文件夹，右键鼠标，选择<strong>Git Bash Here</strong>打开Git命令行。将刚才建的repository clone下来：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">git clone git@github.com:&lt;你的GitHub用户名&gt;/&lt;你的GitHub用户名&gt;.github.io.git
+</code></pre></td></tr></table>
+</div>
+</div><p>然后新建一个分支用来存放Hexo生成前的文件。（我的分支名就blog）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">git branch &lt;分支名字&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>然后切换到分支</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">git checkout &lt;分支名字&gt;
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>将之前建站的文件夹<a href='#folder'>&lt;folder&gt;</a>下的所有文件及文件夹复制到第2步种新建的文件夹下面。</p>
+</li>
+<li>
+<p>将第3步种的文件提交到分支，填写注释</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">git add .
+git commit -m <span class="s1">&#39;&lt;注释&gt;&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>将文件push到GitHub</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">git remote add origin git@github.com:&lt;你的GitHub用户名&gt;/&lt;你的GitHub用户名&gt;.github.io.git
+git push -u origin master
+</code></pre></td></tr></table>
+</div>
+</div><p>上传成功后就能在GitHub上之前建的repository的分支看到了。</p>
+</li>
+<li>
+<p>将 <a href="https://github.com/marketplace/travis-ci">Travis CI</a> 添加到你的 GitHub 账户中。</p>
+</li>
+<li>
+<p>前往 GitHub 的 <a href="https://github.com/settings/installations">Applications settings</a>，配置 Travis CI 权限，使其能够访问你的 repository。</p>
+</li>
+<li>
+<p>你应该会被重定向到 Travis CI 的页面。如果没有，请 <a href="https://travis-ci.com/">手动前往</a>。</p>
+</li>
+<li>
+<p>在浏览器新建一个标签页，前往 GitHub <a href="https://github.com/settings/tokens">新建 Personal Access Token</a>，只勾选 <code>repo</code> 的权限并生成一个新的 Token。Token 生成后请复制并保存好。</p>
+</li>
+<li>
+<p>回到 Travis CI，前往你的 repository 的设置页面，在 <strong>Environment Variables</strong> 下新建一个环境变量，<strong>Name</strong> 为 <code>GH_TOKEN</code>，<strong>Value</strong> 为刚才你在 GitHub 生成的 Token。确保 <strong>DISPLAY VALUE IN BUILD LOG</strong> 保持 <strong>不被勾选</strong> 避免你的 Token 泄漏。点击 <strong>Add</strong> 保存。</p>
+</li>
+<li>
+<p>在你的 Hexo 站点文件夹(现在这个站点文件夹为应该为<code>&lt;你的 GitHub 用户名&gt;.github.io</code>中新建一个 <code>.travis.yml</code> 文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">sudo</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w"></span><span class="nt">language</span><span class="p">:</span><span class="w"> </span><span class="l">node_js</span><span class="w">
+</span><span class="w"></span><span class="nt">node_js</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="m">10</span><span class="w"> </span><span class="c"># use nodejs v10 LTS</span><span class="w">
+</span><span class="w"></span><span class="nt">cache</span><span class="p">:</span><span class="w"> </span><span class="l">npm</span><span class="w">
+</span><span class="w"></span><span class="nt">branches</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">only</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="l">blog</span><span class="w"> </span><span class="c"># build blog branch only</span><span class="w">
+</span><span class="w"></span><span class="nt">script</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">hexo generate</span><span class="w"> </span><span class="c"># generate static files</span><span class="w">
+</span><span class="w"></span><span class="nt">deploy</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">provider</span><span class="p">:</span><span class="w"> </span><span class="l">pages</span><span class="w">
+</span><span class="w">  </span><span class="nt">skip-cleanup</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w">  </span><span class="nt">github-token</span><span class="p">:</span><span class="w"> </span><span class="l">$GH_TOKEN</span><span class="w">
+</span><span class="w">  </span><span class="nt">keep-history</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w">  </span><span class="nt">target_branch</span><span class="p">:</span><span class="w"> </span><span class="l">master</span><span class="w">
+</span><span class="w">  </span><span class="nt">on</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">branch</span><span class="p">:</span><span class="w"> </span><span class="l">blog</span><span class="w">
+</span><span class="w">  </span><span class="nt">local-dir</span><span class="p">:</span><span class="w"> </span><span class="l">public</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p><code>这里的内容和Hexo官网的有点区别。这里指定了build的为&lt;分支名字&gt;（我的是**blog**}），目标是master</code></p>
+</li>
+<li>
+<p>将 <code>.travis.yml</code> 推送（推送方法和之前的文件推送到GitHub类型）到 repository 分支中。Travis CI 应该会自动开始运行，并将生成的文件推送到同一 repository 下的 <code>master</code> 分支下。</p>
+</li>
+<li>
+<p>推送之后等一会,<a href="https://travis-ci.com/">Travis CI</a> 上就能看到build信息。等<a href="https://travis-ci.com/">Travis CI</a> build完之后。就能在 <code>https://&lt;你的 GitHub 用户名&gt;.github.io</code> 查看你的站点了。可能需要等一会儿。发布成功的话，你应该可以在repository的setting的<strong>GitHub Pages</strong>下看到<code>Your site is published at https://&lt;你的 GitHub 用户名&gt;.github.io</code>。</p>
+</li>
+</ol>
+<h2 id="hexo主题">Hexo主题</h2>
+<p>到此，我们已经将网站发布到GitHub Pages了。但是默认的<code>landscape</code>，真的不符合我的审美。我们可以取<a href="https://hexo.io/themes/">Hexo主题</a>网站挑选，也可以去GitHub上搜索<code>hexo-theme</code>。我就是去GitHub上挑选的star比较高的<a href="hexo-theme">Next主题</a>，所以我就以<code>Next</code>主题为例。</p>
+<h3 id="安装-1">安装</h3>
+<p><code>安装</code></p>
+<p>切换到站点文件夹，按我上的的教程此时应该是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> &lt;你的 GitHub 用户名&gt;.github.io
+git clone https://github.com/theme-next/hexo-theme-next themes/next
+</code></pre></td></tr></table>
+</div>
+</div><p><code>配置_config.yml</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">theme</span><span class="p">:</span><span class="w"> </span><span class="l">next</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="配置">配置</h3>
+<p>一开始Next主题的很多配置都是关闭的，所以我们可以通过查看<a href="https://theme-next.org/docs/">文档</a>,然后修改主题的<code>_config.yml</code>来开启和配置一些功能。下面只讲我遇到过问题的。</p>
+<h4 id="post-wordcount">Post Wordcount</h4>
+<p>这是一个统计文字的功能，但是我安装步骤弄好之后。页面显示的字数和阅读时间都没正确显示出来。我看GitHub上关于没有正确显示字数的issue都是因为Next升级到<code>6.x</code>之后，将统计的插件从<a href="https://github.com/willin/hexo-wordcount"><code>hexo-wordcount</code></a>换到了<a href="https://github.com/theme-next/hexo-symbols-count-time"><code>hexo-symbols-count-time</code></a>。而我的都是最新的，最终我在Hexo上找到了解决办法。</p>
+<blockquote>
+<p>在某些情况（尤其是更换主题后），如果发现您对站点的更改无论如何也不生效，您可能需要运行该命令。</p>
+</blockquote>
+<p>这个命令就是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">hexo clean
+</code></pre></td></tr></table>
+</div>
+</div><p>我运行完这个之后就正确显示了。</p>
+<h4 id="comment-systems">Comment Systems</h4>
+<p>评论系统我选的Gitalk。嗯，我比较喜欢GitHub那一套。</p>
+<p>具体过程，按照Gitalk的文档来就行。</p>
+<p>需要注意的就是这个配置<code>next/_config.yml</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">gitalk</span><span class="p">:</span><span class="w">  
+</span><span class="w">
+</span><span class="w">	</span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="c"># Repository name to store issues</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>这里填的是 Repository的名字，不是SSH URL。这个填错了页面上会显示<code>Error</code>。</p>
+<p>另外，评论系统你得发布到GitHub才能正常使用。</p>
+<h4 id="cc-license">CC license</h4>
+<p>协议详情见<a href="https://creativecommons.org">Creative Commons</a></p>
+<p>将这个配置开启可以在文章最后加一个版权声明</p>
+<div class="admonition danger"><p class="admonition-title">danger</p>
+<p><strong>本文作者：</strong> xxx</p>
+<p><strong>本文链接：</strong> xxx</p>
+<p><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！</p>
+</div>
+<p><code>next/_config.yml:</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">creative_commons</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">license</span><span class="p">:</span><span class="w"> </span><span class="l">by-nc-sa</span><span class="w">
+</span><span class="w">  </span><span class="nt">sidebar</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w">  </span><span class="nt">post</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w">  </span><span class="nt">language</span><span class="p">:</span><span class="w"> </span><span class="l">deed.zh</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p><strong>推送主题修改到GitHub</strong></p>
+<p>因为我们是将Next主题直接clone到我们自己的Repository下。所以，我们推送的文件中，有个.git的文件夹。嵌套仓库可能会出问题。注意命令行的提示信息，会有类似让你执行下面这条命令的提示</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">git rm --cached themes/next
+</code></pre></td></tr></table>
+</div>
+</div><p>这条真的有用，执行完就可以提交了。如果不行，你就多试几次，亲测有效。</p>
+<h3 id="使用">使用</h3>
+<h4 id="标签和分类">标签和分类</h4>
+<p>这个我们在Next的<a href="https://theme-next.org/docs/theme-settings/custom-pages">文档</a>中就能弄好了。</p>
+<h4 id="发布文章">发布文章</h4>
+<p>在站点文件夹下执行如下命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">hexo new post &lt;title&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>这条指令其实就是在source/_posts文件夹下建了名为&lt;title&gt;.md的文件。</p>
+<p>用一个markdown的编辑器打开这个文件就可以开始写文章了。</p>
+<p>文章的头部一段内容可以包含标签，分类。本篇文章就是这就这样的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">---
+title: Hexo搭建个人博客
+date: 2020-01-17 16:56:05
+categories:
+ - Blog
+tags: 
+ - Hexo
+ - Github
+ - Blog
+ ---
+</code></pre></td></tr></table>
+</div>
+</div><p>默认的情况下，文章是全部展开的，我们可以在文章的任何地方添加</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">&lt;!-- more --&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>控制哪些内容需要点击**阅读全文&raquo;**查看。</p>
+<p>还有一些标签的使用可以查看Next<a href="https://theme-next.org/docs/tag-plugins/">文档</a>和Hexo<a href="https://hexo.io/zh-cn/docs/tag-plugins">文档</a>。</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">刘强</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-01-17
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/image/wechat-qr-code.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/image/alipay-qr-code.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/hexo/">Hexo</a>
+          <a href="/tags/%E5%8D%9A%E5%AE%A2/">博客</a>
+          <a href="/tags/github/">Github</a>
+          <a href="/tags/blog/">Blog</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/hexo%E6%B7%BB%E5%8A%A0rss%E5%92%8C%E7%AB%99%E7%82%B9%E5%9C%B0%E5%9B%BE/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Hexo添加RSS和站点地图</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/java&#43;appium&#43;%E5%A4%9C%E7%A5%9E%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%AD%A6%E4%B9%A0%E5%BC%BA%E5%9B%BD%E7%A7%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%87%AA%E5%8A%A8%E5%8C%96/">
+            <span class="next-text nav-default">Java &#43; Appium &#43; 夜神模拟器实现学习强国积分任务自动化</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2020-01-17 16:56:05 \u002b0000 UTC',
+        title: 'Hexo搭建个人博客',
+        clientID: 'c7698ac0c1888a422ff8',
+        clientSecret: '9e95b025bc3dad1fbf7ca56e6086afbe25117805',
+        repo: 'BlogGitalk',
+        owner: 'l-qiang',
+        admin: ['l-qiang'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:liuqiang.ryan@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/l-qiang" class="iconfont icon-github" title="github"></a>
+  <a href="https://blog.l-qiang.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>刘强</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-669K7NHHPY', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script id="baidu_push">
+  (function(){
+    if (window.location.hostname === 'localhost') return;
+    var bp = document.createElement('script'); bp.async = true;
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+
+
+</body>
+</html>

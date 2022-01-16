@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>微信小程序 on L-Qiang</title>
+    <link>https://blog.l-qiang.xyz/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/</link>
+    <description>Recent content in 微信小程序 on L-Qiang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 09 May 2020 18:10:13 +0000</lastBuildDate><atom:link href="https://blog.l-qiang.xyz/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>我的第一个微信小程序开发经验</title>
+      <link>https://blog.l-qiang.xyz/post/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/</link>
+      <pubDate>Sat, 09 May 2020 18:10:13 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/</guid>
+      <description>前段时间项目里要开发一个微信小程序，我也是临危受命吧，大概学习了几个小时，然后花了一天写好（功能比较简单所以&amp;hellip;）。一般使用一个</description>
+    </item>
+    
+  </channel>
+</rss>

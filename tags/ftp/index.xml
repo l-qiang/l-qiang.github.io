@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>FTP on L-Qiang</title>
+    <link>https://blog.l-qiang.xyz/tags/ftp/</link>
+    <description>Recent content in FTP on L-Qiang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 12 Aug 2019 19:56:45 +0000</lastBuildDate><atom:link href="https://blog.l-qiang.xyz/tags/ftp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Apache VFS移动FTP文件太慢原因及解决办法</title>
+      <link>https://blog.l-qiang.xyz/post/apachevfs%E7%A7%BB%E5%8A%A8ftp%E6%96%87%E4%BB%B6%E5%A4%AA%E6%85%A2%E5%8E%9F%E5%9B%A0%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</link>
+      <pubDate>Mon, 12 Aug 2019 19:56:45 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/apachevfs%E7%A7%BB%E5%8A%A8ftp%E6%96%87%E4%BB%B6%E5%A4%AA%E6%85%A2%E5%8E%9F%E5%9B%A0%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</guid>
+      <description>&lt;p&gt;项目中我们使用Apache VFS操作FTP服务器上得文件。但是最近发现，如果一个文件夹里面的文件特别多，移动这个文件夹里的文件就会特别慢。&lt;/p&gt;
+&lt;p&gt;于是，我就找了找原因。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

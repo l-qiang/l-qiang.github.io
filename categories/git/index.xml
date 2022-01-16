@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Git on L-Qiang</title>
+    <link>https://blog.l-qiang.xyz/categories/git/</link>
+    <description>Recent content in Git on L-Qiang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 24 Oct 2021 22:07:41 +0800</lastBuildDate><atom:link href="https://blog.l-qiang.xyz/categories/git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git多账号配置</title>
+      <link>https://blog.l-qiang.xyz/post/git%E5%A4%9A%E8%B4%A6%E5%8F%B7%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Sun, 24 Oct 2021 22:07:41 +0800</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/git%E5%A4%9A%E8%B4%A6%E5%8F%B7%E9%85%8D%E7%BD%AE/</guid>
+      <description>&lt;p&gt;网上有太多关于Git多账号配置的文章了，给我的感觉就是很乱，没有找到一篇可以收藏的，所以还是决定自己写一篇记录一下。&lt;/p&gt;
+&lt;p&gt;暂时记录我的使用情况，后续有补充或修改再更新。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

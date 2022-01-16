@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>博客自定义域名-为什么CNAME内容消失了 - L-Qiang</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="刘强" /><meta name="description" content="现象是这样的：在static目录下新建了一个CNAME文件，并填写了域名blog.l-qiang.xyz。但是，使用Git将更改push到Github之后，发现gh-pages分支下的CNAME的内容为空，blog.l-qiang.xyz竟然消失了！！！
+" /><meta name="keywords" content="Wercker, CNAME, Hugo, Domain" />
+
+
+<meta name="baidu-site-verification" content="code-aOguXvJrXJ" />
+<meta name="google-site-verification" content="q9bP2qBubZQnLPEVZsEaqAVrsSTjpyAvMvA-Rf2VKXA" />
+
+
+<meta name="generator" content="Hugo 0.90.0 with theme even" />
+
+
+<link rel="canonical" href="https://blog.l-qiang.xyz/post/%E5%8D%9A%E5%AE%A2%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D-%E4%B8%BA%E4%BB%80%E4%B9%88cname%E5%86%85%E5%AE%B9%E6%B6%88%E5%A4%B1%E4%BA%86/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="博客自定义域名-为什么CNAME内容消失了" />
+<meta property="og:description" content="现象是这样的：在static目录下新建了一个CNAME文件，并填写了域名blog.l-qiang.xyz。但是，使用Git将更改push到Github之后，发现gh-pages分支下的CNAME的内容为空，blog.l-qiang.xyz竟然消失了！！！" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.l-qiang.xyz/post/%E5%8D%9A%E5%AE%A2%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D-%E4%B8%BA%E4%BB%80%E4%B9%88cname%E5%86%85%E5%AE%B9%E6%B6%88%E5%A4%B1%E4%BA%86/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-04-14T15:53:01+08:00" />
+<meta property="article:modified_time" content="2021-04-14T15:53:01+08:00" />
+
+<meta itemprop="name" content="博客自定义域名-为什么CNAME内容消失了">
+<meta itemprop="description" content="现象是这样的：在static目录下新建了一个CNAME文件，并填写了域名blog.l-qiang.xyz。但是，使用Git将更改push到Github之后，发现gh-pages分支下的CNAME的内容为空，blog.l-qiang.xyz竟然消失了！！！"><meta itemprop="datePublished" content="2021-04-14T15:53:01+08:00" />
+<meta itemprop="dateModified" content="2021-04-14T15:53:01+08:00" />
+<meta itemprop="wordCount" content="2142">
+<meta itemprop="keywords" content="Blog,Hugo," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="博客自定义域名-为什么CNAME内容消失了"/>
+<meta name="twitter:description" content="现象是这样的：在static目录下新建了一个CNAME文件，并填写了域名blog.l-qiang.xyz。但是，使用Git将更改push到Github之后，发现gh-pages分支下的CNAME的内容为空，blog.l-qiang.xyz竟然消失了！！！"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">L-Qiang</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">L-Qiang</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">博客自定义域名-为什么CNAME内容消失了</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-04-14 </span>
+        <div class="post-category">
+            <a href="/categories/blog/"> Blog </a>
+            <a href="/categories/hugo/"> Hugo </a>
+            </div>
+          <span class="more-meta"> 约 2142 字 </span>
+          <span class="more-meta"> 预计阅读 5 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#起因">起因</a></li>
+        <li><a href="#定位问题">定位问题</a></li>
+        <li><a href="#解决办法">解决办法</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>现象是这样的：在static目录下新建了一个<code>CNAME</code>文件，并填写了域名<code>blog.l-qiang.xyz</code>。但是，使用Git将更改push到Github之后，发现gh-pages分支下的<code>CNAME</code>的内容为<strong>空</strong>，<code>blog.l-qiang.xyz</code>竟然消失了！！！</p>
+<p>关于博客相关搭建的教程，见：</p>
+<ol>
+<li><a href="https://blog.l-qiang.xyz/post/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">Hexo搭建个人博客</a></li>
+<li><a href="https://blog.l-qiang.xyz/post/hexo%E6%B7%BB%E5%8A%A0rss%E5%92%8C%E7%AB%99%E7%82%B9%E5%9C%B0%E5%9B%BE/">Hexo添加RSS和站点地图</a></li>
+<li><a href="https://blog.l-qiang.xyz/post/hexo%E8%BF%81%E7%A7%BB%E5%88%B0hugo/">Hexo迁移到Hugo</a></li>
+<li><a href="https://blog.l-qiang.xyz/post/wercker%E9%83%A8%E7%BD%B2hugo%E5%8D%9A%E5%AE%A2%E6%8B%89%E5%8F%96docker%E9%95%9C%E5%83%8F%E5%87%BA%E9%94%99%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">Wercker部署Hugo博客拉取Docker镜像出错问题解决</a></li>
+</ol>
+<h2 id="起因">起因</h2>
+<p>之前博客一直使用的<a href="https://l-qiang.github.io">l-qiang.github.io</a>，前段时间在<a href="https://www.namesilo.com/">NameSilo</a>整了个域名<code>l-qiang.xyz</code>，之前没整是因为阿里云太贵了。</p>
+<p>然后，Github Pages设置域名的时候直接在界面上设置的。(ps：设置完其实就是在gh-pages分支的根目录添加了一个CNAME文件，内容就是你设置的域名)</p>
+<p>今天早上访问博客的时候发现404了，然后上Github上一看，域名设置被清空了。</p>
+<p>出现这个现象的原因是：<code>gh-pages</code>分支的内容都是通过<code>Wercker</code>生成的，所以，每次更新博客，CNAME就被干掉了。</p>
+<p>但是，我不能每次更新博客都要重新设置域名吧，所以，我需要<code>CNAME</code>文件也被Github托管起来。在Hugo的文档中，可以看到相关说明。</p>
+<blockquote>
+<p>If you’d like to use a custom domain for your GitHub Pages site, create a file <code>static/CNAME</code>. Your custom domain name should be the only contents inside <code>CNAME</code>. Since it’s inside <code>static</code>, the published site will contain the CNAME file at the root of the published site, which is a requirement of GitHub Pages.</p>
+</blockquote>
+<p>所以，我在static下创建了<code>CNAME</code>文件且在里面写上了<code>blog.l-qiang.xyz</code>。然后问题就出现了。</p>
+<h2 id="定位问题">定位问题</h2>
+<p><code>CNAME</code>文件提交到Github上后，在<code>main</code>分支的<code>CNAME</code>文件中是有内容的，所以问题就出在<code>Wercker</code>部署这一步。那么我就重点看<code>wercker.yml</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">box</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l">golang:latest</span><span class="w">
+</span><span class="w">  </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">$DOCKERHUB_USERNAME</span><span class="w">
+</span><span class="w">  </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">$DOCKERHUB_PASSWORD</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">build</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">steps</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">script</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">initialize and update git submodules</span><span class="w">
+</span><span class="w">        </span><span class="nt">code</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span><span class="sd">            git submodule init
+</span><span class="sd">            git submodule update --remote --recursive</span><span class="w">            
+</span><span class="w">    </span>- <span class="nt">arjen/hugo-build@2.14.0</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;0.82.0&#34;</span><span class="w">
+</span><span class="w">        </span><span class="nt">theme</span><span class="p">:</span><span class="w"> </span><span class="l">even</span><span class="w">
+</span><span class="w">        </span><span class="nt">flags</span><span class="p">:</span><span class="w"> </span>--<span class="l">environment=production</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">deploy</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">steps</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">install-packages</span><span class="p">:</span><span class="w">
+</span><span class="w">            </span><span class="nt">packages</span><span class="p">:</span><span class="w"> </span><span class="l">git ssh-client</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">lukevivier/gh-pages@0.2.1</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="l">$GIT_TOKEN</span><span class="w">
+</span><span class="w">        </span><span class="nt">basedir</span><span class="p">:</span><span class="w"> </span><span class="l">public</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>首先，我们在本地使用hugo进行<code>build</code>肯定是没有问题的。所以问题出在<code>deploy</code>这一部分，这部分就两个步骤。</p>
+<ol>
+<li>
+<p>install-packages</p>
+<p>这是安装软件包。</p>
+</li>
+<li>
+<p><a href="mailto:lukevivier/gh-pages@0.2.1">lukevivier/gh-pages@0.2.1</a></p>
+<p>这是wercker的Step store里面的步骤。所以出问题的原因，极有可能是这一步。</p>
+</li>
+</ol>
+<p>将<code>lukevivier/gh-pages@0.2.1</code>的源码下载下来。</p>
+<p>源码很简单，总共包含4个文件：</p>
+<ul>
+<li>README.md</li>
+<li>run.sh</li>
+<li>step.yml</li>
+<li>wercker-step.yml</li>
+</ul>
+<p>从Wercker的文档<a href="https://devcenter.wercker.com/development/steps/creating-steps/">Creating Steps</a>中可以了解到，我重点需要关注的就是<code>run.sh</code>和<code>step.yml</code></p>
+<p><code>run.sh</code>内容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/sh
+</span><span class="cp"></span>
+<span class="c1"># confirm environment variables</span>
+<span class="k">if</span> <span class="o">[</span> ! -n <span class="s2">&#34;</span><span class="nv">$WERCKER_GH_PAGES_TOKEN</span><span class="s2">&#34;</span> <span class="o">]</span>
+<span class="k">then</span>
+  fail <span class="s2">&#34;missing option \&#34;token\&#34;, aborting&#34;</span>
+<span class="k">fi</span>
+
+<span class="c1"># use repo option or guess from git info</span>
+<span class="k">if</span> <span class="o">[</span> -n <span class="s2">&#34;</span><span class="nv">$WERCKER_GH_PAGES_REPO</span><span class="s2">&#34;</span> <span class="o">]</span>
+<span class="k">then</span>
+  <span class="nv">repo</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$WERCKER_GH_PAGES_REPO</span><span class="s2">&#34;</span>
+<span class="k">elif</span> <span class="o">[</span> <span class="s1">&#39;github.com&#39;</span> <span class="o">==</span> <span class="s2">&#34;</span><span class="nv">$WERCKER_GIT_DOMAIN</span><span class="s2">&#34;</span> <span class="o">]</span>
+<span class="k">then</span>
+  <span class="nv">repo</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$WERCKER_GIT_OWNER</span><span class="s2">/</span><span class="nv">$WERCKER_GIT_REPOSITORY</span><span class="s2">&#34;</span>
+<span class="k">else</span>
+  fail <span class="s2">&#34;missing option \&#34;repo\&#34;, aborting&#34;</span>
+<span class="k">fi</span>
+
+info <span class="s2">&#34;using github repo \&#34;</span><span class="nv">$repo</span><span class="s2">\&#34;&#34;</span>
+
+<span class="c1"># remote path</span>
+<span class="nv">remote</span><span class="o">=</span><span class="s2">&#34;https://</span><span class="nv">$WERCKER_GH_PAGES_TOKEN</span><span class="s2">@github.com/</span><span class="nv">$repo</span><span class="s2">.git&#34;</span>
+
+<span class="c1"># if directory provided, cd to it</span>
+<span class="k">if</span> <span class="o">[</span> -d <span class="s2">&#34;</span><span class="nv">$WERCKER_GH_PAGES_BASEDIR</span><span class="s2">&#34;</span> <span class="o">]</span>
+<span class="k">then</span>
+  <span class="nb">cd</span> <span class="nv">$WERCKER_GH_PAGES_BASEDIR</span>
+<span class="k">fi</span>
+
+<span class="c1"># remove existing commit history</span>
+rm -rf .git
+
+<span class="c1"># generate cname file</span>
+<span class="k">if</span> <span class="o">[</span> -n <span class="nv">$WERCKER_GH_PAGES_DOMAIN</span> <span class="o">]</span>
+<span class="k">then</span>
+  <span class="nb">echo</span> <span class="nv">$WERCKER_GH_PAGES_DOMAIN</span> &gt; CNAME
+<span class="k">fi</span>
+
+
+<span class="c1"># setup branch</span>
+<span class="nv">branch</span><span class="o">=</span><span class="s2">&#34;gh-pages&#34;</span>
+<span class="k">if</span> <span class="o">[[</span> <span class="s2">&#34;</span><span class="nv">$WERCKER_GH_PAGES_REPO</span><span class="s2">&#34;</span> <span class="o">=</span>~ <span class="nv">$WERCKER_GIT_OWNER</span><span class="se">\.</span>github<span class="se">\.</span><span class="o">(</span>io<span class="p">|</span>com<span class="o">)</span>$ <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+	<span class="nv">branch</span><span class="o">=</span><span class="s2">&#34;master&#34;</span>
+<span class="k">fi</span>
+
+
+<span class="c1"># init repository</span>
+git init
+
+git config user.email <span class="s2">&#34;pleasemailus@wercker.com&#34;</span>
+git config user.name <span class="s2">&#34;werckerbot&#34;</span>
+
+git add .
+git commit -m <span class="s2">&#34;deploy from </span><span class="nv">$WERCKER_STARTED_BY</span><span class="s2">&#34;</span>
+<span class="nv">result</span><span class="o">=</span><span class="s2">&#34;</span><span class="k">$(</span>git push -f <span class="nv">$remote</span> master:<span class="nv">$branch</span><span class="k">)</span><span class="s2">&#34;</span>
+
+<span class="k">if</span> <span class="o">[[</span> <span class="nv">$?</span> -ne <span class="m">0</span> <span class="o">]]</span>
+<span class="k">then</span>
+  warning <span class="s2">&#34;</span><span class="nv">$result</span><span class="s2">&#34;</span>
+  fail <span class="s2">&#34;failed pushing to github pages&#34;</span>
+<span class="k">else</span>
+  success <span class="s2">&#34;pushed to github pages&#34;</span>
+<span class="k">fi</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>从上面的脚本中可以看到，这一段：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># generate cname file</span>
+<span class="k">if</span> <span class="o">[</span> -n <span class="nv">$WERCKER_GH_PAGES_DOMAIN</span> <span class="o">]</span>
+<span class="k">then</span>
+  <span class="nb">echo</span> <span class="nv">$WERCKER_GH_PAGES_DOMAIN</span> &gt; CNAME
+<span class="k">fi</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>如果<code>$WERCKER_GH_PAGES_DOMAIN</code>的字符串长度不为0，那么将会把<code>$WERCKER_GH_PAGES_DOMAIN</code>写到<code>CNAME</code>。</p>
+<p>那么，<code>$WERCKER_GH_PAGES_DOMAIN</code>这个变量哪来的呢？先看<code>step.yml</code>。</p>
+<p><code>step.yml</code>内容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">gh-pages</span><span class="w">
+</span><span class="w"></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="m">0.2.1</span><span class="w">
+</span><span class="w"></span><span class="nt">summary</span><span class="p">:</span><span class="w"> </span><span class="l">deploy to github pages</span><span class="w">
+</span><span class="w"></span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l">imported</span><span class="w">
+</span><span class="w"></span><span class="nt">tags</span><span class="p">:</span><span class="w">
+</span><span class="w"></span>- <span class="l">github</span><span class="w">
+</span><span class="w"></span>- <span class="l">pages</span><span class="w">
+</span><span class="w"></span>- <span class="l">deploy</span><span class="w">
+</span><span class="w"></span><span class="nt">properties</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>从官方文档对properties的解释了解到。</p>
+<blockquote>
+<p>The <code>properties</code> field contains metadata describing the parameters that are available for the step. This is a map; the key is the name of the step, and the value is a object with the following properties:</p>
+<ul>
+<li><code>name</code> - the name of the property</li>
+<li><code>type</code> - the type of the data of the parameter. Currently supported: <code>string</code>.</li>
+<li><code>required</code> - boolean indicating if the parameter is required or not (currently not enforced).</li>
+<li><code>default</code> - value that gets used, if no parameter was provided through the <code>wercker.yml</code></li>
+</ul>
+</blockquote>
+<p>上面的<code>properties</code>为空，所以参数都是从<code>wercker.yml</code>提供的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml">- <span class="nt">lukevivier/gh-pages@0.2.1</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="l">$GIT_TOKEN</span><span class="w">
+</span><span class="w">        </span><span class="nt">basedir</span><span class="p">:</span><span class="w"> </span><span class="l">public</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>我这里提供了两个参数，根据官方文档会生成两个环境变量，<code>WERCKER_GH_PAGES_BASEDIR</code>和<code>WERCKER_GH_PAGES_TOKEN</code>。这对应了上面<code>run.sh</code>中的<code>WERCKER_GH_PAGES_</code>开头的变量。但是上面是没有配置<code>domain</code>。所以<code>WERCKER_GH_PAGES_DOMAIN</code>变量是不存在的。</p>
+<p>那么，<code>if [ -n $WERCKER_GH_PAGES_DOMAIN ]</code>应该不成立，不生成<code>CNAME</code>才对呀。</p>
+<p>咋一看，确实。</p>
+<p>但是，如果<code>$WERCKER_GH_PAGES_DOMAIN</code>不存在。那么<code>if [ -n $WERCKER_GH_PAGES_DOMAIN ]</code>会变成<code>if [ -n ]</code>，这会造成这个判断始终为<strong>true</strong>;</p>
+<p>所以，如果在<code>wercker.yml</code>中的<code>lukevivier/gh-pages@0.2.1</code>没有配置<code>domain</code>，那么<code>CNAME</code>始终是空的，且覆盖了build之后的我们在static下的<code>CNAME</code>文件。</p>
+<h2 id="解决办法">解决办法</h2>
+<p>其中一种解决办法其实从上面已经知道了。</p>
+<ol>
+<li>
+<p><code>lukevivier/gh-pages@0.2.1</code>添加<code>domain</code>为自定义域名。</p>
+</li>
+<li>
+<p><code>static</code>下添加<code>CNAME</code>，但是不要使用<code>lukevivier/gh-pages@0.2.1</code>。</p>
+<p>可以换一个steps，<code>Step store</code>有很多gh-pages步骤。</p>
+</li>
+<li>
+<p>修改<code>lukevivier/gh-pages@0.2.1</code>的代码，生成自己的步骤。</p>
+<p>只要修改<code>if [ -n $WERCKER_GH_PAGES_DOMAIN ]</code>为<code>if [ -n &quot;$WERCKER_GH_PAGES_DOMAIN&quot; ]</code>即可。这就是告诉我们为什么要在变量外加双引号的原因。</p>
+</li>
+</ol>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">刘强</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-04-14
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/image/wechat-qr-code.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/image/alipay-qr-code.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/blog/">Blog</a>
+          <a href="/tags/hugo/">Hugo</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/jmolecules%E7%A9%B6%E7%AB%9F%E6%98%AF%E5%95%A5%E7%AB%9F%E7%84%B6spring-data-jdbc%E9%83%BD%E5%8D%95%E7%8B%AC%E7%BB%99%E4%BA%86example/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">JMolecules究竟是啥,竟然Spring Data JDBC都为它单独给了example</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/spring%E7%9A%84lookup%E6%B3%A8%E8%A7%A3%E4%BD%BF%E7%94%A8%E4%B8%8A%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E9%97%AE%E9%A2%98/">
+            <span class="next-text nav-default">Spring的@Lookup注解使用上的一些小问题</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2021-04-14 15:53:01 \u002b0800 \u002b0800',
+        title: '博客自定义域名-为什么CNAME内容消失了',
+        clientID: 'c7698ac0c1888a422ff8',
+        clientSecret: '9e95b025bc3dad1fbf7ca56e6086afbe25117805',
+        repo: 'BlogGitalk',
+        owner: 'l-qiang',
+        admin: ['l-qiang'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:liuqiang.ryan@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/l-qiang" class="iconfont icon-github" title="github"></a>
+  <a href="https://blog.l-qiang.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>刘强</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-669K7NHHPY', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script id="baidu_push">
+  (function(){
+    if (window.location.hostname === 'localhost') return;
+    var bp = document.createElement('script'); bp.async = true;
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+
+
+</body>
+</html>

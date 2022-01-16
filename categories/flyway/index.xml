@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Flyway on L-Qiang</title>
+    <link>https://blog.l-qiang.xyz/categories/flyway/</link>
+    <description>Recent content in Flyway on L-Qiang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 01 Jun 2021 15:31:42 +0800</lastBuildDate><atom:link href="https://blog.l-qiang.xyz/categories/flyway/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Flyway使用Java代码Repair</title>
+      <link>https://blog.l-qiang.xyz/post/flyway%E4%BD%BF%E7%94%A8java%E4%BB%A3%E7%A0%81repair/</link>
+      <pubDate>Tue, 01 Jun 2021 15:31:42 +0800</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/flyway%E4%BD%BF%E7%94%A8java%E4%BB%A3%E7%A0%81repair/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

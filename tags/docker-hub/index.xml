@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker Hub on L-Qiang</title>
+    <link>https://blog.l-qiang.xyz/tags/docker-hub/</link>
+    <description>Recent content in Docker Hub on L-Qiang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 04 Dec 2020 17:27:46 +0800</lastBuildDate><atom:link href="https://blog.l-qiang.xyz/tags/docker-hub/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Wercker部署Hugo博客拉取Docker镜像出错问题解决</title>
+      <link>https://blog.l-qiang.xyz/post/wercker%E9%83%A8%E7%BD%B2hugo%E5%8D%9A%E5%AE%A2%E6%8B%89%E5%8F%96docker%E9%95%9C%E5%83%8F%E5%87%BA%E9%94%99%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</link>
+      <pubDate>Fri, 04 Dec 2020 17:27:46 +0800</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/wercker%E9%83%A8%E7%BD%B2hugo%E5%8D%9A%E5%AE%A2%E6%8B%89%E5%8F%96docker%E9%95%9C%E5%83%8F%E5%87%BA%E9%94%99%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</guid>
+      <description>&lt;p&gt;话不多说，直接上错误信息。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;fetch failed to pull image golang: API error (500): {&amp;ldquo;message&amp;rdquo;:&amp;ldquo;toomanyrequests: You have reached your pull rate limit. You may increase the limit by authenticating and upgrading: &lt;a href=&#34;https://www.docker.com/increase-rate-limit%22%7D&#34;&gt;https://www.docker.com/increase-rate-limit&amp;quot;}&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

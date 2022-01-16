@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OpenJDK on L-Qiang</title>
+    <link>https://blog.l-qiang.xyz/tags/openjdk/</link>
+    <description>Recent content in OpenJDK on L-Qiang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 02 Dec 2020 13:49:36 +0800</lastBuildDate><atom:link href="https://blog.l-qiang.xyz/tags/openjdk/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Jenkins安装与配置</title>
+      <link>https://blog.l-qiang.xyz/post/jenkins%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Wed, 02 Dec 2020 13:49:36 +0800</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/jenkins%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

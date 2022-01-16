@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Spring Session on L-Qiang</title>
+    <link>https://blog.l-qiang.xyz/categories/spring-session/</link>
+    <description>Recent content in Spring Session on L-Qiang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 13 Oct 2019 19:07:11 +0000</lastBuildDate><atom:link href="https://blog.l-qiang.xyz/categories/spring-session/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>spring-session是怎样使用redis存session的？</title>
+      <link>https://blog.l-qiang.xyz/post/springsession%E6%98%AF%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8redis%E5%AD%98session%E7%9A%84/</link>
+      <pubDate>Sun, 13 Oct 2019 19:07:11 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/springsession%E6%98%AF%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8redis%E5%AD%98session%E7%9A%84/</guid>
+      <description>&lt;p&gt;其实，我的直觉告诉我使用Hash。&lt;/p&gt;
+&lt;p&gt;我在项目里找到&lt;a href=&#34;https://docs.spring.io/spring-session/docs/current/api/org/springframework/session/data/redis/RedisOperationsSessionRepository.html&#34;&gt;RedisOperationsSessionRepository&lt;/a&gt;然后在注释中找到了答案&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Each session is stored in Redis as a &lt;a href=&#34;http://redis.io/topics/data-types#hashes&#34;&gt;Hash&lt;/a&gt;. Each session is set and updated using the &lt;a href=&#34;http://redis.io/commands/hmset&#34;&gt;HMSET command&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

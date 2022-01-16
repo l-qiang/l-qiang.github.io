@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>STSong Light on L-Qiang</title>
+    <link>https://blog.l-qiang.xyz/tags/stsong-light/</link>
+    <description>Recent content in STSong Light on L-Qiang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 11 Mar 2020 18:11:31 +0000</lastBuildDate><atom:link href="https://blog.l-qiang.xyz/tags/stsong-light/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>解决Linux下使用Pdfbox将PDF转图片乱码问题</title>
+      <link>https://blog.l-qiang.xyz/post/%E8%A7%A3%E5%86%B3linux%E4%B8%8B%E4%BD%BF%E7%94%A8pdfbox%E5%B0%86pdf%E8%BD%AC%E5%9B%BE%E7%89%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Wed, 11 Mar 2020 18:11:31 +0000</pubDate>
+      
+      <guid>https://blog.l-qiang.xyz/post/%E8%A7%A3%E5%86%B3linux%E4%B8%8B%E4%BD%BF%E7%94%A8pdfbox%E5%B0%86pdf%E8%BD%AC%E5%9B%BE%E7%89%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/</guid>
+      <description>今天测试跟我说我们的PDF转换图片的时候会出现中文乱码，然而我在自己的电脑上验证的时候发现并不会出现乱码的问题，我的第一反应就是这不是代码的</description>
+    </item>
+    
+  </channel>
+</rss>

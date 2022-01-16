@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>L-Qiang</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="刘强" /><meta name="description" content="刘强的个人随笔" /><meta name="keywords" content="刘强, Java, Spring, MySQL, Blog, Docker, Linux, Redis, Zookeeper" />
+
+
+<meta name="baidu-site-verification" content="code-aOguXvJrXJ" />
+<meta name="google-site-verification" content="q9bP2qBubZQnLPEVZsEaqAVrsSTjpyAvMvA-Rf2VKXA" />
+
+
+<meta name="generator" content="Hugo 0.90.0 with theme even" />
+
+
+<link rel="canonical" href="https://blog.l-qiang.xyz/" />
+  <link href="https://blog.l-qiang.xyz/index.xml" rel="alternate" type="application/rss+xml" title="L-Qiang" />
+  <link href="https://blog.l-qiang.xyz/index.xml" rel="feed" type="application/rss+xml" title="L-Qiang" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="L-Qiang" />
+<meta property="og:description" content="刘强的个人随笔" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://blog.l-qiang.xyz/" />
+
+<meta itemprop="name" content="L-Qiang">
+<meta itemprop="description" content="刘强的个人随笔"><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="L-Qiang"/>
+<meta name="twitter:description" content="刘强的个人随笔"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">L-Qiang</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">L-Qiang</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/mysql%E9%9D%9E%E7%B4%A2%E5%BC%95%E5%88%97%E7%AD%89%E5%8F%B7%E5%B7%A6%E8%BE%B9%E4%BD%BF%E7%94%A8%E5%87%BD%E6%95%B0%E4%B8%8E%E5%8F%B3%E8%BE%B9%E4%BD%BF%E7%94%A8%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%BA%E5%88%AB/">MySQL非索引列等号左边使用函数与右边使用函数的区别</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2021-10-26 </span>
+      <div class="post-category">
+          <a href="/categories/mysql/"> MySQL </a>
+          </div>
+        <span class="more-meta"> 约 427 字 </span>
+        <span class="more-meta"> 预计阅读 1 分钟 </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>MySQL查询<strong>upper(name) = &lsquo;A&rsquo;</strong> 与 <strong>name = upper(&lsquo;A&rsquo;)<strong>哪个更快，我想在<code>name</code>列为索引的情况下，都知道</strong>后者</strong>更快。那么<code>name</code>列为非索引的情况哪个更快呢？</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/mysql%E9%9D%9E%E7%B4%A2%E5%BC%95%E5%88%97%E7%AD%89%E5%8F%B7%E5%B7%A6%E8%BE%B9%E4%BD%BF%E7%94%A8%E5%87%BD%E6%95%B0%E4%B8%8E%E5%8F%B3%E8%BE%B9%E4%BD%BF%E7%94%A8%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%BA%E5%88%AB/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/git%E5%A4%9A%E8%B4%A6%E5%8F%B7%E9%85%8D%E7%BD%AE/">Git多账号配置</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2021-10-24 </span>
+      <div class="post-category">
+          <a href="/categories/git/"> Git </a>
+          </div>
+        <span class="more-meta"> 约 1097 字 </span>
+        <span class="more-meta"> 预计阅读 3 分钟 </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>网上有太多关于Git多账号配置的文章了，给我的感觉就是很乱，没有找到一篇可以收藏的，所以还是决定自己写一篇记录一下。</p>
+<p>暂时记录我的使用情况，后续有补充或修改再更新。</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/git%E5%A4%9A%E8%B4%A6%E5%8F%B7%E9%85%8D%E7%BD%AE/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/springcloudconfig%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%AF%BC%E8%87%B4cpu100%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/">Spring Cloud Config内存泄漏导致CPU100%问题排查</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2021-06-09 </span>
+      <div class="post-category">
+          <a href="/categories/spring-cloud/"> Spring Cloud </a>
+          <a href="/categories/jvm/"> JVM </a>
+          </div>
+        <span class="more-meta"> 约 2240 字 </span>
+        <span class="more-meta"> 预计阅读 5 分钟 </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>前段时间，作为工具人的我被要求排查某台服务器<code>CPU 100%</code>。当时听了内心狂喜，终于让我遇到CPU 100%问题了。但是，当时服务器着急重启，没有足够的时间给我排查问题，但是我还是在重启之前把堆Dump文件保存了下来。</p>
+<p>这两天忙里偷闲就想着分析一下原因。</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/springcloudconfig%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%AF%BC%E8%87%B4cpu100%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/flyway%E4%BD%BF%E7%94%A8java%E4%BB%A3%E7%A0%81repair/">Flyway使用Java代码Repair</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2021-06-01 </span>
+      <div class="post-category">
+          <a href="/categories/spring-boot/"> Spring Boot </a>
+          <a href="/categories/flyway/"> Flyway </a>
+          </div>
+        <span class="more-meta"> 约 93 字 </span>
+        <span class="more-meta"> 预计阅读 1 分钟 </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      
+    </div>
+    <div class="read-more">
+      <a href="/post/flyway%E4%BD%BF%E7%94%A8java%E4%BB%A3%E7%A0%81repair/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/jmolecules%E7%A9%B6%E7%AB%9F%E6%98%AF%E5%95%A5%E7%AB%9F%E7%84%B6spring-data-jdbc%E9%83%BD%E5%8D%95%E7%8B%AC%E7%BB%99%E4%BA%86example/">JMolecules究竟是啥,竟然Spring Data JDBC都为它单独给了example</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2021-04-22 </span>
+      <div class="post-category">
+          <a href="/categories/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/"> 领域驱动设计 </a>
+          </div>
+        <span class="more-meta"> 约 2992 字 </span>
+        <span class="more-meta"> 预计阅读 6 分钟 </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>前两天在选择Demo工程的框架的时候，选了从未用过的<code>Spring Data JDBC</code>。在官方给出的<em>Examples</em>里，发现有个单独的模块<a href="https://github.com/spring-projects/spring-data-examples/tree/main/jdbc/jmolecules"><strong>jmolecules-example</strong></a>。</p>
+<p>我感觉挺惊讶的，Spring官方竟然给一个在Github上<strong>star</strong>不超过<code>400</code>（截止到2021-4-22）的项目给了单独的使用示例。</p>
+<p>但是，我看到这个项目的第一眼就<strong>star</strong>上了。用注解和接口表达<code>领域驱动设计中</code>的概念，实在是太<code>coooool</code>了。</p>
+<p>所以，我就决定将这个示例<a href="https://github.com/spring-projects/spring-data-examples/tree/main/jdbc/jmolecules"><strong>jmolecules-example</strong></a>，clone下来研究一下。</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/jmolecules%E7%A9%B6%E7%AB%9F%E6%98%AF%E5%95%A5%E7%AB%9F%E7%84%B6spring-data-jdbc%E9%83%BD%E5%8D%95%E7%8B%AC%E7%BB%99%E4%BA%86example/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/%E5%8D%9A%E5%AE%A2%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D-%E4%B8%BA%E4%BB%80%E4%B9%88cname%E5%86%85%E5%AE%B9%E6%B6%88%E5%A4%B1%E4%BA%86/">博客自定义域名-为什么CNAME内容消失了</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2021-04-14 </span>
+      <div class="post-category">
+          <a href="/categories/blog/"> Blog </a>
+          <a href="/categories/hugo/"> Hugo </a>
+          </div>
+        <span class="more-meta"> 约 2142 字 </span>
+        <span class="more-meta"> 预计阅读 5 分钟 </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>现象是这样的：在static目录下新建了一个<code>CNAME</code>文件，并填写了域名<code>blog.l-qiang.xyz</code>。但是，使用Git将更改push到Github之后，发现gh-pages分支下的<code>CNAME</code>的内容为<strong>空</strong>，<code>blog.l-qiang.xyz</code>竟然消失了！！！</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/%E5%8D%9A%E5%AE%A2%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D-%E4%B8%BA%E4%BB%80%E4%B9%88cname%E5%86%85%E5%AE%B9%E6%B6%88%E5%A4%B1%E4%BA%86/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/spring%E7%9A%84lookup%E6%B3%A8%E8%A7%A3%E4%BD%BF%E7%94%A8%E4%B8%8A%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E9%97%AE%E9%A2%98/">Spring的@Lookup注解使用上的一些小问题</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2021-04-13 </span>
+      <div class="post-category">
+          <a href="/categories/spring/"> Spring </a>
+          </div>
+        <span class="more-meta"> 约 737 字 </span>
+        <span class="more-meta"> 预计阅读 2 分钟 </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>关于为什么要使用<code>@Lookup</code>的原因，在我之前的博客<a href="https://blog.l-qiang.xyz/post/spring%E6%B3%A8%E8%A7%A3%E4%B9%8Blookup/">Spring注解之@Lookup</a>中有写到。</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/spring%E7%9A%84lookup%E6%B3%A8%E8%A7%A3%E4%BD%BF%E7%94%A8%E4%B8%8A%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E9%97%AE%E9%A2%98/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/controller%E7%BB%9F%E4%B8%80%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%80%8E%E4%B9%88%E5%A4%84%E7%90%86/">Controller统一返回结果文件下载怎么处理？</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2021-01-14 </span>
+      <div class="post-category">
+          <a href="/categories/spring-mvc/"> Spring MVC </a>
+          <a href="/categories/spring-boot/"> Spring Boot </a>
+          </div>
+        <span class="more-meta"> 约 751 字 </span>
+        <span class="more-meta"> 预计阅读 2 分钟 </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>我们经常会使用一个<strong>自定义</strong>的Controller返回结果<code>Response</code>，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Response</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">SUCCESS</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">ERROR</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">message</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">code</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">T</span> <span class="n">data</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Response</span><span class="o">(</span><span class="n">String</span> <span class="n">message</span><span class="o">,</span> <span class="kt">int</span> <span class="n">code</span><span class="o">,</span> <span class="n">T</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">message</span> <span class="o">=</span> <span class="n">message</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">code</span> <span class="o">=</span> <span class="n">code</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Response</span><span class="o">&lt;</span><span class="n">Void</span><span class="o">&gt;</span> <span class="nf">error</span><span class="o">(</span><span class="n">String</span> <span class="n">msg</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Response</span><span class="o">&lt;&gt;(</span><span class="n">msg</span><span class="o">,</span> <span class="n">ERROR</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">Response</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">success</span><span class="o">(</span><span class="n">T</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Response</span><span class="o">&lt;&gt;(</span><span class="s">&#34;success&#34;</span><span class="o">,</span> <span class="n">SUCCESS</span><span class="o">,</span> <span class="n">data</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@JsonProperty</span>
+    <span class="kd">public</span> <span class="n">T</span> <span class="nf">data</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">data</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@JsonProperty</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">code</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">code</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@JsonProperty</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">message</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">message</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@JsonIgnore</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isFileData</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">data</span><span class="o">()</span> <span class="k">instanceof</span> <span class="n">FileData</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>但是，关于文件下载，我们一般就是在Controller修改<strong>HttpServletResponse</strong>或者使用<strong>ResponseEntity</strong>。如果，我不想在Controller中写这些，我想跟其他方法一样直接返回<code>Response</code>，那该怎么做呢？</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/controller%E7%BB%9F%E4%B8%80%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%80%8E%E4%B9%88%E5%A4%84%E7%90%86/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/jenkins%E7%9A%84pipeline%E6%8F%92%E4%BB%B6%E5%AE%9E%E8%B7%B5/">Jenkins的Pipeline插件实践</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-12-15 </span>
+      <div class="post-category">
+          <a href="/categories/jenkins/"> Jenkins </a>
+          </div>
+        <span class="more-meta"> 约 2357 字 </span>
+        <span class="more-meta"> 预计阅读 5 分钟 </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>在Jenkins的<a href="https://www.jenkins.io/doc/book/">官方文档</a>中，可以看到到处都是<strong>Pipeline</strong>的身影，而且文档多数内容都是讲Pipeline。由此可见，Pipeline非常重要，我愿称之为Jenkins的精髓。最重要的是，Pipeline还很好用。接下来，以一个<code>多模块的Maven项目</code>为例，记录一下我使用Pipeline的一些经验。</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/jenkins%E7%9A%84pipeline%E6%8F%92%E4%BB%B6%E5%AE%9E%E8%B7%B5/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/jenkins%E9%83%A8%E7%BD%B2maven%E9%A1%B9%E7%9B%AE/">Jenkins部署Maven项目</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-12-10 </span>
+      <div class="post-category">
+          <a href="/categories/jenkins/"> Jenkins </a>
+          <a href="/categories/maven/"> Maven </a>
+          <a href="/categories/spring-boot/"> Spring Boot </a>
+          </div>
+        <span class="more-meta"> 约 811 字 </span>
+        <span class="more-meta"> 预计阅读 2 分钟 </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>这是关于我使用Jenkins部署Maven项目的经验之谈，包括了部署流程、Maven多模块的一些试验，以及使用<code>Publish Over SSH</code>的问题。</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/jenkins%E9%83%A8%E7%BD%B2maven%E9%A1%B9%E7%9B%AE/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    </section>
+  
+  <nav class="pagination">
+    
+    <a class="next" href="/page/2/">
+        <span class="next-text">下一页</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+  </nav>
+        </div>
+        
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:liuqiang.ryan@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/l-qiang" class="iconfont icon-github" title="github"></a>
+  <a href="https://blog.l-qiang.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>刘强</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-669K7NHHPY', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script id="baidu_push">
+  (function(){
+    if (window.location.hostname === 'localhost') return;
+    var bp = document.createElement('script'); bp.async = true;
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+
+
+</body>
+</html>

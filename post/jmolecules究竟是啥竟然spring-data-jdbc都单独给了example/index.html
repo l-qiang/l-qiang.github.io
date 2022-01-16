@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>JMolecules究竟是啥,竟然Spring Data JDBC都为它单独给了example - L-Qiang</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="刘强" /><meta name="description" content="前两天在选择Demo工程的框架的时候，选了从未用过的Spring Data JDBC。在官方给出的Examples里，发现有个单独的模块jmolecules-example。
+我感觉挺惊讶的，Spring官方竟然给一个在Github上star不超过400（截止到2021-4-22）的项目给了单独的使用示例。
+但是，我看到这个项目的第一眼就star上了。用注解和接口表达领域驱动设计中的概念，实在是太coooool了。
+所以，我就决定将这个示例jmolecules-example，clone下来研究一下。
+" /><meta name="keywords" content="领域驱动设计, Spring Data JDBC, JMolecules, DDD" />
+
+
+<meta name="baidu-site-verification" content="code-aOguXvJrXJ" />
+<meta name="google-site-verification" content="q9bP2qBubZQnLPEVZsEaqAVrsSTjpyAvMvA-Rf2VKXA" />
+
+
+<meta name="generator" content="Hugo 0.90.0 with theme even" />
+
+
+<link rel="canonical" href="https://blog.l-qiang.xyz/post/jmolecules%E7%A9%B6%E7%AB%9F%E6%98%AF%E5%95%A5%E7%AB%9F%E7%84%B6spring-data-jdbc%E9%83%BD%E5%8D%95%E7%8B%AC%E7%BB%99%E4%BA%86example/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="JMolecules究竟是啥,竟然Spring Data JDBC都为它单独给了example" />
+<meta property="og:description" content="前两天在选择Demo工程的框架的时候，选了从未用过的Spring Data JDBC。在官方给出的Examples里，发现有个单独的模块jmolecules-example。
+我感觉挺惊讶的，Spring官方竟然给一个在Github上star不超过400（截止到2021-4-22）的项目给了单独的使用示例。
+但是，我看到这个项目的第一眼就star上了。用注解和接口表达领域驱动设计中的概念，实在是太coooool了。
+所以，我就决定将这个示例jmolecules-example，clone下来研究一下。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.l-qiang.xyz/post/jmolecules%E7%A9%B6%E7%AB%9F%E6%98%AF%E5%95%A5%E7%AB%9F%E7%84%B6spring-data-jdbc%E9%83%BD%E5%8D%95%E7%8B%AC%E7%BB%99%E4%BA%86example/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-04-22T10:22:27+08:00" />
+<meta property="article:modified_time" content="2021-04-22T10:22:27+08:00" />
+
+<meta itemprop="name" content="JMolecules究竟是啥,竟然Spring Data JDBC都为它单独给了example">
+<meta itemprop="description" content="前两天在选择Demo工程的框架的时候，选了从未用过的Spring Data JDBC。在官方给出的Examples里，发现有个单独的模块jmolecules-example。
+我感觉挺惊讶的，Spring官方竟然给一个在Github上star不超过400（截止到2021-4-22）的项目给了单独的使用示例。
+但是，我看到这个项目的第一眼就star上了。用注解和接口表达领域驱动设计中的概念，实在是太coooool了。
+所以，我就决定将这个示例jmolecules-example，clone下来研究一下。"><meta itemprop="datePublished" content="2021-04-22T10:22:27+08:00" />
+<meta itemprop="dateModified" content="2021-04-22T10:22:27+08:00" />
+<meta itemprop="wordCount" content="2992">
+<meta itemprop="keywords" content="领域驱动设计,Spring Data JDBC,JMolecules," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JMolecules究竟是啥,竟然Spring Data JDBC都为它单独给了example"/>
+<meta name="twitter:description" content="前两天在选择Demo工程的框架的时候，选了从未用过的Spring Data JDBC。在官方给出的Examples里，发现有个单独的模块jmolecules-example。
+我感觉挺惊讶的，Spring官方竟然给一个在Github上star不超过400（截止到2021-4-22）的项目给了单独的使用示例。
+但是，我看到这个项目的第一眼就star上了。用注解和接口表达领域驱动设计中的概念，实在是太coooool了。
+所以，我就决定将这个示例jmolecules-example，clone下来研究一下。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">L-Qiang</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">L-Qiang</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">JMolecules究竟是啥,竟然Spring Data JDBC都为它单独给了example</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-04-22 </span>
+        <div class="post-category">
+            <a href="/categories/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/"> 领域驱动设计 </a>
+            </div>
+          <span class="more-meta"> 约 2992 字 </span>
+          <span class="more-meta"> 预计阅读 6 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#为啥测试用例通过不了">为啥测试用例通过不了？</a>
+          <ul>
+            <li><a href="#jmolecules">jMolecules</a></li>
+            <li><a href="#jmoleculestechnology-integrations">jMolecules — Technology integrations</a></li>
+          </ul>
+        </li>
+        <li><a href="#spring-data-jdbc示例分析">Spring Data JDBC示例分析</a>
+          <ul>
+            <li><a href="#一对一">一对一</a></li>
+            <li><a href="#一对多">一对多</a></li>
+            <li><a href="#多对一">多对一</a></li>
+          </ul>
+        </li>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>前两天在选择Demo工程的框架的时候，选了从未用过的<code>Spring Data JDBC</code>。在官方给出的<em>Examples</em>里，发现有个单独的模块<a href="https://github.com/spring-projects/spring-data-examples/tree/main/jdbc/jmolecules"><strong>jmolecules-example</strong></a>。</p>
+<p>我感觉挺惊讶的，Spring官方竟然给一个在Github上<strong>star</strong>不超过<code>400</code>（截止到2021-4-22）的项目给了单独的使用示例。</p>
+<p>但是，我看到这个项目的第一眼就<strong>star</strong>上了。用注解和接口表达<code>领域驱动设计中</code>的概念，实在是太<code>coooool</code>了。</p>
+<p>所以，我就决定将这个示例<a href="https://github.com/spring-projects/spring-data-examples/tree/main/jdbc/jmolecules"><strong>jmolecules-example</strong></a>，clone下来研究一下。</p>
+<h2 id="为啥测试用例通过不了">为啥测试用例通过不了？</h2>
+<p>所有Spring Data示例在一个repository里简直太折磨人了，clone下来下载jar包都得需要好长时间。</p>
+<p>下载完之后，运行测试用例就报错了。</p>
+<blockquote>
+<p>org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type &lsquo;example.springdata.jdbc.jmolecules.customer.Customers&rsquo; available</p>
+</blockquote>
+<p>一脸懵逼，官方示例不应该有问题。</p>
+<p>但是，这个错误很明显，没找到<strong>Customers</strong>这个<code>Repository</code>。</p>
+<p>让我们来看看<strong>Customers</strong>的代码。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Customers</span> <span class="kd">extends</span> <span class="n">Repository</span><span class="o">&lt;</span><span class="n">Customer</span><span class="o">,</span> <span class="n">CustomerId</span><span class="o">&gt;,</span> <span class="n">AssociationResolver</span><span class="o">&lt;</span><span class="n">Customer</span><span class="o">,</span> <span class="n">CustomerId</span><span class="o">&gt;</span> <span class="o">{</span>
+	<span class="n">Customer</span> <span class="nf">save</span><span class="o">(</span><span class="n">Customer</span> <span class="n">customer</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>用过Spring Data JPA的都知道，我们自定义一个接口然后继承<code>org.springframework.data.repository.Repository</code>就行了。但是这里，继承的是<code>org.jmolecules.ddd.types.Repository</code>。所以上面的错误，肯定跟这个有关系。所以，就必须了解这个<code>jMolecules</code>了。</p>
+<h3 id="jmolecules">jMolecules</h3>
+<blockquote>
+<p>A set of libraries to help developers work with architectural concepts in Java. Goals:</p>
+<ul>
+<li>Express that a piece of code (package, class, method…) implements an architectural concept.</li>
+<li>Make it easy for the human reader to determine what kind of architectural concepts a given piece of code is.</li>
+<li>Allow tool integration (to do interesting stuff like generating persistence or static architecture analysis to check for validations of the architectural rules.)</li>
+</ul>
+</blockquote>
+<p>从Github上的介绍以及源码可以看出来，<code>jMolecules</code>只是提供了一些<strong>标志性</strong>的<code>接口</code>和<code>注解</code>而已。</p>
+<p>比如： 使用<code>@ValueObject</code>来标志<code>领域驱动设计</code>中的<strong>值对象</strong></p>
+<p>如果这个<code>jMolecules</code>只有标识作用，是不是显得没有那么实用？因此，还有另一个叫<a href="https://github.com/xmolecules/jmolecules-integrations">jmolecules-integrations</a>的项目。</p>
+<h3 id="jmoleculestechnology-integrations">jMolecules — Technology integrations</h3>
+<p>正是这个项目，可以将<code>jMolecules</code>转换成<code>Spring Data</code>中的接口及注解。</p>
+<p>从示例的pom.xml中可以看到就有这些依赖。</p>
+<p>而重点就是下面这个。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;plugin&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>net.bytebuddy<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>byte-buddy-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>${byte-buddy.version}<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;executions&gt;</span>
+        <span class="nt">&lt;execution&gt;</span>
+            <span class="nt">&lt;goals&gt;</span>
+                <span class="nt">&lt;goal&gt;</span>transform<span class="nt">&lt;/goal&gt;</span>
+            <span class="nt">&lt;/goals&gt;</span>
+        <span class="nt">&lt;/execution&gt;</span>
+    <span class="nt">&lt;/executions&gt;</span>
+    <span class="nt">&lt;dependencies&gt;</span>
+        <span class="nt">&lt;dependency&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>org.jmolecules.integrations<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>jmolecules-bytebuddy<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="nt">&lt;version&gt;</span>${jmolecules-integration.version}<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;/dependencies&gt;</span>
+<span class="nt">&lt;/plugin&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>使用这个插件在<code>target</code>目录下生成class文件，测试用例就可以通过了。</p>
+<p>生成的<code>Customers</code>代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Customers</span> <span class="kd">extends</span> <span class="n">Repository</span><span class="o">&lt;</span><span class="n">Customer</span><span class="o">,</span> <span class="n">CustomerId</span><span class="o">&gt;,</span> <span class="n">AssociationResolver</span><span class="o">&lt;</span><span class="n">Customer</span><span class="o">,</span> <span class="n">CustomerId</span><span class="o">&gt;,</span> <span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">.</span><span class="na">data</span><span class="o">.</span><span class="na">repository</span><span class="o">.</span><span class="na">Repository</span><span class="o">&lt;</span><span class="n">Customer</span><span class="o">,</span> <span class="n">CustomerId</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="n">Customer</span> <span class="nf">save</span><span class="o">(</span><span class="n">Customer</span> <span class="n">customer</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>可以，看到生成的class文件里多了<code>org.springframework.data.repository.Repository</code>接口。</p>
+<h2 id="spring-data-jdbc示例分析">Spring Data JDBC示例分析</h2>
+<p>示例里，更多的还是关于<code>Spring Data JDBC</code>的内容，而<code>jMolecules</code>相当于起了一个辅助的作用。</p>
+<p>下面，分析一下这个示例的代码。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">--customer
+  |--Address
+  |--Customer
+  |--Customers
+--order
+  |--LineItem
+  |--Order
+  |--Orders
+</code></pre></td></tr></table>
+</div>
+</div><p><code>Customers</code>和<code>Orders</code>很简单，分别是聚合根<code>Customer</code>和<code>Order</code>的<strong>Repository</strong>。</p>
+<p>所以重点还是<code>Customer</code>和<code>Order</code>。</p>
+<h3 id="一对一">一对一</h3>
+<p><code>Customer</code>是一个典型的<strong>一对一</strong>关系示例。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Getter</span>
+<span class="nd">@ToString</span>
+<span class="nd">@AllArgsConstructor</span><span class="o">(</span><span class="n">access</span> <span class="o">=</span> <span class="n">AccessLevel</span><span class="o">.</span><span class="na">PRIVATE</span><span class="o">,</span> <span class="n">onConstructor</span> <span class="o">=</span> <span class="nd">@__</span><span class="o">(</span><span class="nd">@PersistenceConstructor</span><span class="o">))</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Customer</span> <span class="kd">implements</span> <span class="n">AggregateRoot</span><span class="o">&lt;</span><span class="n">Customer</span><span class="o">,</span> <span class="n">CustomerId</span><span class="o">&gt;</span> <span class="o">{</span>
+
+	<span class="kd">private</span> <span class="kd">final</span> <span class="n">CustomerId</span> <span class="n">id</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="nd">@Setter</span> <span class="n">String</span> <span class="n">firstname</span><span class="o">,</span> <span class="n">lastname</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Address</span><span class="o">&gt;</span> <span class="n">addresses</span><span class="o">;</span>
+
+	<span class="kd">public</span> <span class="nf">Customer</span><span class="o">(</span><span class="n">String</span> <span class="n">firstname</span><span class="o">,</span> <span class="n">String</span> <span class="n">lastname</span><span class="o">,</span> <span class="n">Address</span> <span class="n">address</span><span class="o">)</span> <span class="o">{</span>
+
+		<span class="n">Assert</span><span class="o">.</span><span class="na">notNull</span><span class="o">(</span><span class="n">address</span><span class="o">,</span> <span class="s">&#34;Address must not be null!&#34;</span><span class="o">);</span>
+
+		<span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">CustomerId</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">().</span><span class="na">toString</span><span class="o">());</span>
+
+		<span class="k">this</span><span class="o">.</span><span class="na">firstname</span> <span class="o">=</span> <span class="n">firstname</span><span class="o">;</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">lastname</span> <span class="o">=</span> <span class="n">lastname</span><span class="o">;</span>
+
+		<span class="k">this</span><span class="o">.</span><span class="na">addresses</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">addresses</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">address</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="nd">@Value</span><span class="o">(</span><span class="n">staticConstructor</span> <span class="o">=</span> <span class="s">&#34;of&#34;</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">CustomerId</span> <span class="kd">implements</span> <span class="n">Identifier</span> <span class="o">{</span>
+		<span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">id</span><span class="o">;</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Value</span>
+<span class="nd">@ValueObject</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Address</span> <span class="o">{</span>
+	<span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">street</span><span class="o">,</span> <span class="n">city</span><span class="o">,</span> <span class="n">zipCode</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="admonition info">
+<p>这里有Lombok的注解中的<code>@PersistenceConstructor</code>，其实意思就是在构造方法上加上这个<code>@PersistenceConstructor</code>注解，它的作用可以在<code>Spring Data JDBC</code>文档上了解到。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@AllArgsConstructor</span><span class="o">(</span><span class="n">access</span> <span class="o">=</span> <span class="n">AccessLevel</span><span class="o">.</span><span class="na">PRIVATE</span><span class="o">,</span> <span class="n">onConstructor</span> <span class="o">=</span> <span class="nd">@__</span><span class="o">(</span><span class="nd">@PersistenceConstructor</span><span class="o">))</span>
+</code></pre></td></tr></table>
+</div>
+</div></div>
+<p>虽然，代码里使用的是List，但是这里<code>Customer</code>和<code>Address</code>确实是一对一的。这里<code>jMolecules</code>通过AggregateRoot接口，让我们不再需要加上<code>@Id</code>注解（org.springframework.data.annotation.@Id）。</p>
+<p>而且，对于<code>Spring Data JDBC</code>只需要<code>@Id</code>注解就够了，甚至不需要setter和getter方法。<code>Spring Data</code>不愧是贯彻<code>领域驱动设计</code>概念的框架。有时候，有些框架强制使用setter和getter方法就让我觉得很别扭。</p>
+<p><code>Customer</code>和<code>Address</code>的建表语句可就有点意思了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">customer</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span><span class="w">	</span><span class="n">id</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w">
+</span><span class="w">	</span><span class="n">firstname</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span><span class="w">
+</span><span class="w">	</span><span class="n">lastname</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="p">);</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">address</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span><span class="w">	</span><span class="n">street</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span><span class="w">
+</span><span class="w">	</span><span class="n">city</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span><span class="w">
+</span><span class="w">	</span><span class="n">zip_code</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span><span class="w">
+</span><span class="w">	</span><span class="n">customer</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span><span class="w">
+</span><span class="w">	</span><span class="n">customer_key</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="p">);</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p><code>Address</code>是一个值对象，它随customer产生也随之消亡。</p>
+<p>我们不需要做任何操作，在<code>customer</code>保存的时候，会将<code>customer</code>的<strong>id</strong>保存到<code>address</code>的<strong>customer</strong>字段。</p>
+<p>而<code>customer_key</code>，以我的理解对应的是<code>customer</code>中List的index。</p>
+<p><code>customer</code>保存后的数据如下：</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>FIRSTNAME</th>
+<th>LASTNAME</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>52eb4e05-4371-4009-a03e-2fbdc3a5963d</td>
+<td>Carter</td>
+<td>Matthews</td>
+</tr>
+</tbody>
+</table>
+<p><code>address</code>的数据如下：</p>
+<table>
+<thead>
+<tr>
+<th>STREET</th>
+<th>CITY</th>
+<th>ZIP_CODE</th>
+<th>CUSTOMER</th>
+<th>CUSTPMER_KEY</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>41 Greystreet</td>
+<td>Dreaming Tree</td>
+<td>2731</td>
+<td>52eb4e05-4371-4009-a03e-2fbdc3a5963d</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="一对多">一对多</h3>
+<p><code>Order</code>与<code>LineItem</code>就是一对多的关系了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Table</span><span class="o">(</span><span class="s">&#34;MY_ORDER&#34;</span><span class="o">)</span>
+<span class="nd">@Getter</span>
+<span class="nd">@ToString</span>
+<span class="nd">@RequiredArgsConstructor</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Order</span> <span class="kd">implements</span> <span class="n">AggregateRoot</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">,</span> <span class="n">Order</span><span class="o">.</span><span class="na">OrderId</span><span class="o">&gt;</span> <span class="o">{</span>
+
+	<span class="kd">private</span> <span class="kd">final</span> <span class="n">OrderId</span> <span class="n">id</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="nd">@Column</span><span class="o">(</span><span class="s">&#34;FOO&#34;</span><span class="o">)</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">LineItem</span><span class="o">&gt;</span> <span class="n">lineItems</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="n">Association</span><span class="o">&lt;</span><span class="n">Customer</span><span class="o">,</span> <span class="n">CustomerId</span><span class="o">&gt;</span> <span class="n">customer</span><span class="o">;</span>
+
+	<span class="kd">public</span> <span class="nf">Order</span><span class="o">(</span><span class="n">Customer</span> <span class="n">customer</span><span class="o">)</span> <span class="o">{</span>
+
+		<span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">OrderId</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">());</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">customer</span> <span class="o">=</span> <span class="n">Association</span><span class="o">.</span><span class="na">forAggregate</span><span class="o">(</span><span class="n">customer</span><span class="o">);</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">lineItems</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="n">Order</span> <span class="nf">addLineItem</span><span class="o">(</span><span class="n">String</span> <span class="n">description</span><span class="o">)</span> <span class="o">{</span>
+
+		<span class="n">LineItem</span> <span class="n">item</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LineItem</span><span class="o">(</span><span class="n">description</span><span class="o">);</span>
+
+		<span class="k">this</span><span class="o">.</span><span class="na">lineItems</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">item</span><span class="o">);</span>
+
+		<span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="nd">@Value</span><span class="o">(</span><span class="n">staticConstructor</span> <span class="o">=</span> <span class="s">&#34;of&#34;</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">OrderId</span> <span class="kd">implements</span> <span class="n">Identifier</span> <span class="o">{</span>
+
+		<span class="kd">private</span> <span class="kd">final</span> <span class="n">UUID</span> <span class="n">orderId</span><span class="o">;</span>
+
+		<span class="kd">public</span> <span class="kd">static</span> <span class="n">OrderId</span> <span class="nf">create</span><span class="o">()</span> <span class="o">{</span>
+			<span class="k">return</span> <span class="n">OrderId</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">());</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这其实跟一对一是非常类似的。唯一的点就是使用了<code>@Table</code>指定了表名和<code>@Column</code>指定了列名，而且是<code>line_item</code>表的列名。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">my_order</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span><span class="w">	</span><span class="n">id</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span><span class="w">
+</span><span class="w">	</span><span class="n">customer</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="p">);</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">line_item</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span><span class="w">	</span><span class="n">my_order_key</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span><span class="w">
+</span><span class="w">	</span><span class="n">description</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span><span class="w">
+</span><span class="w">	</span><span class="n">foo</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="p">);</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>示例执行后<code>my_order</code>表的数据如下：</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>CUSTOMER</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1a02ef53-db71-47ef-8985-88f907800dc8</td>
+<td>52eb4e05-4371-4009-a03e-2fbdc3a5963d</td>
+</tr>
+</tbody>
+</table>
+<p>示例执行后<code>line_item</code>表的数据如下：</p>
+<table>
+<thead>
+<tr>
+<th>MY_ORDER_KEY</th>
+<th>DESCRIPTION</th>
+<th>FOO</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Foo</td>
+<td>1a02ef53-db71-47ef-8985-88f907800dc8</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Bar</td>
+<td>1a02ef53-db71-47ef-8985-88f907800dc8</td>
+</tr>
+</tbody>
+</table>
+<h3 id="多对一">多对一</h3>
+<p><code>Customer</code>与<code>Order</code>就是<code>多对一</code>。</p>
+<p>上面的一对一，一对多。都是聚合根被删除了，其包含的值对象也应该被删除，这是合理的。但是<code>Customer</code>与<code>Order</code>都是聚合根。一个顾客可以有多个订单，订单删除了，顾客不能删除。</p>
+<p>这种情况在<code>Spring Data JDBC</code>该怎么办呢。</p>
+<p>在Spring官网的博客中有篇文章中讲到过处理方式。<a href="https://spring.io/blog/2018/09/24/spring-data-jdbc-references-and-aggregates">Spring Data JDBC, References, and Aggregates</a></p>
+<p>对应于，这个示例，就是让<code>Order</code>持有<code>Customer</code>的<strong>ID</strong>，而非对象。</p>
+<p>所以，这里<code>jMolecules</code>就发挥作用了。使用<code>Association</code>来封装这个<strong>ID</strong>。</p>
+<p>如果是这样，<code>Spring Data JDBC</code>怎么知道<code>jMolecules</code>的封装，又该怎么解析<code>Association</code>呢？</p>
+<p>那就是，<code>JMolecules Spring integration</code>的自定义转换器<strong>PrimitivesToIdentifierConverter</strong>和<strong>PrimitivesToAssociationConverter</strong>。在<code>Spring Data JDBC</code>的<a href="https://docs.spring.io/spring-data/jdbc/docs/2.2.0/reference/html/#jdbc.custom-converters">Custom Conversions</a>有自定义转换器的介绍。</p>
+<div class="admonition info"><p class="admonition-title">H2</p>
+<p>示例中使用的<code>H2</code>数据库。所以除了只需要一个<code>schema.sql</code>外，不需要什么配置信息。</p>
+<p>如果需要，查看<code>H2</code>数据库的数据。需要添加<strong>application.properties</strong>配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">spring.h2.console.enabled=true
+</code></pre></td></tr></table>
+</div>
+</div><p>另外，需要加入web的依赖。</p>
+<p>然后在项目启动的时候，可以看到访问路径为<code>/h2-console</code>。</p>
+<p>类似下面的这种连接的<code>url</code>也可以看到</p>
+<blockquote>
+<p>jdbc:h2:mem:0dbb7bce-452c-4d12-b9e3-1ca04479f6f5;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false</p>
+</blockquote>
+</div>
+<h2 id="总结">总结</h2>
+<p>不管是<code>Spring Data JDBC</code>, 还是<code>jMolecules</code>都是非常优秀的项目了。就连官方的给示例项目的很经典，可谓是以最少的代码表达出了你想知道的内容。</p>
+<p>之前在还在网上看到有博客的作者说，<code>Spring Data JDBC</code>很鸡肋，我不清楚当时的作者为什么会有这样的言论，是不是真的了解过<code>Spring Data JDBC</code>。</p>
+<p>我只想说，<strong>Spring Data JDBC, yyds（永远滴神）</strong>。</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">刘强</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-04-22
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/image/wechat-qr-code.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/image/alipay-qr-code.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/">领域驱动设计</a>
+          <a href="/tags/spring-data-jdbc/">Spring Data JDBC</a>
+          <a href="/tags/jmolecules/">JMolecules</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/flyway%E4%BD%BF%E7%94%A8java%E4%BB%A3%E7%A0%81repair/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Flyway使用Java代码Repair</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/%E5%8D%9A%E5%AE%A2%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D-%E4%B8%BA%E4%BB%80%E4%B9%88cname%E5%86%85%E5%AE%B9%E6%B6%88%E5%A4%B1%E4%BA%86/">
+            <span class="next-text nav-default">博客自定义域名-为什么CNAME内容消失了</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2021-04-22 10:22:27 \u002b0800 \u002b0800',
+        title: 'JMolecules究竟是啥,竟然Spring Data JDBC都为它单独给了example',
+        clientID: 'c7698ac0c1888a422ff8',
+        clientSecret: '9e95b025bc3dad1fbf7ca56e6086afbe25117805',
+        repo: 'BlogGitalk',
+        owner: 'l-qiang',
+        admin: ['l-qiang'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:liuqiang.ryan@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/l-qiang" class="iconfont icon-github" title="github"></a>
+  <a href="https://blog.l-qiang.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>刘强</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-669K7NHHPY', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script id="baidu_push">
+  (function(){
+    if (window.location.hostname === 'localhost') return;
+    var bp = document.createElement('script'); bp.async = true;
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+
+
+</body>
+</html>

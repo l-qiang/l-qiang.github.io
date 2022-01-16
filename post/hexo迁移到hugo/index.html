@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Hexo迁移到Hugo - L-Qiang</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="刘强" /><meta name="description" content="之前一直一直使用Hexo，后来发现Hugo比Hexo看起来就好用，于是就从Hexo迁到Hugo。
+Hexo建博客及本文的一些操作可参考Hexo搭建个人博客。
+" /><meta name="keywords" content="刘强, Java, Spring, MySQL, Blog, Docker, Linux, Redis, Zookeeper" />
+
+
+<meta name="baidu-site-verification" content="code-aOguXvJrXJ" />
+<meta name="google-site-verification" content="q9bP2qBubZQnLPEVZsEaqAVrsSTjpyAvMvA-Rf2VKXA" />
+
+
+<meta name="generator" content="Hugo 0.90.0 with theme even" />
+
+
+<link rel="canonical" href="https://blog.l-qiang.xyz/post/hexo%E8%BF%81%E7%A7%BB%E5%88%B0hugo/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Hexo迁移到Hugo" />
+<meta property="og:description" content="之前一直一直使用Hexo，后来发现Hugo比Hexo看起来就好用，于是就从Hexo迁到Hugo。
+Hexo建博客及本文的一些操作可参考Hexo搭建个人博客。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.l-qiang.xyz/post/hexo%E8%BF%81%E7%A7%BB%E5%88%B0hugo/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-11-23T16:35:28+08:00" />
+<meta property="article:modified_time" content="2020-12-04T16:04:28+08:00" />
+
+<meta itemprop="name" content="Hexo迁移到Hugo">
+<meta itemprop="description" content="之前一直一直使用Hexo，后来发现Hugo比Hexo看起来就好用，于是就从Hexo迁到Hugo。
+Hexo建博客及本文的一些操作可参考Hexo搭建个人博客。"><meta itemprop="datePublished" content="2020-11-23T16:35:28+08:00" />
+<meta itemprop="dateModified" content="2020-12-04T16:04:28+08:00" />
+<meta itemprop="wordCount" content="1525">
+<meta itemprop="keywords" content="Blog,Hexo,Hugo,博客迁移,wercker," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Hexo迁移到Hugo"/>
+<meta name="twitter:description" content="之前一直一直使用Hexo，后来发现Hugo比Hexo看起来就好用，于是就从Hexo迁到Hugo。
+Hexo建博客及本文的一些操作可参考Hexo搭建个人博客。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">L-Qiang</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">L-Qiang</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Hexo迁移到Hugo</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-11-23 </span>
+        <div class="post-category">
+            <a href="/categories/blog/"> Blog </a>
+            <a href="/categories/hexo/"> Hexo </a>
+            <a href="/categories/hugo/"> Hugo </a>
+            </div>
+          <span class="more-meta"> 约 1525 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#准备">准备</a></li>
+        <li><a href="#hugo建站">Hugo建站</a></li>
+        <li><a href="#wercker">wercker</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>之前一直一直使用Hexo，后来发现Hugo比Hexo看起来就好用，于是就从Hexo迁到Hugo。</p>
+<p>Hexo建博客及本文的一些操作可参考<a href="https://blog.l-qiang.xyz/post/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">Hexo搭建个人博客</a>。</p>
+<h2 id="准备">准备</h2>
+<div class="admonition info">
+<p>我的github账号为<code>l-qiang</code>，直接代替<code>&lt;你的GitHub用户名&gt;</code>。</p>
+<p>例如：<code>&lt;你的GitHub用户名&gt;.github.io</code>以<code>l-qiang.github.io</code>代替</p>
+</div>
+<ol>
+<li>
+<p>新建一个目录将Github上的<a href="https://github.com/l-qiang/l-qiang.github.io">l-qiang.github.io</a>clone下来。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">git clone git@github.com:l-qiang/l-qiang.github.io.git
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>新建空的<code>main</code>分支（用于存放hugo new site出来的内容）。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> l-qiang.github.io
+git checkout --orphan main
+git reset --hard
+git commit --allow-empty -m <span class="s2">&#34;Initializing main branch&#34;</span>
+git push --upstream main
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>将<code>main</code>分支设置为Github(<code>l-qiang.github.io</code>)仓库默认分支。</p>
+<p><code>https://github.com/l-qiang/l-qiang.github.io/settings/branches</code></p>
+</li>
+<li>
+<p>用<strong>第2步</strong>中同样的方式新建<code>gh-pages</code>分支（用于存放hugo build后public文件夹的内容）。</p>
+</li>
+</ol>
+<div class="admonition question"><p class="admonition-title">新建相关</p>
+<p>如果你之前没有建过<code>l-qiang.github.io</code>仓库，那就新建一个，忽略上述<strong>2-3步</strong>。</p>
+</div>
+<div class="admonition info"><p class="admonition-title">迁移相关</p>
+<p>我还建了一个<code>blog-pages</code>分支，放之前<code>master</code>分支的内容，并把<code>master</code>分支删了，同时把原先<code>blog</code>分支的</p>
+<p>.travis.yml改成</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">sudo</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w"></span><span class="nt">language</span><span class="p">:</span><span class="w"> </span><span class="l">node_js</span><span class="w">
+</span><span class="w"></span><span class="nt">node_js</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="m">10</span><span class="w"> </span><span class="c"># use nodejs v10 LTS</span><span class="w">
+</span><span class="w"></span><span class="nt">cache</span><span class="p">:</span><span class="w"> </span><span class="l">npm</span><span class="w">
+</span><span class="w"></span><span class="nt">branches</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">only</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="l">blog</span><span class="w"> </span><span class="c"># build blog branch only</span><span class="w">
+</span><span class="w"></span><span class="nt">script</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">hexo generate</span><span class="w"> </span><span class="c"># generate static files</span><span class="w">
+</span><span class="w"></span><span class="nt">deploy</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">provider</span><span class="p">:</span><span class="w"> </span><span class="l">pages</span><span class="w">
+</span><span class="w">  </span><span class="nt">skip-cleanup</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w">  </span><span class="nt">github-token</span><span class="p">:</span><span class="w"> </span><span class="l">$GH_TOKEN</span><span class="w">
+</span><span class="w">  </span><span class="nt">keep-history</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w">  </span><span class="nt">target_branch</span><span class="p">:</span><span class="w"> </span><span class="l">blog-pages</span><span class="w"> </span><span class="c"># master 改为了 blog-pages</span><span class="w">
+</span><span class="w">  </span><span class="nt">on</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">branch</span><span class="p">:</span><span class="w"> </span><span class="l">blog</span><span class="w">
+</span><span class="w">  </span><span class="nt">local-dir</span><span class="p">:</span><span class="w"> </span><span class="l">public</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>把github pages设置为<code>blog-pages</code>分支。这样让我们的博客在迁移之前，还以Hexo生成的页面展示</p>
+</div>
+<h2 id="hugo建站">Hugo建站</h2>
+<ol>
+<li>
+<p><a href="https://github.com/gohugoio/hugo/releases">下载Hugo</a></p>
+<p>建议配置下环境变量，这样你就可以在啥目录下都可以执行<code>hugo</code></p>
+</li>
+<li>
+<p>随便找个目录执行下列命令。建议不要和上面建的目录搞混了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">hugo new site quickstart
+</code></pre></td></tr></table>
+</div>
+</div><p>可以就是直接用<code>quickstart</code>。</p>
+</li>
+<li>
+<p>将<code>quickstart</code>目录的内容直接复制到<code>l-qiang.github.io</code>目录（git clone下来的目录）</p>
+</li>
+<li>
+<p>添加主题，我用的even主题</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">git submodule add https://github.com/olOwOlo/hugo-theme-even.git themes/even
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>将代码push到Github<code>l-qiang.github.io</code>仓库的main分支。</p>
+</li>
+</ol>
+<div class="admonition info">
+<p>之前用Hexo的时候，是把主题的代码也提交到了Github，这里通过submodule的方式可以让Github的仓库的主题直接链接到<code>https://github.com/olOwOlo/hugo-theme-even.git</code>。</p>
+<p>push后的结果可以参考我的<a href="https://github.com/l-qiang/l-qiang.github.io">l-qiang.github.io</a>的<code>main</code>分支</p>
+</div>
+<h2 id="wercker">wercker</h2>
+<p>用wercker的好处就是，我们写完东西只要将更改push到<code>main</code>分支就行，wercker可以帮我们把<code>main</code>分支的build之后推到<code>gh-pages</code>分支。</p>
+<p>wercker难点就是hugo的官方文档都是八百年前的教程了。</p>
+<ol>
+<li>
+<p>wercker.yml</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">box</span><span class="p">:</span><span class="w"> </span><span class="l">golang:latest</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">build</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">steps</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">script</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">initialize and update git submodules</span><span class="w">
+</span><span class="w">        </span><span class="nt">code</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span><span class="sd">            git submodule init
+</span><span class="sd">            git submodule update --remote --recursive</span><span class="w">            
+</span><span class="w">    </span>- <span class="nt">arjen/hugo-build@2.14.0</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;0.79.0&#34;</span><span class="w">
+</span><span class="w">        </span><span class="nt">theme</span><span class="p">:</span><span class="w"> </span><span class="l">even</span><span class="w">
+</span><span class="w">        </span><span class="nt">flags</span><span class="p">:</span><span class="w"> </span>--<span class="l">environment=production</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">deploy</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">steps</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">install-packages</span><span class="p">:</span><span class="w">
+</span><span class="w">            </span><span class="nt">packages</span><span class="p">:</span><span class="w"> </span><span class="l">git ssh-client</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">lukevivier/gh-pages@0.2.1</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="l">$GIT_TOKEN</span><span class="w">
+</span><span class="w">        </span><span class="nt">basedir</span><span class="p">:</span><span class="w"> </span><span class="l">public</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>这个可以直接拿去用。除了<code>theme</code>修改为自己的主题其他的都不用动。这里的一些内容我稍后根据自己的理解解释。</p>
+</li>
+<li>
+<p>将wercker.yml推送到<code>main</code>分支后。</p>
+</li>
+<li>
+<p>在wercker根据步骤创建application。</p>
+</li>
+<li>
+<p>设置<code>environment</code></p>
+<p><img src="/image/Hexo%E8%BF%81%E7%A7%BB%E5%88%B0Hugo/1.png" alt="这是一张图片"></p>
+<p><code>GIT_TOKEN</code>由<a href="https://github.com/settings/tokens">这里-点我点我</a>生成。</p>
+</li>
+<li>
+<p>新建的application已经由<code>build</code>了，需要新增一个pipeline<code>deploy</code></p>
+<p><img src="/image/Hexo%E8%BF%81%E7%A7%BB%E5%88%B0Hugo/2.png" alt="这是一张图片"></p>
+</li>
+<li>
+<p>然后在<code>workflow</code>的<code>build</code>后面添加<code>deploy</code></p>
+<p><img src="/image/Hexo%E8%BF%81%E7%A7%BB%E5%88%B0Hugo/3.png" alt="这是一张图片"></p>
+</li>
+</ol>
+<div class="admonition info"><p class="admonition-title">wercker.yml</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml">- <span class="nt">arjen/hugo-build@2.14.0</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;0.79.0&#34;</span><span class="w">
+</span><span class="w">        </span><span class="nt">theme</span><span class="p">:</span><span class="w"> </span><span class="l">even</span><span class="w">
+</span><span class="w">        </span><span class="nt">flags</span><span class="p">:</span><span class="w"> </span>--<span class="l">environment=production</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml">- <span class="nt">lukevivier/gh-pages@0.2.1</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="l">$GIT_TOKEN</span><span class="w">
+</span><span class="w">        </span><span class="nt">basedir</span><span class="p">:</span><span class="w"> </span><span class="l">public</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>这俩都是<a href="https://app.wercker.com/steps">Steps Store</a>的。搜<code>hugo-build</code>和<code>gh-pages</code>可以找到，也有使用文档。<code>@2.14.0</code>指版本号。</p>
+<p>旧版本可能不好使，可以在<a href="https://app.wercker.com/steps">Steps Store</a>找新的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml">- <span class="nt">script</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">initialize and update git submodules</span><span class="w">
+</span><span class="w">        </span><span class="nt">code</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span><span class="sd">            git submodule init
+</span><span class="sd">            git submodule update --remote --recursive</span><span class="w">            
+</span></code></pre></td></tr></table>
+</div>
+</div><p>这部分就是处理我们的主题的，因为我们的主题没有在自己的仓库中，而是链接到<code>https://github.com/olOwOlo/hugo-theme-even.git</code>，若是主题代码直接提到自己仓库，那这步可以省略</p>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">刘强</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-12-04
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/image/wechat-qr-code.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/image/alipay-qr-code.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/blog/">Blog</a>
+          <a href="/tags/hexo/">Hexo</a>
+          <a href="/tags/hugo/">Hugo</a>
+          <a href="/tags/%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/">博客迁移</a>
+          <a href="/tags/wercker/">wercker</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/spring-boot-admin%E5%AE%9E%E8%B7%B5/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Spring Boot Admin实践</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/%E7%BA%BF%E4%B8%8A%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E9%95%BF%E6%97%B6%E9%97%B4%E6%9C%AA%E7%BB%93%E6%9D%9F%E9%97%AE%E9%A2%98%E8%AF%8A%E6%96%AD/">
+            <span class="next-text nav-default">线上定时任务长时间未结束问题诊断</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2020-11-23 16:35:28 \u002b0800 \u002b0800',
+        title: 'Hexo迁移到Hugo',
+        clientID: 'c7698ac0c1888a422ff8',
+        clientSecret: '9e95b025bc3dad1fbf7ca56e6086afbe25117805',
+        repo: 'BlogGitalk',
+        owner: 'l-qiang',
+        admin: ['l-qiang'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:liuqiang.ryan@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/l-qiang" class="iconfont icon-github" title="github"></a>
+  <a href="https://blog.l-qiang.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>刘强</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-669K7NHHPY', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script id="baidu_push">
+  (function(){
+    if (window.location.hostname === 'localhost') return;
+    var bp = document.createElement('script'); bp.async = true;
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+
+
+</body>
+</html>

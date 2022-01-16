@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Spring Boot Admin实践 - L-Qiang</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="刘强" /><meta name="description" content="接触到Spring Boot Admin还是因为需要一个方便查看日志的方式，Spring Boot Admin界面很友好而且还支持Eureka。Spring Boot Admin的文档真的是跟Spring系列的文档非常类似，详细又不那么详细。总体来说，这次Spring Boot Admin的使用还算比较顺利。
+" /><meta name="keywords" content="actuator, logfile, 404, Http Basic, Eureka" />
+
+
+<meta name="baidu-site-verification" content="code-aOguXvJrXJ" />
+<meta name="google-site-verification" content="q9bP2qBubZQnLPEVZsEaqAVrsSTjpyAvMvA-Rf2VKXA" />
+
+
+<meta name="generator" content="Hugo 0.90.0 with theme even" />
+
+
+<link rel="canonical" href="https://blog.l-qiang.xyz/post/spring-boot-admin%E5%AE%9E%E8%B7%B5/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Spring Boot Admin实践" />
+<meta property="og:description" content="接触到Spring Boot Admin还是因为需要一个方便查看日志的方式，Spring Boot Admin界面很友好而且还支持Eureka。Spring Boot Admin的文档真的是跟Spring系列的文档非常类似，详细又不那么详细。总体来说，这次Spring Boot Admin的使用还算比较顺利。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.l-qiang.xyz/post/spring-boot-admin%E5%AE%9E%E8%B7%B5/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-11-25T21:17:44+08:00" />
+<meta property="article:modified_time" content="2020-11-25T21:17:44+08:00" />
+
+<meta itemprop="name" content="Spring Boot Admin实践">
+<meta itemprop="description" content="接触到Spring Boot Admin还是因为需要一个方便查看日志的方式，Spring Boot Admin界面很友好而且还支持Eureka。Spring Boot Admin的文档真的是跟Spring系列的文档非常类似，详细又不那么详细。总体来说，这次Spring Boot Admin的使用还算比较顺利。"><meta itemprop="datePublished" content="2020-11-25T21:17:44+08:00" />
+<meta itemprop="dateModified" content="2020-11-25T21:17:44+08:00" />
+<meta itemprop="wordCount" content="2852">
+<meta itemprop="keywords" content="Spring Boot,Spring Boot Admin,Spring Security,Spring Boot Actuator,Eureka," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Spring Boot Admin实践"/>
+<meta name="twitter:description" content="接触到Spring Boot Admin还是因为需要一个方便查看日志的方式，Spring Boot Admin界面很友好而且还支持Eureka。Spring Boot Admin的文档真的是跟Spring系列的文档非常类似，详细又不那么详细。总体来说，这次Spring Boot Admin的使用还算比较顺利。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">L-Qiang</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">L-Qiang</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Spring Boot Admin实践</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-11-25 </span>
+        <div class="post-category">
+            <a href="/categories/spring-boot/"> Spring Boot </a>
+            <a href="/categories/spring-boot-admin/"> Spring Boot Admin </a>
+            </div>
+          <span class="more-meta"> 约 2852 字 </span>
+          <span class="more-meta"> 预计阅读 6 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#spring-boot-adminhttpsgithubcomcodecentricspring-boot-admin功能"><a href="https://github.com/codecentric/spring-boot-admin">Spring Boot Admin</a>功能</a></li>
+        <li><a href="#spring-boot-admin-server">Spring Boot Admin Server</a>
+          <ul>
+            <li><a href="#新建工程">新建工程</a></li>
+            <li><a href="#spring-security">Spring Security</a></li>
+          </ul>
+        </li>
+        <li><a href="#spring-boot-admin-client">Spring Boot Admin Client</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>接触到Spring Boot Admin还是因为需要一个方便查看日志的方式，Spring Boot Admin界面很友好而且还支持Eureka。Spring Boot Admin的文档真的是跟Spring系列的文档非常类似，详细又不那么详细。总体来说，这次Spring Boot Admin的使用还算比较顺利。</p>
+<h2 id="spring-boot-adminhttpsgithubcomcodecentricspring-boot-admin功能"><a href="https://github.com/codecentric/spring-boot-admin">Spring Boot Admin</a>功能</h2>
+<ul>
+<li>显示健康状况</li>
+<li>显示详细信息，例如
+<ul>
+<li>JVM和内存指标</li>
+<li>micrometer.io指标</li>
+<li>数据源指标</li>
+<li>缓存指标</li>
+</ul>
+</li>
+<li>显示构建信息编号</li>
+<li>关注并下载日志文件</li>
+<li>查看jvm系统和环境属性</li>
+<li>查看Spring Boot配置属性</li>
+<li>支持Spring Cloud的postable / env-和/ refresh-endpoint</li>
+<li>轻松的日志级管理</li>
+<li>与JMX-beans交互</li>
+<li>查看线程转储</li>
+<li>查看http跟踪</li>
+<li>查看auditevents</li>
+<li>查看http-endpoints</li>
+<li>查看计划任务</li>
+<li>查看和删除活动会话（使用spring-session）</li>
+<li>查看Flyway / Liquibase数据库迁移</li>
+<li>下载heapdump</li>
+<li>状态变更通知（通过电子邮件，Slack，Hipchat，&hellip;&hellip;）</li>
+<li>状态更改的事件日志（非持久性）</li>
+</ul>
+<h2 id="spring-boot-admin-server">Spring Boot Admin Server</h2>
+<p>通常我们都会新建一个工程来作为且仅作为<code>Spring Boot Admin Server</code>。</p>
+<h3 id="新建工程">新建工程</h3>
+<ol>
+<li>
+<p>使用<strong>Spring Initializr</strong>新建一个工程。</p>
+</li>
+<li>
+<p>添加如下依赖。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>de.codecentric<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>spring-boot-admin-starter-server<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>2.3.1<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="c">&lt;!-- 因为要监控自身，所以需要actuator --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-actuator<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-web<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="c">&lt;!-- 我要使用Spring security来控制Spring Boot Admin Server的访问 --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-security<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="c">&lt;!-- Spring Boot Admin Server作为一个Eureka Client --&gt;</span>
+<span class="c">&lt;!-- 个人感觉使用服务发现的话对其他Spring Boot应用来说几乎是无侵入的，只要开启actuator就行 --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.springframework.cloud<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>spring-cloud-starter-netflix-eureka-client<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>application.properties</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">eureka.instance.lease-renewal-interval-in-seconds=10
+eureka.instance.health-check-url-path=/actuator/health
+eureka.instance.metadata-map.startup=${random.int}
+eureka.client.registry-fetch-interval-seconds=5
+eureka.client.service-url.defaultZone=http://localhost:9999/eureka/
+eureka.instance.prefer-ip-address=true
+
+# 要监控自己，所以暴露actuator的端点
+management.endpoints.web.exposure.include=*
+management.endpoint.health.show-details=ALWAYS
+
+logging.file.name=/app/logs/spring-boot-admin.log
+# 登录这个工程(Spring Boot Admin Server)的用户名和密码
+spring.security.user.name=root
+spring.security.user.password=root
+# Eureka的元数据，Spring Boot Admin根据每个Eureka Client的这些数据来获取用户名和密码
+# 因为需要监控自己所以也需要加上这些数据
+eureka.instance.metadata-map.user.name=${spring.security.user.name}
+eureka.instance.metadata-map.user.password=${spring.security.user.password}
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>主类，使用<code>@EnableAdminServer</code>和<code>@EnableDiscoveryClient</code>开启Spring Boot Admin Server和Eureka Client</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@SpringBootApplication</span>
+<span class="nd">@EnableAdminServer</span>
+<span class="nd">@EnableDiscoveryClient</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SpringBootAdminApplication</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">SpringBootAdminApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h3 id="spring-security">Spring Security</h3>
+<p>对于Spring Boot Admin Server我们肯定不希望没有登录验证就直接能访问，所以简单加个Spring Security控制一下。除了<code>application.properties</code>中关于Spring Security相关的配置，还需要一些<code>Java Configuration</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@SpringBootApplication</span>
+<span class="nd">@EnableAdminServer</span>
+<span class="nd">@EnableDiscoveryClient</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SpringBootAdminApplication</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">SpringBootAdminApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Configuration</span>
+    <span class="nd">@Order</span><span class="o">(</span><span class="n">1</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">SecutityHttpBasicConfig</span> <span class="kd">extends</span> <span class="n">WebSecurityConfigurerAdapter</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+            <span class="c1">// actuator端点使用Http Basic验证
+</span><span class="c1"></span>            <span class="n">http</span><span class="o">.</span><span class="na">antMatcher</span><span class="o">(</span><span class="s">&#34;/actuator/**&#34;</span><span class="o">).</span><span class="na">authorizeRequests</span><span class="o">().</span><span class="na">anyRequest</span><span class="o">().</span><span class="na">authenticated</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">and</span><span class="o">().</span><span class="na">httpBasic</span><span class="o">();</span>
+            <span class="n">http</span><span class="o">.</span><span class="na">csrf</span><span class="o">().</span><span class="na">disable</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Configuration</span>
+    <span class="nd">@Order</span><span class="o">(</span><span class="n">2</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">SecurityFormLoginConfig</span> <span class="kd">extends</span> <span class="n">WebSecurityConfigurerAdapter</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+            <span class="c1">// 除actuator端点外，使用FormLogin验证
+</span><span class="c1"></span>            <span class="n">http</span><span class="o">.</span><span class="na">csrf</span><span class="o">().</span><span class="na">disable</span><span class="o">();</span>
+            <span class="n">http</span>
+                    <span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">anyRequest</span><span class="o">().</span><span class="na">authenticated</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">and</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">formLogin</span><span class="o">().</span><span class="na">loginPage</span><span class="o">(</span><span class="s">&#34;/login&#34;</span><span class="o">).</span><span class="na">defaultSuccessUrl</span><span class="o">(</span><span class="s">&#34;/&#34;</span><span class="o">).</span><span class="na">permitAll</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">and</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">logout</span><span class="o">().</span><span class="na">permitAll</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">WebSecurity</span> <span class="n">web</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+            <span class="c1">// 忽略/assets下的资源，否则会造成页面得样式不显示
+</span><span class="c1"></span>            <span class="n">web</span><span class="o">.</span><span class="na">ignoring</span><span class="o">().</span><span class="na">antMatchers</span><span class="o">(</span><span class="s">&#34;/assets/**&#34;</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>由于Spring Boot Admin Server使用<strong>表单登录</strong>，以及需要使用<strong>Http Basic</strong> 验证<code>/actuator</code>端点。</p>
+<p>所以这里需要<code>两</code>个<strong>WebSecurityConfigurer</strong>，一个行不行？也行，但是会有瑕疵。</p>
+<p>同时注意，<code>/assets</code>下的静态资源别拦截了，不然会导致一些样式加载不出来，而且登录后直接跳转到请求的静态资源。如果设置不当的话，可能导致没有<code>登出</code>按钮</p>
+<p>到目前为止，我们已经可以在Spring Boot Admin Server界面上监控自己了。其实对于其他Spring Boot Admin Client(Eureka Client)也一样。因为Spring Boot Admin Server自己本身就是一个Eureka Client。下面还是讲一讲，避免混淆了。</p>
+<h2 id="spring-boot-admin-client">Spring Boot Admin Client</h2>
+<p>由于使用的Eureka，所以Client需要新增的东西并不多。</p>
+<ol>
+<li>
+<p>application.properties</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">eureka.instance.metadata-map.management.context-path=${server.servlet.context-path}/actuator
+management.endpoints.web.exposure.include=*
+management.endpoint.health.show-details=ALWAYS
+
+logging.file.name=/app/logs/spring-boot-admin-client.log
+management.endpoint.logfile.external-file=${logging.file.name}
+
+eureka.instance.metadata-map.user.name=root
+eureka.instance.metadata-map.user.password=root
+</code></pre></td></tr></table>
+</div>
+</div><p>重点是 <code>eureka.instance.metadata-map.management.context-path=${server.servlet.context-path}/actuator</code>和<code>management.endpoint.logfile.external-file=${logging.file.name}</code></p>
+<ul>
+<li>
+<p>如果你的项目指定了<strong>context-path</strong>，那么需要指定<code>eureka.instance.metadata-map.management.context-path</code>来告诉Spring Boot Admin。如果不指定会出现下面这种情况。</p>
+<p><img src="/image/SpringBootAdmin%E5%AE%9E%E8%B7%B5/1.png" alt="这是一张图片"></p>
+</li>
+<li>
+<p>如果你使用<strong>Spring Cloud Config</strong>，然后你的application.properties在远程仓库。那么可能<code>/actuator/logfile</code>端点<code>404</code>，但是其他的端点正常。</p>
+<p>关于这个问题，详见<a href="https://github.com/spring-projects/spring-boot/issues/18191">Spring Boot Issue#18191</a>。临时解决办法就是使用<code>management.endpoint.logfile.external-file</code>。</p>
+<p>另外，对于这个问题，Spring Cloud也又有相应的修改，修复这个问题，见<a href="https://github.com/spring-cloud/spring-cloud-commons/pull/703">Use new boot ConfigData framework #703</a>。</p>
+<p>目前，我的Spring Cloud的版本为<code>Hoxton.SR8</code>。其中Spring Cloud Commons的版本为<code>2.2.5.RELEASE</code>。</p>
+<p><img src="/image/SpringBootAdmin%E5%AE%9E%E8%B7%B5/2.png" alt="这是一张图片"></p>
+<p>可以看到，在这个版本之后有152个提交。其中就有我们期望的修改。</p>
+<p><img src="/image/SpringBootAdmin%E5%AE%9E%E8%B7%B5/3.png" alt="这是一张图片"></p>
+<p>所以目前我的版本还是会有对应的问题，所以需要加<code>management.endpoint.logfile.external-file</code></p>
+</li>
+</ul>
+</li>
+</ol>
+<div class="admonition info">
+<p>关于<code>/actuator/logfile</code>端点<code>404</code>，还有其他的方式。</p>
+<ol>
+<li>logging.file.name的配置放在bootstrap.properties里。</li>
+<li>logging.file.name在启动参数里面设置。</li>
+</ol>
+</div>
+<ol start="2">
+<li>
+<p>Spring Security</p>
+<p>我的其中一个Client已经使用了Spring Security的表单验证，且用户名和密码是存在数据库的。所以，这里我只需要加上Http Basic的验证。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Configuration</span>
+<span class="nd">@Order</span><span class="o">(</span><span class="n">1</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ApiSecurityConfiguration</span> <span class="kd">extends</span> <span class="n">WebSecurityConfigurerAdapter</span> <span class="o">{</span>
+
+    <span class="nd">@Value</span><span class="o">(</span><span class="s">&#34;${eureka.instance.metadata-map.user.name}&#34;</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">username</span><span class="o">;</span>
+    <span class="nd">@Value</span><span class="o">(</span><span class="s">&#34;${eureka.instance.metadata-map.user.password}&#34;</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">password</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">AuthenticationManagerBuilder</span> <span class="n">auth</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">auth</span><span class="o">.</span><span class="na">inMemoryAuthentication</span><span class="o">().</span><span class="na">withUser</span><span class="o">(</span><span class="n">username</span><span class="o">).</span><span class="na">password</span><span class="o">(</span><span class="s">&#34;{noop}&#34;</span> <span class="o">+</span> <span class="n">password</span><span class="o">).</span><span class="na">roles</span><span class="o">(</span><span class="s">&#34;ADMIN&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">http</span><span class="o">.</span><span class="na">csrf</span><span class="o">().</span><span class="na">disable</span><span class="o">();</span>
+        <span class="n">http</span>
+                <span class="o">.</span><span class="na">antMatcher</span><span class="o">(</span><span class="s">&#34;/actuator/**&#34;</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">anyRequest</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">authenticated</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">and</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">httpBasic</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这里配置了<code>inMemoryAuthentication</code>，这不是必须的，因为我已经有使用数据库中用户名和密码的。如果配置<code>inMemoryAuthentication</code>，需要修改application.properties</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">eureka.instance.metadata-map.user.name=数据库中的用户名
+eureka.instance.metadata-map.user.password=数据库中的密码
+</code></pre></td></tr></table>
+</div>
+</div><p>这里我不想使用数据库里的，因为数据库的用户名和密码容易发生变动。</p>
+</li>
+</ol>
+<p>总的来说，Spring Boot Admin其实并不难，只是会需要Spring的其他技术栈。如果对Spring的技术栈都非常熟悉的话，需要做其他的一些改动就游刃有余了。</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">刘强</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-11-25
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/image/wechat-qr-code.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/image/alipay-qr-code.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/spring-boot/">Spring Boot</a>
+          <a href="/tags/spring-boot-admin/">Spring Boot Admin</a>
+          <a href="/tags/spring-security/">Spring Security</a>
+          <a href="/tags/spring-boot-actuator/">Spring Boot Actuator</a>
+          <a href="/tags/eureka/">Eureka</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/linux%E6%96%B0%E5%A2%9E%E7%94%A8%E6%88%B7%E5%8F%8Ajenkins%E4%BD%BF%E7%94%A8%E6%96%B0%E7%94%A8%E6%88%B7%E5%8F%91%E5%B8%83%E5%BA%94%E7%94%A8/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Linux新增用户及Jenkins使用新用户发布应用</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/hexo%E8%BF%81%E7%A7%BB%E5%88%B0hugo/">
+            <span class="next-text nav-default">Hexo迁移到Hugo</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2020-11-25 21:17:44 \u002b0800 \u002b0800',
+        title: 'Spring Boot Admin实践',
+        clientID: 'c7698ac0c1888a422ff8',
+        clientSecret: '9e95b025bc3dad1fbf7ca56e6086afbe25117805',
+        repo: 'BlogGitalk',
+        owner: 'l-qiang',
+        admin: ['l-qiang'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:liuqiang.ryan@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/l-qiang" class="iconfont icon-github" title="github"></a>
+  <a href="https://blog.l-qiang.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>刘强</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-669K7NHHPY', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script id="baidu_push">
+  (function(){
+    if (window.location.hostname === 'localhost') return;
+    var bp = document.createElement('script'); bp.async = true;
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+
+
+</body>
+</html>

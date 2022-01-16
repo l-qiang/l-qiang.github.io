@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Spring Cloud Config内存泄漏导致CPU100%问题排查 - L-Qiang</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="刘强" /><meta name="description" content="前段时间，作为工具人的我被要求排查某台服务器CPU 100%。当时听了内心狂喜，终于让我遇到CPU 100%问题了。但是，当时服务器着急重启，没有足够的时间给我排查问题，但是我还是在重启之前把堆Dump文件保存了下来。
+这两天忙里偷闲就想着分析一下原因。
+" /><meta name="keywords" content="Spring Cloud Config, JVM, MAT, 内存泄漏, CPU100%, DeleteOnExitHook" />
+
+
+<meta name="baidu-site-verification" content="code-aOguXvJrXJ" />
+<meta name="google-site-verification" content="q9bP2qBubZQnLPEVZsEaqAVrsSTjpyAvMvA-Rf2VKXA" />
+
+
+<meta name="generator" content="Hugo 0.90.0 with theme even" />
+
+
+<link rel="canonical" href="https://blog.l-qiang.xyz/post/springcloudconfig%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%AF%BC%E8%87%B4cpu100%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Spring Cloud Config内存泄漏导致CPU100%问题排查" />
+<meta property="og:description" content="前段时间，作为工具人的我被要求排查某台服务器CPU 100%。当时听了内心狂喜，终于让我遇到CPU 100%问题了。但是，当时服务器着急重启，没有足够的时间给我排查问题，但是我还是在重启之前把堆Dump文件保存了下来。
+这两天忙里偷闲就想着分析一下原因。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.l-qiang.xyz/post/springcloudconfig%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%AF%BC%E8%87%B4cpu100%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-06-09T12:37:05+08:00" />
+<meta property="article:modified_time" content="2021-06-09T12:37:05+08:00" />
+
+<meta itemprop="name" content="Spring Cloud Config内存泄漏导致CPU100%问题排查">
+<meta itemprop="description" content="前段时间，作为工具人的我被要求排查某台服务器CPU 100%。当时听了内心狂喜，终于让我遇到CPU 100%问题了。但是，当时服务器着急重启，没有足够的时间给我排查问题，但是我还是在重启之前把堆Dump文件保存了下来。
+这两天忙里偷闲就想着分析一下原因。"><meta itemprop="datePublished" content="2021-06-09T12:37:05+08:00" />
+<meta itemprop="dateModified" content="2021-06-09T12:37:05+08:00" />
+<meta itemprop="wordCount" content="2240">
+<meta itemprop="keywords" content="Spring Cloud Config,JVM," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Spring Cloud Config内存泄漏导致CPU100%问题排查"/>
+<meta name="twitter:description" content="前段时间，作为工具人的我被要求排查某台服务器CPU 100%。当时听了内心狂喜，终于让我遇到CPU 100%问题了。但是，当时服务器着急重启，没有足够的时间给我排查问题，但是我还是在重启之前把堆Dump文件保存了下来。
+这两天忙里偷闲就想着分析一下原因。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">L-Qiang</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">L-Qiang</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Spring Cloud Config内存泄漏导致CPU100%问题排查</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-06-09 </span>
+        <div class="post-category">
+            <a href="/categories/spring-cloud/"> Spring Cloud </a>
+            <a href="/categories/jvm/"> JVM </a>
+            </div>
+          <span class="more-meta"> 约 2240 字 </span>
+          <span class="more-meta"> 预计阅读 5 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#问题">问题</a>
+          <ul>
+            <li><a href="#cpu-100">CPU 100%</a></li>
+            <li><a href="#垃圾收集">垃圾收集</a></li>
+          </ul>
+        </li>
+        <li><a href="#排查">排查</a>
+          <ul>
+            <li><a href="#大dump文件分析">大dump文件分析</a></li>
+          </ul>
+        </li>
+        <li><a href="#解决办法">解决办法</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>前段时间，作为工具人的我被要求排查某台服务器<code>CPU 100%</code>。当时听了内心狂喜，终于让我遇到CPU 100%问题了。但是，当时服务器着急重启，没有足够的时间给我排查问题，但是我还是在重启之前把堆Dump文件保存了下来。</p>
+<p>这两天忙里偷闲就想着分析一下原因。</p>
+<h2 id="问题">问题</h2>
+<h3 id="cpu-100">CPU 100%</h3>
+<p>虽然之前没遇到过CPU 100%的问题吧，但是，这个问题该怎么查心里还是有数的。</p>
+<ol>
+<li>
+<p>使用<code>top</code>命令找到吃CPU的<strong>Java</strong>进程pid。</p>
+<p>查到pid为：<strong>31387</strong>，CPU 接近400%，几乎4个核全吃满了。</p>
+</li>
+<li>
+<p>查询耗CPU的线程id。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">top -Hp <span class="m">31387</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这里，查到了4个线程，每个线程都吃满了一个核接近100%。</p>
+<p>选取一个线程id：<strong>31390</strong>。</p>
+</li>
+<li>
+<p>线程id转16进制。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">printf</span> <span class="s2">&#34;%x\n&#34;</span> <span class="m">31390</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>得到结果：<strong>7a9e</strong></p>
+</li>
+<li>
+<p>输出线程堆栈信息。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">jstack <span class="m">31387</span> <span class="p">|</span> grep 7a9e -A 60<span class="p">|</span>less
+</code></pre></td></tr></table>
+</div>
+</div><p>结果忘截图了。不过结果很明显，4个线程都是<strong>垃圾收集线程</strong>。</p>
+</li>
+</ol>
+<div class="admonition warning"><p class="admonition-title">注意</p>
+<p>执行jstack的用户需要与启动Java进程的用户一致。可通过以下命令查看启动Java进程的用户。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">ps -ef <span class="p">|</span> grep java
+</code></pre></td></tr></table>
+</div>
+</div></div>
+<h3 id="垃圾收集">垃圾收集</h3>
+<p>所以，究竟是为什么导致垃圾收集吃满了CPU呢？</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">jstat -gcutil  <span class="m">31387</span> <span class="m">1000</span> <span class="m">100</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这个我截图了。</p>
+<p><img src="/image/SpringCloudConfig%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%AF%BC%E8%87%B4CPU100%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/1.png" alt="这是一张图片"></p>
+<p><code>Eden</code>和<code>Old</code>全满了，这很明显是<strong>内存泄漏</strong>了。</p>
+<p>但是，内存泄漏的原因是啥呢？</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">jmap -dump:format<span class="o">=</span>b,file<span class="o">=</span>dump.txt <span class="m">31387</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>我将堆dump文件保存了下来。</p>
+<h2 id="排查">排查</h2>
+<h3 id="大dump文件分析">大dump文件分析</h3>
+<p>当时Dump文件保存下来之后，一看大小。好家伙，<code>7G</code>多。然后我就面临一个问题，没法将这种大文件从服务器上拿下来。所以当时我就立马进行了打包压缩。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">tar -xcvf dump.tar.gz dump.txt
+</code></pre></td></tr></table>
+</div>
+</div><p>打包之后，就只有<code>1G</code>多一点，然后我就从服务器上将压缩包拿到本地然后解压。</p>
+<p>开始了漫长的分析过程。</p>
+<h4 id="jvisualvm">jvisualvm</h4>
+<p>我知道JDK的bin目录下有个叫<code>jvisualvm</code>的程序是可以分析堆dump文件的。</p>
+<p>直接点击菜单栏的<code>文件-&gt;装入</code>将<strong>dump.txt</strong>加载进去。</p>
+<div class="admonition warning"><p class="admonition-title">注意</p>
+<p>这里不要使用<code>VM 核心 dump</code>载入，不然会报错：<strong>无效的核心dump文件</strong></p>
+</div>
+<p>但是，由于我们的dump文件太大了，所以会报OOM。所以需要修改<code>jvisualvm</code>的配置。</p>
+<p>配置文件在<code>%JAVA_HOME%\lib\visualvm\etc\visualvm.conf</code>。</p>
+<p>我将配置修改为<code>-J-Xms2048m -J-Xmx2048m</code>，修改之后就可以将dump文件加载进去，但是，很<code>慢</code>。基本上无法进行分析工作。</p>
+<h4 id="jhat">jhat</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">jhat -J-mx8g dump.txt
+</code></pre></td></tr></table>
+</div>
+</div><p>我电脑一共才8G内存，不管我咋调内存参数都会OOM。我电脑可用内存太小了，看来分析需要长驻内存的数据已经大于可用内存，内存置换解决不了问题。</p>
+<h4 id="mat">MAT</h4>
+<p>因为用上面两个工具都太慢了，所以，这次我直接使用<code>Linux版的MAT</code>，直接在服务器上分析，借助服务器的强大性能，加快分析的速度。</p>
+<ol>
+<li>
+<p>下载Linux版MAT。</p>
+<p><a href="https://www.eclipse.org/mat/downloads.php">下载地址</a></p>
+</li>
+<li>
+<p>将MAT传到服务器解压后，执行以下命令。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">./mat/ParseHeapDump.sh dump.txt org.eclipse.mat.api:suspects org.eclipse.mat.api:overview org.eclipse.mat.api:top_components
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>然后将结果中的<code>dump_Leak_Suspects.zip</code>、<code>dump_System_Overview.zip</code>和<code>dump_Top_Components.zip</code>下载到本地分析。</p>
+</li>
+</ol>
+<div class="admonition info">
+<p>这里可能会有疑问，<code>org.eclipse.mat.api:suspects org.eclipse.mat.api:overview org.eclipse.mat.api:top_components</code>这些参数是啥，我怎么知道要这么填参数。</p>
+<p>附上贴心的传送门：<a href="https://help.eclipse.org/2021-03/index.jsp?topic=%2Forg.eclipse.mat.ui.help%2Ftasks%2Frunningleaksuspectreport.html">Batch mode</a></p>
+</div>
+<div class="admonition warning"><p class="admonition-title">注意</p>
+<p>因为环境的原因，可能需要配置<code>MemoryAnalyzer.ini</code>。</p>
+<p>比如：我添加了<code>-vm</code>配置，将其配置为JDK的bin目录。另外，将内存直接给了8g。</p>
+<p>详细配置传送门：<a href="https://help.eclipse.org/2021-03/index.jsp?topic=%2Forg.eclipse.mat.ui.help%2Ftasks%2Frunningleaksuspectreport.html">Memory Analyzer Configuration</a></p>
+</div>
+<h5 id="内存泄漏分析报告">内存泄漏分析报告</h5>
+<p><img src="/image/SpringCloudConfig%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%AF%BC%E8%87%B4CPU100%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/2.png" alt="这是一张图片"></p>
+<p><img src="/image/SpringCloudConfig%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%AF%BC%E8%87%B4CPU100%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/3.png" alt="这是一张图片"></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">DeleteOnExitHook</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">LinkedHashSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">files</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedHashSet</span><span class="o">&lt;&gt;();</span>
+    <span class="kd">static</span> <span class="o">{</span>
+        <span class="c1">// DeleteOnExitHook must be the last shutdown hook to be invoked.
+</span><span class="c1"></span>        <span class="c1">// Application shutdown hooks may add the first file to the
+</span><span class="c1"></span>        <span class="c1">// delete on exit list and cause the DeleteOnExitHook to be
+</span><span class="c1"></span>        <span class="c1">// registered during shutdown in progress. So set the
+</span><span class="c1"></span>        <span class="c1">// registerShutdownInProgress parameter to true.
+</span><span class="c1"></span>        <span class="n">sun</span><span class="o">.</span><span class="na">misc</span><span class="o">.</span><span class="na">SharedSecrets</span><span class="o">.</span><span class="na">getJavaLangAccess</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">registerShutdownHook</span><span class="o">(</span><span class="n">2</span> <span class="cm">/* Shutdown hook invocation order */</span><span class="o">,</span>
+                <span class="kc">true</span> <span class="cm">/* register even if shutdown in progress */</span><span class="o">,</span>
+                <span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
+                    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+                       <span class="n">runHooks</span><span class="o">();</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+        <span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="nf">DeleteOnExitHook</span><span class="o">()</span> <span class="o">{}</span>
+
+    <span class="kd">static</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="n">String</span> <span class="n">file</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">files</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// DeleteOnExitHook is running. Too late to add a file
+</span><span class="c1"></span>            <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalStateException</span><span class="o">(</span><span class="s">&#34;Shutdown in progress&#34;</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="n">files</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">file</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">static</span> <span class="kt">void</span> <span class="nf">runHooks</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">LinkedHashSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">theFiles</span><span class="o">;</span>
+
+        <span class="kd">synchronized</span> <span class="o">(</span><span class="n">DeleteOnExitHook</span><span class="o">.</span><span class="na">class</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">theFiles</span> <span class="o">=</span> <span class="n">files</span><span class="o">;</span>
+            <span class="n">files</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">toBeDeleted</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;(</span><span class="n">theFiles</span><span class="o">);</span>
+
+        <span class="c1">// reverse the list to maintain previous jdk deletion order.
+</span><span class="c1"></span>        <span class="c1">// Last in first deleted.
+</span><span class="c1"></span>        <span class="n">Collections</span><span class="o">.</span><span class="na">reverse</span><span class="o">(</span><span class="n">toBeDeleted</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">filename</span> <span class="o">:</span> <span class="n">toBeDeleted</span><span class="o">)</span> <span class="o">{</span>
+            <span class="o">(</span><span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">filename</span><span class="o">)).</span><span class="na">delete</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>很明显，就是<code>DeleteOnExitHook</code>的静态变量的这个<code>LinkedHashSet</code>内存泄漏了。</p>
+<div class="admonition info">
+<p>另外，除了在服务器上分析。我又在本地机器上使用<code>Windows</code>版的MAT分析了试试。</p>
+<p>结果出乎我的意料：<strong>完全没问题</strong>。</p>
+<p>MAT,YYDS。</p>
+<p>大胆猜测<code>jvisualvm</code>不行，<code>MAT</code>行！ 的原因是：</p>
+<p><code>MAT</code>分析会生成文件落到磁盘，所以没有<code>jvisualvm</code>那么吃内存。</p>
+</div>
+<h2 id="解决办法">解决办法</h2>
+<p>其实，知道有内存泄漏的问题的时候，我就知道是因为<code>Spring Cloud Config</code>版本太低了。之前升级过，但是，这台服务器的<code>Spring Cloud Config</code>一直是弃用的还是跑的老版本，只要升级版本即可。</p>
+<p>在Github上对于这个内存泄漏问题也有相关issue。</p>
+<p><a href="https://github.com/spring-cloud/spring-cloud-config/issues/668#issuecomment-347925388">MemoryLeak related to the HealthCheck</a></p>
+<p>另外，这不是只有<code>Spring Cloud Config</code>会出现这种问题，因为究其原因还是<code>File.deleteOnExit API 存在缺陷。</code></p>
+<p>详见：<a href="https://bugs.openjdk.java.net/browse/JDK-4872014">JDK-4872014</a></p>
+<div class="admonition info">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">deleteOnExit</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">SecurityManager</span> <span class="n">security</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">getSecurityManager</span><span class="o">();</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">security</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">security</span><span class="o">.</span><span class="na">checkDelete</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">isInvalid</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="n">DeleteOnExitHook</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>File.deleteOnExit</code>的作用就是在JVM退出的时候删除文件。</p>
+<p>调用<code>File.deleteOnExit</code>会将路径添加到<code>DeleteOnExitHook</code>中的LinkedHashSet里面，如果不断添加，那么就会内存溢出。</p>
+<p>所以<code>File.deleteOnExit</code>不能随便作为<code>File.delete()</code>的候选方法，比如：我怕<code>File.delete()</code>没删掉，然后调用<code>File.deleteOnExit</code>。这么做，如果是会创建大量文件的话，那么就很容易把内存撑爆了。</p>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">刘强</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-06-09
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/image/wechat-qr-code.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/image/alipay-qr-code.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/spring-cloud-config/">Spring Cloud Config</a>
+          <a href="/tags/jvm/">JVM</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/git%E5%A4%9A%E8%B4%A6%E5%8F%B7%E9%85%8D%E7%BD%AE/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Git多账号配置</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/flyway%E4%BD%BF%E7%94%A8java%E4%BB%A3%E7%A0%81repair/">
+            <span class="next-text nav-default">Flyway使用Java代码Repair</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2021-06-09 12:37:05 \u002b0800 \u002b0800',
+        title: 'Spring Cloud Config内存泄漏导致CPU100%问题排查',
+        clientID: 'c7698ac0c1888a422ff8',
+        clientSecret: '9e95b025bc3dad1fbf7ca56e6086afbe25117805',
+        repo: 'BlogGitalk',
+        owner: 'l-qiang',
+        admin: ['l-qiang'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:liuqiang.ryan@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/l-qiang" class="iconfont icon-github" title="github"></a>
+  <a href="https://blog.l-qiang.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>刘强</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-669K7NHHPY', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script id="baidu_push">
+  (function(){
+    if (window.location.hostname === 'localhost') return;
+    var bp = document.createElement('script'); bp.async = true;
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+
+
+</body>
+</html>

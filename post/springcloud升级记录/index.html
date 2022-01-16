@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Spring Cloud升级记录 - L-Qiang</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="刘强" /><meta name="description" content="最近接到一个将所有项目的Spring Cloud升级到最新版的任务。一开始我觉得挺不容易的，比较目前我们的版本很低，真正做起来发现并没有想象中难。
+Spring Cloud升级版本为Edgware.SR1 =&amp;gt; Hoxton.SR8。
+Spring Boot升级版本为1.5.20.RELEASE=&amp;gt; 2.3.3.RELEASE。
+" /><meta name="keywords" content="刘强, Java, Spring, MySQL, Blog, Docker, Linux, Redis, Zookeeper" />
+
+
+<meta name="baidu-site-verification" content="code-aOguXvJrXJ" />
+<meta name="google-site-verification" content="q9bP2qBubZQnLPEVZsEaqAVrsSTjpyAvMvA-Rf2VKXA" />
+
+
+<meta name="generator" content="Hugo 0.90.0 with theme even" />
+
+
+<link rel="canonical" href="https://blog.l-qiang.xyz/post/springcloud%E5%8D%87%E7%BA%A7%E8%AE%B0%E5%BD%95/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Spring Cloud升级记录" />
+<meta property="og:description" content="最近接到一个将所有项目的Spring Cloud升级到最新版的任务。一开始我觉得挺不容易的，比较目前我们的版本很低，真正做起来发现并没有想象中难。
+Spring Cloud升级版本为Edgware.SR1 =&gt; Hoxton.SR8。
+Spring Boot升级版本为1.5.20.RELEASE=&gt; 2.3.3.RELEASE。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.l-qiang.xyz/post/springcloud%E5%8D%87%E7%BA%A7%E8%AE%B0%E5%BD%95/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-09-24T13:22:26+00:00" />
+<meta property="article:modified_time" content="2020-09-24T13:22:26+00:00" />
+
+<meta itemprop="name" content="Spring Cloud升级记录">
+<meta itemprop="description" content="最近接到一个将所有项目的Spring Cloud升级到最新版的任务。一开始我觉得挺不容易的，比较目前我们的版本很低，真正做起来发现并没有想象中难。
+Spring Cloud升级版本为Edgware.SR1 =&gt; Hoxton.SR8。
+Spring Boot升级版本为1.5.20.RELEASE=&gt; 2.3.3.RELEASE。"><meta itemprop="datePublished" content="2020-09-24T13:22:26+00:00" />
+<meta itemprop="dateModified" content="2020-09-24T13:22:26+00:00" />
+<meta itemprop="wordCount" content="2194">
+<meta itemprop="keywords" content="Spring Cloud,Spring Boot," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Spring Cloud升级记录"/>
+<meta name="twitter:description" content="最近接到一个将所有项目的Spring Cloud升级到最新版的任务。一开始我觉得挺不容易的，比较目前我们的版本很低，真正做起来发现并没有想象中难。
+Spring Cloud升级版本为Edgware.SR1 =&gt; Hoxton.SR8。
+Spring Boot升级版本为1.5.20.RELEASE=&gt; 2.3.3.RELEASE。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">L-Qiang</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">L-Qiang</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Spring Cloud升级记录</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-09-24 </span>
+        <div class="post-category">
+            <a href="/categories/spring-cloud/"> Spring Cloud </a>
+            <a href="/categories/spring-boot/"> Spring Boot </a>
+            </div>
+          <span class="more-meta"> 约 2194 字 </span>
+          <span class="more-meta"> 预计阅读 5 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#eureka-server">Eureka Server</a></li>
+        <li><a href="#eureka-client">Eureka Client</a></li>
+        <li><a href="#spring-cloud-config">Spring Cloud Config</a></li>
+        <li><a href="#zuul">Zuul</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>最近接到一个将所有项目的Spring Cloud升级到最新版的任务。一开始我觉得挺不容易的，比较目前我们的版本很低，真正做起来发现并没有想象中难。</p>
+<p><code>Spring Cloud</code>升级版本为<del>Edgware.SR1</del> =&gt; <strong>Hoxton.SR8</strong>。</p>
+<p><code>Spring Boot</code>升级版本为<del>1.5.20.RELEASE</del>=&gt; <strong>2.3.3.RELEASE</strong>。</p>
+<h2 id="eureka-server">Eureka Server</h2>
+<p>我们之前是使用<strong>Eureka</strong>做服务注册与发现，这次升级我继续使用<strong>Eureka</strong>。</p>
+<p>我将Eureka Server项目的<strong>pom.xml</strong>里的<code>Spring Cloud</code>和<code>Spring Boot</code>的版本号改为目标版本号。</p>
+<p>不出意外，此时，项目就报错了。由于Eureka Server的是没有业务代码的，所以需要修改的代码并不多。</p>
+<ul>
+<li>
+<p><strong>pom.xml</strong></p>
+<p>改完版本号，发现<strong>hystrix</strong>和<strong>eureka</strong>的依赖都报错了，这里可以从Spring Cloud的<a href="https://docs.spring.io/spring-cloud-netflix/docs/2.2.5.RELEASE/reference/html/">官方文档</a>了解到，这些依赖的jar包的<strong>artifactId</strong>都改了。</p>
+<p><code>修改前</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+	<span class="nt">&lt;groupId&gt;</span>org.springframework.cloud<span class="nt">&lt;/groupId&gt;</span>
+	<span class="nt">&lt;artifactId&gt;</span>spring-cloud-starter-eureka-server<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+	<span class="nt">&lt;groupId&gt;</span>org.springframework.cloud<span class="nt">&lt;/groupId&gt;</span>
+	<span class="nt">&lt;artifactId&gt;</span>spring-cloud-starter-hystrix<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+	<span class="nt">&lt;groupId&gt;</span>org.springframework.cloud<span class="nt">&lt;/groupId&gt;</span>
+	<span class="nt">&lt;artifactId&gt;</span>spring-cloud-starter-hystrix-dashboard<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>修改后</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+<span class="nt">&lt;groupId&gt;</span>org.springframework.cloud<span class="nt">&lt;/groupId&gt;</span>
+<span class="nt">&lt;artifactId&gt;</span>spring-cloud-starter-netflix-eureka-server<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+<span class="nt">&lt;groupId&gt;</span>org.springframework.cloud<span class="nt">&lt;/groupId&gt;</span>
+<span class="nt">&lt;artifactId&gt;</span>spring-cloud-starter-netflix-hystrix<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+<span class="nt">&lt;groupId&gt;</span>org.springframework.cloud<span class="nt">&lt;/groupId&gt;</span>
+<span class="nt">&lt;artifactId&gt;</span>spring-cloud-starter-netflix-hystrix-dashboard<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>Eureka Server配置</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">eureka.client.serviceUrl.defaultZone=http://${service.center.username}:${service.center.password}@localhost:9999/eureka/
+</code></pre></td></tr></table>
+</div>
+</div><p>这里添加了eureka.client.serviceUrl.defaultZone的配置，且指向自己。是因为控制台一直报错<strong>Connect to localhost:8761 time out</strong>，具体原因我们都可以再网上查到。</p>
+</li>
+<li>
+<p><strong>jar包升级</strong>
+在我们修改完代码和配置文件，项目的代码没有红叉叉的时候。启动项目可能会有这样的信息。</p>
+<blockquote>
+<p><span id="error1">Description:</span></p>
+<p>The bean &lsquo;multipartConfigElement&rsquo;, defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/MultipartAutoConfiguration.class], could not be registered. A bean with that name has already been defined in class path resource [com/h3c/config/MultipartConfig.class] and overriding is disabled.</p>
+<p>Action:</p>
+<p>Consider renaming one of the beans or enabling overriding by setting spring.main.allow-bean-definition-overriding=true</p>
+</blockquote>
+<p>如果bean是自己代码，则需要自己修改（<a href="#filetemp">见后文</a>）。如果不是，可以尝试升级对应的jar包。</p>
+</li>
+<li>
+<p><strong>Spring Security</strong>
+由于我们的Eureka Server使用了简单的<code>HTTP Basic</code>认证。所以，有关于Spring Security的配置。</p>
+<p>在上面的操作都完成后，就可以成功启动项目了。但升级还未结束，启动完后，访问<code>http://localhost:9999</code>发现，验证方式变成Form表单验证了，而且输入用户名密码告诉我错了。</p>
+<p>此时，需要进行两处修改。</p>
+<p>此时，需要进行两处修改。</p>
+<ol>
+<li>
+<p><code>application.properties</code></p>
+<p><del>security.user.name</del> =&gt;<strong>spring.security.user.name</strong></p>
+<p><del>security.user.password</del>=&gt;<strong>spring.security.user.password</strong></p>
+</li>
+<li>
+<p><code>WebSecurityConfigurerAdapter</code></p>
+<p>继承WebSecurityConfigurerAdapter，并覆盖对应方法。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Configuration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.security.config.annotation.web.builders.HttpSecurity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.security.config.annotation.web.configuration.EnableWebSecurity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter</span><span class="o">;</span>
+
+<span class="nd">@Configuration</span>
+<span class="nd">@EnableWebSecurity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">WebSecurityConfig</span> <span class="kd">extends</span> <span class="n">WebSecurityConfigurerAdapter</span><span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">http</span><span class="o">.</span><span class="na">csrf</span><span class="o">().</span><span class="na">disable</span><span class="o">();</span> <span class="c1">// 不加这个也不行
+</span><span class="c1"></span>        <span class="n">http</span><span class="o">.</span><span class="na">authorizeRequests</span><span class="o">().</span><span class="na">anyRequest</span><span class="o">().</span><span class="na">authenticated</span><span class="o">().</span><span class="na">and</span><span class="o">().</span><span class="na">httpBasic</span><span class="o">();</span>
+    <span class="o">}</span>
+ <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+</li>
+</ul>
+<h2 id="eureka-client">Eureka Client</h2>
+<p>上面说过的就在这不说了，下面的一些问题都跟项目相关，是否会遇到取决于是否使用了相关的依赖。</p>
+<ul>
+<li>
+<p><span id="filetemp"><strong>Spring Boot文件上传配置更新</strong></span></p>
+<p>之前的Spring Boot需要配置<strong>MultipartConfigElement</strong>设置文件上传的临时目录，升级之后会<a href="#error1">报错</a>。</p>
+<p>升级之后使用<code>spring.servlet.multipart.location</code>来设置文件上传的临时目录。更多相关配置见<a href="https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html#web-properties">官方文档</a></p>
+</li>
+<li>
+<p><strong>flyway配置修改</strong></p>
+<p><del>flyway.baseline-on-migrate</del>=&gt; <strong>spring.flyway.baseline-on-migrate</strong></p>
+<p><del>flyway.locations</del> =&gt; <strong>spring.flyway.locations</strong></p>
+</li>
+<li>
+<p><strong>Spring Data JPA 相关接口名称及构造方法改变</strong></p>
+</li>
+<li>
+<p><strong>Logger</strong></p>
+<p>之前都是用的<code>org.apache.log4j.Logger</code>，现改为<code>org.slf4j.Logger</code>。这种遍布所有代码且不统一的话，最好还是自己再封一层，以后修改会方便很多，不用到处改。</p>
+</li>
+<li>
+<p><strong>This may be the result of an unspecified view, due to default view name generation</strong></p>
+<p>访问页面报错，这个问题网上也有解决办法，什么view和path不能同名啥的，引入thymeleaf依赖之类的。</p>
+<p>这些在我这可不好使，我典型的逆反心理，我就是要同名。而且我没用thymeleaf，我引什么这个依赖。</p>
+<p>直接一个<strong>spring.freemarker.suffix=.ftl</strong>解决，造成问题的原因就是找不到视图，由于默认freemarker视图后缀是<code>.ftlh</code>，但是我们项目中的都是<code>.ftl</code>，所以修改一下视图后缀就好了。</p>
+</li>
+<li>
+<p><strong>Feign</strong></p>
+<p>我们项目的Feign可以说是用的很老版本的了，当时的Feign Form甚至不支持多文件。基本不需要太大的改变。</p>
+<p>首先，是依赖包修改。</p>
+<p><code>修改前</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>     
+  	<span class="nt">&lt;groupId&gt;</span>org.springframework.cloud<span class="nt">&lt;/groupId&gt;</span>     
+  	<span class="nt">&lt;artifactId&gt;</span>spring-cloud-starter-feign<span class="nt">&lt;/artifactId&gt;</span> 
+<span class="nt">&lt;/dependency&gt;</span> 
+<span class="nt">&lt;dependency&gt;</span>     
+  	<span class="nt">&lt;groupId&gt;</span>io.github.openfeign.form<span class="nt">&lt;/groupId&gt;</span>     
+  	<span class="nt">&lt;artifactId&gt;</span>feign-form<span class="nt">&lt;/artifactId&gt;</span>     
+  	<span class="nt">&lt;version&gt;</span>3.2.2<span class="nt">&lt;/version&gt;</span> 
+<span class="nt">&lt;/dependency&gt;</span> 
+<span class="nt">&lt;dependency&gt;</span>     
+  	<span class="nt">&lt;groupId&gt;</span>io.github.openfeign.form<span class="nt">&lt;/groupId&gt;</span>    
+  	<span class="nt">&lt;artifactId&gt;</span>feign-form-spring<span class="nt">&lt;/artifactId&gt;</span>    
+  	<span class="nt">&lt;version&gt;</span>3.2.2<span class="nt">&lt;/version&gt;</span> 
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>修改后</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>     
+  	<span class="nt">&lt;groupId&gt;</span>org.springframework.cloud<span class="nt">&lt;/groupId&gt;</span>     
+  	<span class="nt">&lt;artifactId&gt;</span>spring-cloud-starter-openfeign<span class="nt">&lt;/artifactId&gt;</span> 
+<span class="nt">&lt;/dependency&gt;</span> 
+</code></pre></td></tr></table>
+</div>
+</div><p>然后，启动就报了一个错，<strong>The bean &lsquo;服务名.FeignClientSpecification&rsquo; could not be registered. A bean with that name has already been defined and overriding is disabled.</strong></p>
+<p>这个错是因为<code>@FeignClient</code>有多个同<code>name</code>的，通过在<code>@FeignClient</code>中指定<code>contextId</code>即可解决。</p>
+</li>
+<li>
+<p><strong>Spring Security</strong></p>
+<p>升级Spring Boot后，Spring Security也升级成5.x，这对于我目前的项目来说，最大的影响就是PasswordEncoder。我们之前是使用MD5加密，升级之后是没有<code>Md5PasswordEncoder</code>这个类了。</p>
+<p>但是，我们可以使用<code>new MessageDigestPasswordEncoder(&quot;MD5&quot;)</code>，这个类也提示我们弃用了，所以最好的办法是升级我们的密码编码方式。</p>
+<p>为了能<code>兼容</code>以前的MD5的密码，我通过以下的方式来修改Spring Security配置的PasswordEncoder。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">DelegatingPasswordEncoder</span> <span class="n">encoder</span> <span class="o">=</span> <span class="o">(</span><span class="n">DelegatingPasswordEncoder</span><span class="o">)</span> <span class="n">PasswordEncoderFactories</span><span class="o">.</span><span class="na">createDelegatingPasswordEncoder</span><span class="o">();</span>
+  <span class="n">encoder</span><span class="o">.</span><span class="na">setDefaultPasswordEncoderForMatches</span><span class="o">(</span><span class="k">new</span> <span class="n">MessageDigestPasswordEncoder</span><span class="o">(</span><span class="s">&#34;MD5&#34;</span><span class="o">));</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>Spring Session Data Redis</strong></p>
+<p>除了<a href="https://docs.spring.io/spring-session/docs/2.3.1.RELEASE/reference/html5/">官方文档</a>的说明之外，再说三点。</p>
+<ol>
+<li>
+<p>需要加上Jedis的依赖。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+	<span class="nt">&lt;groupId&gt;</span>redis.clients<span class="nt">&lt;/groupId&gt;</span>
+	<span class="nt">&lt;artifactId&gt;</span>jedis<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>不需要再自定义Bean<code>RedisOperationsSessionRepository</code>，且已弃用，直接注入使用<code>RedisIndexedSessionRepository</code>即可。</p>
+</li>
+<li>
+<p>ConfigureRedisAction的配置依然需要，一开始我是把所有配置全删了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Bean</span>  
+<span class="kd">public</span> <span class="n">ConfigureRedisAction</span> <span class="nf">configureRedisAction</span><span class="o">()</span> <span class="o">{</span>  
+    <span class="k">return</span> <span class="n">ConfigureRedisAction</span><span class="o">.</span><span class="na">NO_OP</span><span class="o">;</span>  
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+</li>
+</ul>
+<h2 id="spring-cloud-config">Spring Cloud Config</h2>
+<p>版本一改直接启动，毫无问题</p>
+<h2 id="zuul">Zuul</h2>
+<p><del>spring-cloud-starter-zuul</del> =&gt; <strong>spring-cloud-starter-netflix-zuul</strong></p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">刘强</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-09-24
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/image/wechat-qr-code.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/image/alipay-qr-code.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/spring-cloud/">Spring Cloud</a>
+          <a href="/tags/spring-boot/">Spring Boot</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/%E4%BD%BF%E7%94%A8contended%E6%B3%A8%E8%A7%A3%E5%90%8E%E7%AB%9F%E7%84%B6/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">使用@sun.misc.Contended注解后竟然...</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/springboot%E4%B8%8Edocker%E7%9A%84%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/">
+            <span class="next-text nav-default">SpringBoot与Docker的经验分享</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2020-09-24 13:22:26 \u002b0000 UTC',
+        title: 'Spring Cloud升级记录',
+        clientID: 'c7698ac0c1888a422ff8',
+        clientSecret: '9e95b025bc3dad1fbf7ca56e6086afbe25117805',
+        repo: 'BlogGitalk',
+        owner: 'l-qiang',
+        admin: ['l-qiang'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:liuqiang.ryan@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/l-qiang" class="iconfont icon-github" title="github"></a>
+  <a href="https://blog.l-qiang.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>刘强</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-669K7NHHPY', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script id="baidu_push">
+  (function(){
+    if (window.location.hostname === 'localhost') return;
+    var bp = document.createElement('script'); bp.async = true;
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+
+
+</body>
+</html>
