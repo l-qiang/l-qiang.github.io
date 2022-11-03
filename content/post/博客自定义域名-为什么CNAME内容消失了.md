@@ -226,3 +226,8 @@ properties: []
 
    只要修改`if [ -n $WERCKER_GH_PAGES_DOMAIN ]`为`if [ -n "$WERCKER_GH_PAGES_DOMAIN" ]`即可。这就是告诉我们为什么要在变量外加双引号的原因。
 
+{{% admonition warning "注意" %}}
+
+2022.11.03: 此时Wercker已经停服了，所以此文所述问题已经不复存在
+
+{{% /admonition %}}

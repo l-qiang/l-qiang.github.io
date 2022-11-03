@@ -115,6 +115,16 @@ push后的结果可以参考我的[l-qiang.github.io](https://github.com/l-qiang
 
 {{% /admonition %}}
 
+
+
+{{% admonition warning "注意" %}}
+
+2022.11.03: 此时wercker已经停服，后面的步骤可省略。构建部署参考：
+
+[Hugo之Wercker停服解决方案-Github Actions]({{<ref "Hugo之Wercker停服解决方案-Github Actions">}})
+
+{{% /admonition %}}
+
 ## wercker
 
 用wercker的好处就是，我们写完东西只要将更改push到`main`分支就行，wercker可以帮我们把`main`分支的build之后推到`gh-pages`分支。

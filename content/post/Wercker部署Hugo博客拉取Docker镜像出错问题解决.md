@@ -64,3 +64,8 @@ _如果，你使用自己的Docker Hub账号还是会有这种问题，那么就
 
 
 
+{{% admonition warning "注意" %}}
+
+2022.11.03: 此时Wercker已经停服了，所以此文所述问题已经不复存在
+
+{{% /admonition %}}
