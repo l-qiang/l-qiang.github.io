@@ -1,7 +1,7 @@
 ---
 title: "SpringBoot拦截器怎样才能不拦截404请求"
-date: 2022-11-07T20:05:36+08:00
-lastmod: 2022-11-07T20:05:36+08:00
+date: 2022-06-21T20:05:36+08:00
+lastmod: 2022-06-21T20:05:36+08:00
 categories: ["Spring Boot"]
 tags: ["Spring Boot"]
 keywords: ["Spring Boot", "404", "拦截器"]
