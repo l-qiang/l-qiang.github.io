@@ -2,8 +2,8 @@
 title: "Hugo之Wercker停服解决方案-Github Actions"
 date: 2022-11-02T20:45:43+08:00
 lastmod: 2022-11-02T20:45:43+08:00
-categories: ["hugo"]
-tags: ["hugo"]
+categories: ["hugo", "Blog"]
+tags: ["hugo", "Blog"]
 keywords: ["Wercker", "hugo", "CI", "Github Actions"]
 toc: false
 ---
