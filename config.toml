@@ -3,7 +3,7 @@ languageCode = "zh-cn"
 defaultContentLanguage = "zh-cn"                             # en / zh-cn / ... (This field determines which i18n file to use)
 title = "L-Qiang"
 preserveTaxonomyNames = true
-enableRobotsTXT = true
+enableRobotsTXT = false
 enableEmoji = true
 theme = "even"
 enableGitInfo = false # use git commit log to generate lastmod record # 可根据 Git 中的提交生成最近更新记录。
@@ -102,7 +102,7 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
 
   baiduPush = true        # baidu push                  # 百度
   baiduAnalytics = ""      # Baidu Analytics
-  baiduVerification = "code-aOguXvJrXJ"   # Baidu Verification See: https://ziyuan.baidu.com/site
+  baiduVerification = "codeva-QZfBuapmXR"   # Baidu Verification See: https://ziyuan.baidu.com/site
   googleVerification = "q9bP2qBubZQnLPEVZsEaqAVrsSTjpyAvMvA-Rf2VKXA"  # Google Verification https://www.google.com/webmasters        # 谷歌
 
   # Link custom CSS and JS assets
