@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /
+Allow: /post/
+
+Sitemap: https://blog.l-qiang.xyz/sitemap.xml
